@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bundles</title>
+
+    <link rel="stylesheet" href="sp://resources/css/eve.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <section id="bundlelist" class="bundlelist">
+    <div id="lists" class="lists">
+      <div class="list running active">
+        <header>
+          <table cellspacing="0">
+            <tr>
+              <td class="col col-toggle clickable">
+                <button type="button" class="toggle-all"><span>▸</span></button>
+              </td>
+              <td class="col col-icon"></td>
+              <td class="col col-bundleinfo clickable sortable sorted sorted-asc" data-sort-order="type">Bundle Info</td>
+              <td class="col col-actions">Actions</td>
+            </tr>
+          </table>
+        </header>
+        <ul id="running" class="bundles loading">
+          <li>Loading bundles...</li>
+        </ul>
+      </div>
+      <div class="list apps">
+        <header>
+          <table cellspacing="0">
+            <tr>
+              <td class="col col-toggle clickable">
+                <button type="button" class="toggle-all"><span>▸</span></button>
+              </td>
+              <td class="col col-icon"></td>
+              <td class="col col-bundleinfo clickable sortable sorted sorted-asc" data-sort-order="type">Bundle Info</td>
+              <td class="col col-actions">Actions</td>
+            </tr>
+          </table>
+        </header>
+        <ul id="apps" class="bundles loading">
+          <li>Loading bundles...</li>
+        </ul>
+      </div>
+      <div class="list frameworks">
+        <header>
+          <table cellspacing="0">
+            <tr>
+              <td class="col col-toggle clickable">
+                <button type="button" class="toggle-all"><span>▸</span></button>
+              </td>
+              <td class="col col-icon"></td>
+              <td class="col col-bundleinfo clickable sortable sorted sorted-asc" data-sort-order="type">Bundle Info</td>
+            </tr>
+          </table>
+        </header>
+        <ul id="frameworks" class="bundles loading">
+          <li>Loading bundles...</li>
+        </ul>
+      </div>
+    </div>
+    <ul id="bundles-filler" class="filler loading">
+    </ul>
+  </section>
+
+  <footer id="footer">
+
+    <div class="summary">
+      <span class="num-apps">0</span> <span class="num-apps-label">apps</span>, <span class="num-frameworks">0</span> <span class="num-frameworks-label">frameworks</span>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="button default get-updates" id="update-all">Get Updates for All Bundles</button>
+    </div>
+
+    <div class="update-timer">
+      <span class="hours">0</span>
+      <span class="hours-label">hours, </span>
+      <span class="minutes">0</span>
+      <span class="minutes-label">minutes, </span>
+      <span class="seconds">0</span>
+      <span class="seconds-label">seconds</span>
+      <span class="postfix">until next update check</span>
+    </div>
+  </footer>
+
+  <script type="text/template" id="tmpl-bundle">
+    <li class="bundle{ if updateStatus isnt 'on-disk' } has-updates{ end }{ if listItemOpen } open{ end }" id="{ listType }-bundle-{ id }">
+
+      <div class="content">
+
+        <button type="button" class="toggle bundle-toggle" data-toggle-item="{ listType }-bundle-{ id }">▸</button>
+
+        <div class="icon">
+          { if latestVersion.image isnt '' }
+          <img src="{ latestVersion.image }" alt="">
+          { else }
+          <img src="img/icon-default-{ type }.png" alt="">
+          { end }
+        </div>
+
+        <div class="summary">
+          <h2 class="title"><a href="{ uri }">{ name }</a> <small class="version">(<span class="version-number">{ latestVersion.version }</span>)</small>{ if inUse } <button type="button" class="in-use quit"><span>✕</span></button>{ end }</h2>
+          <p class="description">{ latestVersion.description }</p>
+        </div>
+
+        { if type is 'app' }
+        <div class="actions">
+          { if latestVersion.origin === 'remote' }
+          <button type="button" class="button negative confirm-remove">Remove</button>
+          <button type="button" class="remove">Remove</button>
+          { end }
+          { if false }
+          { if updateStatus is 'updating' }
+          <button type="button" class="button default get-updates" disabled>Updating...</button>
+          { else if updateStatus is 'on-disk' }
+          <button type="button" class="button default get-updates">Get Updates</button>
+          { end }
+          { end }
+        </div>
+        { end }
+
+        <ul class="versions">
+          { each index, vers in versions }
+          <li class="version version-{ index }{ if vers.inUse } version-in-use{ end }" data-version="{ vers.version }">
+            <h3 class="version-title"><a href="{ vers.uri }">Version <span class="version-number">{ vers.version }</span></a>{ if vers.origin } <span class="origin">({ vers.origin })</span>{ end }{ if vers.inUse } <span class="in-use"></span>{ end }</h3>
+            { if vers.inUseBy and vers.inUseBy.length > 0 }
+            <h4 class="in-use-by-title">In use by</h4>
+            <ul class="in-use-by">
+              { each app in vers.inUseBy }
+              <li>
+                <span class="bundle-link" data-id="{ app.id }" data-version="{ app.version }" data-type="{ app.type }">
+                  { app.name } { app.version }
+                </span>
+              </li>
+              { end }
+            </ul>
+            { end }
+            { if vers.dependencies and vers.dependencies.length > 0 }
+            <h4 class="dependencies-title">Dependencies</h4>
+            <ul class="dependencies">
+              { each dependency in vers.dependencies }
+              <li>
+                <span class="bundle-link" data-id="{ dependency.id }"{ if dependency.currentVersion } data-version="{ dependency.currentVersion }"{ end } data-type="framework">
+                  { dependency.id } { dependency.minimumVersion } { if dependency.currentVersion }<small class="active-version">(active version: { dependency.currentVersion })</small>{ end }
+                </span>
+              </li>
+              { end }
+            </ul>
+            { end }
+            <h4 class="cache-timeout-title">Cache Timeout</h4>
+            <p class="cache-timeout">
+              <span class="hours">0</span>
+              <span class="hours-label">hours, </span>
+              <span class="minutes">0</span>
+              <span class="minutes-label">minutes, </span>
+              <span class="seconds">0</span>
+              <span class="seconds-label">seconds</span>
+            </p>
+            { if vers.tag }
+            <h4 class="git-revision-title">Git Revision</h4>
+            <p class="git-revision"><span>{ vers.tag }</span></p>
+            { end }
+            { if vers.manifest }
+            <button type="button" class="toggle manifest-toggle" data-toggle-item="{ listType }-manifest-{ id }-{ index }">▸</button>
+            <h4 class="manifest-title manifest-toggle" data-toggle-item="{ listType }-manifest-{ id }-{ index }">Manifest</h4>
+            <pre id="{ listType }-manifest-{ id }-{ index }" class="manifest"><div>{ vers.manifest }</div></pre>
+            { end }
+          </li>
+          { end }
+        </ul>
+      </div>
+    </li>
+  </script>
+
+  <script>var sp = getSpotifyApi(1), tests = sp.require("js/app");</script>
+</body>
+</html>

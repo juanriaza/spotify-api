@@ -1,0 +1,169 @@
+/*
+	Author: Adam Smith adams@spotify.com
+*/
+.survey {
+	background-color: #FFF;
+	overflow: hidden;
+	position: relative;
+	border-radius: 5px;
+	border: 1px solid #D2D1CE;
+	-webkit-box-shadow: 0px 1px 0 #dddcd9;
+	border-bottom: 1px solid #B6B5B2;
+	margin-top: 20px;
+	opacity: 1;
+}
+.survey.is-active .survey-content,
+.survey.is-active.is-removed .survey-content {
+	background: transparent url("../img/survey/conductor.gif") 500px bottom no-repeat;
+}
+@media all and (max-width: 700px) {
+	.survey.is-active .survey-content {
+		background-position: 400px bottom;
+	}
+}
+@media all and (max-width: 600px) {
+	.survey.is-active .survey-content {
+		background: none;
+	}
+}
+.survey.is-resizing,
+.survey.is-active,
+.survey.is-submitted,
+.survey.is-removed {
+	-webkit-transition: height 1s ease-in-out, opacity 1s ease-in-out, margin 1s ease-in-out .5s;
+}
+.survey.is-removed {
+	margin: 0;
+	opacity: 0;
+}
+	.survey .survey-content {
+		padding: 24px 29px;
+	}
+	.survey .thanks {
+		text-align: center;
+		margin-top: 25px;
+		height: auto;
+		opacity: 1;
+		-webkit-transition: opacity .75s ease-in;
+	}
+	.survey .thanks.hidden {
+		display: block;
+		height: 0;
+		opacity: 0;
+	}
+	.survey .spotify-team {
+		color: inherit;
+		display: block;
+	}
+	.survey .close-survey {
+		background: url("../img/survey/close-x.gif") 0 0 no-repeat;
+		display: block;
+		height: 12px;
+		position: absolute;
+		right: 15px;
+		text-indent: -999em;
+		top: 13px;
+		visibility: hidden;
+		width: 13px;
+	}
+	.survey:hover .close-survey {
+		visibility: visible;
+	}
+	.survey h2 {
+		color: #7ab800;
+		font-size: 19px;
+		line-height: 1.4;
+	}
+	.survey .logo {
+		background: url("../img/survey/logo.gif") 0 0 no-repeat;
+		height: 42px;
+		margin: 0 auto;
+		overflow: hidden;
+		text-indent: 100%;
+		white-space: no-wrap;
+		width: 118px;
+	}
+	.survey ol {
+		list-style-type: decimal;
+		margin: 0;
+		padding: 0 0 0 18px;
+	}
+	.survey li {
+		margin-bottom: 25px;
+		overflow: hidden;
+	}
+	.survey li:last-child {
+		margin-bottom: 0;
+	}
+	.survey li strong {
+		color: #000;
+		display: block;
+		font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
+		font-size: 14px;
+		line-height: 1.6;
+		margin-bottom: 15px;
+	}
+	.survey .scale {
+	    float: left;
+		overflow: hidden;
+	}
+		.survey .scale label {
+			float: left;
+			margin: 0 14px 9px 0;
+			text-align: center;
+		}
+		.survey .scale label.last {
+			margin-right: 0;
+		}
+		.survey .scale input[type="radio"] {
+			background-color: #e5e5e5;
+			border-radius: 25px;
+			display: block;
+			height: 13px;
+			margin: 3px;
+			padding: 0;
+			width: 13px;
+			-webkit-appearance: radio;
+		}
+	.survey .description {
+		clear: left;
+		overflow: hidden;
+	}
+		.survey .negative {
+			float: left;
+		}
+		.survey .positive {
+			float: right;
+		}
+	.survey fieldset {
+		overflow: hidden;
+	}
+	.survey .error {
+		color: #FF0000;
+	}
+	.survey .textarea-wrap {
+		background-color: #ededed;
+		border-radius: 5px;
+		padding: 4px 7px;
+		width: 301px;	/* 325 - 14px padding */
+	}
+	.survey textarea {
+		background-color: #ededed;
+		border-radius: 0;
+		border: none;
+		min-height: 64px;
+		width: 100%;
+		padding: 0;
+	}
+	.survey input[type="submit"] {
+		background: -webkit-linear-gradient(top,  #7abae4 0%,#4a9fd8 1%,#2a70b1 49%,#1e66aa 50%,#2f85c4 100%);
+		border: 1px solid #1f60ca;
+		border-top: 1px solid #1f60ca;
+		-webkit-box-shadow: 0 1px 0 #7abae4 inset;
+		border-radius: 3px;
+		color: #fff;
+		cursor: pointer;
+		font-size: 11px;
+		margin: 50px 0 0 18px;
+		padding: 5px 15px 6px;
+	}

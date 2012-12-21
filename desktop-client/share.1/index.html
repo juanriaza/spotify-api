@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="assets/css/share.css">
+</head>
+<body class="share">
+<div id="header">
+	<span id="cover"></span>
+	<h1 id="title"></h1>
+	<span id="extra-prefix"></span><span id="extra"></a>
+</div>
+<nav id="tabs">
+	<ul>
+		<li data-container="share" data-string="shareTab">
+		<li data-container="send" data-string="sendTab">
+	</ul>
+</nav>
+<section id="share">
+	<textarea class="message textfield" data-attribute="placeholder" data-string="fieldMessage"></textarea>
+
+	<h2><span data-string="shareTo"></span> <button id="share-options"></button></h2>
+	<ul id="networks">
+		<li data-network="facebook"><span class="icon"></span>Facebook</li>
+		<li data-network="twitter"><span class="icon"></span>Twitter</li>
+		<li data-network="tumblr"><span class="icon"></span>Tumblr</li>
+	</ul>
+
+	<div class="actions">
+		<button class="cancel sp-button" data-string="actionCancel"></button>
+		<button class="share sp-primary sp-button" data-string="actionShare" disabled></button>
+	</div>
+</section>
+<section id="send">
+	<div class="textfield" id="user-list">
+		<input data-attribute="placeholder" data-string="fieldTo" size="50">
+		<ul id="user-results"></ul>
+	</div>
+	<textarea class="message textfield" data-attribute="placeholder" data-string="fieldMessage"></textarea>
+
+	<div class="actions">
+		<button class="cancel sp-button" data-string="actionCancel"></button>
+		<button class="send sp-primary sp-button" data-string="actionSend" disabled></button>
+	</div>
+</section>
+<section id="options">
+	<h1 data-string="optionsTitle"></h1>
+	<div class="auth" data-network="facebook">
+		<span class="icon"></span>
+		<p class="connect">
+			<button class="sp-button" data-string="actionConnect"></button>
+		</p>
+		<strong>Facebook</strong>
+		<p class="state">
+	</div>
+	<div class="auth unknown" data-network="twitter">
+		<span class="icon"></span>
+		<p class="disconnect">
+			<button class="sp-button" data-string="actionDisconnect"></button>
+		</p>
+		<strong>Twitter</strong>
+		<p class="state">
+		<p class="connect">
+			<input class="textfield" name="username" data-attribute="placeholder" data-string="fieldUsername">
+			<input class="textfield" name="password" data-attribute="placeholder" data-string="fieldPassword" type="password"><br>
+			<span class="disclaimer" data-string="optionsDisclaimer"></span>
+		</p>
+	</div>
+	<div class="auth unknown" data-network="tumblr">
+		<span class="icon"></span>
+		<p class="disconnect">
+			<button class="sp-button" data-string="actionDisconnect"></button>
+		</p>
+		<strong>Tumblr</strong>
+		<p class="state">
+		<p class="connect">
+			<input class="textfield" name="username" data-attribute="placeholder" data-string="fieldEmail">
+			<input class="textfield" name="password" data-attribute="placeholder" data-string="fieldPassword" type="password"><br>
+			<span class="disclaimer" data-string="optionsDisclaimer"></span>
+		</p>
+	</div>
+
+	<div class="actions">
+		<button class="back sp-primary sp-button" data-string="actionBackToSharing"></button>
+	</div>
+</section>
+<section id="error">
+	<p></p>
+
+	<div class="actions">
+		<!--button class="cancel sp-button" data-string="actionClose"></button-->
+		<button class="cancel sp-button">Close</button>
+	</div>
+</section>
+<script>
+var sp = getSpotifyApi();
+var m = sp.require('assets/scripts/main');
+addEventListener('DOMContentLoaded', m.main);
+</script>
+</body>
+</html>

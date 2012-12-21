@@ -1,0 +1,341 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "nl"
+  ],
+  "strings" : {
+    "Share widget" : {
+      "actionBackToSharing" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Zurück",
+          "en" : "Back to sharing",
+          "es" : "Vuelta a compartir",
+          "fr" : "Retour",
+          "nl" : "Terug naar delen"
+        }
+      },
+      "actionCancel" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abbrechen",
+          "en" : "Cancel",
+          "es" : "Cancelar",
+          "fr" : "Annuler",
+          "nl" : "Annuleren"
+        }
+      },
+      "actionClose" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Close"
+        },
+        "translationsNeedingReview" : [
+          "en"
+        ]
+      },
+      "actionConnect" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Verbinden",
+          "en" : "Connect",
+          "es" : "Conectar",
+          "fr" : "Connexion",
+          "nl" : "Verbinden"
+        }
+      },
+      "actionDisconnect" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Verbindung trennen",
+          "en" : "Disconnect",
+          "es" : "Desconectar",
+          "fr" : "Déconnexion",
+          "nl" : "Verbinding verbreken"
+        }
+      },
+      "actionSend" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Senden",
+          "en" : "Send",
+          "es" : "Enviar",
+          "fr" : "Envoyer",
+          "nl" : "Versturen"
+        }
+      },
+      "actionShare" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Teilen",
+          "en" : "Share",
+          "es" : "Compartir",
+          "fr" : "Partager",
+          "nl" : "Delen"
+        }
+      },
+      "errorLocalFile" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Sorry, local files cannot be shared."
+        },
+        "translationsNeedingReview" : [
+          "en"
+        ]
+      },
+      "errorUnsupportedType" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Sorry, you cannot share that."
+        },
+        "translationsNeedingReview" : [
+          "en"
+        ]
+      },
+      "fieldEmail" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "E-Mail",
+          "en" : "E-mail",
+          "es" : "E-mail",
+          "fr" : "E-mail",
+          "nl" : "E-mail"
+        }
+      },
+      "fieldMessage" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Nachricht (optional)",
+          "en" : "Message (Optional)",
+          "es" : "Mensaje (opcional)",
+          "fr" : "Message (en option)",
+          "nl" : "Bericht (optioneel)"
+        }
+      },
+      "fieldPassword" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Passwort",
+          "en" : "Password",
+          "es" : "Contraseña",
+          "fr" : "Mot de passe",
+          "nl" : "Wachtwoord"
+        }
+      },
+      "fieldTo" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Gib den Namen eines Freundes an",
+          "en" : "Enter a friend's name",
+          "es" : "Escribe el nombre de un amigo",
+          "fr" : "Entrez le nom d'un ami",
+          "nl" : "Voer de naam van een vriend in"
+        }
+      },
+      "fieldUsername" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Benutzername",
+          "en" : "Username",
+          "es" : "Nombre de usuario",
+          "fr" : "Nom d'utilisateur",
+          "nl" : "Gebruikersnaam"
+        }
+      },
+      "optionsConnectError" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Verbindung fehlgeschlagen.",
+          "en" : "Failed to connect.",
+          "es" : "Error al conectar.",
+          "fr" : "Echec de la connexion.",
+          "nl" : "Verbinding mislukt."
+        }
+      },
+      "optionsConnectFailed" : {
+        "approved" : false,
+        "description" : "Shown if connecting to a service resulted in an error from the backend.",
+        "translations" : {
+          "de" : "Falscher Benutzername oder Passwort. Bitte überprüfe die Angaben und versuche es erneut. ",
+          "en" : "Incorrect username or password. Please double check and try again.",
+          "es" : "Nombre de usuario o contraseña incorrectos. Por favor, comprueba de nuevo y vuelve a intentarlo.",
+          "fr" : "Nom d'utilisateur ou mot de passe incorrect. Merci de réessayer.",
+          "nl" : "Onjuiste gebruikersnaam of wachtwoord. Controleer nogmaals en probeer het opnieuw."
+        }
+      },
+      "optionsDisclaimer" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Dein Passwort wird von uns nicht gespeichert. ",
+          "en" : "We will never store your password.",
+          "es" : "Tu contraseña nunca será almacenada.",
+          "fr" : "Nous n'enregistrerons pas votre mot de passe.",
+          "nl" : "We zullen je wachtwoord nooit opslaan."
+        }
+      },
+      "optionsStateConnectedAs" : {
+        "approved" : false,
+        "description" : "{0} is a service-specific username, such as \"@blixt\" or \"Andreas Blixt\".",
+        "translations" : {
+          "de" : "Verbunden als {0}.",
+          "en" : "Connected as {0}.",
+          "es" : "Conectado como {0}. ",
+          "fr" : "Connecté en tant que {0}.",
+          "nl" : "Verbonden als {0}."
+        }
+      },
+      "optionsStateNotConnected" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Nicht verbunden.",
+          "en" : "Not connected.",
+          "es" : "No conectado.",
+          "fr" : "Pas connecté.",
+          "nl" : "Niet verbonden."
+        }
+      },
+      "optionsStateTumblrPostingTo" : {
+        "approved" : false,
+        "description" : "{0} is the name of a Tumblr blog, such as \"andreasblixt.tumblr.com\".",
+        "translations" : {
+          "de" : "Posten auf {0}.",
+          "en" : "Posting to {0}.",
+          "es" : "Publicando en {0}.",
+          "fr" : "Envoi sur {0}.",
+          "nl" : "Posten op {0}."
+        }
+      },
+      "optionsStateUnknown" : {
+        "approved" : false,
+        "description" : "Shown when the status of a network could not be fetched.",
+        "translations" : {
+          "de" : "Vorübergehend nicht verfügbar.",
+          "en" : "Temporarily unavailable.",
+          "es" : "No disponible temporalmente.",
+          "fr" : "Temporairement indisponible.",
+          "nl" : "Tijdelijk niet beschikbaar."
+        }
+      },
+      "optionsTitle" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Einstellungen fürs Teilen",
+          "en" : "Sharing options",
+          "es" : "Opciones para compartir",
+          "fr" : "Options de partage",
+          "nl" : "Opties voor delen"
+        }
+      },
+      "playlistByPrefix" : {
+        "approved" : false,
+        "description" : "Prefix to show in front of username who created a playlist. The \"by\" in \"by Andreas Blixt\".",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "de",
+          "fr" : "par",
+          "nl" : "van"
+        }
+      },
+      "sendTab" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "An einen Freund senden",
+          "en" : "Send to friend",
+          "es" : "Enviar a un amigo",
+          "fr" : "Envoyer à un ami",
+          "nl" : "Versturen naar een vriend"
+        }
+      },
+      "shareNoUserFound" : {
+        "approved" : false,
+        "description" : "Shown in the autocomplete field if no user could be found.",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "No user could be found."
+        },
+        "translationsNeedingReview" : [
+          "en"
+        ]
+      },
+      "shareTab" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Teilen",
+          "en" : "Share",
+          "es" : "Compartir",
+          "fr" : "Partager",
+          "nl" : "Delen"
+        }
+      },
+      "shareTo" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Teilen auf",
+          "en" : "Share to",
+          "es" : "Compartir en",
+          "fr" : "Partager sur",
+          "nl" : "Delen via"
+        }
+      },
+      "starredPlaylist" : {
+        "approved" : false,
+        "description" : "The name of the Starred playlist.\n\n(This should not really be in here, but we currently have no way of getting a Starred playlist from an API.)",
+        "translations" : {
+          "de" : "Starred",
+          "en" : "Starred",
+          "es" : "Favoritos",
+          "fr" : "Sélection",
+          "nl" : "Favorieten"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: AnalyticsContext</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: AnalyticsContext</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+    AnalyticsContext
+    </h2>
+    
+        <div class="class-description">An analytics context can be used to group activity inside of an
+application so it can be tracked as a single logical entity.  All API requests
+executed when a given context is active will be tagged with the context id
+so they can be assigned to the context on the other side of the bridge.
+AnalyticsContexts can handle asyncronous callbacks and may be nested
+arbitrarily deep.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="AnalyticsContext"><span class="type-signature"></span>new AnalyticsContext</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Never construct an AnalyticsContext using the constructor - use the
+SP.analyticsContext() convenience function instead.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A human readable name for the context.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.6.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>core.js, line 36</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="SpotifyApi.html#analyticsContext">SpotifyApi#analyticsContext</a></li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="_begin"><span class="type-signature"></span>_begin</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Called when a context is first created: sends a message over the bridge
+with the context details.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>core.js, line 65</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_end"><span class="type-signature"></span>_end</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Called when there are no more references to the context: sends a message
+over the bridge with the context details.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>core.js, line 73</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="addReference"><span class="type-signature"></span>addReference</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Add a reference to the context: indicates that there is an
+oustanding promise that was created in the context.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>core.js, line 48</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="removeReference"><span class="type-signature"></span>removeReference</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Remove a reference to the context: indicates that a promise
+that was created in the context has been fullfilled.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>core.js, line 54</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="939370fe49.html">api/messaging</a></li></ul><h3>Classes</h3><ul><li><a href="Album.html">Album</a></li><li><a href="AlbumGroup.html">AlbumGroup</a></li><li><a href="SpotifyApi.AnalyticsContext.html">AnalyticsContext</a></li><li><a href="Application.html">Application</a></li><li><a href="Artist.html">Artist</a></li><li><a href="BridgeLoadable.html">BridgeLoadable</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Context.html">Context</a></li><li><a href="Disc.html">Disc</a></li><li><a href="Group.html">Group</a></li><li><a href="SpotifyApi.LangModule.html">LangModule</a></li><li><a href="Library.html">Library</a></li><li><a href="Loadable.html">Loadable</a></li><li><a href="Location.html">Location</a></li><li><a href="Observable.html">Observable</a></li><li><a href="Offline.html">Offline</a></li><li><a href="Player.html">Player</a></li><li><a href="Playlist.html">Playlist</a></li><li><a href="Promise.html">Promise</a></li><li><a href="ProxyListener.html">ProxyListener</a></li><li><a href="Reference.html">Reference</a></li><li><a href="Search.html">Search</a></li><li><a href="Session.html">Session</a></li><li><a href="Snapshot.html">Snapshot</a></li><li><a href="Toplist.html">Toplist</a></li><li><a href="Track.html">Track</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#fromURI">fromURI</a></li><li><a href="global.html#getBridgeDefinition">getBridgeDefinition</a></li><li><a href="global.html#isRequestImplemented">isRequestImplemented</a></li><li><a href="global.html#promisedRequest">promisedRequest</a></li><li><a href="global.html#require">require</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Tue Nov 13 2012 15:48:31 GMT-0500 (EST)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

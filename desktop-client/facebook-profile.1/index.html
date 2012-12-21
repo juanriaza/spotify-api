@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html class="loading">
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="css/profile.css">
+  <script>
+    sp = getSpotifyApi(1);
+    sp.requireAsync('scripts/profile', function (r) {
+      r.loadUser();
+    });
+  </script>
+</head>
+<body>
+<div class="throbber">
+  <div></div>
+</div>
+</body>
+</html>

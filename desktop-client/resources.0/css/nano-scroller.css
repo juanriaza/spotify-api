@@ -1,0 +1,40 @@
+/** initial setup **/
+.nano {
+  position : relative;
+  width    : 100%;
+  overflow : hidden;
+}
+.nano .content {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: inherit;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+.nano > .pane {
+  background: rgba(0,0,0,.3);
+  position : absolute;
+  width    : 6px;
+  right    : 2px;
+  top      : 2px;
+  bottom   : 2px;
+  z-index: 6;
+}
+
+.nano > .pane > .slider {
+  background: rgba(255,255,255,.5);
+  position: relative;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.nano > .pane {
+  -webkit-transition : opacity .2s;
+  border-radius: 3px;
+  opacity: .01;
+}
+.sp-player:hover .pane, .pane:hover, .pane:active, .pane.show{
+  opacity: 1;
+}

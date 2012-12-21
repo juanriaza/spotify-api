@@ -1,0 +1,775 @@
+@import url("sp://resources/css/adam.css");
+@import url("sp://resources/css/api.css");
+
+html {
+  font: normal 11px/15px "Lucida Grande", "Tahoma", sans-serif;
+  overflow: hidden;
+}
+
+body {
+  background: #474747;
+  bottom: 0;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+h1 {
+  color: #FFF;
+  font-family: "Lucida Grande", "Tahoma", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 3px 7px;
+  text-shadow: 0 1px 0 #444;
+}
+
+.search {
+  background: -webkit-linear-gradient(rgb(237, 237, 237),
+    rgb(217, 217, 217));
+  border-color: #282828;
+  border-style: solid;
+  border-width: 1px 0;
+  padding: 3px 5px 2px;
+}
+
+.offline-message,
+.error-msg {
+  box-sizing: border-box;
+  color: #999;
+  font-size: 12px;
+  left: auto;
+  margin-top: -6px;
+  padding: 0 20px;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  text-shadow: 1px 1px 0 #515151;
+  width: 100%;
+}
+
+.error-msg .button {
+  margin-top: 10px;
+}
+
+/* Searching */
+.search :-webkit-any(.input, .input:focus) {
+  -webkit-border-image: url("sp://resources/img/filter_bar-input_field.png") 0 16 0 16;
+  border-width: 0 16px;
+  font-size: 11px;
+  height: 19px;
+  line-height: 15px;
+  margin: 0;
+  padding: 0 5px 1px;
+  width: 100%;
+}
+
+section { box-sizing: border-box; }
+/* Friends list */
+#friends {
+  background-color: #474747;
+  height: 248px;
+  min-height: 78px;
+  position: relative;
+}
+.friends {
+  -webkit-box-orient: vertical;
+  box-sizing: border-box;
+  display: -webkit-box;
+  height: 100%;
+  min-height: 78px;
+  overflow-y: auto;
+  padding: 5px 0 0;
+}
+/* Friend items */
+.friend {
+  -webkit-animation-fill-mode: forwards;
+  background: #474747;
+  cursor: default;
+  display: block;
+  height: 28px;
+  line-height: 14px;
+  padding: 3px 7px 3px 42px;
+  position: relative;
+  text-decoration: none !important;
+}
+.friend:last-child {
+  /* Workaround for #SPT-2320 */
+  border-bottom: 5px solid transparent;
+}
+/* @TODO martins tests ...
+ * .friend > * { pointer-events: none; }
+ */
+.friend.hidden {
+  display: none;
+}
+.friend.show {
+  -webkit-animation-duration: 300ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: friend-show;
+}
+.friend.hide {
+  -webkit-animation-duration: 300ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: friend-hide;
+}
+.selected {
+  background: -webkit-linear-gradient(rgb(122, 122, 122),
+    rgb(113, 113, 113) 1px,
+    rgb(102, 102, 102));
+  font-weight: bold;
+}
+:focus .selected {
+  background: -webkit-linear-gradient(rgb(197, 232, 253),
+    rgb(178, 223, 251) 1px,
+    rgb(154, 210, 250));
+}
+
+  .friend .picture {
+    height: 28px;
+    left: 7px;
+    position: absolute;
+    top: 3px;
+    width: 28px;
+  }
+    .friend .picture .sp-image {
+      background-image: url("sp://resources/img/placeholders/28-user-buddy.png");
+      height: 28px;
+      width: 28px;
+    }
+  .friend .name {
+    color: #DDD;
+    -webkit-transition: 200ms -webkit-transform;
+  }
+  .friend.no-activity :-webkit-any(.name, .activity) {
+    -webkit-transform: translateY(7px);
+  }
+  .friend.no-activity .activity { opacity: 0; }
+  .friend .activity {
+    color: #727272;
+    text-shadow: initial;
+    -webkit-transition-duration: 200ms;
+    -webkit-transition-property: opacity, -webkit-transform;
+  }
+    /* Presenece states */
+    .friend .playlist {
+      display: block;
+      padding-right: 15px;
+      background: url("sp://resources/img/buddylist-playlist-icon.png");
+      background-position-x: right;
+      background-repeat: no-repeat;
+     }
+    .friend .starred {
+      display: block;
+      padding-right: 12px;
+      background-image: url("sp://resources/img/buddylist-starred-icon.png");
+      background-position-x: right;
+      background-repeat: no-repeat;
+     }
+    .friend .track {
+      pointer-events: none;
+      display: block;
+      position: relative;
+      padding-right: 12px;
+      background-image: url("sp://resources/img/buddylist-track-icon.png");
+      background-position-x: right;
+      background-repeat: no-repeat;
+     }
+     .friend .track.app {
+      background-image: none;
+     }
+     .friend .track.app .app-icon {
+        pointer-events: auto;
+     }
+     .friend .track.radio {
+      background-image: url('sp://resources/img/buddylist-radio-icon.png');
+     }
+    .friend .info {
+      display: block;
+      position: relative;
+      padding-right: 12px;
+      background-position-x: right;
+      background-repeat: no-repeat;
+    }
+    .friend .app-icon, .friend .app-icon.radio {
+      cursor: default;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-size: auto 14px;
+      width: 15px;
+      height: 15px;
+    }
+    .friend .app-icon.radio {
+      background-size: auto auto;
+    }
+    .friend .activity a {
+      color: #727272;
+    }
+
+    :focus .selected .activity span:not(.app-icon) {
+      background-position-y: -13px;
+    }
+  .friend .activity { pointer-events: none; }
+  .friend .activity a:hover { color: #DDD; }
+  /* .friend .activity . */
+  .selected :-webkit-any(.name, .activity) { color: #E1E1E1; }
+  .selected .activity,
+  .selected .activity a { color: #C9C9C9; }
+  .selected .activity a:hover { color: #FFF; }
+  :focus .selected :-webkit-any(.name) {
+    color: #2B3844;
+    text-shadow: 0 1px 0 #AFD3F0;
+  }
+  :focus .selected .activity,
+  :focus .selected .activity a { color: #3D4E5D !important; }
+  :focus .selected .activity a:hover { color: #222; }
+
+.placeholder {
+  bottom: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  display: -webkit-box;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  -webkit-transition: 300ms opacity;
+}
+  .placeholder h1 {
+    background: url("sp://resources/img/people-icon.png") 50% 1px no-repeat;
+    padding-top: 58px;
+  }
+  .placeholder :not(.button) {
+    pointer-events: none;
+  }
+  .placeholder .button {
+    margin-top: 5px;
+    text-decoration: none;
+  }
+
+@-webkit-keyframes friend-show {
+  0% {
+    height: 0;
+    opacity: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  50% {
+    height: 28px;
+    opacity: 0;
+    padding-bottom: 3px;
+    padding-top: 3px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes friend-hide {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    height: 28px;
+    opacity: 0;
+    padding-bottom: 3px;
+    padding-top: 3px;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+h1,
+.name, .activity, .activity span, .app-info, .app-info a span, .artist, .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popover {
+  right: 11px;
+}
+
+/* Feed area */
+.separator {
+  background-image: -webkit-linear-gradient(#282828 0, #282828 1px, #C2C2C2 1px, #ACACAC 4px, #282828 4px);
+  background-position-y: 3px;
+  background-repeat: no-repeat;
+  background-size: 100% 5px;
+  height: 11px;
+  margin: -3px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.separator.resizable {
+  cursor: row-resize;
+}
+
+#feed {
+  background-color: #474747;
+  -webkit-box-flex: 2;
+  overflow-y: auto;
+  position: relative;
+}
+
+  #feed .placeholder {
+    position: relative;
+    height: 144px;
+    padding: 20px 0;
+    opacity: 1;
+    background-color: #282828;
+  }
+
+  #feed .placeholder.closed {
+    height: 0;
+    padding: 0;
+    opacity: 0;
+    -webkit-transition: .5s all;
+  }
+
+    #feed .placeholder h1{
+      max-width: 160px;
+      margin: 0 auto;
+      background-image: url("sp://resources/img/people-dark.png");
+      background-size: 70px auto;
+      white-space: normal;
+    }
+
+.feed {
+  line-height: 14px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1; /* Make sure it's stacked below share popover */
+}
+  .feed .item {
+    background-color: #474747;
+    border-color: hsla(0, 100%, 100%, 0.05) transparent hsla(0, 0%, 0%, 0.2);
+    border-style: solid;
+    border-width: 1px 0;
+    color: #DDD;
+    cursor: default;
+    display: block;
+    min-height: 28px;
+    overflow: hidden;
+    padding: 5px 27px 5px 42px;
+    position: relative;
+    text-decoration: initial;
+  }
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) {
+    min-height: 56px;
+    padding-left: 105px;
+  }
+
+  .feed .item:last-child { border-bottom: initial; }
+  .feed .item.show {
+    -webkit-transition-duration: 500ms;
+    -webkit-transition-property: background-color, margin-top;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.05, 1.0);
+  }
+  .feed .item::after {
+    background-position-y: 1px;
+    background-repeat: no-repeat;
+    content: " ";
+    display: block;
+    height: 13px;
+    position: absolute;
+    right: 7px;
+    top: 5px;
+    width: 13px;
+  }
+  .feed :-webkit-any(.type-2, .type-3, .type-5, .type-6)::after {
+    background: url("sp://resources/img/buddylist-playlist-icon.png");
+  }
+  .feed .type-4::after {
+    background-image: url("sp://resources/img/buddylist-starred-icon.png");
+  }
+  .feed .app-link {
+    cursor: default;
+    position: relative;
+  }
+  .item.selected {
+    font-weight: normal;
+  }
+    .feed .sp-presence,
+    .feed :-webkit-any(.type-7, .type-8, .type-9) .sp-presence .info {
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+      /* margin-bottom:5px; */
+      text-overflow: ellipsis;
+    }
+    .feed .type-1 .sp-presence {
+      -webkit-line-clamp: 2;
+    }
+    .feed :-webkit-any(.type-0, .type-7) .sp-presence {
+      display: block;
+    }
+
+    .feed .sp-presence span {
+      background-repeat: no-repeat;
+      background-position: 100% 1px;
+      display: block;
+      /*padding-right: 27px;*/
+    }
+    .feed .item a {
+      color: #DDD;
+    }
+    .feed .item a:hover {
+      color: #FFF;
+    }
+      .selected.item,
+      .selected.item a { color: #C9C9C9; }
+      :focus .selected.item,
+      :focus .selected.item a {
+        color: #2B3844;
+        text-shadow: 0 1px 0 #AFD3F0;
+      }
+      .feed .item time {
+      color: #727272;
+      display: block;
+      text-shadow: initial;
+    }
+    .feed .item time:first-letter {
+      text-transform: uppercase;
+    }
+    .feed .item .sp-image {
+      background-image: url("sp://resources/img/placeholders/28-user-buddy.png");
+      cursor: default;
+      height: 28px;
+      left: 7px;
+      position: absolute;
+      top: 5px;
+      width: 28px;
+     }
+     .feed .item .cover {
+       background-color: #373737;
+       background-image: url('sp://resources/img/missing-playlist-artwork.png');
+       height: 56px;
+       left: 42px;
+       position: absolute;
+       top: 5px;
+       width: 56px;
+       opacity: 1;
+     }
+     :focus .selected.item::after {
+         background-position-y: -13px;
+     }
+
+    /* Send music button */
+    .feed .item .share-button {
+      margin-top: 5px;
+    }
+    .feed .app-info {
+      line-height: 22px;
+      margin-top: -10px;
+      padding-left: 24px;
+      position: relative;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .feed .app-info:hover {
+      cursor: default;
+      /* text-decoration: none;  */
+    }
+
+    .feed .type-7 .app-info {
+      margin-top: 0;
+      padding: 8px 0 5px 33px;
+    }
+    .feed .app-info span, .feed .app-info a {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .feed .app-icon,
+    .feed .app-icon-big {
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+    }
+    .feed .app-icon {
+      background-position: 0 0 !important;
+      display:inline;
+      height: 18px;
+      overflow: hidden;
+      top: 10px;
+      width: 18px;
+      position: relative;
+    }
+    .feed .app-info.radio {
+      left: 0px;
+      top: -3px;
+      padding-left: 20px;
+    }
+    .feed .app-info.radio .app-icon {
+      background-repeat: no-repeat;
+      height: 15px;
+      top: 2px;
+      width: 15px;
+    }
+    .feed .app-icon.radio {
+      background-repeat: no-repeat;
+      background-position: 0px 2px;
+      height: 15px;
+      top: 8px;
+      width: 15px;
+    }
+    .feed .app-icon-big {
+      border-radius: 3px;
+      height: 27px;
+      top: 0px;
+      width: 27px;
+      background-size: 100% auto;
+      margin-top: 5px;
+    }
+
+.feed-popover {
+  font-size: 11px;
+}
+.feed-popover .sp-image {
+  background-color: #373737;
+  background-image: url('sp://resources/img/missing-playlist-artwork.png');
+  height: 56px;
+  width: 56px;
+  z-index: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.2), inset 0 0 1px rgba(0,0,0,0.4), 0 1px 0px rgba(255,255,255,0.5);
+}
+.feed-popover a {
+  color: #666;
+}
+.feed-popover a:hover {
+  text-decoration: underline;
+}
+.feed-popover time {
+  display: block;
+  font-size: 11px;
+  line-height: 18px;
+  text-shadow: initial;
+}
+.feed-popover time span {
+  vertical-align: middle;
+}
+.feed-popover time .feed-popover-app-icon {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: auto 17px;
+  display: inline-block;
+  height: 17px;
+  margin-top: 0px;
+  margin-right: 4px;
+  width: 17px;
+}
+
+.feed-popover time .feed-popover-app-icon.radio {
+  background-size: 17px auto;
+  height: 14px;
+}
+
+.feed-popover time:first-letter {
+  text-transform: uppercase;
+}
+    .feed-popover strong {
+        color: #666;
+    }
+    .feed-popover .player {
+        margin: 10px 0;
+    }
+.popover-app-info {
+  margin-top: 5px;
+  padding-left: 50px;
+  position: relative;
+}
+.popover-app-info span {
+  background-size: cover;
+  border: 1px solid;
+  border-color: #848483 #939391 #9a9a98;
+  border-radius: 3px;
+  display: inline-block;
+  height: 40px;
+  left: 0px;
+  margin-right: 5px;
+  position: absolute;
+  vertical-align: top;
+  top: 3px;
+  width: 40px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, .05), 0 1px 0 rgba(255, 255, 255, .53);
+}
+.popover-app-info a {
+  font-weight: bold;
+}
+.popover-app-info p:last-child {
+  text-align: right;
+  margin-top: 5px;
+}
+.popover .popover-share .feed-popover{
+  height: auto;
+  padding: 0;
+}
+/** .player
+ * Player placeholder style */
+.player {
+    height: 56px;
+    position: relative;
+    z-index: 10;
+}
+.player :-webkit-any(.name, .info) {
+    left: 66px;
+    line-height: 20px;
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+.player .name {
+    color: #666;
+    font-size: 13px;
+    font-weight: bold;
+}
+.player .info {
+    top: 28px;
+}
+.player .info a { color: #999; }
+.player .play {
+    background-image: url("sp://resources/img/play-small.png");
+    background-clip: content-box;
+    background-position-x: -90px;
+    background-repeat: no-repeat;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 14px 13px 13px 14px;
+    cursor: default;
+    height: 29px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 29px;
+}
+.player .play:hover  { background-position-x: -120px; }
+.player .play:active { background-position-x: -150px; }
+.player.paused .play { background-position-x: 0; }
+.player.paused .play:hover  { background-position-x: -30px; }
+.player.paused .play:active { background-position-x: -60px; }
+.player .play-big {
+    background-image: url("sp://resources/img/play-big.png");
+    background-position-x: -180px;
+    height: 59px;
+    left: 14px;
+    position: absolute;
+    top: 14px;
+    width: 59px;
+}
+.player .play-big:hover  { background-position-x: -240px; }
+.player .play-big:active { background-position-x: -300px; }
+.player.paused .play-big { background-position-x: 0; }
+.player.paused .play-big:hover  { background-position-x: -60px; }
+.player.paused .play-big:active { background-position-x: -120px; }
+
+.feed-popover .no-presence {
+
+}
+.feed-popover .no-presence .sp-image {
+  float: left;
+  margin-right: 10px;
+}
+.feed-popover .no-presence strong {
+  display: block;
+}
+.share-button {
+  background-color: rgba(0, 0, 0, 0.25);
+  background-image: url("sp://resources/img/share.png");
+  background-position: 7px -19px;
+  background-repeat: no-repeat;
+  border: initial;
+  border-radius: 10px;
+  color: #A0A0A0;
+  font-size: 11px;
+  height: 20px;
+  line-height: 16px;
+  padding: 2px 10px 2px 30px;
+}
+
+.share-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-position-y: 1px;
+  color: #FFF;
+}
+
+.share-button:active {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #787878;
+  padding-bottom: 1px;
+  padding-top: 3px;
+}
+
+.selected .share-button {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 255px) {
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) { padding-left: 70px; }
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) .sp-image { display: none; }
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) .cover {
+    display: block;
+    left: 7px;
+  }
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) .sp-presence {
+    -webkit-line-clamp: 4;
+  }
+}
+
+@media (max-width: 215px) {
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) { min-height: 28px; padding-left: 42px; }
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) .cover {
+    height: 28px;
+    width: 28px;
+  }
+  .feed :-webkit-any(.type-2, .type-3, .type-4, .type-5, .type-6) .sp-presence {
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Minimal mode */
+@media (max-width: 175px) {
+  .feed .item { padding-left: 7px; }
+  .feed .sp-image { display: none !important; }
+}
+
+.sp-image {
+  -webkit-transition: 200ms opacity;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1), 0 1px 2px #222;
+  display: block;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.avatar {
+  cursor: default !important;
+  -webkit-transition: 140ms all;
+  opacity: .78;
+  -webkit-transform: scale(1) translate(0px, 0px);
+  -webkit-transform-origin: 0% 0%;
+}
+
+.avatar:hover {
+  opacity:1;
+  box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1), 0 1px 2px #222;
+  -webkit-transform: scale(1.1) translate(-1px, 0px);
+  -webkit-transform-origin:0% 0%;
+}

@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Promise</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Promise</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+    Promise
+    </h2>
+    
+        <div class="class-description">A promise is an object that represents a pending query that will
+    be resolved at some point in the future. A query may either be done or
+    it may fail. Depending on the outcome, the appropriate callbacks will be
+    called. A number of promises may be joined using <a href="Promise.html#join">Promise#join</a> to
+    make it easy to run a function once several independent queries have all
+    been resolved.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="Promise"><span class="type-signature"></span>new Promise</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An object that will be passed to the always/done/
+    fail/each callbacks.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 321</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="always"><span class="type-signature"></span>always</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        When the promise is resolved (success or failure doesn't matter), callbacks
+registered by this method will be invoked. If the promise has already
+resolved, the callback function will be called immediately, without waiting
+for the next runloop iteration. The argument to the callback function is the
+object used to resolve the promise.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>callbackOrThis</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                         | 
+                    
+                        function(Object)
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If this argument is an
+    object, it will be used as the "this" context object when calling the
+    callback. If this argument is the callback function instead, the "this"
+    context object will be the promise when the callback is called.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_callback</code></td>
+            
+            
+            <td class="type">
+            
+                        function(Object)=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback function to invoke,
+    unless specified as the first argument.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 330</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the same instance, so that the callback method
+    calls can be easily called in sequence.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.Artist.fromURI('spotify:artist:74terC9ol9zMo8rfzhSOiG').load('name')
+    .done(function(artist) { console.log(artist.name); })
+    .fail(function(artist, error) { console.log(error.message); })
+    .always(function(artist, maybeError) { console.log('Done or failed.'); });</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="done"><span class="type-signature"></span>done</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        When the promise is resolved successfully, callbacks registered by this
+method will be invoked. If the promise has already resolved, the callback
+function will be called immediately, without waiting for the next runloop
+iteration. The argument to the callback function is the object used to
+resolve the promise.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>callbackOrThis</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                         | 
+                    
+                        function(Object)
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If this argument is an
+    object, it will be used as the "this" context object when calling the
+    callback. If this argument is the callback function instead, the "this"
+    context object will be the promise when the callback is called.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_callback</code></td>
+            
+            
+            <td class="type">
+            
+                        function(Object)=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback function to invoke,
+    unless specified as the first argument.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 379</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the same instance, so that the callback method
+    calls can be easily called in sequence.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.Artist.fromURI('spotify:artist:74terC9ol9zMo8rfzhSOiG').load('name')
+    .done(function(artist) { console.log(artist.name); })
+    .fail(function(artist, error) { console.log(error.message); });</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="each"><span class="type-signature"></span>each</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        For joined promises, the callback given to this method will be called once
+for each of the promises in the join. Promises that fail will not invoke the
+callback. When adding this callback to the promise, all joined promises that
+already have completed will invoke the callback, in the order they resolved.
+The argument to the callback is the same argument as given to the individual
+promises.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>callbackOrThis</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                         | 
+                    
+                        function(Object)
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If this argument is an
+    object, it will be used as the "this" context object when calling the
+    callback. If this argument is the callback function instead, the "this"
+    context object will be the promise when the callback is called.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_callback</code></td>
+            
+            
+            <td class="type">
+            
+                        function(Object)=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback function to invoke,
+    unless specified as the first argument.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 470</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the same instance, so that the callback method
+    calls can be easily called in sequence.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var tracks = getSomeToplist();
+var promises = [];
+tracks.forEach(function(track) { promises.push(track.load('name')); });
+models.Promise.join(promises)
+    .each(function(track) { console.log('Loaded one track: ' + track.name); })
+    .done(function(tracks) { console.log('Loaded all tracks.'); })
+    .fail(function(tracks) { console.log('Failed to load at least one track.'); });</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="fail"><span class="type-signature"></span>fail</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        When the promise fails, callbacks registered by this method will be invoked.
+If the promise has already failed, the callback function will be called
+immediately, without waiting for the next runloop iteration. The argument to
+the callback function is an error object describing the failure.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>callbackOrThis</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                         | 
+                    
+                        function(Object)
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If this argument is an
+    object, it will be used as the "this" context object when calling the
+    callback. If this argument is the callback function instead, the "this"
+    context object will be the promise when the callback is called.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_callback</code></td>
+            
+            
+            <td class="type">
+            
+                        function(Object)=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback function to invoke,
+    unless specified as the first argument.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 425</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the same instance, so that the callback method
+    calls can be easily called in sequence.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.Track.fromURI('spotify:track:6a41rCqZhb2W6rpMolDR08').load('name')
+    .done(function(track) { console.log(track.name); })
+    .fail(function(track, error) { console.log(error.message); });</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="join"><span class="type-signature"></span>join</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Joins several promises into a single promise that can be waited on. The done
+and fail callbacks will be called when all of the promises have resolved or
+any of the promises has failed respectively. The argument to the callback
+function is an array with the resolved object of all promises. In addition
+to these composite callbacks, the returned promise object has a method
+called each, which can be used to get a callback when each of the promises
+complete. The each callbacks will never be called again once the promise has
+resolved or failed.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>promises</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Promise>
+                         | 
+                    
+                        ...Promise
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Either an array of promises to
+    join or the promises as separate parameters.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 594</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A new Promise that will be done/fail when all of the
+    joined promises are done/failed.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var p1 = album.load('name');
+var p2 = track.load('name', 'duration');
+var wait = models.Promise.join(p1, p2); // or join([p1, p2]);
+wait.done(albumAndTrackDone).fail(eitherFailed).each(eitherDone);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setDone"><span class="type-signature"></span>setDone</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Resolves the promise, with the object that was specified when creating the
+instance, set manually afterwards or passed to this method. All callbacks
+for done will be called in the order they were registered.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_object</code></td>
+            
+            
+            <td class="type">
+            
+                        *=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional object that should be passed on to all
+    done handlers.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 527</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setFail"><span class="type-signature"></span>setFail</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Fails the promise, with the given error reason. All callbacks for fail will
+be called in the order they were registered.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An error object describing what went wrong.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 564</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="939370fe49.html">api/messaging</a></li></ul><h3>Classes</h3><ul><li><a href="Album.html">Album</a></li><li><a href="AlbumGroup.html">AlbumGroup</a></li><li><a href="SpotifyApi.AnalyticsContext.html">AnalyticsContext</a></li><li><a href="Application.html">Application</a></li><li><a href="Artist.html">Artist</a></li><li><a href="BridgeLoadable.html">BridgeLoadable</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Context.html">Context</a></li><li><a href="Disc.html">Disc</a></li><li><a href="Group.html">Group</a></li><li><a href="SpotifyApi.LangModule.html">LangModule</a></li><li><a href="Library.html">Library</a></li><li><a href="Loadable.html">Loadable</a></li><li><a href="Location.html">Location</a></li><li><a href="Observable.html">Observable</a></li><li><a href="Player.html">Player</a></li><li><a href="Playlist.html">Playlist</a></li><li><a href="Promise.html">Promise</a></li><li><a href="Reference.html">Reference</a></li><li><a href="Search.html">Search</a></li><li><a href="Session.html">Session</a></li><li><a href="Snapshot.html">Snapshot</a></li><li><a href="Toplist.html">Toplist</a></li><li><a href="Track.html">Track</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#fromURI">fromURI</a></li><li><a href="global.html#getBridgeDefinition">getBridgeDefinition</a></li><li><a href="global.html#isRequestImplemented">isRequestImplemented</a></li><li><a href="global.html#promisedRequest">promisedRequest</a></li><li><a href="global.html#require">require</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Tue Oct 23 2012 20:18:50 GMT-0400 (EDT)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

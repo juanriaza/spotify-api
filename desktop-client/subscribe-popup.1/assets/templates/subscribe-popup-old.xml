@@ -1,0 +1,16 @@
+<div id="container">
+  <table id="headlineTable">
+    <tr>
+      <td>
+        <div id="mainTitle">{0}</div>
+        <div id="mainSubtitle">{1}</div>
+      </td>
+      <td style="text-align:right;">
+        <div id="subscribeButton">{2}</div>
+      </td>
+    </tr>
+  </table>
+  <ul id="suggestedPlaylists" class="albums">
+  </ul>
+  <div style="clear:both;"></div>
+</div>

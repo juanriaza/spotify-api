@@ -1,0 +1,51 @@
+{
+    "ApiPermissions": {
+        "bundles": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "en": "Shows an overview for all bundles the client knows of."
+    },
+    "AppName": {
+        "en": "Bundles"
+    },
+    "BundleIdentifier": "bundles",
+    "BundleType": "Application",
+    "BundleVersion": "1.1.0",
+    "DefaultTabs": [
+        {
+            "arguments": "running",
+            "filter": "always",
+            "title": {
+                "en": "Running"
+            }
+        },
+        {
+            "arguments": "apps",
+            "filter": "always",
+            "title": {
+                "en": "Apps"
+            }
+        },
+        {
+            "arguments": "frameworks",
+            "filter": "always",
+            "title": {
+                "en": "Frameworks"
+            }
+        }
+    ],
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0"
+    },
+    "RequiredPermissions": [
+        "http://*",
+        "https://*"
+    ],
+    "SupportedLanguages": [
+        "en"
+    ],
+    "UserInstallable": false
+}

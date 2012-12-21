@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Album</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Album</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+    Album
+    </h2>
+    
+        <div class="class-description">The album represents any type of album (album, single or compilation)
+in the Spotify catalogue.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="Album"><span class="type-signature"></span>new Album</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Never construct an album object using the default constructor - use fromURI()
+instead.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>artists</code></td>
+            
+            
+            <td class="type">
+            
+                        array
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The artists of the album.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>availability</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Describes how and when the album is available
+for playback for the currently logged in user. The value will be one of:
+"available", "banned", "regional", "premium" or "unavailable". "available"
+means that the album can be played, "banned" that the artist has chosen to
+not make the album available, "regional" that the album is playable in other
+regions but not in the region of the currently logged in user, "premium" means
+that this is premium only content and a premium account is needed in order to play
+the album (the playable property needs to be checked to actually see if the user
+can play it or not), and "unavailable" which means the album is unavailable for
+other reasons.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>copyrights</code></td>
+            
+            
+            <td class="type">
+            
+                        array
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An array of strings with copyright holders for
+the album. The strings will be on the format "(C) 2012 Company", where "(C)"
+can be a "(P)" and the year and company name is album specific. For copyright
+symbols, see:<br />
+<a href="http://en.wikipedia.org/wiki/Copyright_symbol">Wikipedia - Copyright symbol</a><br />
+<a href="http://en.wikipedia.org/wiki/Sound_recording_copyright_symbol">Wikipedia - Sound recording copyright symbol</a><br /></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>discs</code></td>
+            
+            
+            <td class="type">
+            
+                        array
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An array of discs which are collections of tracks.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The label that owns the rights to the album. By
+using this name in the search query "label:<name>" you can get all the albums
+for a given label.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the album. This is a human readable
+string that can be presented to the user. Make sure to call the proper string
+decoding method before using the string in the DOM.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>playable</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Indicates if the album is playable by the
+currently logged in user. An album can be unplayable for various reasons, such
+as regional restrictions or play count restrictions in the free service.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>popularity</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The popularity rating of the album. This is a
+value between 0 and 100, inclusive, with 0 meaning a very impopular album and
+100 a highly popular album.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>tracks</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="Collection.html">Collection</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The tracks of this album.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The type of album: "album", "single", "compilation"
+or undefined if the type is not known.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>uri</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The URI of the album.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1338</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="String.html#decodeForText">String#decodeForText</a></li>
+        
+            <li><a href="String.html#decodeForHtml">String#decodeForHtml</a></li>
+        
+            <li><a href="String.html#decodeForLink">String#decodeForLink</a></li>
+        
+            <li><a href="Album.html#fromURI">Album#fromURI</a></li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="fromURI"><span class="type-signature"></span>fromURI</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns the album for a given Spotify URI. The URI is the only property that
+is loaded on the album immediately.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>uri</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The Spotify URI of the album.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1373</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The album.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Album</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.Album.fromURI('spotify:album:0hvxqdv8Bg6BXIbTQFr2Sd').load('name').done(function(album) {
+  console.log(album.uri + ': ' + album.name.decodeForText());
+  document.getElementById('album').innerHTML = album.name.decodeForHtml();
+});</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="939370fe49.html">api/messaging</a></li></ul><h3>Classes</h3><ul><li><a href="Album.html">Album</a></li><li><a href="AlbumGroup.html">AlbumGroup</a></li><li><a href="SpotifyApi.AnalyticsContext.html">AnalyticsContext</a></li><li><a href="Application.html">Application</a></li><li><a href="Artist.html">Artist</a></li><li><a href="BridgeLoadable.html">BridgeLoadable</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Context.html">Context</a></li><li><a href="Disc.html">Disc</a></li><li><a href="Group.html">Group</a></li><li><a href="SpotifyApi.LangModule.html">LangModule</a></li><li><a href="Library.html">Library</a></li><li><a href="Loadable.html">Loadable</a></li><li><a href="Location.html">Location</a></li><li><a href="Observable.html">Observable</a></li><li><a href="Player.html">Player</a></li><li><a href="Playlist.html">Playlist</a></li><li><a href="Promise.html">Promise</a></li><li><a href="Reference.html">Reference</a></li><li><a href="Search.html">Search</a></li><li><a href="Session.html">Session</a></li><li><a href="Snapshot.html">Snapshot</a></li><li><a href="Toplist.html">Toplist</a></li><li><a href="Track.html">Track</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#fromURI">fromURI</a></li><li><a href="global.html#getBridgeDefinition">getBridgeDefinition</a></li><li><a href="global.html#isRequestImplemented">isRequestImplemented</a></li><li><a href="global.html#promisedRequest">promisedRequest</a></li><li><a href="global.html#require">require</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Tue Oct 23 2012 20:18:49 GMT-0400 (EDT)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

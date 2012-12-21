@@ -1,0 +1,34 @@
+{
+   "items":[
+      {
+         "app_name":"tunewiki",
+         "requirement":3,
+         "manifest":"{&quot;SupportedLanguages&quot;:[&quot;en&quot;],&quot;RequiredPermissions&quot;:[&quot;http://*.tunewiki.com&quot;,&quot;http://www.google-analytics.com&quot;],&quot;AppName&quot;:{&quot;en&quot;:&quot;TuneWiki&quot;},&quot;BundleIdentifier&quot;:&quot;tunewiki&quot;,&quot;AppDescription&quot;:{&quot;en&quot;:&quot;Get synced lyrics and sing along to your favorite songs!&quot;},&quot;BundleVersion&quot;:&quot;1.0.1&quot;,&quot;VendorIdentifier&quot;:&quot;com.tunewiki&quot;,&quot;AppIcon&quot;:{&quot;64x64&quot;:&quot;icon_64.png&quot;,&quot;128x128&quot;:&quot;icon_128.png&quot;,&quot;18x18&quot;:&quot;icon.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;RequiredInterface&quot;:1}",
+         "checksum":"2eaf34218e2635068d6ab171debde67a139d3990" ,
+         "bundle_uri":"http://d1hza3lyffsoht.cloudfront.net/2eaf34218e2635068d6ab171debde67a139d3990",
+         "small_icon_uri":"http://d1hza3lyffsoht.cloudfront.net/2eaf34218e2635068d6ab171debde67a139d3990_si",
+         "large_icon_uri":"http://d1hza3lyffsoht.cloudfront.net/2eaf34218e2635068d6ab171debde67a139d3990_li",
+         "medium_icon_uri":"http://d1hza3lyffsoht.cloudfront.net/2eaf34218e2635068d6ab171debde67a139d3990_mi"
+      },
+      {
+         "app_name":"lastfm",
+         "requirement":3,
+         "manifest":"{&quot;VendorIcon&quot;:&quot;&quot;,&quot;AppURL&quot;:&quot;http://www.last.fm/download/spotify&quot;,&quot;AppDescription&quot;:{&quot;fr&quot;:&quot;Recommandations personnalis\u00e9es bas\u00e9es sur la musique que vous \u00e9coutez&quot;,&quot;en&quot;:&quot;Personalised recommendations based on the music you play&quot;,&quot;es&quot;:&quot;Recomendaciones personalizadas basadas en la m\u00fasica que escuchas&quot;},&quot;VendorURL&quot;:&quot;http://www.last.fm&quot;,&quot;SupportedLanguages&quot;:[&quot;en&quot;,&quot;fr&quot;,&quot;es&quot;],&quot;RequiredPermissions&quot;:[&quot;http://www.audioscrobbler.com&quot;,&quot;https://ws.audioscrobbler.com&quot;,&quot;http://ws.audioscrobbler.com&quot;,&quot;http://cdn.lst.fm&quot;,&quot;http://userserve-ak.last.fm&quot;,&quot;http://www.google-analytics.com&quot;,&quot;http://b.scorecardresearch.com&quot;],&quot;AcceptedLinkTypes&quot;:[&quot;track&quot;],&quot;BundleCopyright&quot;:&quot;Last.fm Ltd 2011&quot;,&quot;BundleIdentifier&quot;:&quot;lastfm&quot;,&quot;ApiPermissions&quot;:{&quot;core&quot;:[&quot;lastfm&quot;]},&quot;AppName&quot;:{&quot;fr&quot;:&quot;Last.fm&quot;,&quot;en&quot;:&quot;Last.fm&quot;,&quot;es&quot;:&quot;Last.fm&quot;},&quot;DefaultTabs&quot;:[{&quot;arguments&quot;:&quot;route:profile&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;Aper\u00e7u&quot;,&quot;en&quot;:&quot;Overview&quot;,&quot;es&quot;:&quot;General&quot;}},{&quot;arguments&quot;:&quot;route:nowplaying&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;En Lecture&quot;,&quot;en&quot;:&quot;Now Playing&quot;,&quot;es&quot;:&quot;En Reproducci\u00f3n&quot;}},{&quot;arguments&quot;:&quot;route:recommended&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;Recommandations&quot;,&quot;en&quot;:&quot;Recommended&quot;,&quot;es&quot;:&quot;Recomendaciones&quot;}},{&quot;arguments&quot;:&quot;route:topalbums&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;Albums&quot;,&quot;en&quot;:&quot;Albums&quot;,&quot;es&quot;:&quot;\u00c1lbumes&quot;}}],&quot;VendorName&quot;:&quot;Last.fm Ltd&quot;,&quot;BundleVersion&quot;:&quot;1.0.6&quot;,&quot;SupportsOffline&quot;:&quot;false&quot;,&quot;VendorIdentifier&quot;:&quot;last.fm&quot;,&quot;AppIcon&quot;:{&quot;64x64&quot;:&quot;img/spotify_icon_64.png&quot;,&quot;128x128&quot;:&quot;img/spotify_icon_128.png&quot;,&quot;36x18&quot;:&quot;img/spotify_icon_36x18.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;RequiredInterface&quot;:1}",
+         "checksum":"47525849f55bcfd7a130a5f0bc150f2db53d75c7",
+         "bundle_uri":"http://d1hza3lyffsoht.cloudfront.net/47525849f55bcfd7a130a5f0bc150f2db53d75c7",
+         "small_icon_uri":"http://d1hza3lyffsoht.cloudfront.net/47525849f55bcfd7a130a5f0bc150f2db53d75c7_si",
+         "large_icon_uri":"http://d1hza3lyffsoht.cloudfront.net/47525849f55bcfd7a130a5f0bc150f2db53d75c7_li",
+         "medium_icon_uri": "http://d1hza3lyffsoht.cloudfront.net/47525849f55bcfd7a130a5f0bc150f2db53d75c7_mi"
+      },
+      {
+         "app_name":"wearehunted",
+         "requirement":3,
+         "manifest":"{&quot;AppURL&quot;:&quot;http://www.wearehunted.com/&quot;,&quot;SupportedLanguages&quot;:[&quot;en&quot;],&quot;RequiredPermissions&quot;:[&quot;http://fonts.googleapis.com&quot;,&quot;http://*wearehunted.com&quot;,&quot;http://media2.wearehunted.com&quot;,&quot;http://spotifyapp.wearehunted.com&quot;,&quot;http://stats.spotifyapp.wearehunted.com&quot;],&quot;AppName&quot;:{&quot;en&quot;:&quot;We Are Hunted&quot;},&quot;BundleCopyright&quot;:&quot;2011 Hunted Media&quot;,&quot;BundleIdentifier&quot;:&quot;wearehunted&quot;,&quot;AppDescription&quot;:{&quot;en&quot;:&quot;Discover the hottest new music in the World right now.&quot;},&quot;VendorName&quot;:{&quot;en&quot;:&quot;Hunted Media&quot;},&quot;BundleVersion&quot;:&quot;20557&quot;,&quot;VendorIdentifier&quot;:&quot;wearehunted&quot;,&quot;AppIcon&quot;:{&quot;64x64&quot;:&quot;logo64.png&quot;,&quot;128x128&quot;:&quot;logo.png&quot;,&quot;18x18&quot;:&quot;icon.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;RequiredInterface&quot;:1}",
+         "checksum": "0eecfab9620976a7589c4dfcc7be3f5ca2bb8d55",
+         "bundle_uri": "http://d1hza3lyffsoht.cloudfront.net/0eecfab9620976a7589c4dfcc7be3f5ca2bb8d55",
+         "small_icon_uri": "http://d1hza3lyffsoht.cloudfront.net/0eecfab9620976a7589c4dfcc7be3f5ca2bb8d55_si",
+         "large_icon_uri": "http://d1hza3lyffsoht.cloudfront.net/0eecfab9620976a7589c4dfcc7be3f5ca2bb8d55_li",
+         "medium_icon_uri": "http://d1hza3lyffsoht.cloudfront.net/0eecfab9620976a7589c4dfcc7be3f5ca2bb8d55_mi"
+      }
+   ]
+}

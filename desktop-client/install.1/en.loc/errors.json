@@ -1,0 +1,20 @@
+{
+	"metadataFailed":
+	{
+		"unknownError": "Sorry, I could not download this app. Please try again later.",
+		"clientOffline": "Please go online to launch this app.",
+		"connectionFailed": "Sorry, I could not download this app. Please try again later.",
+		"appNotFound": "Sorry, I could not find this app."
+	},
+	"downloadFailed":
+	{
+		"unknownError": "Sorry, I could not download this app. Please try again later.",
+		"clientOffline": "Please go online to launch this app.",
+		"connectionFailed": "Sorry, I could not download this app. Please try again later.",
+		"urlNotFound": "Sorry, I could not download this app. Please try again later."
+	},
+	"installFailed":
+	{
+		"incorrectChecksum": "Sorry, I could not download this app. Please try again."
+	}
+}

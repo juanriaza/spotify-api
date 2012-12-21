@@ -1,0 +1,145 @@
+@import url("sp://resources/css/eve.css");
+@import url("sp://resources/css/api.css");
+
+article {
+	text-align: center;
+	margin-top: 50px;
+}
+
+article img {
+	margin-bottom: 10px;
+}
+
+article h1 {
+	color: #757575;
+	font-size: 20px;
+	line-height: 28px;
+	margin-bottom: 10px;
+}
+
+article h2 {
+	color: #A5A5A5;
+	line-height: 22px;
+}
+
+article .new-button {
+	text-decoration: none;
+}
+
+.fill {
+	bottom: 0px;
+	left: 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.grid {
+	background: #ecebe8;
+}
+
+#loading {
+	opacity: 0;
+	z-index: 1;
+	-webkit-transition: opacity 0.5s linear 0.5s;
+}
+
+#loading.visible {
+	opacity: 1;
+}
+
+div.user {
+	box-sizing: border-box;
+	height: 160px;
+	line-height: 15px;
+	overflow: hidden;
+	padding: 20px;
+	text-align: center;
+	vertical-align: top;
+	width: 130px;
+}
+
+a.userlink {
+	margin-left: auto;
+	margin-right: auto;
+	display: inline;
+	width: 128px;
+	height: 128px;
+}
+
+.favorite-button {
+	opacity: 0;
+	position: relative;
+	top: 100px;
+	-webkit-transition: opacity 0.1s linear 0.3s;
+}
+
+div.image:hover .favorite-button {
+	opacity: 1;
+}
+
+div.image {
+	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, .05), 0 1px 0 rgba(255, 255, 255, .53);
+	-webkit-user-drag: element;
+
+	background-color: #c1c0be;
+	background-image: url("sp://resources/img/placeholders/128-user-light.png");
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	/*
+	border: 1px solid;
+	border-color: #848483 #939391 #9a9a98;
+	*/
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.2), inset 0 0 1px rgba(0,0,0,0.4), 0 1px 0px rgba(255,255,255,0.5);
+	border: 0;
+
+	border-radius: 3px;
+	box-sizing: border-box;
+	display: block;
+	height: 128px;
+	position: relative;
+	overflow: hidden;
+	width: 128px;
+}
+
+span.username {
+        font-weight: bold;
+	display: block;
+	margin-top: 5px;
+	-webkit-user-drag: element;
+}
+
+span.presence {
+	display: block;
+	font-size: 11px;
+	vertical-align: top;
+}
+
+.presence a {
+    #color: #727272;
+}
+
+.presence .track a:first-child:before {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	content: "";
+	background-image: url("sp://resources/img/buddylist-track-icon.png");
+}
+
+.presence .playlist a:first-child:before {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	content: "";
+	background-image: url("sp://resources/img/buddylist-playlist-icon.png");
+}
+
+.presence .starred :first-child:before {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	content: "";
+	background-image: url("sp://resources/img/buddylist-starred-icon.png");
+}

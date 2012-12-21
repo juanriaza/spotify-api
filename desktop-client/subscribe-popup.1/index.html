@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <link rel="stylesheet" href="popup-common/css/popup.css" />
+  <script type="text/javascript">
+    var sp = getSpotifyApi(1);
+
+    var types = ['subscribe-popup-old', 'subscribe-popup', 'idle-popup'];
+    var config = {};
+
+    var args = sp.core.getArguments();
+    var typeIndex = args[0];
+    var popupType = types[typeIndex] || types[1];
+
+    // this should probably be solved in a different way
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'assets/css/' + popupType + '.css';
+    document.head.appendChild(css)
+  </script>
+</head>
+<body>
+  <div id="main"><!-- content here --></div>
+  <script>
+    sp.requireAsync('assets/js/' + popupType, function(r) {
+      var newUser = sp.tutorial.hasAccomplishment['tutorial_completed'];
+      r.init(popupType, config[popupType] || {}, args.slice(1), newUser);
+    });
+  </script>
+</body>
+</html> 

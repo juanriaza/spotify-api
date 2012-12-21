@@ -1,0 +1,21 @@
+.sp-throbber {
+	position: absolute;
+	z-index: 1000;
+	visibility: visible;
+	width: 32px;
+	height: 32px;
+	background: url(../img/throbber.gif) center center no-repeat;
+}
+
+.sp-throbber-background {
+	padding: 27px;
+	border-radius: 4px;
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.75);
+}
+
+.sp-throbber-small {
+	background-size: 22px 22px;
+	width: 22px;
+	height: 22px;
+}

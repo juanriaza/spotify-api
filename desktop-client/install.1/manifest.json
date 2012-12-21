@@ -1,0 +1,43 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "installer": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "de": "Shows app installation progress.",
+        "en": "Shows app installation progress.",
+        "es": "Shows app installation progress.",
+        "fr": "Shows app installation progress.",
+        "nl": "Shows app installation progress."
+    },
+    "AppName": {
+        "de": "Installer",
+        "en": "Installer",
+        "es": "Installer",
+        "fr": "Installer",
+        "nl": "Installer"
+    },
+    "BundleIdentifier": "install",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.0",
+    "Dependencies": {
+        "bridge-desktop": "0.7.0",
+        "resources": "0.1.0"
+    },
+    "RequiredPermissions": [
+        "http://*",
+        "https://*"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "UserInstallable": false
+}

@@ -1,0 +1,17 @@
+{
+  "BundleType": "Application",
+  "BundleVersion": "0.1.0",
+  "UserInstallable": false,
+  "AppName": {
+    "en": "Stitch Test Runner"
+  },
+  "AppDescription": {
+    "en": "Runner for Stitch tests"
+  },
+  "BundleIdentifier" : "test-runner",
+  "VendorIdentifier" : "com.spotify",
+  "Dependencies": {
+    "api": "1.0.0",
+    "test-utils": "0.1.0"
+  }
+}

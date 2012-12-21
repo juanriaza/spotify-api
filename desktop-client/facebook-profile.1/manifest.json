@@ -1,0 +1,48 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "playlist": [
+            "private"
+        ],
+        "social": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "de": "This is the facebook profile page.",
+        "en": "This is the facebook profile page.",
+        "es": "This is the facebook profile page.",
+        "fr": "This is the facebook profile page.",
+        "nl": "This is the facebook profile page."
+    },
+    "AppName": {
+        "de": "FacebookProfile",
+        "en": "FacebookProfile",
+        "es": "FacebookProfile",
+        "fr": "FacebookProfile",
+        "nl": "FacebookProfile"
+    },
+    "BundleIdentifier": "facebook-profile",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.0",
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "unstable": "0.1.0",
+        "util": "0.1.0"
+    },
+    "RequiredPermissions": [
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "UserInstallable": false
+}

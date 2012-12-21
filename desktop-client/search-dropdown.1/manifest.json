@@ -1,0 +1,53 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "desktop": [
+            "private"
+        ],
+        "playlist": [
+            "private"
+        ],
+        "social": [
+            "private"
+        ]
+    },
+    "AppName": {
+        "de": "Search Dropdown",
+        "en": "Search Dropdown",
+        "es": "Search Dropdown",
+        "fr": "Search Dropdown",
+        "nl": "Search Dropdown"
+    },
+    "AppDescription" : {
+        "de": "Search Dropdown",
+        "en": "Search Dropdown",
+        "es": "Search Dropdown",
+        "fr": "Search Dropdown",
+        "nl": "Search Dropdown"
+    },
+    "BundleIdentifier": "search-dropdown",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.6",
+    "Dependencies": {
+        "resources": "0.1.0",
+        "unstable": "0.1.0",
+        "util": "0.1.0"
+    },
+    "PlaybackOwner": false,
+    "RequiredPermissions": [
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "UserInstallable": false,
+    "VendorIdentifier": "com.spotify",
+    "InternalBundleVersion": 100
+}

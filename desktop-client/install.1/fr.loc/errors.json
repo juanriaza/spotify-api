@@ -1,0 +1,20 @@
+{ 
+	"metadataFailed":
+	{
+		"unknownError": "Impossible de télécharger cette application. Merci de réessayer plus tard.",
+		"clientOffline": "Connectez-vous pour utiliser cette application.",
+		"connectionFailed": "Impossible de télécharger cette application. Merci de réessayer plus tard.",
+		"appNotFound": "Désolé, impossible de trouver cette application."
+	},
+	"downloadFailed":
+	{
+		"unknownError": "Impossible de télécharger cette application. Merci de réessayer plus tard.",
+		"clientOffline": "Connectez-vous pour utiliser cette application.",
+		"connectionFailed": "Impossible de télécharger cette application. Merci de réessayer plus tard.",
+		"urlNotFound": "Impossible de télécharger cette application. Merci de réessayer plus tard."
+	},
+	"installFailed":
+	{
+		"incorrectChecksum": "Impossible de télécharger cette application. Merci de réessayer plus tard."
+	}
+}

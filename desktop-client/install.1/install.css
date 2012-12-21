@@ -1,0 +1,170 @@
+@import url("sp://resources/css/eve.css");
+@import url("sp://resources/css/api.css");
+
+body {
+	overflow-y: auto;
+	padding-bottom: 60px;
+}
+
+/*
+ * Icon
+ */
+
+#icon {
+	height: 128px;
+	margin: 150px auto 0px auto;
+	width: 128px;
+}
+
+#image {
+	display: block;
+	position: absolute;
+	height: 128px;
+	width: 128px;
+}
+
+#placeholder {
+	background-color: #ECEBE8;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	height: 128px;
+	position: absolute;
+	width: 128px;
+	-webkit-transition: opacity 0.35s ease-in-out 0.15s;
+}
+
+#icon.loaded #placeholder {
+	opacity: 0;
+}
+
+/*
+ * Progress
+ */
+
+@-webkit-keyframes indeterminate-animation {
+	0%   { background-position-x:   0px; }
+	100% { background-position-x: -20px; }
+}
+
+@-webkit-keyframes determinate-animation {
+	0%   { background-position-x:   0px; }
+	100% { background-position-x: -16px; }
+}
+
+#progress {
+	margin: 20px auto 0px auto;
+	width: 200px;
+}
+
+.progress {
+	background:
+		url('progress-background-left.png')  no-repeat left,
+		url('progress-background-right.png') no-repeat right,
+		url('progress-background.png');
+	height: 21px;
+	min-width: 22px;
+	padding: 0px 11px;
+	position: relative;
+	-webkit-background-clip: border-box, border-box, content-box;
+	-webkit-box-sizing: border-box;
+	-webkit-transition: opacity 1s ease-in-out;
+}
+
+.progress.hidden {
+	opacity: 0;
+}
+
+.progress .track {
+	height: 18px;
+	left: 0px;
+	position: absolute;
+	right: 0px;
+	top: 1px;
+	-webkit-mask-box-image: url('progress-mask.png') 9 9 stretch;
+}
+
+.progress .border {
+	background:
+		url('progress-border-left.png')  no-repeat left,
+		url('progress-border-right.png') no-repeat right,
+		url('progress-border.png');
+	height: 20px;
+	left: 0px;
+	padding: 0px 10px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	-webkit-background-clip: border-box, border-box, content-box;
+}
+
+.progress .value {
+	background: url('progress-determinate.png');
+	display: none;
+	height: 100%;
+	width: 0%;
+	-webkit-animation: indeterminate-animation 0.5s linear infinite;
+	-webkit-transition: width 1s ease-in-out;
+}
+
+.progress .filler {
+	background: url('progress-indeterminate.png');
+	display: none;
+	height: 100%;
+	width: 100%;
+	-webkit-animation: indeterminate-animation 0.25s linear infinite;
+}
+
+.progress.determinate .value {
+	display: block;
+}
+
+.progress.indeterminate .filler {
+	display: block;
+}
+
+/*
+ * Error
+ */
+
+#error {
+	font-weight: bold;
+	text-align: center;
+	margin: 30px 60px 0px 60px;
+	-webkit-transition: opacity 0.25s ease-in-out;
+}
+
+#error.hidden {
+	opacity: 0;
+}
+
+/*
+ * Log
+ */
+
+#log {
+	display: none;
+	margin: 60px 60px 0px 60px;
+}
+
+.developer #log {
+	display: block;
+}
+
+#log > div {
+	background: white;
+	box-shadow: 0px 1px 2px black;
+	margin-bottom: 10px;
+	padding: 4px;
+}
+
+.message {
+	font-weight: bold;
+}
+
+.message.metadataFailed, .message.downloadFailed, .message.installFailed {
+	color: #AA0000;
+}
+
+.message.installComplete
+	color: #00AA00;
+}

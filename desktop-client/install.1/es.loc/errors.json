@@ -1,0 +1,20 @@
+{
+	"metadataFailed":
+	{
+		"unknownError": "No es posible descargar esta app. Intenta de nuevo más tarde.",
+		"clientOffline": "Debes estar en línea para utilizar esta app.",
+		"connectionFailed": "No es posible descargar esta app. Intenta de nuevo más tarde.",
+		"appNotFound": "No se ha encontrado esta app."
+	},
+	"downloadFailed":
+	{
+		"unknownError": "No es posible descargar esta app. Intenta de nuevo más tarde.",
+		"clientOffline": "Debes estar en línea para utilizar esta app.",
+		"connectionFailed": "No es posible descargar esta app. Intenta de nuevo más tarde.",
+		"urlNotFound": "No es posible descargar esta app. Intenta de nuevo más tarde."
+	},
+	"installFailed":
+	{
+		"incorrectChecksum": "No es posible descargar esta app. Intenta de nuevo más tarde."
+	}
+}

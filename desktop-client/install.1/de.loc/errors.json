@@ -1,0 +1,20 @@
+{
+	"metadataFailed":
+	{
+		"unknownError": "Die App konnte nicht heruntergeladen werden. Versuche es später erneut.",
+		"clientOffline": "Gehe online um diese App zu sterten.",
+		"connectionFailed": "Die App konnte nicht heruntergeladen werden. Versuche es später erneut.",
+		"appNotFound": "App konnte nicht gefunden werden."
+	},
+	"downloadFailed":
+	{
+		"unknownError": "Die App konnte nicht heruntergeladen werden. Versuche es später erneut.",
+		"clientOffline": "Gehe online um diese App zu sterten.",
+		"connectionFailed": "Die App konnte nicht heruntergeladen werden. Versuche es später erneut.",
+		"urlNotFound": "Die App konnte nicht heruntergeladen werden. Versuche es später erneut."
+	},
+	"installFailed":
+	{
+		"incorrectChecksum": "Die App konnte nicht heruntergeladen werden. Versuche es später erneut."
+	}
+}

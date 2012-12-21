@@ -1,0 +1,11 @@
+{0}
+<div class="buttonCell {3}">
+  <div class="mainActionButton spotifyButtonBlue">{4}</div>
+  <div class="actionDoneCover">{6}</div>
+  <div class="secondaryActionButton spotifyButtonGrey">{5}</div>
+</div>
+<div class="messageCell">
+  {1}
+  <div class="submessage">{2}</div>
+</div>
+<div class="clearFloat"></div>

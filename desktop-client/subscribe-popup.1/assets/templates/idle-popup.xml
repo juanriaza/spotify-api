@@ -1,0 +1,11 @@
+<section id="content">
+  <hgroup>
+    <h1>Here are the most popular tracks in your area at the moment.</h1>
+  </hgroup>
+  
+  <section id="tracks-container"></section>
+</section>
+  
+<section id="button-container">
+  <button class="action yes" id="play-button">Play all songs</button>
+</section>

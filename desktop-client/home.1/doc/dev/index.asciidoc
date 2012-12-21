@@ -1,0 +1,55 @@
+The Home Project's (AKA What's New) Development Book
+====================================================
+Ula Suwada <ula@spotify.com>
+
+Stuff to think about
+--------------------
+
+Loading
+~~~~~~~
+All data use for Home is fetched (undecorated) at startup and is then decorated
+as the page renders.
+
+The step function
+~~~~~~~~~~~~~~~~~
+The step function is basically a main view controller that controls the flow of
+the entire page. It handles fallbacks for the different parts of the page.
+Todo.
+
+Dealing with ads
+~~~~~~~~~~~~~~~~
+The most important thing is that that the MPU (mid page unit) never goes under
+the fold. In the case of Whats new the MPU is located in the second section
+next to the trending playlist container.
+
+Example: +spotify:ad:1faeb27f84ed460897e21ad81a9fa69d+
+
+There are also HPTO´s (home page take over). Please make sure the sections are
+flipped properly as the New Albums section should be placed under the HPTO
+banner (it is the only section allowed layering over the HPTO).
+
+Example: +spotify:ad:b9de55265d3d45078532fdc9c371350f+
+
+Recommended reading:
+
+- link:https://wiki.spotify.net/wiki/QA/Playbook/Ads[Ads]
+
+
+Playlist and track lists
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The page will display the most relevant and available information to the user.
+This is the track lists priority:
+
+1.   Top tracks among friends
+2.   Top tracks near you
+3.   Top tracks in your country
+
+The same goes for the playlist lists:
+
+1.   Trending playlists among friends
+2.   Top playlists near you
+3.   Top tracks in your country
+
+For instance, if no tracks are found among friends, it will move on and try to
+use tracks near you.

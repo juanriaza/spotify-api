@@ -1,0 +1,114 @@
+.sp-popup {
+	background: #eee;
+	border: #ccc solid 1px;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+	color: #222;
+	padding: 10px;
+	position: absolute;
+	z-index: 100;
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+}
+
+.sp-popup .sp-arrow-solid,
+.sp-popup .sp-arrow-border
+{
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 6px;
+}
+
+.sp-popup p {
+	margin: 0;
+}
+
+.sp-popup-above .sp-arrow-border,
+.sp-popup-above .sp-arrow-solid,
+.sp-popup-below .sp-arrow-border,
+.sp-popup-below .sp-arrow-solid
+{
+	margin-left: -5px;
+}
+
+.sp-popup-above .sp-arrow-border {
+	bottom: -13px;
+	border-top-color: #ccc;
+}
+
+.sp-popup-above .sp-arrow-solid {
+	bottom: -12px;
+	border-top-color: #eee;
+}
+
+.sp-popup-below .sp-arrow-border {
+	top: -13px;
+	border-bottom-color: #ccc;
+}
+
+.sp-popup-below .sp-arrow-solid {
+	top: -12px;
+	border-bottom-color: #eee;
+}
+
+.sp-popup-buttons {
+	border-top: solid 1px #dfdfdf;
+	bottom: 0;
+	box-shadow: 0 -1px 0 #fafafa;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	left: 0;
+	padding: 10px;
+	position: absolute;
+	text-align: right;
+	width: 100%;
+}
+
+.sp-popup-buttons button {
+	margin-left: 10px;
+}
+
+.sp-popup-left .sp-arrow-border,
+.sp-popup-left .sp-arrow-solid,
+.sp-popup-right .sp-arrow-border,
+.sp-popup-right .sp-arrow-solid
+{
+	margin-top: -5px;
+}
+
+.sp-popup-left .sp-arrow-border {
+	right: -13px;
+	border-left-color: #ccc;
+}
+
+.sp-popup-left .sp-arrow-solid {
+	right: -12px;
+	border-left-color: #eee;
+}
+
+.sp-popup-right .sp-arrow-border {
+	left: -13px;
+	border-right-color: #ccc;
+}
+
+.sp-popup-right .sp-arrow-solid {
+	left: -12px;
+	border-right-color: #eee;
+}
+
+/**
+ * Text-only popups are smaller and have a white background.
+ */
+.sp-popup.sp-text {
+	background: #fff;
+	padding: 3px 5px 5px;
+}
+
+.sp-popup-above.sp-text .sp-arrow-solid { border-top-color: #fff; }
+.sp-popup-below.sp-text .sp-arrow-solid { border-bottom-color: #fff; }
+.sp-popup-left.sp-text .sp-arrow-solid { border-left-color: #fff; }
+.sp-popup-right.sp-text .sp-arrow-solid { border-right-color: #fff; }

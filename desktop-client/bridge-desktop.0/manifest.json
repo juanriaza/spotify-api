@@ -1,0 +1,8 @@
+{
+    "BundleIdentifier": "bridge-desktop",
+    "BundleType": "Bridge",
+    "BundleUpdatable": false,
+    "BundleVersion": "0.9.0",
+    "UserInstallable": false,
+    "VendorIdentifier": "com.spotify"
+}

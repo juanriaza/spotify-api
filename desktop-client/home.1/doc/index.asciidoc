@@ -1,0 +1,28 @@
+The Home Project's (AKA What's New) Book
+========================================
+Ula Suwada <ula@spotify.com>
+
+This is the Stitch Application representing the "What's New" page for the
+desktop client. It displays Featured Spotify Apps, Recommended Albums and
+Trending playlists and Tracks among friends, as well as New Releases.
+
+What's New fetches most of its data from
+link:https://techdoc.spotify.net/projbooks/hermes/[Hermes] via the
+link:https://techdoc.spotify.net/projbooks/stitch/[Stitch] API.
+
+Stitch App information
+----------------------
+
+* API Permissions
+** core
+** social
+** whatsnew
+
+Additional information
+----------------------
+
+* link:deployment[Deployment book]: Todo
+* link:development[Development book]: By developers for developers, contains
+class and function documentation and generals do's and don'ts
+* link:setup[Setup book]: Todo
+* link:https://wiki.spotify.net/wiki/QA/Playbook/Whats_New

@@ -1,0 +1,11 @@
+ <div id="content">
+    <hgroup>
+      <h1 id="mainTitle">{0}</h1>
+      <h2 id="mainSubtitle">{1}</h2>
+    </hgroup>
+    <ul id="suggestedPlaylists" class="albums">
+    </ul>
+</div>
+<section id="button-container">
+  <button class="action yes" id="subscribeButton">{2}</button>
+</section>

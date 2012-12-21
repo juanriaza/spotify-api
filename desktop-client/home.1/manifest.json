@@ -1,0 +1,51 @@
+{
+	"AllowFlash": true,
+	"ApiPermissions" : {
+		"core" : ["private"],
+		"social" : ["private"],
+		"whatsnew" : ["private"]
+	},
+	"AppDescription" : {
+		"en": "What's New",
+		"fr": "Nouveautés",
+		"es": "Novedades",
+		"de": "Neuheiten",
+		"nl": "Nieuw"
+	},
+	"AppIcon": {
+		"36x18": "assets/img/home-18.png",
+		"64x64": "assets/img/home-64.png",
+		"128x128": "assets/img/home-128.png"
+	},
+	"AppName": {
+		"en": "What's New",
+		"fr": "Nouveautés",
+		"es": "Novedades",
+		"de": "Neuheiten",
+		"nl": "Nieuw"
+	},
+	"BundleIdentifier": "home",
+	"BundleType": "Application",
+	"BundleVersion": "1.1.3",
+	"Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "unstable": "0.1.0",
+        "util": "0.1.0"
+    },
+    "InternalBundleVersion": 100,
+	"RequiredInterface": 1,
+	"RequiredPermissions": [
+		"https://*",
+		"http://*"
+	],
+	"SupportedLanguages": [
+		"en",
+		"fr",
+		"es",
+		"de",
+		"nl"
+	],
+	"UserInstallable": false,
+	"VendorIdentifier": "com.spotify"
+}

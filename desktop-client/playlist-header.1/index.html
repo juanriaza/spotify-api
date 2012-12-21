@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/assets/css/playlist.css">
+	</head>
+	<body>
+		<div id="wrapper">
+		</div>
+		<script>
+			var sp = getSpotifyApi(1);
+			sp.requireAsync('assets/scripts/playlist-header', function (r) {
+				new r.PlaylistHeader();
+  		});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+AppFinder development book
+=======================
+Patricia Adamsson <mjau@spotify.com>
+Andy Smith <asmith@spotify.com>
+
+
+Coding conventions
+------------------
+This project aims to conform to our
+link:https://wiki.spotify.net/wiki/Coding_conventions#JavaScript[coding conventions
+for JavaScript].
+
+Description
+------------------
+Stitch application displaying released third party applications retrieved from the App Finder service.
+
+
+Dependencies
+------------------
+Hermes (Appstore service)
+Stitch core
+
+
+HTML Sections
+------------------
+There are three sections used in AppFinder. Feature Apps, New Apps and Top Apps (all apps).
+
+
+
+Feature Apps
+~~~~~~~~~~~~~~~
+Top banner area which displays apps that Spotify had chosen to promote.
+These consist of a picture, small description, app logo, app name and link to the app.
+
+
+How it works
+^^^^^^^^^^^^^^^
+Powered by two files:
+/assets/js/banner.js
+/assets/bannerconf.json
+
+
+Banner.js
+++++++++++++++
+Banner.js selects which banners would be displayed and fetches the data from Appstore in order to display them.
+Currently all information other than the image, the weighting (the probability of it displaying) and any other overrides is fetched from the Appstore.
+How many banners are displayed and how long they are displayed for is also controlled by this file.
+
+Bannerconf.json
+++++++++++++++
+This file contains the data that banner.js uses to decide which banners to display.
+This data consists of an app id and an interger which determine the probability of that banner being displayed.
+It also defines the location of the banner image file and can optionally define manual overrides for any other banner information.
+
+
+
+New Apps
+~~~~~~~~~~~~~~~
+This is where the new apps are displayed.
+
+
+How it works
+^^^^^^^^^^^^^^^
+New apps is a named list called new_releases, which is fetched from Appstore.
+
+Note: if this needs to be updated it has to be done in Appstore.
+
+
+Top Apps
+~~~~~~~~~~~~~~~
+These are all the apps ordered by popularity. They can be filtered by using the filter next to the heading.
+
+
+How it works
+^^^^^^^^^^^^^^^
+The Appstore returns a list, already in order. We cache the list for one hour.
+We also filter based on the flags INSTALL_OPTIONAL and INSTALL_REQUIRED, which are set on the Appstore.

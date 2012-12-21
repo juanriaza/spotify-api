@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: List</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: List</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+    List
+    </h2>
+    
+        <div class="class-description">Create a new list of items from a collection. Not all items
+    from the collection will be added directly. It uses snapshots, and
+    will fill up some when you call list.init(). If you want more items,
+    you call list.more() which will get a new round with the right offset.
+    Call one of the factory methods to create an instance of List.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="List"><span class="type-signature"></span>new List</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+            
+            <td class="type">
+            
+                        Collection
+                         | 
+                    
+                        Album
+                         | 
+                    
+                        Disc
+                         | 
+                    
+                        Playlist
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An object containing a
+    collection or a collection itself.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An object containing different options for the
+    list. Everything has defaults, so all are optional.
+
+    numItems: Number of items to get. If not set, enough to fill the view
+        three times will be added.
+    fetch: The way to fetch items. 'once' | 'scroll' | 'greedy'.
+        Default: 'scroll'. When set to 'greedy', it will fetch all
+        items in the collection. Do NOT use 'greedy' for searches, as
+        it is really expensive. When set to 'scroll' it will fetch more
+        items when scrolled to the bottom of the list. When set to 'once',
+        it will only fetch the initial buckets, and nothing more.
+    numBuckets: Number of buckets to initially get. One bucket is the
+        number of items that fit into the view at once. Default: 3
+    header: If/how the header will be displayed. 'no' | 'yes' | 'fixed'.
+        Default: 'fixed'
+    type: The type of list to get. 'tracks' | 'albums' | 'artists'
+        Default: 'tracks'
+    layout: The layout to use. 'default' | 'toplist'. Default: 'default'
+    getItem: Function that will return a DOM node for each list item.
+        Defaults to a predefined function.
+    fields: The fields to use in the list. There are many predefined,
+        listed in LIST_FIELDS. Default: Depends on the type of list.
+    height: How the height of the list will behave. 'fixed' | 'dynamic'.
+        Default: 'dynamic'
+    scrollElement: If provided, and height option is set to 'dynamic',
+        this will be the element used for detecting scrolling.
+    context: An optional context to use instead of generating one.
+    unplayable: How to show unplayable tracks. 'disabled' | 'hidden'.
+        Default: 'disabled'
+    style: The style of the list. 'plain' | 'rounded'. Default: 'plain'
+    imageOptions: An object that will be passed as options to the image
+        view for images inside the list. Default: undefined.
+    visualOffset: An optional offset for the ordinal field. If for example 5 is provided,
+        the first item in the list will have the number 6. Default: 0
+    throbber: What type of throbber to use.
+        'none': No throbber is visible.
+        'hide-content': Throbber is visible and content is hidden.
+        'show-content': Throbber is visible on top of the content
+        Default: 'none'</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0
+
+You can subscribe to some events that the list will broadcast:
+- initialized            (when list.init() has been completed)
+- play                   (when a track starts playing by the list)
+- set-collection         (when a new collection is set)
+- set-context            (when a new context is set)
+- refresh                (when the list has been refreshed, but before the
+                          snapshots are loaded)
+- clear                  (when the list has been cleared)
+- initial-snapshots      (when the initial snapshots have been made)
+- initial-snapshots-load (when the items of the initial snapshots have
+                          been loaded)
+- snapshot-start         (when a snapshot starts)
+- snapshot               (when a snapshot is done, but items might not be
+                          loaded yet)
+- snapshot-load          (when the items of a snapshot are loaded)
+- item-load              (when an item has been loaded)
+- item-load-fail         (when an item has failed to be loaded)
+- column-resize          (when the user has moved the handle between two
+                          columns)
+- scroll-fetch           (when the list is scrolled to the bottom and more
+                          items will be fetched)
+- item-select            (when an item has been selected)
+- item-deselect          (when an item has been deselected)
+
+- empty                  (when the collection is empty and no rows will show)
+- visually-empty         (when the list will not show any visible rows. If
+                          unplayable tracks have been chosen to be hidden,
+                          this will trigger even if there are unplayable
+                          tracks in the collection.)</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 13</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="playTrack"><span class="type-signature"></span>playTrack</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Play a track at a particular index within the list.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Index within the list.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_discIndex</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Disc index. If specified, the index param
+    refers to within the disc.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 235</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="48001c41d3.html">views/throbber</a></li></ul><h3>Classes</h3><ul><li><a href="Button.html">Button</a></li><li><a href="CustomButton.html">CustomButton</a></li><li><a href="List.html">List</a></li><li><a href="ShareButton.html">ShareButton</a></li><li><a href="StartRadioButton.html">StartRadioButton</a></li><li><a href="SubscribeButton.html">SubscribeButton</a></li><li><a href="Throbber.html">Throbber</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Wed Nov 28 2012 12:37:43 GMT+0100 (CET)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

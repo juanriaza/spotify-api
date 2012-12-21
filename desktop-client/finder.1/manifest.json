@@ -1,0 +1,52 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "installer": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "de": "",
+        "en": "",
+        "es": "",
+        "fr": "",
+        "nl": ""
+    },
+    "AppIcon": {
+        "128x128": "assets/img/app-finder-128.png",
+        "36x18": "assets/img/app-finder-18.png",
+        "64x64": "assets/img/app-finder-64.png"
+    },
+    "AppName": {
+        "de": "App Finder",
+        "en": "App Finder",
+        "es": "Buscador de apps",
+        "fr": "Recherche d'applis",
+        "nl": "App Finder"
+    },
+    "BundleIdentifier": "finder",
+    "BundleType": "Application",
+    "BundleVersion": "1.1.0",
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "util": "0.1.0"
+    },
+    "InternalBundleVersion": 100,
+    "RequiredInterface": 1,
+    "RequiredPermissions": [
+        "http://*.cloudfront.net",
+        "http://download.spotify.s3.amazonaws.com"
+    ],
+    "SupportedLanguages": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "nl"
+    ],
+    "UserInstallable": false,
+    "VendorIdentifier": "com.spotify"
+}

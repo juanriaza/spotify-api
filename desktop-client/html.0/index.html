@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+
+<!-- 
+	Copyright (c) 2010-2011 Niels Leenheer
+	 
+	Permission is hereby granted, free of charge, to any person obtaining
+	a copy of this software and associated documentation files (the
+	"Software"), to deal in the Software without restriction, including
+	without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell copies of the Software, and to
+	permit persons to whom the Software is furnished to do so, subject to
+	the following conditions:
+	 
+	The above copyright notice and this permission notice shall be
+	included in all copies or substantial portions of the Software.
+	
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+	LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+	OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<!--
+  Based on https://github.com/NielsLeenheer/html5test at ref b24be3cc13.
+-->
+
+<html>
+	<head>
+		<title>HTML5 Feature Test</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=480;">
+		
+    <link rel="stylesheet" href="sp://import/css/adam.css">
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+	</head>
+	
+	<body onload='startTest();'>
+		<div class='page'>
+		
+		<div class='column'>
+			<noscript>
+				<h2>
+					To view the results of your browser you need to enable Javascript!
+				</h2>
+			</noscript>
+
+			<div id='results'></div>
+    
+      <span id='total' style="visibility:hidden;">0</span>
+      <div id='note'>This app is based on the open source <a href="https://github.com/NielsLeenheer/html5test">html5test</a> project.</div>
+		</div>
+    
+		<script>
+		<!--
+		
+			function test (e, t, c) { this.initialize(e, t, c) }
+			test.prototype = {
+				suites: [ 
+					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testMicrodata, testOffline, testSecurity ] },
+					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testDevice, testOther ] }
+				],
+				
+				initialize: function(e, t, c) {					
+					var r = new results(e, t);
+					
+					for (g in this.suites) {
+						r.createSuite(this.suites[g].title);
+											
+						for (s in this.suites[g].sections) {
+							new (this.suites[g].sections[s])(r);
+						}
+					}
+					
+					c(r);
+				}
+			}
+		
+			function results (e, t) { this.initialize(e, t) }
+			results.prototype = {
+				initialize: function(e, t) {
+					this.items = [];
+					this.points = 0;
+					this.bonus = 0;
+					this.max = 0;
+				
+					this.container = document.getElementById(e);
+					
+					this.intro = document.createElement('p');
+					this.intro.className = 'intro';
+					this.intro.innerHTML = 'HTML5 support';
+					this.container.appendChild(this.intro);
+					
+					this.counter = document.createElement('h2');
+					this.container.appendChild(this.counter);
+					
+					this.byline = document.createElement('h3');
+					this.container.appendChild(this.byline);
+					
+					this.maximum = document.createElement('p');
+					this.container.appendChild(this.maximum);
+					
+					this.total = document.getElementById(t);
+					
+					this.update();
+				},
+				
+				createSuite: function(t) {
+					if (t) {
+						var title = document.createElement('h4');
+						title.innerHTML = t;
+						this.container.appendChild(title);
+					}
+					
+					this.list = document.createElement('ul');
+					this.container.appendChild(this.list);
+				},
+				
+				getSection: function(name, url) {
+					var i = new section(this, name, url)
+					this.items.push(i);
+					return i;
+				},
+
+				update: function() {
+					var points = 0;
+					var bonus = 0;
+					var max = 0;
+					
+					for (var i = 0; i < this.items.length; i++) {
+						points += this.items[i].getPoints();
+						bonus += this.items[i].getBonus();
+						max += this.items[i].getMaximum();	
+					}
+
+					this.counter.innerHTML = points;
+					this.byline.innerHTML = 'and ' + (bonus ? bonus : 'no') + ' bonus point' + (bonus != 1 ? 's' : '');
+					this.maximum.innerHTML = 'out of a total of ' + max + ' points';
+					this.total.innerHTML = max;				
+
+					this.points = points;
+					this.bonus = bonus;
+					this.max = max;
+				}
+			}
+
+			function section (parent, name) { this.initialize(parent, name) }
+			section.prototype = {
+				initialize: function(parent, name) {
+					this.items = [];
+					this.points = 0;
+					this.bonus = 0;
+					this.max = 0;
+				
+					this.parent = parent;
+					this.name = name;
+					
+					this.container = document.createElement('li');
+					this.parent.list.appendChild(this.container);
+					
+					this.title = document.createElement('strong');
+					this.title.innerHTML = name;
+					this.container.appendChild(this.title);
+					
+					this.score = document.createElement('em');
+					this.container.appendChild(this.score);
+
+					this.table = document.createElement('table');
+					this.container.appendChild(this.table);
+
+					this.body = document.createElement('tbody');
+					this.table.appendChild(this.body);
+				},
+				
+				setTitle: function(title) {
+					var row = document.createElement('tr');
+					row.className = 'title';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = title;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+
+				setExplaination: function(explaination) {
+					var row = document.createElement('tr');
+					row.className = 'explaination';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = explaination;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+				
+				setItem: function(result) {
+					var i = new item(this, result);
+					this.items.push(i);
+					
+					this.update();
+					
+					return i;
+				},
+				
+				getGroup: function(name) {
+					var row = document.createElement ('tr');
+					this.body.appendChild(row);
+					
+					var container = document.createElement ('td');
+					container.colSpan = 2;
+					container.className = 'container';
+					row.appendChild(container)
+					
+					var i = new group(this, container, name);
+					this.items.push(i);
+					return i;
+				},
+				
+				update: function() {
+					var points = 0;
+					var bonus = 0;
+					var max = 0;
+					
+					for (var i = 0; i < this.items.length; i++) {
+						points += this.items[i].getPoints();
+						bonus += this.items[i].getBonus();
+						max += this.items[i].getMaximum();	
+					}
+					
+					this.score.innerHTML =  (bonus ? '<span>' + bonus + ' Bonus point' + (bonus != 1 ? 's' : '') + '</span>' : '') + (points == max ? points : points + '/' + max);
+					var percent = parseInt(points / max * 100, 10);
+					switch (true) {
+						case percent == 0: 	this.score.className = 'none'; break;
+						case percent <= 30: this.score.className = 'badly'; break;
+						case percent <= 60: this.score.className = 'reasonable'; break;
+						case percent <= 95: this.score.className = 'good'; break;
+						default:			this.score.className = 'great'; break;
+					}
+					
+					this.points = points;
+					this.bonus = bonus;
+					this.max = max;
+					
+					this.parent.update();
+				},
+				
+				getBonus: function() {
+					return this.bonus;
+				},
+				
+				getPoints: function() {
+					return this.points;
+				},
+				
+				getMaximum: function() {
+					return this.max;
+				}
+			}
+			
+			function group (parent, container, name) { this.initialize(parent, container, name) }
+			group.prototype = {
+				initialize: function(parent, container, name) {
+					this.items = [];
+					this.points = 0;
+					this.bonus = 0;
+					this.max = 0;
+					
+					this.name = name;
+				
+					this.parent = parent;
+					this.container = container;
+					
+					this.table = document.createElement('table');
+					this.container.appendChild(this.table);
+
+					this.head = document.createElement('thead');
+					this.table.appendChild(this.head);
+
+					var row = document.createElement('tr');
+					var table = this.table;
+					row.onclick = function() {
+						if (table.className == 'visible') {
+							table.className = '';
+						} else {
+							table.className = 'visible';
+						}
+					};
+					this.head.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = name;
+					row.appendChild(head);
+
+					this.score = document.createElement('td');
+					row.appendChild(this.score);
+					
+					this.body = document.createElement('tbody');
+					this.table.appendChild(this.body);
+				},
+				
+				update: function() {
+					var points = 0;
+					var bonus = 0;
+					var max = 0;
+					var count = 0;
+					
+					var passedAllRequiredFields = true;
+					var passedPartially = false;
+					
+					for (var i = 0; i < this.items.length; i++) {
+						points += this.items[i].getPoints();
+						bonus += this.items[i].getBonus();
+						max += this.items[i].getMaximum();	
+						count += this.items[i].getPassed() ? 1 : 0;
+					
+						if (this.items[i].getRequired()) {
+							passedAllRequiredFields &= this.items[i].getPassed();
+						}
+						
+						passedPartially |= this.items[i].getPartiallyPassed();
+					}
+					
+					if (!passedAllRequiredFields) {
+						points = 0;
+					}
+					
+					if (passedPartially && points != max) {
+						this.score.innerHTML = '<span class="partially">Partial</span> <span class="partial">○</span>';
+					} else {
+						if (points == 0) 
+							this.score.innerHTML = 'No <span class="ballot">✘</span>';						
+						else if (points == max) 
+							this.score.innerHTML = 'Yes <span class="check">✔</span>';
+					}
+					
+					this.points = points;
+					this.bonus = bonus;
+					this.max = max;
+					
+					this.parent.update();
+				},
+				
+				setTitle: function(title) {
+					var row = document.createElement('tr');
+					row.className = 'title';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = title;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+
+				setItem: function(result) {
+					var i = new item(this, result);
+					this.items.push(i);
+					
+					this.update();
+					
+					return i;
+				},
+				
+				getBonus: function() {
+					return this.bonus;
+				},
+				
+				getPoints: function() {
+					return this.points;
+				},
+				
+				getMaximum: function() {
+					return this.max;
+				}				
+			}
+			
+			function item (parent, data) { this.initialize(parent, data) }
+			item.prototype = {
+				initialize: function(parent, data) {
+					this.parent = parent;
+				
+					var row = document.createElement('tr');
+					parent.body.appendChild(row);
+
+					this.head = document.createElement('th');
+					row.appendChild(this.head);
+					
+					this.cell = document.createElement('td');
+					row.appendChild(this.cell);
+					
+					this.data = data;
+					if (typeof this.data.value == 'undefined') this.data.value = 0;
+					if (typeof this.data.bonus == 'undefined') this.data.bonus = 0;
+					if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+					
+					this.render();
+				},
+				
+				update: function(data) {
+					for (key in data) {
+						this.data[key] = data[key];
+					}
+
+					if (typeof this.data.value == 'undefined') this.data.value = 0;
+					if (typeof this.data.bonus == 'undefined') this.data.bonus = 0;
+					if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+					
+					this.render();
+
+					this.parent.update();
+				},
+					
+				render: function() {
+					if (typeof this.data.url != 'undefined') {
+						this.head.innerHTML = '<a href="' + this.data.url + '">' + this.data.title + '</a>';
+					} else {
+						this.head.innerHTML = this.data.title;
+					}
+
+					if (this.data.custom) {
+						switch(this.data.custom) {
+							case 'unknown': this.cell.innerHTML = 'Unknown <span class="unknown">○</span>'; break;
+							case 'partial': this.cell.innerHTML = 'Partial <span class="partial">○</span>'; break;
+						}
+					} else {
+						this.cell.innerHTML = this.data.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>';
+					}
+				},
+				
+				getBonus: function() {
+					return this.data.bonus;
+				},
+				
+				getPoints: function() {
+					return this.data.passed ? this.data.award : 0;
+				},
+				
+				getMaximum: function() {
+					return this.data.value;
+				},
+				
+				getPassed: function() {
+					return this.data.passed;
+				},
+				
+				getPartiallyPassed: function() {
+					if (this.data.custom && this.data.custom == 'partial') {
+						return true;
+					}
+					
+					return this.getPassed();
+				},
+				
+				getRequired: function() {
+					return !!this.data.required;
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			var iOS = !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
+			var Android = !!navigator.userAgent.match('Android');
+			
+			var isEventSupported = (function(){
+			  
+			  var TAGNAMES = {
+			    'select':'input','change':'input','input':'input',
+			    'submit':'form','reset':'form','forminput':'form','formchange':'form',
+			    'error':'img','load':'img','abort':'img'
+			  }
+			  
+			  function isEventSupported(eventName, element) {
+			
+			    element = element || document.createElement(TAGNAMES[eventName] || 'div');
+			    eventName = 'on' + eventName;
+			    
+			    // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
+			    var isSupported = (eventName in element);
+			    
+			    if (!isSupported) {
+			      // if it has no `setAttribute` (i.e. doesn't implement Node interface), try generic element
+			      if (!element.setAttribute) {
+			        element = document.createElement('div');
+			      }
+			      if (element.setAttribute && element.removeAttribute) {
+			        element.setAttribute(eventName, '');
+			        isSupported = typeof element[eventName] == 'function';
+			
+			        // if property was created, "remove it" (by setting value to `undefined`)
+			        if (typeof element[eventName] != 'undefined') {
+			          element[eventName] = void 0;
+			        }
+			        element.removeAttribute(eventName);
+			      }
+			    }
+			    
+			    element = null;
+			    return isSupported;
+			  }
+			  return isEventSupported;
+			})();
+
+
+			var getRenderedStyle = (function(){
+			
+				function getRenderedStyle(elem, name) {
+				    if (document.defaultView && document.defaultView.getComputedStyle) {
+				        s = document.defaultView.getComputedStyle(elem, "");
+				        r = [];
+				        
+				        if (s.length) {
+					        for (var i = 0; i < s.length; i++) {
+					        	try {
+						        	v = s.getPropertyValue(s[i]);
+						        	if (v != '') {
+						        		r.push(s[i] + ': ' + v);
+						        	}
+					        	} catch(e) {
+					        	};
+					        }
+				        } else {
+					        for (var i in s) {
+					        	try {
+						        	v = s.getPropertyValue(i);
+						        	if (v != '') {
+						        		r.push(i + ': ' + v);
+						        	}
+					        	} catch(e) {
+					        	};
+					        }
+				        }
+				        
+				        return r.join('; ') + ';';
+				    } else {
+				        return null;
+				    }
+				}
+				
+				return getRenderedStyle;
+			})();
+
+
+			
+			function testParsing (results) { this.initialize(results) }			
+			testParsing.prototype = {
+				name: 	'Parsing rules',
+				count: 	6,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode', 
+						url:    'http://www.w3.org/TR/html5/syntax.html#the-doctype',
+						passed:	document.compatMode == 'CSS1Compat', 
+						value: 	1
+					});
+				},
+				
+				t2: function() {
+					var result = true;
+					var e = document.createElement('div');	
+					
+					e.innerHTML = "<div<div>";
+					result &= e.firstChild && e.firstChild.nodeName == "DIV<DIV";
+					
+					e.innerHTML = "<div foo<bar=''>";
+					result &= e.firstChild.attributes[0].nodeName == "foo<bar";
+					
+					e.innerHTML = "<div foo=`bar`>";
+					result &= e.firstChild.getAttribute("foo") == "`bar`";
+					
+					e.innerHTML = "<div \"foo=''>";
+					result &= e.firstChild && e.firstChild.attributes[0].nodeName == "\"foo";
+					
+					e.innerHTML = "<a href='\nbar'></a>";
+					result &= e.firstChild && e.firstChild.getAttribute("href") == "\nbar";
+					
+					e.innerHTML = "<!DOCTYPE html>";
+					result &= e.firstChild == null;
+					
+					e.innerHTML = "\u000D";
+					result &= e.firstChild && e.firstChild.nodeValue == "\u000A";
+					
+					e.innerHTML = "&lang;&rang;";
+					result &= e.firstChild.nodeValue == "\u27E8\u27E9";
+					
+					e.innerHTML = "&apos;";
+					result &= e.firstChild.nodeValue == "'";
+					
+					e.innerHTML = "&ImaginaryI;";
+					result &= e.firstChild.nodeValue == "\u2148";
+					
+					e.innerHTML = "&Kopf;";
+					result &= e.firstChild.nodeValue == "\uD835\uDD42";
+					
+					e.innerHTML = "&notinva;";
+					result &= e.firstChild.nodeValue == "\u2209";
+					
+					e.innerHTML = '<?import namespace="foo" implementation="#bar">';
+					result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == '?import namespace="foo" implementation="#bar"';
+					
+					e.innerHTML = '<!--foo--bar-->';
+					result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == 'foo--bar';
+					
+					e.innerHTML = '<![CDATA[x]]>';
+					result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == '[CDATA[x]]';
+					
+					e.innerHTML = "<textarea><!--</textarea>--></textarea>";
+  					result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+  					
+					e.innerHTML = "<textarea><!--</textarea>-->";
+  					result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+					
+					e.innerHTML = "<style><!--</style>--></style>";
+  					result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+					
+					e.innerHTML = "<style><!--</style>-->";
+  					result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+					
+					this.section.setItem({
+						title: 	'HTML5 tokenizer', 
+						url:	'http://www.w3.org/TR/html5/parsing.html',
+						passed:	result, 
+						value: 	5
+					});
+				},
+				
+				t3: function() {
+					var result = true;
+					var e = document.createElement('div');	
+					
+					try {
+						var h = document.createElement("html");
+						h.innerHTML = "";
+						result &= h.firstChild && h.firstChild.nodeName == "HEAD" && h.lastChild.nodeName == "BODY" && h.firstChild.nextSibling == h.lastChild;
+					} catch (e) {
+						result = false;
+					}
+
+					try {
+						var t = document.createElement("table");
+						t.innerHTML = "<col>";
+						result &= t.firstChild && t.firstChild.nodeName == "COLGROUP";
+					} catch (e) {
+						result = false;
+					}
+					
+					e.innerHTML = "<ul><li>A </li> <li>B</li></ul>";
+					result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.firstChild && e.firstChild.firstChild.firstChild.nodeValue == "A ";
+				
+					e.innerHTML = "<table><form><input type=hidden><input></form><div></div></table>";
+					result &= e.firstChild && 
+							  e.firstChild.nodeName == "INPUT" &&
+							  e.firstChild.nextSibling && 
+							  e.firstChild.nextSibling.nodeName == "DIV" &&
+							  e.lastChild.nodeName == "TABLE" && 
+							  e.firstChild.nextSibling.nextSibling == e.lastChild &&
+							  e.lastChild.firstChild && 
+							  e.lastChild.firstChild.nodeName == "FORM" &&
+							  e.lastChild.firstChild.firstChild == null && 
+							  e.lastChild.lastChild.nodeName == "INPUT" &&
+							  e.lastChild.firstChild.nextSibling == e.lastChild.lastChild;	
+
+					e.innerHTML = "<i>A<b>B<p></i>C</b>D";
+					result &= e.firstChild && 
+							  e.childNodes.length == 3 &&
+							  e.childNodes[0].nodeName == "I" && 
+							  e.childNodes[0].childNodes.length == 2 &&
+							  e.childNodes[0].childNodes[0].nodeValue == "A" && 
+							  e.childNodes[0].childNodes[1].nodeName == "B" &&
+							  e.childNodes[0].childNodes[1].childNodes.length == 1 && 
+							  e.childNodes[0].childNodes[1].childNodes[0].nodeValue == "B" &&
+							  e.childNodes[1].nodeName == "B" && 
+							  e.childNodes[1].firstChild == null &&
+							  e.childNodes[2].nodeName == "P" && 
+							  e.childNodes[2].childNodes.length == 2 &&
+							  e.childNodes[2].childNodes[0].nodeName == "B" &&
+							  e.childNodes[2].childNodes[0].childNodes.length == 2 &&
+							  e.childNodes[2].childNodes[0].childNodes[0].nodeName == "I" &&
+							  e.childNodes[2].childNodes[0].childNodes[0].firstChild == null && 
+							  e.childNodes[2].childNodes[0].childNodes[1].nodeValue == "C" &&
+							  e.childNodes[2].childNodes[1].nodeValue == "D";
+
+					e.innerHTML = "<div></div>";
+					result &= e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == "http://www.w3.org/1999/xhtml";
+
+					this.section.setItem({
+						title: 	'HTML5 tree building', 
+						url:	'http://www.w3.org/TR/html5/parsing.html',
+						passed:	result, 
+						value: 	5
+					});
+				},
+				
+				t4: function() {
+					this.section.setExplaination('HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. Support for SVG and MathML is not required though, so bonus points are awarded if your browser supports embedding these two technologies.')
+				},
+
+				t5: function() {
+					var e = document.createElement('div');
+					e.innerHTML = '<svg></svg>';
+					var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
+					
+					this.section.setItem({
+						title: 	'SVG in <code>text/html</code>', 
+						url:	'http://www.w3.org/TR/html5/the-map-element.html#svg-0',
+						passed:	passed, 
+						bonus: 	passed ? 1 : 0
+					});
+				},
+				
+				t6: function() {
+					var e = document.createElement('div');
+					e.innerHTML = '<math></math>';
+					var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/1998/Math/MathML';
+					
+					this.section.setItem({
+						title: 	'MathML in <code>text/html</code>', 
+						url:	'http://www.w3.org/TR/html5/the-map-element.html#mathml',
+						passed:	passed, 
+						bonus: 	passed ? 1 : 0
+					});
+				}
+			};
+			
+			
+			function testCanvas (results) { this.initialize(results) }			
+			testCanvas.prototype = {
+				name: 	'Canvas',
+				url:    'http://www.w3.org/TR/2dcontext/',
+				count: 	3,
+				max:    12,
+				
+				initialize: function(results) {
+					this.canvas = document.createElement('canvas');
+
+					this.section = results.getSection(this.name);
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'<code>canvas</code> element', 
+						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
+						passed:	!!this.canvas.getContext, 
+						value: 	5
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
+						title: 	'2D context', 
+						url:    'http://www.w3.org/TR/2dcontext/',
+						passed:	this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D, 
+						value: 	10
+					});
+				},
+
+				t3: function() {
+					this.section.setItem({
+						title: 	'Text', 
+						url:	'http://www.w3.org/TR/2dcontext/#text',
+						passed:	this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function', 
+						value: 	5
+					});
+				}
+			};
+
+									
+			function testVideo (results) { this.initialize(results) }			
+			testVideo.prototype = {
+				name: 	'Video',
+				count: 	8,
+				
+				initialize: function(results) {
+					this.element = document.createElement('video');
+					
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				canPlayType: function(t) {
+					if (iOS)
+						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
+					else 
+						return this.element.canPlayType(t) == 'probably';
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'<code>video</code> element', 
+						url:	'http://www.w3.org/TR/html5/video.html#video',
+						passed:	!!this.element.canPlayType, 
+						value: 	20
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
+						title: 	'Subtitle support', 
+						url:	'http://www.w3.org/TR/html5/video.html#timed-text-tracks',
+						passed:	'track' in document.createElement('track'), 
+						value: 	10
+					});
+				},
+
+				t3: function() {
+					this.section.setItem({
+						title: 	'Poster image support', 
+						url:	'http://www.w3.org/TR/html5/video.html#attr-video-poster',
+						passed:	'poster' in this.element, 
+						value: 	1
+					});
+				},
+
+				t4: function() {
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more video codecs, two bonus points are awarded for each codec.')
+				},
+					
+				t5: function() {
+					var item = {
+						title: 	'MPEG-4 support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
+					};
+					
+					if (item.passed) item.bonus = 2;					
+					this.section.setItem(item);
+				},
+
+				t6: function() {
+					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
+				
+					var item = {
+						title: 	'H.264 support', 
+						passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
+					};
+					
+					if (item.passed) item.bonus = 2;					
+					this.section.setItem(item);
+				},
+
+				t7: function() {
+					var item = {
+						title: 	'Ogg Theora support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
+					};
+					
+					if (item.passed) item.bonus = 2;					
+					this.section.setItem(item);
+				},
+
+				t8: function() {
+					var item = {
+						title: 	'WebM support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
+					};
+					
+					if (item.passed) item.bonus = 2;					
+					this.section.setItem(item);
+				}
+			};
+			
+			
+			function testAudio (results) { this.initialize(results) }			
+			testAudio.prototype = {
+				name: 	'Audio',
+				count: 	7,
+				
+				initialize: function(results) {
+					this.element = document.createElement('audio');
+					
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				canPlayType: function(t) {
+					if (iOS)
+						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
+					else 
+						return this.element.canPlayType(t) == 'probably';
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'<code>audio</code> element', 
+						url:	'http://www.w3.org/TR/html5/video.html#audio',
+						passed:	!!this.element.canPlayType, 
+						value: 	20
+					});
+				},
+
+				t2: function() {
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more audio codecs, one bonus point is awarded for each codec.')
+				},
+
+				t3: function() {
+					var item = {
+						title: 	'PCM audio support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
+					};
+					
+					if (item.passed) item.bonus = 1;
+					this.section.setItem(item);
+				},
+
+				t4: function() {
+					var r = false;
+					if (this.element.canPlayType) {
+						var t = this.element.canPlayType('audio/mpeg');
+						if (t == 'maybe') {
+							// We need to check if the browser really supports playing MP3s by loading one and seeing if the
+							// loadedmetadata event is triggered... but for now assume it does support it...
+							r = true;
+						} else if (t == 'probably') {
+							r = true;
+						}
+					}
+				
+					var item = {
+						title: 	'MP3 support', 
+						passed:	r
+					};
+					
+					if (item.passed) item.bonus = 1;
+					this.section.setItem(item);
+				},
+
+				t5: function() {
+					var item = {
+						title: 	'AAC support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
+					};
+					
+					if (item.passed) item.bonus = 1;
+					this.section.setItem(item);
+				},
+
+				t6: function() {
+					var item = {
+						title: 	'Ogg Vorbis support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
+					};
+					
+					if (item.passed) item.bonus = 1;
+					this.section.setItem(item);
+				},
+
+				t7: function() {
+					var item = {
+						title: 	'WebM support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
+					};
+					
+					if (item.passed) item.bonus = 1;
+					this.section.setItem(item);
+				}
+			};
+			
+			
+			function testDevice (results) { this.initialize(results) }			
+			testDevice.prototype = {
+				name: 	'Local devices',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'<code>device</code> element', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#devices',
+						passed:	'type' in document.createElement('device'), 
+						value: 	20
+					});
+				}
+			}
+
+
+			function testElements (results) { this.initialize(results) }			
+			testElements.prototype = {
+				name: 	'Elements',
+				count: 	10,
+				
+				initialize: function(results) {
+					this.section = results.getSection('Elements');
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				getStyle: function(elem, name) {
+				    if (elem.style[name]) {
+				        return elem.style[name];
+				    } else if (elem.currentStyle) {
+				        return elem.currentStyle[name];
+				    }
+				    else if (document.defaultView && document.defaultView.getComputedStyle) {
+				        name = name.replace(/([A-Z])/g, "-$1");
+				        name = name.toLowerCase();
+				        s = document.defaultView.getComputedStyle(elem, "");
+				        return s && s.getPropertyValue(name);
+				    } else {
+				        return null;
+				    }
+				},
+				
+				isBlock: function(element) {
+					return this.getStyle(element, 'display') == 'block';
+				},
+				
+				closesImplicitly: function(name) {
+					var foo = document.createElement('div');
+					foo.innerHTML = '<p><' + name + '></' + name + '>';
+					return foo.childNodes.length == 2;
+				},
+				
+				isHidden: function(element) {
+					return this.getStyle(element, 'display') == 'none';
+				},
+				
+				t1: function() {
+					var element = document.createElement('div');
+					element.setAttribute('data-test', 'test');
+					
+					this.section.setItem({
+						title: 	'Embedding custom non-visible data', 
+						url:	'http://www.w3.org/TR/html5/elements.html#dom-dataset',
+						passed:	'dataset' in element, 
+						value: 	4
+					});
+				},
+				
+				t2: function() {
+					this.section.setTitle('New or modified elements') 
+				},
+				
+				t3: function() {
+					var group = this.section.getGroup('Section elements');
+					var elements = 'section nav article aside hgroup header footer'.split(' ');
+					
+					for (var e in elements) {
+						var element = document.createElement(elements[e]);
+						document.body.appendChild(element);
+
+ 						group.setItem({
+							title: 	'<code>' + elements[e] + '</code> element', 
+							url:	'http://www.w3.org/TR/html5/sections.html#the-' + elements[e] + '-element',
+							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]), 
+							value: 	1
+						});
+
+						document.body.removeChild(element);
+					}
+				},
+
+				t4: function() {
+					var group = this.section.getGroup('Grouping content elements');
+					var elements = 'figure figcaption'.split(' ');
+					
+					for (var e in elements) {
+						var element = document.createElement(elements[e]);
+						document.body.appendChild(element);
+
+ 						group.setItem({
+							title: 	'<code>' + elements[e] + '</code> element', 
+							url:	'http://www.w3.org/TR/html5/grouping-content.html#the-' + elements[e] + '-element',
+							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
+							value: 	1
+						});
+
+						document.body.removeChild(element);
+					}
+				},
+
+				t5: function() {
+					var group = this.section.getGroup('Text-level semantic elements');
+					
+					var element = document.createElement('mark');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>mark</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)' || color == '#ffff00'), 
+						value: 	1
+					});
+
+					document.body.removeChild(element);
+					
+					
+					var container = document.createElement('div');
+					document.body.appendChild(container);
+					container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
+					var rubyElement = document.getElementById('ruby');
+					var rtElement = document.getElementById('rt');
+					var rpElement = document.getElementById('rp');
+					var rubyFullSupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement && this.getStyle(rubyElement, 'display') == 'ruby';
+					var rtFullSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement && this.getStyle(rtElement, 'display') == 'ruby-text';
+					var rpFullSupport = rpElement && typeof HTMLElement != 'undefined' && rpElement instanceof HTMLElement && this.isHidden(rpElement);
+					var rubyPartialSupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement;
+					var rtPartialSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement;
+					document.body.removeChild(container);					
+					
+					group.setItem({
+						title: 	'<code>ruby</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
+						passed:	rubyFullSupport, 
+						value: 	1,
+						custom: !rubyFullSupport && rubyPartialSupport && rpFullSupport ? 'partial' : false
+					});
+
+					group.setItem({
+						title: 	'<code>rt</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
+						passed:	rtFullSupport, 
+						value: 	1,
+						custom: !rtFullSupport && rtPartialSupport && rpFullSupport ? 'partial' : false
+					});
+
+					group.setItem({
+						title: 	'<code>rp</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
+						passed:	rpFullSupport, 
+						value: 	1
+					});
+					
+
+					var element = document.createElement('time');
+
+					group.setItem({
+						title: 	'<code>time</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-time-element',
+						passed:	typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement, 
+						value: 	1
+					});
+					
+					var element = document.createElement('wbr');
+
+					group.setItem({
+						title: 	'<code>wbr</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
+						value: 	1
+					});
+				},
+				
+				t6: function() {
+					var group = this.section.getGroup('Interactive elements');
+
+					var element = document.createElement('details');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>details</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-details-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && 'open' in element, 
+						value: 	1
+					});
+
+					document.body.removeChild(element);
+					
+					
+					var element = document.createElement('summary');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>summary</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
+						value: 	1
+					});
+
+					document.body.removeChild(element);					
+
+
+					var element = document.createElement('command');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>command</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-command-element',
+						passed:	typeof HTMLCommandElement != 'undefined' && element instanceof HTMLCommandElement, 
+						value: 	2
+					});
+
+					document.body.removeChild(element);					
+
+
+					var element = document.createElement('menu');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>menu</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element',
+						passed:	typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement, 
+						value: 	2
+					});
+
+					document.body.removeChild(element);					
+				},
+				
+				t7: function() {
+					this.section.setTitle('Global attributes or methods') 
+				},
+				
+				t8: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'<code>hidden</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
+						passed:	'hidden' in element, 
+						value: 	1
+					});
+				},
+				
+				t9: function() {
+					/*
+					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone and Andriod!
+					 */
+					 
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'<code>contenteditable</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
+						passed:	'isContentEditable' in element && !iOS && !Android, 
+						value: 	10
+					});
+				},
+
+				t10: function() {
+					var group = this.section.getGroup('Dynamic markup insertion');
+					var element = document.createElement('div');
+
+					group.setItem({
+						title: 	'<code>outerHTML</code> property', 
+						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#outerhtml',
+						passed:	!!('outerHTML' in element), 
+						value: 	1
+					});
+						
+					group.setItem({
+						title: 	'<code>insertAdjacentHTML</code> function', 
+						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#dom-insertadjacenthtml',
+						passed:	!!('insertAdjacentHTML' in element), 
+						value: 	1
+					});
+				}
+			};		
+			
+			
+			function testForm (results) { this.initialize(results) }			
+			testForm.prototype = {
+				name: 	'Forms',
+				count: 	3,
+				
+				initialize: function(results) {
+					this.field = document.createElement('input');
+					this.field.id = "testFormInput";
+										
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				createInput: function(type) {
+					var wrapper = document.createElement('div');
+					document.body.appendChild(wrapper)
+
+					var field = document.createElement('input');
+					wrapper.appendChild(field);
+					
+					try {
+						field.setAttribute('type', type);
+					} catch(e) {
+					}
+					
+					/* Make sure our field is position absolutely for CSS style comparison */
+					wrapper.style.position = 'absolute';
+					wrapper.style.display = 'inline-block';
+					wrapper.style.top = '0px';
+					wrapper.style.left = '0px';
+					
+					return { field: field, wrapper: wrapper };
+				},
+				
+				removeInput: function(e) {
+					document.body.removeChild(e.wrapper);
+				},
+				
+				t1: function() {
+					this.section.setTitle('Field types') 
+					
+					var element = this.createInput('text');
+					var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
+					this.removeInput(element);
+					
+					
+					
+					/* input type=search */
+					
+					var group = this.section.getGroup('<code>input type=search</code>');
+					var element = this.createInput('search');
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'search',
+						value: 		2
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=tel */
+					
+					var group = this.section.getGroup('<code>input type=tel</code>');
+					var element = this.createInput('tel');
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'tel',
+						value: 		2
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=url */
+					
+					var group = this.section.getGroup('<code>input type=url</code>');
+					var element = this.createInput('url');
+					
+					var validation = false;
+					if ('validity' in element.field) {
+						validation = true;
+						
+						element.field.value = "foo";
+						validation &= !element.field.validity.valid
+								
+						element.field.value = "http://foo.org";
+						validation &= element.field.validity.valid
+					}
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'url',
+						value: 		2,
+						required:	true
+					});
+					
+					group.setItem({
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=email */
+					
+					var group = this.section.getGroup('<code>input type=email</code>');
+					var element = this.createInput('email');
+															
+					var validation = false;
+					if ('validity' in element.field) {
+						validation = true;
+						
+						element.field.value = "foo";
+						validation &= !element.field.validity.valid
+	
+						element.field.value = "foo@bar.org";
+						validation &= element.field.validity.valid
+					}
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'email',
+						value: 		2,
+						required:	true
+					});
+					
+					group.setItem({
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=datetime, date, month, week, time and datetime-local */
+					
+					var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
+					for (var t in types) {
+						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
+						var element = this.createInput(types[t]);
+						
+						element.field.value = "foobar";							
+						var sanitization = element.field.value == '';
+						
+						group.setItem({
+							title: 		'Minimal element support', 
+							passed:		element.field.type == types[t],
+							value: 		2,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'Custom user-interface', 
+							passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+							value: 		2
+						});
+						
+						group.setItem({
+							title: 		'Value sanitization', 
+							passed:		sanitization,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>min</code> attribute', 
+							passed:		'min' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>max</code> attribute', 
+							passed:		'max' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>step</code> attribute', 
+							passed:		'step' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepDown()</code> method', 
+							passed:		'stepDown' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepUp()</code> method', 
+							passed:		'stepUp' in element.field,
+							required:	true
+						});
+						
+						this.removeInput(element);
+					}
+					
+					
+					/* input type=number, range */
+					
+					var types = ['number', 'range'];
+					for (var t in types) {
+						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
+						var element = this.createInput(types[t]);
+						
+						element.field.value = "foobar";							
+						var sanitization = element.field.value != 'foobar';
+						
+						var validation = false;
+						if ('validity' in element.field) {
+							validation = true;
+							
+							element.field.min = 40;
+							element.field.max = 50;
+							element.field.value = 100;
+							validation &= !element.field.validity.valid
+		
+							element.field.value = 42;
+							validation &= element.field.validity.valid
+						}
+						
+						group.setItem({
+							title: 		'Minimal element support', 
+							passed:		element.field.type == types[t],
+							value: 		2,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'Custom user-interface', 
+							passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+							value: 		2
+						});
+						
+						group.setItem({
+							title: 		'Value sanitization', 
+							passed:		sanitization,
+							required:	true
+						});
+						
+						if (types[t] != 'range') {
+							group.setItem({
+								title: 		'Field validation', 
+								passed:		validation,
+								required:	true
+							});
+						}
+
+						group.setItem({
+							title: 		'<code>min</code> attribute', 
+							passed:		'min' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>max</code> attribute', 
+							passed:		'max' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>step</code> attribute', 
+							passed:		'step' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepDown()</code> method', 
+							passed:		'stepDown' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepUp()</code> method', 
+							passed:		'stepUp' in element.field,
+							required:	true
+						});
+						
+						this.removeInput(element);
+					}					
+					
+					
+					/* input type=color */
+					
+					var group = this.section.getGroup('<code>input type=color</code>');
+					var element = this.createInput('color');
+											
+					element.field.value = "foobar";					
+					var sanitization = element.field.value != 'foobar';
+
+					var validation = false;
+					if ('validity' in element.field) {
+						validation = true;
+						
+						element.field.value = "foo";
+						validation &= !element.field.validity.valid
+	
+						element.field.value = '#000000';
+						validation &= element.field.validity.valid
+					}
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'color',
+						value: 		2
+					});
+					
+					group.setItem({
+						title: 		'Custom user-interface', 
+						passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+						value: 		2
+					});
+						
+					group.setItem({
+						title: 		'Value sanitization', 
+						passed:		sanitization,
+						required:	true
+					});
+						
+					group.setItem({
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+
+					this.removeInput(element);
+					
+					
+					
+					/* input type=checkbox */
+					
+					var group = this.section.getGroup('<code>input type=checkbox</code>');
+					var element = this.createInput('checkbox');
+					
+					group.setItem({
+						title: 	'<code>indeterminate</color> property', 
+						passed:	'indeterminate' in element.field,
+						value: 	1
+					});
+
+					this.removeInput(element);
+					
+
+					/* select */
+					
+					var group = this.section.getGroup('<code>select</code>');
+					var element = document.createElement('select');
+
+					group.setItem({
+						title:	'<code>required</code> attribute',
+						passed:	'required' in element,
+						value:	1
+					});
+
+
+					/* fieldset */
+					
+					var group = this.section.getGroup('<code>fieldset</code>');
+					var element = document.createElement('fieldset');
+
+					group.setItem({
+						title:	'<code>elements</code> attribute',
+						passed:	'elements' in element,
+						value:	1
+					});
+
+					group.setItem({
+						title:	'<code>disabled</code> attribute',
+						passed:	'disabled' in element,
+						value:	1
+					});
+
+
+					/* datalist */
+					
+					var group = this.section.getGroup('<code>datalist</code>');
+					var element = document.createElement('datalist');
+					
+					group.setItem({
+						title: 		'<code>datalist</code> element', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
+						passed:		(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
+						value: 		2,
+						required:	true
+					});
+
+					group.setItem({
+						title:		'<code>list</code> attribute for fields',
+						url:		'http://www.w3.org/TR/html5/forms.html#the-list-attribute',
+						passed:		!!("list" in this.field),
+						required:	true				
+					});
+
+
+					/* keygen */
+					
+					var group = this.section.getGroup('<code>keygen</code>');
+					var element = document.createElement('div');
+					element.innerHTML = '<keygen>';
+					
+					group.setItem({
+						title: 		'<code>keytype</code> element', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
+						passed:		typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
+						value: 		2,
+						custom: 	element.childNodes && element.childNodes.length ? 'partial' : false,
+						required:	true
+					});
+
+					group.setItem({
+						title: 		'<code>challenge</code> attribute', 
+						passed:		'challenge' in this.field,
+						required:	true
+					});
+						
+					group.setItem({
+						title: 		'<code>keytype</code> attribute', 
+						passed:		'keytype' in this.field,
+						required:	true
+					});
+						
+					
+					
+					/* output */
+					
+					var group = this.section.getGroup('<code>output</code>');
+					var element = document.createElement('output');
+					group.setItem({
+						title: 	'<code>output</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
+						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
+						value: 	2
+					});
+
+
+					/* progress */
+					
+					var group = this.section.getGroup('<code>progress</code>');
+					var element = document.createElement('progress');
+					group.setItem({
+						title: 	'<code>progress</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
+						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
+						value: 	2
+					});
+					
+					
+					/* meter */
+					
+					var group = this.section.getGroup('<code>meter</code>');
+					var element = document.createElement('meter');
+					group.setItem({
+						title: 	'<code>meter</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
+						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+						value: 	2
+					});
+				},
+
+				t2: function() {
+					this.section.setTitle('Fields') 
+					
+					var group = this.section.getGroup('Field validation');
+					var props = 'pattern required'.split(' ');
+						
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> attribute', 
+							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+        			}
+
+
+
+					var group = this.section.getGroup('Association of controls and forms');
+					
+					var field = document.createElement('input');
+					field.id = "a";
+					document.body.appendChild(field);
+
+					var label = document.createElement("label");
+					label.setAttribute('for', 'a');
+					document.body.appendChild(label);
+					
+					group.setItem({
+						title: 	'<code>control</code> property on labels', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
+						passed:	label.control == field,
+						value: 	1
+					});
+					
+					document.body.removeChild(field);
+					document.body.removeChild(label);
+					
+
+					var element = document.createElement('div');
+					document.body.appendChild(element);
+					element.innerHTML = '<form id="form"></form><input form="form">';
+					group.setItem({
+						title: 	'<code>form</code> property on fields', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
+						passed:	element.lastChild.form == element.firstChild,
+						value: 	1
+					});
+					document.body.removeChild(element);
+
+
+					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
+					
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> property on fields', 
+							url:	'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+					}
+
+					var label = document.createElement("label");
+					label.setAttribute('for', 'testFormInput');
+					document.body.appendChild(label);
+					group.setItem({
+						title: 	'<code>labels</code> property on fields', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
+						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == label),
+						value: 	1
+					});
+					document.body.removeChild(label);
+					
+
+
+					
+					
+					var group = this.section.getGroup('Other attributes');
+					var props = 'autocomplete autofocus placeholder multiple'.split(' ');
+						
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> attribute', 
+							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+        			}
+
+
+
+					var selectors = "valid invalid optional required".split(" ");
+					var res = [false, false, false, false];
+ 					
+ 					if (!!document.querySelector) {
+						this.field.setAttribute("type", "text");
+						document.body.appendChild(this.field);
+						if ("validity" in this.field && "setCustomValidity" in this.field) {
+							//:valid
+							res[0] = !!document.querySelector("#testFormInput:valid");
+							//:invalid
+							this.field.setCustomValidity("foo");
+							res[1] = !!document.querySelector("#testFormInput:invalid");
+							res[2] = !!document.querySelector("#testFormInput:optional");
+							this.field.setAttribute("required", "true");
+							res[3] = !!document.querySelector("#testFormInput:required");
+						}
+						document.body.removeChild(this.field);
+ 					}
+ 					
+					var group = this.section.getGroup('CSS selectors');
+ 					for (var i = 0; i < selectors.length; i++) {
+						group.setItem({
+							title: 	'<code>:' + selectors[i] + '</code> selector', 
+							url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#selector-' + selectors[i],
+							passed:	res[i],
+							value: 	1,
+							custom:	!document.querySelector ? 'unknown' : false
+						});
+					}
+
+
+
+					var group = this.section.getGroup('Events');
+					var inputItem = group.setItem({
+						title: 	'<code>oninput</code> event', 
+						passed:	isEventSupported('input'), 
+						value: 	1
+					});
+
+					var changeItem = group.setItem({
+						title: 	'<code>onchange</code> event', 
+						passed:	isEventSupported('change'), 
+						value: 	1
+					});
+
+					try {
+						var event = document.createEvent("KeyboardEvent");				
+						if (event.initKeyEvent) {
+							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
+	
+							var input = document.createElement('input');
+							document.body.appendChild(input);
+							
+							input.addEventListener('input', function() {
+								inputItem.update({
+									'passed': true
+								});
+							}, true);
+						
+							input.addEventListener('change', function() {
+								changeItem.update({
+									'passed': true
+								});
+							}, true);	
+												
+							input.focus();
+			        		input.dispatchEvent(event);
+			                input.blur();
+						
+							window.setTimeout(function() {
+								document.body.removeChild(input);
+							}, 1000);
+						}
+					} catch(e) {
+					}
+				},
+				
+				t3: function() {
+					this.section.setTitle('Forms') 
+
+					var group = this.section.getGroup('Form validation');
+					var element = document.createElement('input');
+					
+					group.setItem({
+						title: 	'<code>checkValidity</code> method', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
+						passed:	'checkValidity' in element, 
+						value: 	8
+					});
+
+
+
+					var group = this.section.getGroup('Events');
+					var forminputItem = group.setItem({
+						title: 	'<code>onforminput</code> event', 
+						passed:	isEventSupported('forminput'), 
+						value: 	1
+					});
+
+					var formchangeItem = group.setItem({
+						title: 	'<code>onformchange</code> event', 
+						passed:	isEventSupported('formchange'), 
+						value: 	1
+					});					
+				
+					group.setItem({
+						title: 	'<code>dispatchFormInput</code> method', 
+						passed:	'dispatchFormInput()' in document.createElement('form'), 
+						value: 	1
+					});
+
+					group.setItem({
+						title: 	'<code>dispatchFormChange</code> method', 
+						passed:	'dispatchFormChange()' in document.createElement('form'), 
+						value: 	1
+					});					
+				
+					try {
+						var event = document.createEvent("KeyboardEvent");				
+						if (event.initKeyEvent) {
+							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
+	
+							var form = document.createElement('form');
+							var input = document.createElement('input');
+							form.appendChild(input);
+							document.body.appendChild(form);
+							
+							form.addEventListener('forminput', function() {
+								forminputItem.update({
+									'passed': true
+								});
+							}, true);
+						
+							form.addEventListener('formchange', function() {
+								formchangeItem.update({
+									'passed': true
+								});
+							}, true);
+												
+			             	input.focus();
+			        		input.dispatchEvent(event);
+			                input.blur();
+						
+							window.setTimeout(function() {
+								document.body.removeChild(form);
+
+								window.scroll(0,0);
+							}, 1000);
+						}
+					} catch(e) {
+					}
+ 				}
+			};
+
+
+			function testInteraction (results) { this.initialize(results) }			
+			testInteraction.prototype = {
+				name: 	'User interaction',
+				count: 	2,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'Drag and drop', 
+						url:	'http://www.w3.org/TR/html5/dnd.html#dnd',
+						passed:	'draggable' in element, 
+						value: 	10
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Session history', 
+						url:	'http://www.w3.org/TR/html5/history.html#history',
+						passed:	!!(window.history && history.pushState), 
+						value: 	5
+					});
+				}			
+			};
+
+
+			function testMicrodata (results) { this.initialize(results) }			
+			testMicrodata.prototype = {
+				name: 	'Microdata',
+				count: 	1,
+								
+				initialize: function(results) {
+					var container = document.createElement('div');
+					container.innerHTML = '<div id="microdataItem" itemscope itemtype="http://example.net/user"><p>My name is <span id="microdataProperty" itemprop="name">Elizabeth</span>.</p></div>';
+					document.body.appendChild(container);
+					
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					
+					document.body.removeChild(container);
+				},
+				
+				t1: function() {
+					var item = document.getElementById('microdataItem');
+					var property = document.getElementById('microdataProperty');
+					var r = true;
+					
+					// Check the element that contains the property
+					r = r && !!('itemValue' in property) && property.itemValue == 'Elizabeth';	
+							
+					// Check the element that is the item
+					r = r && !!('properties' in item) && item.properties['name'][0].itemValue == 'Elizabeth';
+					
+					// Check the getItems method
+					if (!!document.getItems) {
+						var user = document.getItems('http://example.net/user')[0];
+						r = r && user.properties['name'][0].itemValue == 'Elizabeth';
+					}
+												
+					this.section.setItem({
+						title: 	'Microdata', 
+						url:    'http://www.w3.org/TR/microdata/',
+						passed:	r, 
+						value: 	15
+					});
+				}
+			};					
+
+
+			function testOffline (results) { this.initialize(results) }			
+			testOffline.prototype = {
+				name: 	'Web applications',
+				count: 	3,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Application Cache', 
+						url:	'http://www.w3.org/TR/html5/offline.html#offline',
+						passed:	!!window.applicationCache, 
+						value: 	15
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Custom scheme handlers', 
+						url:	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+						passed:	!!window.navigator.registerProtocolHandler, 
+						value: 	2
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'Custom content handlers', 
+						url:	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+						passed:	!!window.navigator.registerContentHandler, 
+						value: 	2
+					});
+				}
+			};
+
+
+			function testSecurity (results) { this.initialize(results) }			
+			testSecurity.prototype = {
+				name: 	'Security',
+				count: 	2,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Sandboxed <code>iframe</code>', 
+						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox',
+						passed:	'sandbox' in document.createElement('iframe'), 
+						value: 	5
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Seamless <code>iframe</code>', 
+						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless',
+						passed:	'seamless' in document.createElement('iframe'), 
+						value: 	5
+					});
+				}
+			};
+
+
+			function testGeolocation (results) { this.initialize(results) }			
+			testGeolocation.prototype = {
+				name: 	'Geolocation',			
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Geolocation', 
+						url:    'http://www.w3.org/TR/geolocation-API/',
+						passed:	!!navigator.geolocation, 
+						value: 	15
+					});
+				}
+			};
+
+		
+			function testWebGL (results) { this.initialize(results) }			
+			testWebGL.prototype = {
+				name: 	'WebGL',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.canvas = document.createElement('canvas');
+
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					var element = document.createElement('canvas');
+					var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
+					var r = false;
+            
+			        for (var b = -1, len = contexts.length; ++b < len;) {
+			            try {
+			                if (element.getContext(contexts[b])) {
+			                	r = true;
+			                	break;
+			                };	
+			            } catch(e){	}
+			        }
+       				
+ 					this.section.setItem({
+						title: 	'3D context', 
+						url:    'http://www.khronos.org/registry/webgl/specs/latest/',
+						passed:	r, 
+						value: 	15
+					});
+				}
+			};
+		
+
+			function testCommunication (results) { this.initialize(results) }			
+			testCommunication.prototype = {
+				name: 	'Communication',
+				count: 	4,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Cross-document messaging', 
+						url:    'http://dev.w3.org/html5/postmsg/',
+						passed:	!!window.postMessage, 
+						value: 	5
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Server-Sent Events', 
+						url:	'http://www.w3.org/TR/eventsource/',
+						passed:	'EventSource' in window, 
+						value: 	10
+					});
+				},
+				
+				t3: function() {
+					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
+				},
+
+				t4: function() {
+					this.section.setItem({
+						title: 	'WebSocket', 
+						url:	'http://www.w3.org/TR/websockets/',
+						passed:	'WebSocket' in window, 
+						value: 	10
+					});
+				}
+			};		
+
+
+			function testFiles (results) { this.initialize(results) }			
+			testFiles.prototype = {
+				name: 	'Files',
+				count: 	2,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'FileReader API', 
+						url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
+						passed:	'FileReader' in window, 
+						value: 	10
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'FileWriter API', 
+						url:    'http://www.w3.org/TR/file-writer-api/',
+						passed:	'FileWriter' in window, 
+						value: 	10
+					});
+				}
+			};
+			
+			
+			function testStorage (results) { this.initialize(results) }			
+			testStorage.prototype = {
+				name: 	'Storage',
+				count: 	5,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				hasWebSQLDatabase: function() {
+					return !!window.openDatabase;
+				},
+				
+				hasIndexedDB: function() {
+					return 'indexedDB' in window || 'webkitIndexedDB' in window || 'mozIndexedDB' in window || 'moz_indexedDB' in window;
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Session Storage', 
+						url:    'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
+						passed:	'sessionStorage' in window, 
+						value: 	5
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
+						title: 	'Local Storage', 
+						url:    'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
+						passed:	'localStorage' in window, 
+						value: 	5
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'IndexedDB', 
+						url:	'http://www.w3.org/TR/IndexedDB/',
+						passed:	this.hasIndexedDB(), 
+						value: 	10
+					});
+				},
+				
+				t4: function() {
+					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
+				},
+					
+				t5: function() {
+					this.section.setItem({
+						title: 	'Web SQL Database', 
+						url:	'http://www.w3.org/TR/webdatabase/',
+						passed:	this.hasWebSQLDatabase(), 
+						value: 	0,
+						award:  !this.hasIndexedDB() ? 5 : 0	/* only award points if IndexedDB is not implemented */
+					});
+				}			
+			};
+
+
+			function testWorkers (results) { this.initialize(results) }			
+			testWorkers.prototype = {
+				name: 	'Workers',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Web Workers', 
+						url:    'http://www.w3.org/TR/workers/',
+						passed:	!!window.Worker, 
+						value: 	10
+					});
+				}
+			};
+			
+			function testOther (results) { this.initialize(results) }			
+			testOther.prototype = {
+				name: 	'Other',
+				count: 	2,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Text selection', 
+						url:	'http://html5.org/specs/dom-range.html',
+						passed:	!!window.getSelection, 
+						value: 	5
+					});
+				},
+					
+				t2: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'Scroll into view', 
+						passed:	!!element.scrollIntoView, 
+						value: 	1
+					});
+				}
+			};			
+			
+			
+
+			function startTest() {
+				var t = new test('results', 'total', function(r) {
+					_bTestResults = {
+					  '#00 Total score': r.points,
+					  '#01 Bonus points': r.bonus
+					};
+					
+					collectResults('', 2, r);
+					
+					function stripTags(string) {
+						var element = document.createElement('div');
+						element.innerHTML = string;
+						return (element.textContent || element.innerText).replace('=', ' is ');					
+					}
+					
+					function collectResults(prefix, minimum, data) {
+						if (data.items) {
+							for (i in data.items) {
+								var id = parseInt(i, 10) + minimum;
+								id = id < 10 ? '0' + id : id;
+							
+								if (data.items[i].name) {
+									if (data.items[i].parent.total) {
+										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].name)] = data.items[i].points;
+									} else {
+										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].name)] = data.items[i].points == data.items[i].max ? 1 : 0;
+									}
+								}
+
+								if (data.items[i].data) {
+									_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].data.title)] = data.items[i].data.passed ? 1 : 0;
+								}
+								
+								if (data.items[i].items) {
+									collectResults(prefix + id + '.', 0, data.items[i]);
+								}
+							}
+						}
+					}
+				});
+			}
+			
+		//-->
+		</script>
+	</body>
+</html>

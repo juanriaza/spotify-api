@@ -1,0 +1,45 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "social": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "de": "The album header shows related album information.",
+        "en": "The album header shows related album information.",
+        "es": "The album header shows related album information.",
+        "fr": "The album header shows related album information.",
+        "nl": "The album header shows related album information."
+    },
+    "AppName": {
+        "de": "Album header",
+        "en": "Album header",
+        "es": "Album header",
+        "fr": "Album header",
+        "nl": "Album header"
+    },
+    "BundleIdentifier": "album-header",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.3",
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "util": "0.1.0"
+    },
+    "PlaybackOwner": false,
+    "RequiredPermissions": [
+        "http://*.cloudfront.net",
+        "http://download.spotify.s3.amazonaws.com"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "UserInstallable": false
+}

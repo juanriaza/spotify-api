@@ -1,0 +1,10 @@
+Stitch Radio Client
+===================
+Gandalf Hernandez <gandalf@spotify.com>
+
+This is the frontend for the radio stitch app.
+
+* link:setup[Setup book]: How to get started with development
+* link:deployment[Deployment]: How to deploy to beta testers and appstore
+* link:dev[Devbook]: How the client works and how to develop on it
+* link:log-reference[Log reference]: Log and tests reference

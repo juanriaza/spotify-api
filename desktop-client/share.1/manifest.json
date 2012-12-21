@@ -1,0 +1,39 @@
+{
+    "AppName": {
+        "de" : "Teilen",
+        "en" : "Share",
+        "es" : "Compartir",
+        "fr" : "Partager",
+        "nl" : "Delen"
+    },
+    "ApiPermissions": {
+        "core" : ["private"],
+        "playlist" : ["private"],
+        "social" : ["private"]
+    },
+    "BundleIdentifier": "share",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.2",
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "unstable": "0.1.0"
+    },
+    "RequiredPermissions": [
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net"
+    ],
+    "SupportedLanguages": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "nl"
+    ],
+    "PreferredSize": {
+        "width": 300,
+        "height": 300
+    },
+    "UserInstallable": false,
+    "VendorIndentifier": "com.spotify"
+}

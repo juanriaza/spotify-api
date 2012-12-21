@@ -1,0 +1,188 @@
+.sp-button {
+	position: relative;
+	z-index: 1;
+	background: url('../img/button-border.png');
+	border: 0;
+	border-radius: 4px;
+	padding: 0 8px 2px 8px;
+	font: bold 12px/25px 'Helvetica Neue', Arial, sans-serif;´
+	color: #222;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.62);
+	min-width: 45px;
+	height: 23px;
+
+	-webkit-tap-highlight-color: transparent;
+
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+}
+
+.sp-button[disabled] {
+	opacity: 0.3;
+}
+
+.sp-button:hover {
+	background-position: 0 -75px;
+}
+.sp-button[disabled]:hover {
+	background-position: 0 -1px;
+}
+
+.sp-button.sp-button-active {
+	box-shadow: inset 0 3px 2px -1px rgba(0,0,0, 0.4);
+}
+.sp-button.sp-button-active .sp-button-background {
+	box-shadow: inset 0 2px 3px -1px rgba(0,0,0, 0.8);
+}
+.sp-button.sp-button-accentuated-positive.sp-button-active .sp-button-background {
+	box-shadow: inset 0 2px 3px -1px rgba(0,0,0, 0.8), inset 0 1px 0 0 #95c800;
+}
+.sp-button.sp-button-accentuated-negative.sp-button-active .sp-button-background {
+	box-shadow: inset 0 2px 3px -1px rgba(0,0,0, 0.8), inset 0 1px 0 0 #c23f3e;
+}
+
+.sp-button.sp-button-subscribe {
+	color: #343434;
+}
+.sp-button.sp-button-accentuated {
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.27);
+}
+.sp-button.sp-button-accentuated-positive {
+	background-position: 0 -25px;
+}
+.sp-button.sp-button-accentuated-negative {
+	background-position: 0 -50px;
+}
+
+.sp-button.sp-button-accentuated-positive:hover {
+	background-position: 0 -100px;
+}
+.sp-button.sp-button-accentuated-positive[disabled]:hover {
+	background-position: 0 -25px;
+}
+.sp-button.sp-button-accentuated-negative:hover {
+	background-position: 0 -125px;
+}
+.sp-button.sp-button-accentuated-negative[disabled]:hover {
+	background-position: 0 -50px;
+}
+
+.sp-button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.sp-button-background {
+	display: inline-block;
+	white-space: nowrap;
+	position: absolute;
+	z-index: -1;
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	left: 1px;
+	height: 23px;
+	border-radius: 3px;
+
+	background: url(../img/button.png) 0 -1px;
+}
+.sp-button:hover .sp-button-background {
+	background-position: 0 -76px;
+}
+.sp-button-accentuated-positive .sp-button-background,
+.sp-button-accentuated-positive[disabled]:hover .sp-button-background {
+	background-position: 0 -26px;
+	box-shadow: inset 0 1px 0 0 #95c800;
+}
+.sp-button-accentuated-positive:hover .sp-button-background {
+	background-position: 0 -101px;
+	box-shadow: inset 0 1px 0 0 #9bd003;
+}
+.sp-button-accentuated-negative .sp-button-background,
+.sp-button-accentuated-negative[disabled]:hover .sp-button-background {
+	background-position: 0 -51px;
+	box-shadow: inset 0 1px 0 0 #c23f3e;
+}
+.sp-button-accentuated-negative:hover .sp-button-background {
+	background-position: 0 -126px;
+	box-shadow: inset 0 1px 0 0 #d74645;
+}
+
+.sp-button-icon {
+	background-repeat: no-repeat;
+	display: none;
+	height: 15px;
+	margin: 0 5px 0 -2px;
+	vertical-align: text-top;
+	width: 15px;
+}
+
+.sp-button-small .sp-button-icon {
+	margin-top: -1px;
+}
+
+.sp-button-icon.sp-icon-share,
+.sp-button-icon.sp-icon-radio,
+.sp-button-icon.sp-icon-add {
+	background-image: url(../img/button-icons.png);
+	display: inline-block;
+}
+
+.sp-button-icon.sp-icon-share {
+	background-position: 0 -15px;
+}
+
+.sp-button-accentuated .sp-button-icon.sp-icon-share {
+	background-position: -15px -15px;
+}
+
+.sp-button-icon.sp-icon-radio {
+	background-position: 0 -60px;
+}
+
+.sp-button-accentuated .sp-button-icon.sp-icon-radio {
+	background-position: -15px -60px;
+}
+
+.sp-button-icon.sp-icon-add {
+	background-position: 0 0;
+}
+
+.sp-button-accentuated .sp-button-icon.sp-icon-add {
+	background-position: -15px 0;
+}
+
+.sp-button-empty {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+}
+
+.sp-button-small {
+	/* TODO(blixt): We should use a special background for small buttons. */
+	font-size: 10px;
+	height: 18px;
+	line-height: 19px;
+	padding: 0 5px;
+}
+.sp-button-small .sp-button-background {
+	height: 16px;
+}
+
+.sp-button-small .sp-button-border {
+	height: 18px;
+}
+
+.sp-button-text {
+	white-space: nowrap;
+}

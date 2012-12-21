@@ -1,0 +1,176 @@
+#create-station .upArrowContainer {
+	display: none;
+	width: 100%;
+}
+
+#create-station .upArrow {
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #EEE;
+	margin-left: auto;
+	margin-right: auto; 
+}
+
+#create-station .auto-completeForm {
+	display: none;
+	float: right;
+	position: absolute;
+	background-color: white;
+	width: 400px;
+	top: 28px;
+	right: 14px;
+	z-index: 10;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-image: -webkit-linear-gradient(left,
+		rgba(238, 238, 238, .9),
+		rgba(238, 238, 238, .9) 26px,
+		rgba(225, 225, 225, .9));
+}
+
+.auto-complete {
+	background: rgba(255, 255, 255, .9);
+	background-image: -webkit-linear-gradient(left,
+		rgba(208, 208, 208, .9),
+		rgba(208, 208, 208, .9) 26px,
+		rgba(255, 255, 255, .9) 27px,
+		rgba(255, 255, 255, .9));
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .75);
+	display: none;
+	font-size: 12px;
+	line-height: 20px;
+	overflow: hidden;
+	position: absolute;
+	text-shadow: initial;
+	-webkit-transition-duration: 250ms;
+	-webkit-transition-property: color, opacity, width, height;
+	z-index: 10;
+    text-align: left;
+	width: 400px;
+	position: relative;
+	top: 11px;
+	left: -25px;
+	text-shadow: -1px 0px #fbfafa;
+	font-family: "Lucida Grande", Tahoma, Helvetica, Arial, sans-serif ;
+	font-weight: bold;
+	color: #bdbdbd;
+}
+
+.auto-complete.show {
+	display: block;
+}
+
+.auto-complete div {
+	border-bottom: 1px solid rgba(208, 208, 208, .9);
+	padding: 2px 0 2px 27px;
+	position: relative;
+}
+.auto-complete div:last-child { border: initial; }
+.auto-complete .albums {
+	background: url("sp://resources/img/albums.png") 4px 4px no-repeat;
+}
+.auto-complete .artists {
+	background: url("sp://resources/img/artists.png") 4px 4px no-repeat;
+}
+.auto-complete .playlists {
+	background: url("sp://resources/img/playlist.png") 4px 4px no-repeat;
+}
+.auto-complete .tracks {
+	background: url("sp://resources/img/tracks.png") 4px 4px no-repeat;
+}
+
+.auto-complete .albums span,
+.auto-complete .artists span,
+.auto-complete .playlists span,
+.auto-complete .tracks span {
+	padding: 3px 5px 3px 6px;
+}
+.auto-complete a {
+	display: block;
+	padding: 3px 5px 3px 32px;
+	position: relative;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #9d9d9d;
+	text-shadow: -1px 0px #fbfafa;
+}
+
+.auto-complete a strong {
+	color: #404040;
+}
+
+.auto-complete a.selected {
+	background: -webkit-linear-gradient(
+		rgb(197, 232, 253),
+		rgb(178, 223, 251) 1px,
+		rgb(154, 210, 250) 15px);
+	color: #2B3844;
+	text-shadow: -1px 0px 0 #AFD3F0;
+}
+.auto-complete img {
+	height: 24px;
+	left: 5px;
+	outline: 1px solid rgba(225, 225, 225, .9);
+	outline-offset: -1px;
+	position: absolute;
+	top: 2px;
+	width: 24px;
+}
+
+/* Token input */
+.token-input {
+	-webkit-background-origin: border-box;
+	position: relative;
+	white-space: nowrap;
+	margin: 10px;
+	outline: 0;
+	padding: 0;
+	width: 380px;
+}
+
+.token-input input {
+	background: initial;
+	background-image: url(sp://resources/img/search.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	border: initial;
+	font: inherit;
+	height: 33px;
+	line-height: 12px;
+	width: 338px;
+	padding-left: 18px;
+}
+
+/*.token {
+	background-image: -webkit-linear-gradient(#EEE, #AAA);
+	border: 1px solid rgb(23, 23, 23);
+	border-radius: 3px;
+	color: #333;
+	bottom: 4px;
+	font-size: 11px;
+	left: -10px;
+	line-height: 25px;
+	padding: 0 23px 0 11px;
+	position: absolute;
+	right: -10px;
+	text-shadow: -1px 01px 0 #E1E1E1;
+	top: 4px;
+	-webkit-transition-duration: 400ms;
+}
+.token .remove {
+	background: url("sp://resources/img/token-remove.png") ;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	width: 17px;
+	height: 17px;
+}
+.token .remove:active {
+	background-position-y: -17px;
+}*/

@@ -1,0 +1,127 @@
+.imageCarouselWrapper {
+	position: relative;
+	min-height: 190px;
+	width: 100%;
+	-webkit-font-smoothing: antialiased;
+	margin-bottom: 5px;
+}
+.imageCarouselWrapper h2 {
+	position: absolute;
+	left: 0px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.imageCarouselTitle * {
+	float: left;
+	font-weight: bold;
+	text-shadow: -1px 0px 0 rgba(255, 255, 255, .77)
+}
+.imageCarouselTitle strong {
+	float: none;
+}
+div.imageCarouselTitle>a {
+	color: #A8A8A8;
+}
+.imageCarouselTitle *.main {
+	color: #454545;
+}
+.imageCarouselTitle div:first-child {
+	padding-left: 14px;
+}
+.imageCarouselTitle div:last-child {
+	padding-left: 10px;
+}
+.imageCarouselPagination {
+	width: 50px;
+	height: 25px;
+	position: absolute;
+	right: 0px;
+	z-index: 5;
+}
+.imageCarouselPagination .disabled {
+	opacity: 0.2;
+}
+
+.imageCarouselPrev {
+	float: left;
+	background-image: url(/img/pagination25x25.png);
+	background-position-x: 0 0;
+	width: 25px;
+	height: 25px;
+}
+.imageCarouselPrev:not(.disabled):active {
+	background-position-x: -25px;
+}
+
+.imageCarouselNext {
+	float: right;
+	background-image: url(/img/pagination25x25.png);
+	background-position-x: -50px;
+	width: 25px;
+	height: 25px;
+}
+.imageCarouselNext:not(.disabled):active {
+	background-position-x: -75px;
+}
+
+.imageCarousel {
+	position: absolute;
+	top: 20px;
+	margin: 0 auto 0 auto;
+	width: 100%; 
+	overflow: hidden;
+}
+
+.imageCarousel ul {
+	position: relative;
+	-webkit-transition: display 0.3s ease-in;
+	-webkit-transition: margin 0.3s ease-out;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.imageCarousel li {
+	float: left;
+	position: relative;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.imageCarousel .image {
+	width: 123px;
+	height: 123px;
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, .05), 0 1px 0 rgba(255, 255, 255, .53);
+	border: 1px solid #000000;
+	border-radius: 3px;
+	border-color: #848483 #939391 #9A9A98;
+}
+
+.imageCarousel .image div {
+	margin: 23px;
+	width: 79px;
+	height: 79px;
+}
+
+.imageCarousel .image:hover div {
+    background-image: url(/img/radio-btn.png);
+}
+
+.imageCarousel .image:hover div:hover {
+    background-position-x: -69px;
+}
+
+
+.imageCarousel li div a {
+	width: 125px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+	font-size: 12px;
+	padding: 0;
+}
+	
+.imageCarousel li div a.main {
+	padding: 8px 0 0 0;
+}

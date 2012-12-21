@@ -1,0 +1,57 @@
+h1 {
+  font-size: 30px;
+}
+
+#content {
+  width: 875px;
+}
+
+#button-container {
+  vertical-align: middle;
+  display: table;
+  width: 100%;
+}
+
+#footer-info {
+  display: table-cell;
+  text-align: left;
+}
+
+#friends-container {
+  height: 278px;
+}
+
+.sp-player-image {
+  background-image: url('sp://resources/img/placeholders/128-user-light.png');
+}
+
+.list-item-info span {
+  display: block;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #474747;
+}
+
+.list-item-info .byline {
+  font-weight: normal;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.list-item-info .list-info-artist-name {
+  display: inline;
+}
+
+.fallback-message {
+  height: 278px;
+}
+
+.list-item, #friends-container {
+  min-height: 278px;
+}
+
+.sp-player.sp-player-paused .sp-player-button {
+  display: block;
+}

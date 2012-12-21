@@ -1,0 +1,66 @@
+{
+    "AppDescription": {
+        "de": "Radio",
+        "en": "Radio",
+        "es": "Radio",
+        "fr": "Radio",
+        "nl": "Radio"
+    },
+    "AcceptedLinkTypes": [
+        "album",
+        "artist",
+        "playlist",
+        "track"
+    ],
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "library": [
+            "private"
+        ],
+        "playlist": [
+            "private"
+        ],
+        "social": [
+            "private"
+        ],
+        "user": [
+            "private"
+        ]
+    },
+    "AppIcon": {
+        "36x18": "img/radio.png",
+        "64x64": "img/radio-64.png",
+        "128x128": "img/radio-128.png"
+    },
+    "AppName": {
+        "de": "Radio",
+        "en": "Radio",
+        "es": "Radio",
+        "fr": "Radio",
+        "nl": "Radio"
+    },
+    "BundleIdentifier": "radio",
+    "BundleType": "Application",
+    "BundleVersion": "1.3.1",
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "unstable": "0.1.0",
+        "util": "0.1.0"
+    },
+    "PlaybackOwner": true,
+    "SupportedDeviceClasses": [
+        "Desktop"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "UserInstallable": false,
+    "VendorIdentifier": "com.spotify"
+}

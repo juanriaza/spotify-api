@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/assets/css/whatsnew.css">
+</head>
+
+<body>
+<div class="loading">
+	<div class="throbber"><div></div></div>
+</div>
+<div id="wrapper">
+	<section id="Survey" class="survey hidden"></section>
+	<section id="CustomBanner" class="hidden"></section>
+	<section id="NewAlbums"></section>
+	<section id="appsBanner" class="hidden"></section>
+	<section class="toplists" id="topToplists">
+		<section class="playlists playlistsTable toplist"></section>
+		<section class="tracks tracksTable toplist"></section>
+	</section>
+	<section id="Banners" class="hidden"></section>
+	<section id="NewFriends"></section>
+	<section id="NewReleases"></section>
+	<section class="toplists" id="bottomToplists">
+		<section class="playlists playlistsTable toplist"></section>
+		<section class="tracks tracksTable toplist"></section>
+	</section>
+</div>
+<script>
+	var sp = getSpotifyApi(1);
+	var WhatsNew = sp.require('/assets/js/main');
+	WhatsNew.init();
+</script>
+</body>
+</html>

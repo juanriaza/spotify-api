@@ -1,0 +1,16 @@
+{
+	"BundleType": "Application",
+	"AcceptedLinkTypes": ["album", "artist", "playlist", "track", "user"],
+	"AppName": {
+		"en": "Unit Tests"
+	},
+	"ApiPermissions": {
+		"library": ["private"],
+		"core": ["private"],
+		"trackPlayer": ["private"],
+		"playlist": ["private"]
+	},
+	"SupportedLanguages": [
+		"en"
+	]
+}

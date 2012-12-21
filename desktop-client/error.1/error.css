@@ -1,0 +1,43 @@
+@import url("sp://resources/css/eve.css");
+@import url("sp://resources/css/api.css");
+
+body {
+	overflow-y: auto;
+	padding-bottom: 60px;
+}
+
+/*
+ * Heading
+ */
+
+#heading {
+	font-weight: bold;
+	text-align: center;
+	margin: 30px 60px 0px 60px;
+	-webkit-transition: opacity 0.25s ease-in-out;
+}
+
+#error.heading {
+	opacity: 0;
+}
+
+/*
+ * Info
+ */
+
+#info {
+	display: block;
+	margin: 60px 60px 0px 60px;
+	box-shadow: 0px 1px 2px black;
+	background: white;
+	padding: 4px;
+}
+
+/*
+ * Title
+ */
+
+#title {
+	color: #AA0000;
+	font-weight: bold;
+}

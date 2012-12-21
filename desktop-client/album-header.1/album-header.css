@@ -1,0 +1,212 @@
+@import url("sp://resources/css/api.css");
+@import url("sp://resources/css/adam.css");
+
+a {
+  color : #bfbfbf;
+}
+
+#wrapper {
+  width                  : 100%;
+  height                 : 150px;
+  overflow               : hidden;
+  border-bottom          : 1px solid #272727;
+  -webkit-font-smoothing : antialiased;
+}
+
+#cover {
+  width  : 128px;
+  height : 128px;
+  margin : 10px 15px 10px 10px;
+  float  : left;
+}
+
+  #cover .sp-image {
+    width  : 128px;
+    height : 128px;
+    cursor : default;
+  }
+
+#meta {
+  position    : relative;
+  width       : 70%;
+  float       : left;
+  white-space : nowrap;
+  overflow    : hidden;
+}
+
+  #meta-title {
+    position      : relative;
+    font-size     : 18px;
+    font-weight   : bold;
+    font-family   : Helvetica, Arial, sans-serif;
+    color         : #ffffff;
+    text-shadow   : 0px 1px 1px rgba(0, 0, 0, 0.5);
+    margin        : 13px 0px 3px 0px;
+  }
+
+    #meta-title a {
+      color           : #ffffff;
+      text-decoration : none;
+      cursor          : default;
+    }
+
+    #meta-title span {
+      position    : absolute;
+      font-weight : normal;
+      font-size   : 14px;
+      color       : #808080;
+      text-shadow : 0px 1px 1px rgba(0, 0, 0, 0.5);
+      margin      : 1px 0px 0px 5px;
+    }
+
+  #meta-details {
+    font-size     : 12px;
+    font-family   : Helvetica, Arial, sans-serif;
+    color         : #808080;
+    margin-bottom : 45px;
+    text-shadow   : 0px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  #meta-buttons {
+    position : absolute;
+    top      : 65px;
+    left     : 155px;
+  }
+
+button {
+  margin-right: 5px !important; /* .sp-button sets margin: 0; WTF? */
+}
+
+#button-share, #button-radio, #button-buy {
+  display : none;
+}
+
+#checkbox-star + label {
+  margin-left : 5px;
+}
+
+#more {
+  max-width   : 29%;
+  height      : 150px;
+  float       : right;
+  display     : none;
+  border-left : 1px solid  rgba(255, 255, 255, 0.05);
+  box-shadow  : -1px 0px 0px rgba(0, 0, 0, 0.30);
+}
+
+  #more h2 {
+    font-size    : 12px;
+    font-family  : Helvetica, Arial, sans-serif;
+    font-weight  : bold;
+    color        : #bbb;
+    text-shadow  : 0px 1px 1px rgba(0, 0, 0, 0.5);
+    padding      : 10px 0px 0px 15px;
+  }
+
+    #more h2 a {
+      color : #eee;
+    }
+
+  #more ul {
+    margin   : 7px -3px;
+    padding  : 3px 3px 3px 18px;
+    height   : 50px;
+    overflow : hidden;
+  }
+
+  #more li {
+    list-style-type  : none;
+    display          : inline-block;
+    width            : 50px;
+    height           : 50px;
+    margin-right     : 10px;
+  }
+
+  #more .image {
+    width  : 50px;
+    height : 50px;
+  }
+
+  #button-see-all {
+    margin-left : 15px;
+  }
+
+.sp-tooltip {
+  display                  : block;
+  position                 : fixed;
+  top                      : -1000px;
+  background               : #f5f5f5;
+  color                    : #333333;
+  padding                  : 2px 7px 3px 7px;
+  border-radius            : 3px;
+  font-size                : 11px;
+  text-align               : center;
+  white-space              : nowrap;
+  box-shadow               : 0px 1px 2px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.9);
+  -webkit-transform        : scale(0);
+  -webkit-transform-origin : 50% 0%;
+  -webkit-transition       : -webkit-transform cubic-bezier(0.0, 0.35, 0.5, 1.3) 0.2s;
+}
+
+.sp-tooltip span {
+  color : #777777;
+}
+
+.sp-tooltip.sp-tooltip-show {
+  -webkit-transform: scale(1);
+}
+
+.sp-tooltip:before,
+.sp-tooltip:after {
+  content       : "";
+  position      : absolute;
+  left          : 50%;
+  top           : -5px;
+  margin-left   : -4px;
+  width         : 0;
+  height        : 0;
+  border-left   : 4px solid transparent;
+  border-right  : 4px solid transparent;
+  border-bottom : 4px solid rgba(0, 0, 0, 0.5);
+}
+
+.sp-tooltip:after {
+  top           : -4px;
+  border-bottom : 4px solid #ffffff;
+}
+
+
+input[type=checkbox].sp-star {
+  display : none;
+}
+
+input[type=checkbox].sp-star + label {
+  display     : inline-block;
+  height      : 16px;
+  line-height : 16px;
+  font-size   : 12px;
+  font-family : 'Lucida Grande', Tahoma, sans-serif;
+  color       : #808080;
+  text-shadow : 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+input[type=checkbox].sp-star + label span {
+  display           : inline-block;
+  width             : 16px;
+  height            : 16px;
+  margin-right      : 3px;
+  background-image  : url("sp://resources/img/mainlist-star-simple-dark.png");
+  background-repeat : no-repeat;
+}
+
+input[type=checkbox].sp-star:checked  + label        span { background-position :   0px 0px; }
+input[type=checkbox].sp-star:checked  + label:hover  span { background-position : -16px 0px; }
+input[type=checkbox].sp-star:checked  + label:active span { background-position : -32px 0px; }
+input[type=checkbox].sp-star          + label        span { background-position : -48px 0px; }
+input[type=checkbox].sp-star          + label:hover  span { background-position : -64px 0px; }
+input[type=checkbox].sp-star          + label:active span { background-position : -80px 0px; }
+
+#meta-fakesearch {
+  display: block;
+  margin-top: 15px;
+}

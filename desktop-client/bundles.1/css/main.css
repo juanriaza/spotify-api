@@ -1,0 +1,520 @@
+/**
+ * Main layout
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  min-width: 620px;
+}
+
+
+
+/**
+ * Common objects
+ */
+
+
+button.default {
+  -webkit-border-image: url("../img/button-default.png") 0 7 42 7;
+}
+button.default:active {
+  -webkit-border-image: url("../img/button-default.png") 21 11 21 11;
+}
+button.default[disabled] {
+  -webkit-border-image: url("../img/button-default.png") 42 11 0 11;
+  text-shadow: 0 1px 0 #eee;
+}
+
+button.negative {
+  -webkit-border-image: url("../img/button-red.png") 0 7 42 7;
+  color: #fff;
+  text-shadow: none;
+}
+button.negative:active {
+  -webkit-border-image: url("../img/button-red.png") 21 11 21 11;
+}
+button.negative[disabled] {
+  -webkit-border-image: url("../img/button-red.png") 42 11 0 11;
+  color: #666;
+  text-shadow: none;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
+/**
+ * App header
+ */
+
+.lists {
+  overflow: auto;
+}
+
+.list {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.list.active {
+  position: static;
+  top: 0;
+  left: 0;
+}
+
+.bundlelist header {
+  width: 100%;
+  height: 19px;
+  min-width: 620px;
+  padding-right: 14px;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}
+
+  .bundlelist header table {
+    width: 100%;
+
+    background: -webkit-linear-gradient(#a8a8a8, #868686);
+  }
+
+  .bundlelist header .col {
+    height: 17px;
+    padding: 0 3px;
+    position: relative;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255,255,255,.4) rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(255,255,255,.2);
+
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(255,255,255,.5);
+    color: #000;
+  }
+  .bundlelist header .col:last-child {
+    border-right: none;
+  }
+  .bundlelist header .col.clickable:active {
+    background: -webkit-linear-gradient(#949494, #767676);
+  }
+  .bundlelist header .col.sorted {
+    background: -webkit-linear-gradient(#efefef, #b6b6b6);
+    border-color: rgba(255,255,255,1) rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(255,255,255,.2);
+  }
+  .bundlelist header .col.sorted:active {
+    background: -webkit-linear-gradient(#cecece, #a7a7a7);
+  }
+  .bundlelist header .col.sorted:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    background: url('../img/sorter.png') 0 0;
+    width: 9px;
+    height: 8px;
+  }
+  .bundlelist header .col.sorted-asc:after {
+    background-position: 0 0;
+  }
+  .bundlelist header .col.sorted-desc:after {
+    background-position: -9px 0;
+  }
+
+  .bundlelist header .col-toggle {
+    width: 39px;
+    text-align: center;
+  }
+    .bundlelist header .toggle-all {
+      width: 100%;
+      background: none;
+      border: 0;
+      height: 16px;
+      padding: 0;
+      margin: 0;
+    }
+      .bundlelist header .toggle-all span {
+        display: inline-block;
+        -webkit-transition: -webkit-transform 100ms ease-in-out;
+      }
+      .bundlelist header .toggle-all.open span {
+        -webkit-transform: rotate(90deg);
+      }
+  
+  .bundlelist header .col-icon {
+    width: 41px;
+  }
+  .bundlelist header .col-bundleinfo {
+    
+  }
+  .bundlelist header .col-actions {
+    width: 206px;
+  }
+
+
+
+
+
+
+/**
+ * Bundle list
+ */
+
+.bundlelist {
+  background: #fff;
+  height: 0;
+  overflow: hidden;
+}
+  .bundlelist .bundles {
+    overflow: auto;
+    padding-top: 19px;
+  }
+
+  .bundlelist,
+  .bundlelist h1,
+  .bundlelist h2,
+  .bundlelist h3,
+  .bundlelist h4 {
+    font: 12px/1.4 'Lucida Grande', 'Tahoma', sans-serif;
+  }
+
+  .bundlelist .bundle {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    background: #fff;
+    -webkit-transition: background 600ms ease-in-out;
+  }
+  .bundlelist .bundle.highlight {
+    background: #ffd;
+  }
+    .bundlelist .bundle .content {
+      padding: 0 0 10px 0;
+    }
+  .bundlelist .bundles .bundle:nth-child(even),
+  .bundlelist .filler.even .bundle:nth-child(even) {
+    background: #fafafa;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .bundlelist .filler.odd .bundle:nth-child(odd) {
+    background: #fafafa;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .bundlelist .bundle.refreshed {
+    background: #ffd;
+  }
+
+    .bundlelist .bundle {
+      overflow: hidden;
+      height: 40px;
+      padding: 10px 15px;
+      box-sizing: content-box;
+    }
+    .bundlelist .bundle.animate {
+      -webkit-transition: height 200ms ease-out, background 500ms ease-out;
+    }
+      .bundlelist .toggle {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        float: left;
+        margin-left: -15px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+        color: #aaa;
+      }
+      .bundlelist .bundle.animate .bundle-toggle {
+        -webkit-transition: -webkit-transform 100ms ease-in-out;
+      }
+        .bundlelist .toggle:hover {
+          color: #777;
+        }
+        .bundlelist .bundle.open .bundle-toggle {
+          -webkit-transform: rotate(90deg);
+        }
+      .bundlelist .icon {
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 3px;
+        position: relative;
+        z-index: 10;
+        cursor: pointer;
+        background: #fff;
+      }
+        .bundlelist .icon img {
+          width: 40px;
+          height: 40px;
+          border-radius: 3px;
+        }
+        .bundlelist .icon:before {
+          content: '';
+          display: block;
+          width: 40px;
+          height: 40px;
+          border-radius: 3px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.3);
+          z-index: 40;
+        }
+      .bundlelist .summary {
+        float: left;
+        width: 310px;
+      }
+        .bundlelist .summary .title {
+          margin: 2px 0 0 0;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1;
+          color: #424242;
+        }
+          .bundlelist .summary .title .version {
+            font-size: 11px;
+            font-weight: normal;
+          }
+            .bundlelist .summary .title .version .version-number {
+              display: inline-block;
+              cursor: text;
+              -webkit-user-select: auto;
+            }
+          .bundlelist .summary .title .in-use {
+            position: relative;
+            top: 3px;
+            margin-top: -4px;
+            margin-bottom: -20px;
+
+            overflow: hidden;
+            height: 20px;
+            width: 20px;
+            padding: 0;
+
+            border: 0;
+            background: transparent;
+
+            text-indent: -9999px;
+            line-height: 1;
+          }
+            .bundlelist .summary .title .in-use span {
+              display: block;
+              margin: 0 auto;
+              width: 8px;
+              height: 8px;
+
+              border-radius: 4px;
+              background: #77b54d;
+            }
+          .bundlelist .summary .title .quit:hover {
+            background: url('../img/iconbuttons.png') -19px -19px;
+            width: 19px;
+            height: 19px;
+            margin: -6px 0 0 1px;
+            position: relative;
+            top: 6px;
+          }
+            .bundlelist .summary .title .quit:hover span {
+              display: none;
+            }
+        .bundlelist .summary .description {
+          font-size: 11px;
+          line-height: 1;
+          color: #424242;
+          margin: 7px 0 0 0;
+          padding-bottom: 5px;
+
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+      .bundlelist .actions {
+        float: right;
+        height: 21px;
+        margin-top: 8px;
+      }
+        .bundlelist .actions .confirm-remove {
+          pointer-events: none;
+          opacity: 0;
+          -webkit-transition: opacity 100ms ease-in-out;
+        }
+        .bundlelist .actions .confirm-remove.confirm {
+          pointer-events: auto;
+          opacity: 1;
+        }
+        .bundlelist .actions .remove {
+          border: 0;
+          background: url('../img/iconbuttons.png') 0 0;
+          width: 19px;
+          height: 19px;
+          margin-right: 6px;
+          text-indent: -9999px;
+          overflow: hidden;
+          -webkit-transition: -webkit-transform 100ms ease-in-out;
+        }
+        .bundlelist .actions .remove:hover {
+          background-position: 0 -19px;
+        }
+        .bundlelist .actions .remove.confirm {
+          -webkit-transform: rotate(90deg);
+        }
+        .bundlelist .actions .get-updates {
+          width: 89px;
+        }
+      .bundlelist .versions {
+        clear: left;
+        
+        overflow: hidden;
+        margin: 0 -15px 0 -15px;
+        position: relative;
+        top: 10px;
+      }
+        .bundlelist .versions .version-title {
+          font-size: 12px;
+          font-weight: bold;
+          margin: 0 0 5px 0;
+        }
+          .bundlelist .versions .version-title .version-number {
+            color: #303031;
+          }
+          .bundlelist .versions .version-title .origin {
+            font-size: 11px;
+            font-weight: normal;
+          }
+          .bundlelist .versions .version-title .in-use {
+            display: inline-block;
+            margin: 0 0 0 5px;
+            width: 5px;
+            height: 5px;
+            position: relative;
+            top: -1px;
+
+            border-radius: 4px;
+            background: #77b54d;
+          }
+
+        .bundlelist .versions button.manifest-toggle {
+          -webkit-transition: -webkit-transform 100ms ease-in-out;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          margin: -4px 0 0 0;
+          font-size: 15px;
+        }
+        .bundlelist .versions button.manifest-toggle.open {
+          -webkit-transform: rotate(90deg);
+        }
+        .bundlelist .versions .manifest-title {
+          display: inline-block;
+          margin: 0;
+        }
+
+        .bundlelist .versions .manifest {
+          -webkit-transition: opacity 100ms ease-in-out;
+          opacity: 0;
+        }
+        .bundlelist .versions .manifest.open {
+          opacity: 1;
+        }
+        .bundlelist .versions h4 {
+          font-size: 11px;
+          font-weight: bold;
+          margin: 0 0 0 20px;
+        }
+        .bundlelist .versions .in-use-by,
+        .bundlelist .versions .dependencies {
+          font-size: 11px;
+          margin: 0 0 10px 20px;
+        }
+          .bundlelist .versions .version {
+            padding: 10px 0 10px 90px;
+            -webkit-transition: background 600ms ease-in-out;
+          }
+          .bundlelist .versions .version.highlight {
+            background: #ffd;
+          }
+            .bundlelist .versions .dependencies .active-version {
+              font-size: 10px;
+            }
+          .bundlelist .versions pre {
+            margin: 0 0 0 20px;
+            height: 0;
+            overflow: hidden;
+          }
+        .bundlelist .versions .bundle-link {
+          cursor: pointer;
+        }
+        .bundlelist .versions .bundle-link:hover {
+          text-decoration: underline;
+        }
+        .bundlelist .versions .cache-timeout {
+          font-size: 11px;
+          margin: 0 0 10px 20px;
+        }
+        .bundlelist .versions .git-revision {
+          font-size: 11px;
+          margin: 0 0 10px 20px;
+        }
+          .bundlelist .versions .git-revision span {
+            -webkit-user-select: auto;
+            display: inline-block;
+            cursor: text;
+          }
+
+
+
+
+
+/**
+ * App footer
+ */
+
+#footer {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  min-width: 350px;
+
+  background: -webkit-linear-gradient(#444, #333);
+  text-shadow: none;
+  color: #fff;
+}
+
+  #footer .summary {
+    float: left;
+    color: #aaa;
+  }
+
+  #footer .actions {
+    float: right;
+    display: none;
+  }
+    #footer .actions .get-updates:disabled {
+      text-shadow: 0 1px 0 #999;
+      color: #333;
+    }
+
+  #footer .update-timer {
+    float: right;
+    color: #aaa;
+  }

@@ -1,0 +1,635 @@
+@import url(throbber.css);
+@import url(image.css);
+
+/**
+ * Styles for the List view.
+ *
+ * The view generates a structure like this by default:
+ * .sp-list (<div>)
+ *   .sp-list-header (<div>)
+ *     .sp-list-heading (<div>)
+ *   .sp-list-body (<ul>)
+ *     .sp-list-item (<li>)
+ *       .sp-list-cell (<div>)
+ */
+
+
+/**
+ * Base styles for the regular tracks list view.
+ */
+
+.sp-list {
+	position: relative;
+	font: 11px/1 'Helvetica Neue', Arial, sans-serif;
+	color: #1d1d1d;
+	cursor: default;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	outline: none;
+	height: auto;
+	overflow: visible;
+}
+.sp-list-wrapper-fixed-header {
+	overflow: hidden;
+}
+.sp-list-wrapper-fixed-header.sp-list-style-rounded {
+	overflow: visible;
+}
+.sp-list-wrapper-header-fixed .sp-list-body {
+	margin-top: 24px;
+}
+
+.sp-list-discs-wrapper .sp-list {
+	margin-bottom: 20px;
+}
+.sp-list-discs-wrapper .sp-list:last-child {
+	margin-bottom: 0;
+}
+.sp-list-disc-number {
+	font: bold 12px/1 'Helvetica Neue', Arial, sans-serif;
+	color: #343434;
+	background: #d5d4d2 url('../img/list-disc.png') no-repeat 4px 3px;
+	border-radius: 10px;
+
+	display: inline-block;
+	padding: 3px 10px 2px 20px;
+	margin: 0 0 10px 0;
+}
+
+
+	.sp-list-header {
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+		        box-sizing: border-box;
+		width: 100%;
+		height: 24px;
+		overflow: hidden;
+		font: bold 9px/1 'Helvetica Neue', Arial, sans-serif;
+		text-shadow: 0 1px 0 #fff;
+		text-transform: uppercase;
+		position: relative;
+
+		background: #E8E8E8 url('../img/list-header.png');
+		border-top: 1px solid #cdccca;
+		border-bottom: 1px solid #cdccca;
+	}
+	.sp-list-header-table-wrapper {
+		width: 100%;
+	}
+	.sp-list-header-table {
+		border-spacing: 0;
+		table-layout: fixed;
+		width: 100%;
+	}
+	.sp-list-header-fixed {
+		position: fixed;
+		top: 0;
+		box-shadow: 0 3px 3px -3px rgba(0,0,0,.3);
+		z-index: 1000;
+	}
+	.sp-list-header-fixed-with-fixed-height {
+		position: relative;
+		box-shadow: 0 3px 3px -3px rgba(0,0,0,.3);
+	}
+	.sp-list-header-fixed-window {
+		position: fixed;
+	}
+		.sp-list-heading {
+			line-height: 22px;
+			border-left: 1px solid #fff;
+			border-right: 1px solid #cdccca;
+			position: relative;
+			text-align: left;
+		}
+		.sp-list-heading:first-child {
+			border-left: 0;
+		}
+		/* IE8 does not support :last-child, but it's such a small visual fix so it doesn't matter */
+		.sp-list-heading:last-child {
+			border-right: 0;
+		}
+
+			.sp-list-heading-handle {
+				width: 2px;
+				height: 22px;
+				float: right;
+				position: relative;
+				z-index: 100;
+				margin-right: -8px;
+				cursor: col-resize;
+			}
+
+	.sp-list-body {
+		background: url('../img/list-item-25px.png') 0 0;
+		width: 100%;
+	}
+	.sp-list-fixed-height.sp-list-wrapper-fixed-header .sp-list-body {
+		overflow: auto;
+	}
+	.sp-list-fixed-height .sp-list-body {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+	}
+	.sp-list-fixed-height.sp-list-using-header .sp-list-body {
+		top: 24px;
+	}
+	.sp-list-table {
+		background: url('../img/list-item-25px.png') 0 0;
+		border-collapse: collapse;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		table-layout: fixed;
+	}
+		.sp-list-item {
+			overflow: hidden;
+			line-height: 25px;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
+		}
+		.sp-list-item-selected > .sp-list-cell {
+			background: #aaaaaa;
+			color: #fff;
+		}
+		.sp-list-wrapper-focus .sp-list-item-selected > .sp-list-cell {
+			background: #7ab800;
+		}
+		.sp-list-cell {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			height: 25px;
+			vertical-align: top;
+		}
+			.sp-list-body a {
+				text-decoration: none;
+				color: #292929;
+			}
+			.sp-list-body a:hover {
+				text-decoration: underline;
+			}
+			.sp-list-item-selected a {
+				color: #fff;
+			}
+
+		.sp-list-cell, .sp-list-heading {
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
+			padding: 0 6px;
+		}
+			.sp-list-cell-listnumber {
+				color: #9b9a99;
+			}
+			.sp-list-item-selected .sp-list-cell-listnumber {
+				color: #fff;
+			}
+			.sp-list-heading-time,
+			.sp-list-cell-time,
+			.sp-list-cell-listnumber {
+				text-align: right;
+			}
+				.sp-list-item-playing .sp-list-listnumber-nowplaying,
+				.sp-list-item-paused .sp-list-listnumber-nowplaying {
+					display: none;
+				}
+			.sp-list-item .sp-icon-explicit {
+				float: right;
+				display: block;
+				background: url(../img/list-explicit-flag.png) 0 0;
+				border: 0;
+				width: 39px;
+				height: 11px;
+				padding: 0;
+				margin: 7px 5px 0 5px;
+				float: right;
+				outline: none;
+				cursor: default;
+			}
+			.sp-list-item .sp-list-cell-time {
+				color: #757574;
+				padding-right: 14px;
+			}
+			.sp-list-using-header .sp-list-item .sp-list-cell-time {
+				padding-right: 6px;
+			}
+			.sp-list-item-selected .sp-list-cell-time {
+				color: #fff;
+			}
+
+		.sp-list-cell-star,
+		.sp-list-cell-nowplaying {
+			text-align: center;
+		}
+		.sp-list-cell-image {
+			line-height: 0;
+			text-align: center;
+		}
+
+.sp-list-fixed-height {
+	height: 100%;
+	overflow: auto;
+}
+	.sp-list-fixed-height.sp-list-wrapper-fixed-header .sp-list-wrapper {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+.sp-list-fixed-height.sp-list-wrapper-fixed-header {
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	padding-top: 24px;
+}
+
+	.sp-list-fixed-height .sp-icon-nowplaying {
+		margin-top: 5px;
+	}
+	.sp-list-fixed-height .sp-popularity-indicator {
+		margin-top: 8px;
+	}
+
+
+.sp-list-item-unplayable,
+.sp-list-item-unplayable .sp-list-cell,
+.sp-list-item-unplayable a {
+	color: #ccc;
+}
+
+.sp-list-item-unplayable-hidden {
+	display: none;
+}
+
+
+
+/**
+ * Styles for the top tracks list.
+ */
+
+.sp-list-layout-toplist .sp-list-table,
+.sp-list-layout-toplist .sp-list-table-body,
+.sp-list-layout-toplist .sp-list-item:not(.sp-list-item-unplayable-hidden),
+.sp-list-layout-toplist .sp-list-cell {
+	display: block;
+}
+
+.sp-list-layout-toplist .sp-list,
+.sp-list-layout-toplist .sp-list-table {
+	background: url('../img/list-item-34px.png') 0 0;
+}
+	.sp-list-layout-toplist .sp-list-item {
+		line-height: 34px;
+		height: 34px;
+		position: relative;
+	}
+		.sp-list-layout-toplist .sp-list-cell {
+			float: left;
+			height: 34px;
+			padding: 0;
+		}
+		.sp-list-layout-toplist .sp-list-cell-listnumber {
+			width: 30px;
+			font: bold 14px/34px 'Helvetica Neue', Arial, sans-serif;
+			color: #737373;
+			text-align: center;
+			background: rgba(0, 0, 0, 0.06);
+			padding-top: 1px;
+		}
+		.sp-list-layout-toplist .sp-list-item-selected .sp-list-cell-listnumber {
+			color: #eee;
+			background: #aaaaaa;
+			position: relative;
+			z-index: 100;
+		}
+		.sp-list-layout-toplist.sp-list-wrapper-focus .sp-list-item-selected .sp-list-cell-listnumber {
+			color: #eee;
+			background: #7ab800;
+		}
+		.sp-list-layout-toplist .sp-list-cell-star {
+			width: 30px;
+		}
+		.sp-list-layout-toplist .sp-list-cell-image {
+			width: 40px;
+		}
+		.sp-list-layout-toplist .sp-list-cell-track {
+			position: absolute;
+			padding: 0 6px;
+			width: 100%;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
+		}
+		.sp-list-layout-toplist .sp-list-item .sp-icon-explicit {
+			margin-top: 11px;
+		}
+		.sp-list-layout-toplist .sp-list-cell-album {
+			position: absolute;
+			padding: 0 6px;
+			width: 100%;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
+		}
+		.sp-list-layout-toplist .sp-list-cell-trackalbum-wrapper {
+			position: absolute;
+			padding: 0 6px;
+			line-height: 1.3;
+			width: 100%;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
+		}
+		.sp-list-layout-toplist .sp-list-cell-trackalbum-wrapper .sp-list-cell-track {
+			position: static;
+			padding: 0;
+			height: auto;
+			margin-top: 4px;
+			font-weight: bold;
+			color: #444;
+			overflow: hidden;
+			width: 100%;
+		}
+		.sp-list-layout-toplist .sp-list-item-selected .sp-list-cell-trackalbum-wrapper .sp-list-cell-track {
+			color: #fff;
+		}
+		.sp-list-layout-toplist .sp-list-cell-trackalbum-wrapper .sp-list-cell-album {
+			position: static;
+			padding: 0;
+			clear: left;
+			height: auto;
+			color: #929292;
+			overflow: hidden;
+			width: 100%;
+		}
+			.sp-list-layout-toplist .sp-list-cell-trackalbum-wrapper .sp-list-cell-album a {
+				color: #929292;
+			}
+			.sp-list-layout-toplist .sp-list-item-selected .sp-list-cell-trackalbum-wrapper .sp-list-cell-album a {
+				color: #ddd;
+			}
+
+
+
+
+
+
+/**
+ * Styles for special fields like popularity and starring.
+ */
+
+/* Popularity indicator */
+.sp-popularity-indicator {
+	background: url('../img/list-popularity.png') 0 0 repeat-x;
+	background-clip: content-box;
+	display: inline-block;
+	width: 35px;
+}
+.sp-popularity-indicator-value {
+	background: url('../img/list-popularity.png') 0 -8px repeat-x;
+	display: block;
+	height: 8px;
+}
+.sp-list-item-selected .sp-popularity-indicator { background-position: 0 -24px; }
+.sp-list-item-selected .sp-popularity-indicator-value { background-position: 0 -16px; }
+
+
+
+/* Starring */
+.sp-icon-star-hitarea {
+	display: block;
+	width: 30px;
+	height: 25px;
+	line-height: 25px;
+	margin-left: -6px;
+}
+.sp-list-item-playing .sp-icon-star-hitarea,
+.sp-list-item-paused .sp-icon-star-hitarea {
+	display: none;
+}
+.sp-list-cell-star:hover .sp-icon-star-hitarea {
+	display: block;
+}
+	.sp-icon-star {
+		background: url('../img/list-star.png') no-repeat -48px -1px;
+		display: block;
+		width: 15px;
+		height: 14px;
+		margin: 0 auto;
+		position: relative;
+		top: 6px;
+	}
+	.sp-icon-star-hitarea:hover .sp-icon-star { background-position: -64px -1px; }
+	.sp-icon-star-hitarea:active .sp-icon-star { background-position: -80px -1px; }
+
+	.sp-icon-starred { background-position: 0 -1px; }
+	.sp-icon-star-hitarea:hover .sp-icon-starred { background-position: -16px -1px; }
+	.sp-icon-star-hitarea:active .sp-icon-starred { background-position: -32px -1px; }
+
+	.sp-list-item-selected .sp-icon-star-hitarea .sp-icon-starred { background-position: -96px -1px; }
+	.sp-list-item-selected .sp-icon-star-hitarea:hover .sp-icon-starred { background-position: -96px -1px; }
+	.sp-list-item-selected .sp-icon-star-hitarea:active .sp-icon-starred { background-position: -32px -1px; }
+
+
+
+/* Temporary now playing icon. */
+/* This will be integrated into the starring when starring is implemented in the actual API. */
+.sp-list-item-playing .sp-icon-nowplaying,
+.sp-list-item-paused .sp-icon-nowplaying {
+	display: inline-block;
+	background: url('../img/list-nowplaying.png') 0 0;
+	width: 12px;
+	height: 11px;
+	position: relative;
+	top: 1px;
+}
+.sp-list-cell-star:hover .sp-icon-nowplaying {
+	display: none;
+}
+.sp-list-layout-toplist .sp-icon-nowplaying {
+	top: 0px;
+}
+.sp-list-item-paused .sp-icon-nowplaying {
+	background-position: -24px 0;
+}
+.sp-list-item-selected.sp-list-item-paused .sp-icon-nowplaying {
+	background-position: -36px 0;
+}
+.sp-list-item-selected.sp-list-item-playing .sp-icon-nowplaying {
+	background-position: -48px 0;
+}
+.sp-list-wrapper-focus .sp-list-item-selected.sp-list-item-playing .sp-icon-nowplaying {
+	background-position: -12px 0;
+}
+
+
+
+/* Artwork thumbnail */
+.sp-list-cell-image .sp-image {
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+	margin-top: 2px;
+}
+.sp-list-layout-toplist .sp-list-cell-image .sp-image {
+	width: 30px;
+	height: 30px;
+	margin-top: 2px;
+}
+
+/* Image with track in the same field */
+.sp-list-cell-track .sp-image {
+	margin: 0 10px 0 -6px;
+	float: left;
+}
+
+
+/* Button for context menu */
+.sp-list-cell-track-name,
+.sp-list-cell-artist-names {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: block;
+}
+.sp-list-contextbutton {
+	border: 0;
+	background: url(../img/list-track-contextbutton.png) 0 0;
+	color: transparent;
+	line-height: 0;
+	width: 18px;
+	height: 18px;
+	padding: 0;
+	margin: 4px 0 0 5px;
+
+	float: right;
+	opacity: 0;
+	outline: none;
+	cursor: default;
+}
+.sp-list-layout-toplist .sp-list-contextbutton {
+	margin: 9px 0 0 0;
+}
+.sp-list-contextbutton:hover {
+	background-position: -18px 0;
+}
+.sp-list-contextbutton:active {
+	background-position: -36px 0;
+}
+.sp-list-item:hover .sp-list-contextbutton {
+	opacity: 1;
+}
+
+.sp-list-item .sp-list-contextbutton-popup {
+	opacity: 1;
+}
+
+
+
+/* Share button */
+.sp-list-share-hitarea {
+	display: block;
+	width: 22px;
+	height: 18px;
+	margin: 0 0 0 -5px;
+	padding: 7px 0 0 9px;
+}
+.sp-list-sharebutton {
+	padding: 0;
+	border: 0;
+	text-indent: -9999px;
+	direction: ltr;
+
+	display: block;
+	width: 13px;
+	height: 11px;
+	margin: 0;
+
+	background: url(../img/list-share.png) 0 0;
+}
+.sp-list-sharebutton:hover {
+	background-position: -13px 0;
+}
+.sp-list-sharebutton:active {
+	background-position: -26px 0;
+}
+
+.sp-list-item-selected .sp-list-sharebutton {
+	background-position: -39px 0;
+}
+.sp-list-item-selected .sp-list-sharebutton:hover {
+	background-position: -52px 0;
+}
+.sp-list-item-selected .sp-list-sharebutton:active {
+	background-position: -65px 0;
+}
+
+
+
+/**
+ * List Styles
+ */
+
+
+/* Style: 'rounded' */
+
+.sp-list.sp-list-style-rounded.sp-list-fixed-height,
+.sp-list-style-rounded .sp-list-wrapper {
+	border: 1px solid #d6d5d2;
+}
+.sp-list.sp-list-style-rounded.sp-list-fixed-height .sp-list-wrapper {
+	border: 0;
+}
+
+.sp-list-style-rounded .sp-list-header {
+	border-top: 0;
+	height: 23px;
+	border-radius: 3px 3px 0 0;
+}
+.sp-list-style-rounded .sp-list-header-fixed {
+	border-radius: 0;
+}
+
+.sp-list-style-rounded:not(.sp-list-using-header) .sp-list-item:first-child td:first-child {
+	border-radius: 3px 0 0 0;
+}
+.sp-list-style-rounded:not(.sp-list-using-header) .sp-list-item:first-child td:last-child {
+	border-radius: 0 3px 0 0;
+}
+.sp-list-style-rounded .sp-list-item:last-child td:first-child {
+	border-radius: 0 0 0 3px;
+}
+.sp-list-style-rounded .sp-list-item:last-child td:last-child {
+	border-radius: 0 0 3px 0;
+}
+
+.sp-list-layout-toplist .sp-list-style-rounded .sp-list-item:first-child > .sp-list-cell-track,
+.sp-list-layout-toplist .sp-list-style-rounded .sp-list-item:first-child > .sp-list-cell-album,
+.sp-list-layout-toplist .sp-list-style-rounded .sp-list-item:first-child > .sp-list-cell-trackalbum-wrapper {
+	border-radius: 3px 3px 0 0;
+}
+.sp-list-layout-toplist .sp-list-style-rounded .sp-list-item:last-child > .sp-list-cell-track,
+.sp-list-layout-toplist .sp-list-style-rounded .sp-list-item:last-child > .sp-list-cell-album,
+.sp-list-layout-toplist .sp-list-style-rounded .sp-list-item:last-child > .sp-list-cell-trackalbum-wrapper {
+	border-radius: 0 0 3px 3px;
+}
+
+.sp-list.sp-list-style-rounded.sp-list-fixed-height,
+.sp-list-style-rounded .sp-list-wrapper,
+.sp-list-style-rounded .sp-list-body,
+.sp-list-style-rounded:not(.sp-list-using-header) .sp-list-table {
+	border-radius: 4px;
+}
+.sp-list-style-rounded.sp-list-using-header .sp-list-table {
+	border-radius: 0 0 4px 4px;
+}

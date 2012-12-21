@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Player</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Player</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="812e62ea6e.html">api/models</a>~</span>
+    
+    Player
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="Player"><span class="type-signature"></span>new Player</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        The Spotify Player.
+This constructor should not be used directly, but is included here for documentation purposes.
+Implements <a href="Observable.html">Observable</a>.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 816</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="Observable.html">Observable</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="observe"><span class="type-signature"></span>observe<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Register an observer. The Player object fires the following events:
+  <ul>
+    <li>EVENT.CHANGE: Fires when something changes.</li>
+  </ul>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1094</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li>Observable#observe</li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var sp = getSpotifyApi();
+var models = sp.require('$api/models');
+
+models.player.observe(models.EVENT.CHANGE, function(event) {
+  console.log('Something changed!');
+});</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="next"><span class="type-signature"></span>next</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Skip to the next track.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 936</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Whether the action was successful.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">boolean</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="play"><span class="type-signature"></span>play</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Play a track, with optional context.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>track</code></td>
+            
+            
+            <td class="type">
+            
+                        Link
+                         | 
+                    
+                        Track
+                         | 
+                    
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The track to play, as a Track object, Link object, or URI/URL string.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_context</code></td>
+            
+            
+            <td class="type">
+            
+                        Album
+                         | 
+                    
+                        Playlist
+                         | 
+                    
+                        Artist
+                         | 
+                    
+                        Link
+                         | 
+                    
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The optional context in which to play the track.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_index</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Optional index of the item in the provided context.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 832</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The Player instance.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Player</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="previous"><span class="type-signature"></span>previous</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Skip to the previous track.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_alwaysSkip</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If true, always skips to the previous track no matter how long the current song has
+  been playing, otherwise skips to the beginning of the song.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 927</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Whether the action was successful.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">boolean</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="812e62ea6e.html">api/models</a></li><li><a href="module-auth.html">auth</a></li><li><a href="module-views.html">views</a></li></ul><h3>Classes</h3><ul><li><a href="07d8f55c24.html">Album</a></li><li><a href="c0c8801168.html">Application</a></li><li><a href="d2c9d24b31.html">Artist</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Image.html">Image</a></li><li><a href="7aa5df4e7b.html">Library</a></li><li><a href="44828f08da.html">Link</a></li><li><a href="2b81e9e135.html">List</a></li><li><a href="Observable.html">Observable</a></li><li><a href="5396da2973.html">Player</a></li><li><a href="ca28d10757.html">Player</a></li><li><a href="116792da1f.html">Playlist</a></li><li><a href="25300dbe27.html">Search</a></li><li><a href="cd4b0bf6d5.html">Session</a></li><li><a href="c991a6440a.html">Toplist</a></li><li><a href="84319155be.html">Track</a></li><li><a href="7542b91118.html">Track</a></li><li><a href="90c6856566.html">User</a></li><li><a href="275ee49a05.html">View</a></li></ul><h3>Global</h3><ul><li><a href="global.html#cacheMetadata">cacheMetadata</a></li><li><a href="global.html#getMetadata">getMetadata</a></li><li><a href="global.html#getMetadataWithCache">getMetadataWithCache</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Nov 26 2012 13:41:56 GMT+0100 (CET)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "AppDescription": {
+    "en" : "Subscribe popup",
+    "de" : "Subscribe popup"
+  },
+  "AppName" : {
+    "en" : "Subscribe popup",
+    "de" : "Subscribe popup"
+  },
+  "VendorIdentifier": "spotify.com",
+  "BundleIdentifier": "subscribe-popup",
+  "BundleType": "Application",
+  "BundleVersion": "1.1.0",
+  "UserInstallable": false,
+  "PlaybackOwner": false,
+  "RequiredPermissions": [
+    "https://fbcdn-profile-*.akamaihd.net",
+    "http://www.spotify.com/",
+    "http://*.fbcdn.net/"
+  ],
+  "Dependencies": {
+    "api": "0.1.0",
+    "resources": "0.1.0",
+    "unstable": "0.1.0",
+    "util": "0.1.0"
+  },
+  "ApiPermissions" : {
+    "core" : ["private"],
+    "tutorial" : ["private"],
+    "social" : ["private"],
+    "playlist": ["private"]
+  },
+  "SupportedLanguages": [
+    "en",
+    "de"
+  ],
+  "PreferredSize" : {"width":865, "height":331}
+}

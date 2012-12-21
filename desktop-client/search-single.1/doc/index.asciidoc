@@ -1,0 +1,31 @@
+The Stitch Application: Search's Book
+=====================================
+Martin Jönsson <mart@spotify.com>
+
+
+Overview
+--------
+
+This is the search application used in Link. This means the view the user comes to after a search.
+This app features support to show artists, album, playlists, and tracks.
+The app is currently being ported to desktop.
+It currently features two modes, one search result page and one "loner page",
+where the user can browse specific categories, (f.e. albums from elvis)
+
+
+Convention
+----------
+
+CSS and JavaScript follows the general Spotify coding conventions and
+needs to be cross-browser functional with IE9+, Chrome, Safari and Firefox.
+
+
+Additional information
+----------------------
+
+- link:deployment[Deployment book]: How to run and deploy the application;
+  mainly for use by ops.
+- link:dev[Development book]: Information mostly of use for developers about
+  how to use the search application and the format of response for a search.
+- link:setup[Setup book]: How to get a development environment for the search
+  application set up.

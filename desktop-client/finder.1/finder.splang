@@ -1,0 +1,222 @@
+{
+  "requiredLanguages" : [
+    "en",
+    "de",
+    "es",
+    "fr",
+    "nl"
+  ],
+  "strings" : {
+    "Finder" : {
+      "sAddApp" : {
+        "approved" : false,
+        "description" : "Add button",
+        "translations" : {
+          "de" : "Hinzufügen",
+          "en" : "Add",
+          "es" : "Añadir",
+          "fr" : "Ajouter",
+          "nl" : "Toevoegen\r\r"
+        }
+      },
+      "sAddedApp" : {
+        "approved" : false,
+        "description" : "Added app button",
+        "translations" : {
+          "de" : "Hinzugefügt",
+          "en" : "Added",
+          "es" : "Añadido",
+          "fr" : "Ajoutée",
+          "nl" : "Toegevoegd"
+        }
+      },
+      "sAllApps" : {
+        "approved" : false,
+        "description" : "All apps section",
+        "translations" : {
+          "de" : "Alle Apps",
+          "en" : "All Apps",
+          "es" : "Todas las Apps",
+          "fr" : "Toutes les Applis",
+          "nl" : "Alle apps"
+        }
+      },
+      "sFeatureApps" : {
+        "approved" : false,
+        "description" : "Feature app section",
+        "translations" : {
+          "de" : "Ausgewählte Apps",
+          "en" : "Featured Apps",
+          "es" : "Apps destacadas",
+          "fr" : "Quelques Applis",
+          "nl" : "Uitgelichte Apps"
+        }
+      },
+      "sPopularApps" : {
+        "approved" : false,
+        "description" : "Popular apps section",
+        "translations" : {
+          "de" : "Beliebte Apps",
+          "en" : "Popular Apps",
+          "es" : "Apps más populares",
+          "fr" : "Applis populaires",
+          "nl" : "Populaire Apps "
+        }
+      },
+      "sTopApps" : {
+        "approved" : false,
+        "description" : "Top Apps",
+        "translations" : {
+          "de" : "Top Apps",
+          "en" : "Top Apps",
+          "es" : "Apps Populares",
+          "fr" : "Top Applis",
+          "nl" : "Top Apps"
+        }
+      },
+      "sNewApps" : {
+        "approved" : false,
+        "description" : "New Apps",
+        "translations" : {
+          "de" : "Neue Apps",
+          "en" : "New Apps",
+          "es" : "Apps Nuevas",
+          "fr" : "Nouvelles Applis",
+          "nl" : "Nieuwe Apps"
+        }
+      },
+      "sCategoryName" : {
+        "approved" : false,
+        "description" : "Default Category name",
+        "translations" : {
+          "de" : "Alle Apps",
+          "en" : "All apps",
+          "es" : "Todas",
+          "fr" : "Toutes les Applis",
+          "nl" : "Alle apps"
+        }
+      },
+      "sUnavailableOffline" : {
+        "approved" : false,
+        "description" : "Not available offline",
+        "translations" : {
+          "de" : "App Finder ist offline nicht verfügbar.",
+          "en" : "App Finder is not available offline.",
+          "es" : "El buscador de apps no está disponible sin una conexión",
+          "fr" : "La recherche d'applis n'est pas disponible hors connexion.",
+          "nl" : "App Finder is niet offline verkrijgbaar."
+        }
+      },
+      "sView" : {
+        "approved" : false,
+        "description" : "View button",
+        "translations" : {
+          "de" : "Ansehen",
+          "en" : "View",
+          "es" : "Ver",
+          "fr" : "Voir",
+          "nl" : "Toon"
+        }
+      },
+      "sSortOn" : {
+        "approved" : false,
+        "description" : "Sort on",
+        "translations" : {
+          "de" : "Sortieren nach",
+          "en" : "Sort on",
+          "es" : "Ordenar por",
+          "fr" : "Trier par",
+          "nl" : "Sorteren op"
+        }
+      },
+      "sCategoryGames" : {
+        "approved" : false,
+        "description" : "Category Games",
+        "translations" : {
+          "de" : "Spiele",
+          "en" : "Games",
+          "es" : "Juegos",
+          "fr" : "Jeux",
+          "nl" : "Games"
+        }
+      },
+      "sCategoryLyrics" : {
+        "approved" : false,
+        "description" : "Category Lyrics",
+        "translations" : {
+          "de" : "Songtexte",
+          "en" : "Lyrics",
+          "es" : "Letra",
+          "fr" : "Paroles",
+          "nl" : "Songteksten"
+        }
+      },
+      "sCategoryEvents" : {
+        "approved" : false,
+        "description" : "Category Events",
+        "translations" : {
+          "de" : "Konzerte & Events",
+          "en" : "Concerts & Events",
+          "es" : "Conciertos y eventos",
+          "fr" : "Concerts & Évènements",
+          "nl" : "Concerten en evenementen"
+        }
+      },
+      "sCategoryDiscovery" : {
+        "approved" : false,
+        "description" : "Category Discovery",
+        "translations" : {
+          "de" : "Entdecken",
+          "en" : "Discovery",
+          "es" : "Descubre",
+          "fr" : "Découverte",
+          "nl" : "Ontdekken"
+        }
+      },
+      "sCategorySocial" : {
+        "approved" : false,
+        "description" : "Category Social",
+        "translations" : {
+          "de" : "Social",
+          "en" : "Social",
+          "es" : "Social",
+          "fr" : "Social",
+          "nl" : "Sociaal"
+        }
+      },
+      "sCategoryReviews" : {
+        "approved" : false,
+        "description" : "Category Reviews",
+        "translations" : {
+          "de" : "Rezensionen",
+          "en" : "Reviews",
+          "es" : "Reseñas",
+          "fr" : "Rezensionen",
+          "nl" : "Rezensionen"
+        }
+      },
+      "sCategoryCharts" : {
+        "approved" : false,
+        "description" : "Category Top Charts",
+        "translations" : {
+          "de" : "Hitlisten",
+          "en" : "Top Charts",
+          "es" : "Éxitos",
+          "fr" : "Les Tops",
+          "nl" : "Hitlijsten"
+        }
+      },
+      "sCategoryAll" : {
+        "approved" : false,
+        "description" : "Category All apps",
+        "translations" : {
+          "de" : "Alle Apps",
+          "en" : "All apps",
+          "es" : "Todas",
+          "fr" : "Toutes les Applis",
+          "nl" : "Alle apps"
+        }
+      }
+    }
+  }
+}

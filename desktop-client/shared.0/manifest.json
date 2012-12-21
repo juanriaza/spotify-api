@@ -1,0 +1,8 @@
+{
+    "BundleIdentifier": "shared",
+    "BundleType": "Framework",
+    "BundleVersion": "0.1.0",
+    "Dependencies": {
+        "api": "1.0.0"
+    }
+}

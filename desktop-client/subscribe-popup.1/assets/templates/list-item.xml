@@ -1,0 +1,7 @@
+<div class="meta">
+  <div class="title">{0}</div>
+
+    <div class="byline hideable {4}">{1}<br/>{3}</div>
+    <div class="circle"><div class="specialCover"></div><div class="specialCoverB"></div><div class="checkBox" id="{2}"></div></div>
+
+</div>

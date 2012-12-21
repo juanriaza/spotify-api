@@ -1,0 +1,2597 @@
+- group: System
+  requests:
+    - name: core_request_lookup
+      description: Lookup the handler for a request.
+      arguments:
+        - type: string
+          description: The name of the request to lookup
+      returns:
+        type: object
+        fields:
+          - name: found
+            type: boolean
+            description: Indicates a handler for the request was found.
+
+    - name: core_flush
+      description: |
+        Indicate that now is a good time to execute any batch jobs that have
+        been building up because of incoming requests. The implementation is
+        free to execute requests immediately or wait until the flush request
+        is sent.
+      arguments: none
+      returns: none
+
+    - name: core_ping
+      description: |
+        Responds immediately with the same arguments that were passed in the
+        request.
+      arguments:
+        - type: any
+          description: An argument you want returned back to the the caller.
+          required: false
+          repeats: true
+      returns:
+        type: object
+        fields:
+          - name: arguments
+            type: array
+            description: The same arguments that were sent in the request.
+
+    - name: core_context_begin
+      description: |
+        Indicates the start of a custom application context
+      arguments:
+        - type: number
+          description: A unique identifier for the context.
+          required: true
+        - type: string
+          description: A human readable name for the context.
+          required: true
+
+    - name: core_context_end
+      description: |
+        Indicates the end of a custom application context
+      arguments:
+        - type: number
+          description: |
+            A unique identifier for the context: should match the id of a
+            context previously started with core_context_begin.
+          required: true
+
+
+- group: Album
+  requests:
+    - name: album_metadata
+      description: Returns simple metadata for the album with the given URI.
+      arguments:
+        - type: string
+          description: Album URI
+      returns:
+        type: object
+        fields:
+          - name: artists
+            type: array
+            description: |
+              An unordered array of URIs for all artists that were involved in
+              making the track.
+          - name: availability
+            type: string
+            description: |
+              Describes how and when the album is available for playback for the
+              currently logged in user. The value will be one of: "available",
+              "banned", "regional", "premium" or "unavailable". "available"
+              means that the album can be played, "banned" that the artist has
+              chosen to not make the album available, "regional" that the album
+              is playable in other regions but not in the region of the
+              currently logged in user, "premium" that means the user must
+              upgrade to a premium account in order to play the album, and
+              "unavailable" which means the album is unavailable for other
+              reasons.
+          - name: image
+            type: string
+            description: |
+              The URL for the cover image. Not present if the album is missing a
+              cover image.
+          - name: label
+            type: string
+            description: The label that owns the rights to the album.
+          - name: name
+            type: string
+            description: The human readable title of the album.
+          - name: playable
+            type: boolean
+            description: Indicates if this album be played by the current user.
+          - name: copyrights
+            type: array
+            description: |
+              An array of strings with copyright holders for the album. The
+              strings will be on the format "(C) 2012 Company", where "(C)" can
+              be a "(P)" and the year and company name is album specific. This
+              field is optional and can be included in case the handler that
+              returns an album metadata object happens to know this information.
+          - name: type
+            type: string
+            description: |
+              The type of album. One of the strings: "album", "single" and
+              "compilation". If the album type is not known, this field should
+              be left out.
+
+    - name: album_profile
+      description: Returns additional metadata for the album with the given URI.
+      arguments:
+        - type: string
+          description: Album URI
+      returns:
+        type: object
+        fields:
+          copyrights: |
+            An array of strings with copyright holders for the album. The
+            strings will be on the format "(C) 2012 Company", where "(C)" can
+            be a "(P)" and the year and company name is album specific. This
+            field is optional and can be included in case the handler that
+            returns an album metadata object happens to know this information.
+
+    - name: album_tracks_snapshot
+      description: Returns a snapshot of the tracks on the album.
+      arguments:
+        - type: string
+          description: Album URI.
+        - type: number
+          description: The offset of the first track to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of tracks on the album. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: album_disc_tracks_snapshot
+      description: Returns a snapshot of the tracks on an album disc.
+      arguments:
+        - type: string
+          description: Album disc URI.
+        - type: number
+          description: The offset of the first track to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of tracks on the disc. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+- group: Client
+  requests:
+    - name: client_show_share_ui
+      description: |
+        Requests that the client show the sharing UI.
+      arguments:
+        - type: string
+          description: |
+            The URI that should be shown in the sharing UI. Tracks, albums,
+            playlists and artists are supported.
+          required: true
+        - type: string
+          required: false
+          description: |
+            Optional message to render initially in the sharing UI.
+        - type: number
+          required: false
+          description: |
+            The optional x coordinate at which the sharing UI should be shown,
+            relative to the top left corner of the application viewport.
+            Do not include any distance that the page is scrolled.
+            It is appropriate to use element.getBoundingClientRect() to compute
+            this value.
+        - type: number
+          required: false
+          description: |
+            The optional y coordinate at which the sharing UI should be shown,
+            relative to the top-left corner of the application on the screen.
+            Do not include any distance that the page is scrolled.
+            It is appropriate to use element.getBoundingClientRect() to compute
+            this value.
+      returns: none
+
+    - name: client_show_context_ui
+      description: |
+        Requests that the client show the context UI.
+      arguments:
+        - type: array
+          description: |
+            Array of URIs that the context UI should be shown for. Tracks,
+            albums, playlists and artists are supported. The URIs should be
+            of the same type.
+          required: true
+        - type: number
+          required: false
+          description: |
+            The optional x coordinate at which the context UI should be shown,
+            relative to the top left corner of the application viewport.
+            Do not include any distance that the page is scrolled.
+            It is appropriate to use element.getBoundingClientRect() to compute
+            this value.
+        - type: number
+          required: false
+          description: |
+            The optional y coordinate at which the context UI should be shown,
+            relative to the top-left corner of the application on the screen.
+            Do not include any distance that the page is scrolled.
+            It is appropriate to use element.getBoundingClientRect() to compute
+            this value.
+      returns: none
+
+- group: Application
+  requests:
+    - name: application_client_event
+      description: Logs a client event for the application.
+      arguments:
+        - type: string
+          description: User supplied context string.
+        - type: string
+          description: The name of the event being logged.
+        - type: string
+          description: The version of the event being logged.
+        - type: string
+          description: The A/B test version (if any) currently in use.
+        - type: object
+          description: |
+            The arguments parameter is a map with string keys and values. It
+            cannot contain nested map levels. The parameters are application
+            dependent and not described further here.
+      returns: none
+
+    - name: application_notify_exit
+      description: |
+        Requests that the application should terminate. If
+        successful the request will never finish (because the application
+        will no longer be running). Making this request more than once
+        will fail.
+      arguments:
+        - type: number
+          description: |
+            The exit status code. 0 means success and any other number means
+            failure.
+      returns: none
+
+    - name: application_query
+      description: Asks for the complete state of the running application.
+      arguments: none
+      returns:
+        type: object
+        fields:
+          - name: arguments
+            type: array
+            description: |
+              The arguments that were last sent to the application. This is an
+              array of strings, made from the application URI. If the URI is
+              "spotify:app:test:A:B:C", this field will be the array
+              ["A", "B", "C"].
+          - name: uri
+            type: string
+            description: |
+              The base URI of the application, without any arguments. If the
+              application was started with the URI "spotify:app:test:A:B:C",
+              this field will contain the URI "spotify:app:test".
+
+    - name: application_event_wait
+      description: TBD
+    - name: application_open_uri
+      description: Instructs the Spotify client to navigate to the given URI.
+      arguments:
+        - type: string
+          description: |
+            The URI to navigate to. It must be one of the standard Spotify
+            URIs, such as spotify:track and spotify:search.
+        - type: string
+          description: |
+            The history context of the operation. If the context of the last URI
+            that was navigated to is the same as this context, the old entry
+            should be removed from the history stack and replaced by the new
+            URI.
+      returns: none
+    - name: application_require
+      description: |
+        Dynamically load a dependency so that it is possible for the application
+        to require resources from it.
+      arguments:
+        - type: array
+          description: |
+            A list of bundle specification strings in the format
+            'bundle_id@version' or 'bundle_id' dependent on whether a particular
+            compatible version is required or not.
+      returns: none
+    - name: application_set_preferred_size
+      description: |
+        Tell the application to change its size.
+        arguments:
+          - type: number
+            description: |
+              The new preferred width.
+          - type: number
+            description: |
+              The new preferred height.
+      returns:
+        type: object
+        fields:
+          - name: width
+            type: number
+            description: |
+              The actual new width of the application.
+          - name: height
+            type: number
+            description: |
+              The actual new height of the application.
+
+- group: Artist
+  requests:
+    - name: artist_metadata
+      description: Returns simple metadata for the artist with the given URI.
+      arguments:
+        - type: string
+          description: Artist URI.
+      returns:
+        type: object
+        fields:
+          - name: image
+            type: string
+            description: |
+              The URL for the artist portrait image. Not present if the artist
+              is missing a portrait image.
+          - name: name
+            type: string
+            description: The human readable name of the artist.
+
+    - name: artist_albums_snapshot
+      description: Returns a snapshot of the albums of the artist.
+      arguments:
+        - type: string
+          description: Artist URI.
+        - type: number
+          description: The offset of the first album to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of albums of the artist. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the albums in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: artist_profile
+      description: Returns extended metadata for the artist with the given URI.
+      arguments:
+        - type: string
+          description: Artist URI.
+      returns:
+        type: object
+        fields:
+          - name: biography
+            type: string
+            description: The biography associated with the artist.
+          - name: genres
+            type: array
+            description: The genres associated with the artist.
+          - name: portraits
+            type: array
+            description: Portraits (images) of the artist.
+          - name: years
+            type: object
+            description: |
+              The years during which the artist was/is active.
+              This value of the object has two fields: "from" and "to".
+    - name: artist_associated_user
+      description: |
+        Returns the user profile URI for the user associated with the
+        artist URI, if any exists.
+      arguments:
+        - type: string
+          description: Artist URI.
+      returns:
+        type: string
+        description: The User URI.
+
+- group: Console
+  requests:
+    - name: console_debug
+      description: |
+        Sent on some platforms when console.debug(item_1, item_2, ...) is
+        called. The Spotify client should print the items to its log and
+        optionally present it to the user. The latter is only necessary on
+        platforms where it is not possible to bring up a web debug console
+        directly.
+      arguments:
+        - type: string
+          description: A string to be logged.
+          required: true
+          repeats: true
+
+    - name: console_log
+      description: |
+        Sent on some platforms when console.log(item_1, item_2, ...) is
+        called. The Spotify client should print the items to its log and
+        optionally present it to the user. The latter is only necessary on
+        platforms where it is not possible to bring up a web debug console
+        directly.
+      arguments:
+        - type: string
+          description: A string to be logged.
+          required: true
+          repeats: true
+
+    - name: console_info
+      description: |
+        Sent on some platforms when console.info(item_1, item_2, ...) is
+        called. The Spotify client should print the items to its log and
+        optionally present it to the user. The latter is only necessary on
+        platforms where it is not possible to bring up a web debug console
+        directly.
+      arguments:
+        - type: string
+          description: A string to be logged.
+          required: true
+          repeats: true
+
+    - name: console_warn
+      description: |
+        Sent on some platforms when console.warn(item_1, item_2, ...) is
+        called. The Spotify client should print the items to its log and
+        optionally present it to the user. The latter is only necessary on
+        platforms where it is not possible to bring up a web debug console
+        directly.
+      arguments:
+        - type: string
+          description: A string to be logged.
+          required: true
+          repeats: true
+
+    - name: console_error
+      description: |
+        Sent on some platforms when console.error(item_1, item_2, ...) is
+        called. The Spotify client should print the items to its log and
+        optionally present it to the user. The latter is only necessary on
+        platforms where it is not possible to bring up a web debug console
+        directly.
+      arguments:
+        - type: string
+          description: A string to be logged.
+          required: true
+          repeats: true
+
+- group: Feed
+  requests:
+    - name: feed_activities_snapshot
+      description: Takes a snapshot of the activity feed of a given user.
+      arguments:
+        - type: string
+          description: |
+            The URI of the user to get activity for. The URI can specify
+            the currently logged in user or any other Spotify user. If this
+            argument is not given or if the URI is malformed, the request
+            must fail. If this argument is null, the activities of all
+            users that the currently logged in user subscribes to are
+            returned.
+          required: true
+        - type: number
+          description: |
+            The offset into the collection. If not given the snapshot will
+            start at offset 0. If the offset is past the collection length,
+            the request will still succeed but will not return any items.
+          required: false
+        - type: number
+          description: |
+            The maximum number of items to return. If not given will be the
+            entire collection. If the length is greater than the collection
+            length the request will still succedd and will contain all items.
+          required: false
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of activities available. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: |
+              An array of URIs for the activities in the snapshot. Empty
+              strings right now since there is no specific URI type for
+              activity.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: feed_event_wait
+      description: |
+        Wait until the next feed activity occurs and returns. If it takes too
+        long until the activity the request handler may choose to time out the
+        request. The application can make the same request immediately
+        afterwards. If the application makes another request while the first
+        request has not finished yet the second request must fail.
+      arguments:
+        - type: string
+          description: |
+            The URI of the user to get activity for. If this argument is not
+            given or if the URI is malformed, the request must fail. If this
+            argument is null, the next activity for any user that the
+            currently logged in user subscribes to is returned.
+          required: true
+      returns:
+        type: object
+        fields:
+          - name: event
+            type: string
+            description: Value 'activity'
+          - name: activityType
+            type: number
+            description: |
+              Integer value representing an activity type, e.g. track finished
+              playing, playlist published.
+          - name: timestamp
+            type: number
+            description: |
+              A UNIX timestamp in milliseconds of when the activity was
+              published.
+          - name: user
+            type: object
+            description: |
+              A metadata object for the user who published the activity.
+          - name: item
+            type: object
+            description: main item related to the activity.
+            fields:
+            - name: uri
+              type: string
+              description: URI of the main item related to the activity.
+            - name: name
+              type: string
+              description: |
+                An optional name of the item, to reduce metadata lookup.
+            - name: image
+              type: string
+              description: |
+                An optional image URI of the item, to reduce metadata lookup.
+          - name: context
+            type: object
+            description: context of the activity, e.g. a playlist
+            fields:
+            - name: uri
+              type: string
+              description: URI of the context related to the activity.
+            - name: name
+              type: string
+              description: |
+                An optional name of the context, to reduce metadata lookup.
+            - name: image
+              type: string
+              description: |
+                An optional image URI of the context, to reduce metadata lookup.
+          - name: referrer
+            type: object
+            description: URI of the activity referrer, e.g. an Application.
+            fields:
+            - name: uri
+              type: string
+              description: URI of the referrer related to the activity.
+            - name: name
+              type: string
+              description: |
+                An optional name of the referrer, to reduce metadata lookup.
+            - name: image
+              type: string
+              description: |
+                An optional image URI of the referrer, to reduce metadata lookup.
+          - name: message
+            type: string
+            description: An optional text message attached to the activity.
+
+- group: Hermes
+  requests:
+    - name: hermes_register_schema
+      description: TBD
+    - name: hermes_send_request
+      description: TBD
+
+- group: Library
+  requests:
+    - name: library_publish
+      description: |
+        Makes a playlist that the library owner has in their library public.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The URI of the playlist to make public.
+          repeats: true
+      returns: none
+
+    - name: library_star
+      description: |
+        Stars one or more items (such as tracks) for the current user.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The URI of the item to star.
+          repeats: true
+      returns: none
+
+    - name: library_subscribe
+      description: |
+        Adds an item to the library. The type of the item determines which
+        bucket in the library it is added to.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The URI of the item to add to the library.
+          repeats: true
+      returns: none
+
+    - name: library_unpublish
+      description: |
+        Makes a playlist that the library owner has in their library secret.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The URI of the playlist to make secret.
+          repeats: true
+      returns: none
+
+    - name: library_unstar
+      description: |
+        Unstars one or more items (such as tracks) for the current user.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The URI of the item to unstar.
+          repeats: true
+      returns: none
+
+    - name: library_unsubscribe
+      description: |
+        Removes an item from the library. The type of the item determines which
+        bucket in the library it is removed from.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The URI of the item to remove from the library.
+          repeats: true
+      returns: none
+
+    - name: library_albums_snapshot
+      description: Returns a snapshot of the albums in the library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: The offset of the first album to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of albums in the library. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the albums in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: library_artists_snapshot
+      description: Returns a snapshot of the artists in the library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: The offset of the first artist to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of artists in the library. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the artists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: library_playlists_append
+      description: |
+        Adds playlists to the end of the specified library. The request succeeds
+        as long as at least one of the playlists could be added to the library.
+        The playlists are always added in the same order as the they are
+        specified in the arguments.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: string
+          description: The playlist URI.
+          repeats: true
+      returns: none
+
+    - name: library_playlists_clear
+      description: Removes all playlists from the specified library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+      returns: none
+
+    - name: library_playlists_insert
+      description: |
+        Inserts one or more playlists at some location in the specified library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: Index of the row to insert the playlist at.
+        - type: string
+          description: |
+            The URI of the playlist at that row at the time of the snapshot. The
+            request should fail if the row no longer matches what is in the
+            actual library.
+        - type: string
+          description: The playlist URI.
+          repeats: true
+      returns: none
+
+    - name: library_playlists_remove
+      description: Removes a playlist from some location in the specified library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: Index of the row to remove.
+        - type: string
+          description: |
+            The URI of the playlist at that row at the time of the snapshot. The
+            request should fail if the row no longer matches what is in the
+            actual playlist.
+      returns: none
+
+    - name: library_playlists_snapshot
+      description: Returns a snapshot of the playlists in the library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: The offset of the first playlist to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of playlists in the library. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the playlists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: library_published_snapshot
+      description: |
+        Returns a snapshot of the playlists that the user has published.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: The offset of the first playlist to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of playlists the user has published. Not the
+              same as the snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the playlists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: library_tracks_snapshot
+      description: Returns a snapshot of the tracks in the library.
+      arguments:
+        - type: string
+          description: The URI of the owner of the library.
+        - type: number
+          description: The offset of the first track to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of tracks in the library. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+- group: Messaging
+  requests:
+    - name: messaging_conversation_messages_snapshot
+      description: Returns a snapshot of the messages in a conversation.
+      arguments:
+        - type: string
+          description: The URI of the conversation.
+        - type: number
+          description: The offset of the first message to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of messages in the conversation. Not the same as
+              the snapshot length.
+          - name: array
+            type: array
+            description: |
+              An array of URIs for the messages in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: messaging_conversation_reply
+      description: Adds a message to a conversation.
+      arguments:
+        - type: string
+          description: URI of the conversation to reply to.
+        - type: string
+          description: The message to send.
+        - type: string
+          description: |
+            An optional URI of an item (such as a track) to include with the
+            message.
+      returns:
+        type: object
+        fields:
+          - name: timestamp
+            type: number
+            description: |
+              A UNIX timestamp of when the conversation was last updated. This
+              should always be the current time since the conversation was just
+              replied to.
+          - name: state
+            type: number
+            description: |
+              The state of the conversation. 0 for unread, 1 for seen, and 2
+              for replied to. This should always be 2 in this case since the
+              conversation was just replied to.
+
+    - name: messaging_conversations_remove
+      description: Removes a conversation from the inbox.
+      arguments:
+        - type: string
+          description: The URI of the user.
+        - type: number
+          description: Index of the row to remove.
+        - type: string
+          description: |
+            The URI of the conversation at that row at the time of the
+            snapshot. The request should fail if the row no longer matches what
+            is in the actual inbox.
+      returns: none
+
+    - name: messaging_conversations_snapshot
+      description: |
+        Returns a snapshot of the conversations that the user has in their
+        inbox.
+      arguments:
+        - type: string
+          description: The URI of the user.
+        - type: number
+          description: The offset of the first conversation to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of conversations the user has. Not the same as
+              the snapshot length.
+          - name: array
+            type: array
+            description: |
+              An array of URIs for the conversations in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: messaging_send
+      description: Sends a message to one or more users.
+      arguments:
+        - type: array
+          description: A list of URIs of the users to send to.
+        - type: string
+          description: The message to send.
+        - type: string
+          description: |
+            An optional URI of an item (such as a track) to include with the
+            message.
+      returns:
+        type: object
+        fields:
+          - name: uri
+            type: string
+            description: |
+              URI of the conversation the message was added to. This can either
+              be the URI of an existing conversation with the specified users,
+              or the URI of a new conversation.
+          - name: users
+            type: array
+            description: |
+              URIs of the users in the conversation. This should be the same as
+              the list that was passed in.
+          - name: timestamp
+            type: number
+            description: |
+              A UNIX timestamp of when the conversation was last updated. This
+              should always be the current time since the conversation was just
+              replied to.
+          - name: state
+            type: number
+            description: |
+              The state of the conversation. 0 for unread, 1 for seen, and 2
+              for replied to. This should always be 2 in this case since the
+              conversation was just replied to.
+
+- group: Offline
+  requests:
+    - name: offline_enable_sync
+      description: |
+        Enables offline syncing for an item.
+      arguments:
+        - type: string
+          description: The uri of the item.
+      returns: none
+    - name: offline_disable_sync
+      description: |
+        Disables offline syncing for an item.
+      arguments:
+        - type: string
+          description: The uri of the item.
+      returns: none
+    - name: offline_query_state
+      description: |
+        Querys the offline state of an item.
+      arguments:
+        - type: string
+          description: The uri of the item.
+      returns:
+        - type: object
+          fields:
+            - name: enabled
+              type: boolean
+              description: Indicates whether the item set to offline sync or not.
+            - name: state
+              type: string
+              description: |
+                Indicates the state of the offline syncing, can be one of the
+                following values: 'not-synced', 'syncing' and 'synced'.
+
+- group: Playback
+  requests:
+    - name: player_pause
+      description: Pauses playback if it was playing.
+      arguments:
+        - type: number
+          description: The id of the player to pause.
+      returns: none
+
+    - name: player_play_context
+      description: |
+        Sets the playback position, in milliseconds from the start of the track
+        and then starts playing the given indexed track in a context.
+      arguments:
+        - type: number
+          description: The id of the player to start.
+        - type: string
+          description: The URI of the context to play tracks from.
+        - type: number
+          description: The index of the track to start playing.
+        - type: number
+          description: |
+            The number of milliseconds from the start of the track to start
+            playback.
+        - type: number
+          description: |
+            The number of milliseconds for which to play the tracks in the context.
+      returns: none
+
+    - name: player_play_track
+      description: |
+        Sets the playback position, in milliseconds from the start of the track
+        and then starts playing the given track, in no context.
+      arguments:
+        - type: number
+          description: The id of the player to start.
+        - type: string
+          description: The URI of the track to play.
+        - type: number
+          description: |
+            The number of milliseconds from the start of the track to start
+            playback.
+        - type: number
+          description: |
+            The number of milliseconds for which to play the track.
+      returns: none
+
+    - name: player_query
+      description: Asks for the complete state of the playback in the client.
+      arguments:
+        - type: number
+          description: The id of the player to query.
+      returns:
+        type: object
+        fields:
+          - name: context
+            type: object
+            description: |
+              A metadata type object with at least the URI for the currently
+              playing context and, optionally, with the same metadata as one of
+              the xxx_metadata requests would return. If there is no playing
+              context, this field should have a null value.
+          - name: duration
+            type: number
+            description: |
+              The duration, in milliseconds, of the currently playing track.
+              This can be different from the metadata duration of the same
+              track. The player will ususally have a better idea of exactly
+              how long the track is.
+          - name: playing
+            type: boolean
+            description: Whether the client is currently playing anything.
+          - name: position
+            type: number
+            description: The current playback position, in milliseconds.
+          - name: repeat
+            type: boolean
+            description: Whether repeat is set.
+          - name: shuffle
+            type: boolean
+            description: Whether shuffle is set.
+          - name: track
+            type: object
+            description: |
+              A metadata type object with at least the URI for the currently
+              playing track and, optionally, with the same metadata as the track
+              metadata request would return. If there is no playing track, this
+              field should have a null value.
+
+    - name: player_play
+      description: Resumes playback if it was paused.
+      arguments:
+        - type: number
+          description: The player ID.
+      returns: none
+
+    - name: player_seek
+      description: Sets the playback position.
+      arguments:
+        - type: number
+          description: The player ID.
+        - type: number
+          description: The number of milliseconds from the start of the track.
+      returns: none
+
+    - name: player_set_repeat
+      description: Enables or disables repeat.
+      arguments:
+        - type: number
+          description: The player ID.
+        - type: boolean
+          description: Whether to enable it.
+      returns: none
+
+    - name: player_set_shuffle
+      description: Enables or disables shuffle.
+      arguments:
+        - type: number
+          description: The player ID.
+        - type: boolean
+          description: Whether to enable it.
+      returns: none
+
+    - name: player_set_volume
+      description: On supported platforms, sets the audio output volume.
+      arguments:
+        - type: number
+          description: The player ID.
+        - type: number
+          description: |
+            The volume level to set. Must be a value between 0.0 and 1.0
+            inclusive.
+      returns: none
+
+    - name: player_skip_to_next
+      description: Skips to the next track in context, if possible.
+      arguments:
+        - type: number
+          description: The player ID.
+      returns: none
+
+    - name: player_skip_to_prev
+      description: Skips to the previous track in context, if possible.
+      arguments:
+        - type: number
+          description: The player ID.
+      returns: none
+
+- group: Playlist
+  requests:
+    - name: playlist_create
+      description: |
+        Creates a new named playlist and adds it to the user's library.
+      arguments:
+        - type: string
+          description: The name of the playlist.
+      returns:
+        type: object
+        fields:
+          - name: uri
+            type: string
+            description: The URI of the newly created playlist.
+    - name: playlist_create_temporary
+      description: |
+        Creates a new named temporary playlist. A temporary playlist is not
+        added to the user's library.
+      arguments:
+        - type: string
+          description: The name of the playlist.
+      returns:
+        type: object
+        fields:
+          - name: uri
+            type: string
+            description: The URI of the newly created playlist.
+
+    - name: playlist_enforce_rules
+      description: |
+        Sets attributes on the temporary playlist so that it follows a set of
+        rules.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: string
+          description: |
+            The rules to enforce. Could be one of these values:
+            "dmca": Enforces DMCA rules on the playlist. DMCA rules implies that
+            the context is run with radio rules, as well as the rules defined by
+            Digital Millennium Copyright Act. These are American rules and
+            there are separate, similar, rules for Europe.
+            "radio": Puts the client into radio mode when playing tracks from
+            the temporary playlist. Skip backwards, shuffle and repeat are
+            disabled, and the client may choose to alter its user interface to
+            indicate that a radio station is playing. When a playlist is used
+            as a radio station, the description and image of the playlist may be
+            used in the user interface to show what seeded the radio station.
+            "search": Search rules means that the context should behave like the
+            search results view. For free users the playback will pause after
+            playing each track, while for paying users the playback will
+            continue to the next track.
+            "stream": Stream rules implies that any kind of seeking or skipping
+            is disabled. Used for listen-along type application, such as
+            listining along with another user from the buddy list or playing
+            music from a room in a social music application.
+
+    - name: playlist_event_wait
+      description: TBD
+      arguments: none
+      returns: TBD
+
+    - name: playlist_metadata
+      description: Returns simple metadata for the playlist with the given URI.
+      arguments:
+        - type: string
+          description: The playlist URI.
+      returns:
+        type: object
+        fields:
+          - name: allows
+            type: object
+            description: |
+              A dictionary of the permitted operations for the playlist.
+            fields:
+              - name: editDescription
+                type: boolean
+                description: |
+                  Indicates whether the playlist description can be edited.
+              - name: delete
+                type: boolean
+                description: |
+                  Indicates whether the playlist can be deleted.
+              - name: insertTracks
+                type: boolean
+                description: |
+                  Indicates whether tracks can be inserted into the playlist.
+              - name: publish
+                type: boolean
+                description: |
+                  Indicates whether the user can publish or unpublish the playlist.
+              - name: removeTracks
+                type: boolean
+                description: |
+                  Indicates whether tracks can be removed from the playlist.
+              - name: rename
+                type: boolean
+                description: |
+                  Indicates whether the playlist can be renamed.
+              - name: subscribe
+                type: boolean
+                description: |
+                  Indicates whether the user can subscribe to or unsubscribe from the playlist.
+              - name: offlineSync
+                type: boolean
+                description: |
+                  Indicates whether the user can offline sync the playlist.
+          - name: collaborative
+            type: boolean
+            description: True if the playlist is collaborative, false otherwise.
+          - name: description
+            type: string
+            description: |
+              The human readable description of the playlist. If there is no
+              description of the playlist, this field will be left out.
+          - name: image
+            type: string
+            description: |
+              The URL for the playlist cover image. Not present if the user is
+              missing a cover image.
+          - name: name
+            type: string
+            description: The human readable name of the playlist.
+          - name: owner
+            type: object
+            description: An object with owner data.
+            fields:
+              - name: uri
+                type: string
+                description: The user URI for the owner of the playlist.
+              - name: metadata
+                type: object
+                description: |
+                  Optional metadata object that the user_metadata request would
+                  return.
+          - name: popularity
+            type: number
+            description: |
+              The popularity value for the playlist.
+          - name: published
+            type: boolean
+            description: |
+              Whether the playlist is included in the public playlists for the
+              currently logged in user.
+          - name: subscribed
+            type: boolean
+            description: |
+              Whether the currently logged in user is subscribed tothe playlist.
+
+
+    - name: playlist_popularity
+      description: Returns the popularity of a playlist as an integer.
+      arguments:
+        - type: string
+          description: The playlist uri.
+      returns:
+        type: object
+        fields:
+          - name: popularity
+            type: number
+            description: |
+              The popularity of the playlist.
+
+    - name: playlist_remove_temporary
+      description: |
+        Removes a new named temporary playlist that was created using
+        playlist_create_temporary.
+      arguments:
+        - type: string
+          description: The name of the temporary playlist.
+      returns: none
+
+    - name: playlist_subscribers_snapshot
+      description: Returns a snapshot of the subscribers of the playlist.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: number
+          description: The offset of the first subscriber to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of subscribers of the playlist. Not the same as the
+              length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the subscribers in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: playlist_tracks_append
+      description: |
+        Adds tracks to the end of the specified playlist. The request succeeds
+        as long as at least one of the tracks could be added to the playist. The
+        tracks are always added in the same order as the they are specified in
+        the arguments.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: string
+          description: The track URI.
+          repeats: true
+      returns: none
+    - name: playlist_tracks_clear
+      description: Removes all tracks from the specified playlist.
+      arguments:
+        - type: string
+          description: The playlist URI.
+      returns: none
+
+    - name: playlist_tracks_insert
+      description: |
+        Inserts one or more tracks at some location in the specified playlist.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: number
+          description: Index of the row to insert the track at.
+        - type: string
+          description: |
+            The URI of the track at that row at the time of the snapshot. The
+            request should fail if the row no longer matches what is in the
+            actual playlist.
+        - type: string
+          description: The track URI.
+          repeats: true
+      returns: none
+
+    - name: playlist_tracks_remove
+      description: Removes a track from some location in the specified playlist.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: number
+          description: Index of the row to remove.
+        - type: string
+          description: |
+            The URI of the track at that row at the time of the snapshot. The
+            request should fail if the row no longer matches what is in the
+            actual playlist.
+      returns: none
+
+    - name: playlist_tracks_snapshot
+      description: Returns a snapshot of the tracks in the playlist.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of tracks in the playlist. Not the same as the
+              length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: playlist_tracks_trim
+      description: |
+        Trims items from the end of the collection so that the last item in the
+        collection is the item referred to by the given reference. If the
+        reference is not in the collection, no items will be removed.
+      arguments:
+        - type: string
+          description: The playlist URI.
+        - type: number
+          description: Index of the row to keep.
+        - type: string
+          description: |
+            The URI of the track at that row at the time of the snapshot. The
+            request should fail if the row no longer matches what is in the
+            actual playlist.
+      returns: none
+
+- group: Relations
+  requests:
+    - name: relations_event_wait
+      description: Fired when the user adds, removes, or dismisses one or more
+        relations.
+      arguments:
+        type: string
+        description: The URI of the user to listen to events for (for now only
+          for current user)
+      returns:
+        type: object
+        fields:
+          - name: event
+            type: string
+            description: |
+              Values 'add' or 'remove' based on if the user added or removed one
+              or more relations.
+          - name: target
+            type: string
+            description: |
+              Which collection the relation(s) were changed on. Values
+              'subscriptions' and 'dismissed'.
+          - name: data
+            type: object
+            fields:
+              - name: users
+                type: array
+                description: |
+                  A list of Spotify user URIs that were added or removed.
+
+    - name: relations_block
+      description: |
+        Blocks one or more users from interacting with the current user.
+      arguments:
+        - type: string
+          description: Current user URI.
+        - type: string
+          description: The URI of the user to block.
+          repeats: true
+      returns: none
+
+    - name: relations_blocked_users_snapshot
+      description: Returns a snapshot of the users blocked by the user.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first user to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of users blocked by the user. Not the same as
+              the snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the users in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: relations_dismiss
+      description: |
+        Dismisses one or more users so that they won't show up in suggestions.
+      arguments:
+        - type: string
+          description: Current user URI.
+        - type: string
+          description: The URI of the user to dismiss.
+          repeats: true
+      returns: none
+
+    - name: relations_dismissed_users_snapshot
+      description: Returns a snapshot of the users dismissed by the user.
+      arguments:
+        - type: string
+          description: The URI of the owner of the dismissed list.
+        - type: number
+          description: The offset of the first user to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of users dismissed by the user. Not the same as
+              the snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the users in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: relations_hidden_users_snapshot
+      description: Returns a snapshot of the users who have blocked the user.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first user to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of users who have blocked the user. Not the same
+              as the snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the users in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: relations_subscribers_users_snapshot
+      description: Returns a snapshot of the users following the user.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first user to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of users following the user. Not the same as the
+              snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the users in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: relations_subscribe
+      description: Subscribes to one or more users.
+      arguments:
+        - type: string
+          description: Current user URI.
+        - type: string
+          description: The URI of the user to subscribe to.
+          repeats: true
+      returns: none
+
+    - name: relations_subscriptions_users_snapshot
+      description: Returns a snapshot of the users followed by the user.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first user to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of users followed by the user. Not the same as
+              the snapshot length.
+          - name: array
+            type: array
+            description: An array of URIs for the users in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: relations_unblock
+      description: Unblock one or more users.
+      arguments:
+        - type: string
+          description: Current user URI.
+        - type: string
+          description: The URI of the user to unblock.
+          repeats: true
+      returns: none
+
+    - name: relations_unsubscribe
+      description: Unsubscribes from updates for one or more users.
+      arguments:
+        - type: string
+          description: Current user URI.
+        - type: string
+          description: The URI of the user to unsubscribe from.
+          repeats: true
+      returns: none
+
+- group: Search
+  requests:
+    - name: search_albums_snapshot
+      description: |
+        Returns a snapshot of the albums fully matching the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of albums in the search results. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the albums in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: search_artists_snapshot
+      description: |
+        Returns a snapshot of the artists fully matching the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of artists in the search results. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the artists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: search_fuzzy_match
+      description: |
+        Returns a fuzzy match of the given search query. The fuzzy match tries
+        to provide an alternate search query if the query does not return enough
+        valid search results. For example, passing "Koldplay" to this request
+        will result in a fuzzy match of "Coldplay".
+      arguments:
+        - type: string
+          description: The search query.
+      returns:
+        type: object
+        fields:
+          - name: fuzzyMatch
+            type: string
+            description: |
+              The fuzzy match for the given search query. If the implementation
+              does not provide fuzzy matches or if it cannot provide one for the
+              given query this field should be set to null.
+
+    - name: search_playlists_snapshot
+      description: |
+        Returns a snapshot of the playlists fully matching the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of playlists in the search results. Not the same
+              as the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the playlists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: search_tracks_snapshot
+      description: |
+        Returns a snapshot of the tracks fully matching the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of tracks in the search results. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: suggest_albums_snapshot
+      description: |
+        Returns a snapshot of the albums matching parts of the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of albums in the search results. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the albums in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: suggest_artists_snapshot
+      description: |
+        Returns a snapshot of the artists matching parts of the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of artists in the search results. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the artists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: suggest_playlists_snapshot
+      description: |
+        Returns a snapshot of the playlists matching parts of the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of playlists in the search results. Not the same
+              as the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the playlists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: suggest_tracks_snapshot
+      description: |
+        Returns a snapshot of the tracks matching parts of the search query.
+      arguments:
+        - type: string
+          description: The search query.
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of tracks in the search results. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+- group: Session
+  requests:
+    - name: session_event_wait
+      description: TBD
+      arguments: none
+      returns: TBD
+
+    - name: session_query
+      description: Asks for the complete state of the client session.
+      arguments: none
+      returns:
+        type: object
+        fields:
+          - name: connecting
+            type: boolean
+            description: |
+              If the client is not online, this field will be set if the client
+              is trying to connect to the Spotify servers.
+          - name: connection
+            type: string
+            description: |
+              The network connection type. One of "none", "gprs", "edge", "3g",
+              "wlan", "ethernet" and "unknown". More types will be added in the
+              future as more connectivity options become available.
+          - name: country
+            type: string
+            description: |
+              The country that the currently logged in user is registered in, as
+              a two-letter ISO 3166-1 country code.
+          - name: developer
+            type: boolean
+            description: |
+              Indicates if the currently logged in user is a developer account.
+          - name: device
+            type: string
+            description: |
+              The class of the device that the application is executing on. One
+              of "mobile", "tablet", "desktop", "web", "tv" and "unknown". More
+              types will be added in the future as new device classes become
+              available.
+          - name: incognito
+            type: boolean
+            description: |
+              Set if the currently logged in user has instructed the client to
+              not broadcast any activity publically.
+          - name: language
+            type: string
+            description: |
+              The language that the Spotify client is currently using, as a
+              two-letter ISO 639-1 language code.
+          - name: online
+            type: boolean
+            description: |
+              Indicates if the client has a connection to the Spotify servers or
+              not. This can be false either be because the connection was lost,
+              or because the client was manually put in offline mode.
+          - name: partner
+            type: string
+            description: |
+              If the currently logged in user's account is currently being
+              provided through a partner, this field will exist and hold the
+              partner identifier.
+          - name: product
+            type: string
+            description: |
+              The currently logged in user's account product,
+              e.g., premium/daypass/free.
+          - name: resolution
+            type: number
+            description: |
+              The resolution of the main screen of the device that the
+              application is running on. The resolution is defined in CSS pixel
+              units, meaning that a resolution of 2 would equal two device
+              pixels per one CSS pixel. This is corresponds to running the
+              application on a device with a High-DPI display, such as an
+              iPhone 4 or iPad 3. On regular resolution displays, the resolution
+              is 1.
+          - name: streaming
+            type: string
+            description: |
+              Contains what music streaming rules the user is currently under.
+              "disabled" means no streaming is allowed, "enabled" means
+              streaming of music is permitted, "dmca-radio" means that streaming
+              of music is restricted to only DMCA radio.
+          - name: testGroup
+            type: number
+            description: |
+              The AB test group that the currently logged in user belongs to.
+              Must be an integer.
+          - name: user
+            type: object
+            description: |
+              A metadata object for the currently logged in user. Only the "uri"
+              field is required.
+          - name: capabilities
+            type: object
+            description: |
+              A dictionary of the capabilities of the current session.
+            fields:
+              - name: offlineSync
+                type: boolean
+                description: |
+                  Indicates whether the user can offline sync tracks.
+    - name: session_test_group
+      description: |
+        Returns a test group for the user from zero to 999.
+        By using unique salts for each A/B test you run you guarantee that there
+        is no correlation between the test groups generated.
+        An empty salt returns the same number as the property testGroup.
+      arguments:
+        - name: salt
+        - type: string
+          description: A string denoting the name of the test, or any other string,
+            you want to generate test groups for. The key is that different tests
+            should have different salts, so that groupings between tests are not
+            correlated. If the salt is empty, the returned group is the same as
+            the testGroup property on the session_query object.
+      returns:
+        - type: number
+          description: A number from zero to 999 denoting the test group.
+
+- group: Top List
+  requests:
+    - name: toplist_region_albums_snapshot
+      description: |
+        Returns a snapshot of the most popular albums in a region. If no region
+        is given, the currently logged in user's region is used. The region name
+        'global' can be used to get the global toplist.
+      arguments:
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular albums in the region. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the albums in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: toplist_region_artists_snapshot
+      description: |
+        Returns a snapshot of the most popular artists in a region. If no region
+        is given, the currently logged in user's region is used. The region name
+        'global' can be used to get the global toplist.
+      arguments:
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular artists in the region. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the artists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: toplist_region_tracks_snapshot
+      description: |
+        Returns a snapshot of the most popular tracks in a region. If no region
+        is given, the currently logged in user's region is used. The region name
+        'global' can be used to get the global toplist.
+      arguments:
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+        - type: TBD
+          description: TBD
+      returns:
+        - type: object
+          fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular tracks in the region. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: toplist_user_albums_snapshot
+      description: |
+        Returns a snapshot of the most popular albums for a user. If no user is
+        given, the current user is used.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first album to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        - type: object
+          fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular albums for the user. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the albums in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: toplist_user_artists_snapshot
+      description: |
+        Returns a snapshot of the most popular artists for a user. If no user is given, the
+        current user is used.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first artist to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        - type: object
+          fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular artists for the user. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the artists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: toplist_user_playlists_snapshot
+      description: |
+        Returns a snapshot of the most popular playlists owned by a user. If no user is
+        given, the current user is used.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first playlist to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        - type: object
+          fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular playlists for the user. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the playlists in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: toplist_user_tracks_snapshot
+      description: |
+        Returns a snapshot of the most popular tracks for a user. If no user is
+        given, the current user is used.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: The offset of the first track to return.
+        - type: number
+          description: The maximum length of the snapshot.
+        - type: boolean
+          description: |
+            Whether to make a raw snapshot or not. Raw snapshots will never
+            include any partial metadata.
+      returns:
+        - type: object
+          fields:
+          - name: length
+            type: number
+            description: |
+              The total number of popular tracks for the user. Not the same as
+              the length of the snapshot.
+          - name: array
+            type: array
+            description: An array of URIs for the tracks in the snapshot.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the URIs in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+- group: Track
+  requests:
+    - name: track_metadata
+      description: Returns simple metadata for the track with the given URI.
+      arguments:
+        - type: string
+          description: The track URI.
+      returns:
+        type: object
+        fields:
+          - name: advertisement
+            type: boolean
+            description: |
+              Whether or not the track is an advertisement. Advertisement
+              cannot be skipped and changing the volum will pause the playback
+              of the track.
+          - name: album
+            type: string
+            description: The URI of the album the track appears on.
+          - name: artists
+            type: array
+            description: |
+              An array of URIs for all artists that were involved in making the
+              track. There is no particular order of the artists.
+          - name: availability
+            type: string
+            description: |
+              Describes how and when the track is available for playback for the
+              currently logged in user.
+              The value will be one of: "available", "banned", "regional",
+              "premium", "unavailable".
+              "available" means that the track can be played.
+              "banned" means that the artist has chosen to not make the track
+              available.
+              "regional" means that the track is playable in other regions but
+              not in the region of the currently logged in user.
+              "premium" means that the user must upgrade to a premium account in
+              order to play the track, and "unavailable" which means the track
+              is unavailable for other reasons.
+          - name: disc
+            type: number
+            description: |
+              The disc the track appears on, for multi-disc albums.
+          - name: duration
+            type: number
+            description: The duration of the track, in milliseconds.
+          - name: explicit
+            type: boolean
+            description: |
+              True if the track should be displayed with a label indicating
+              that it contains explicit lyrics. May not be set in all regions.
+          - name: image
+            type: string
+            description: |
+              The URL for the track image. Not present if the track is missing
+              an image.
+          - name: local
+            type: boolean
+            description: |
+              Whether or not the track is based of a local file on the user's
+              computer. If the current platform does not support local file,
+              this will always be false.
+          - name: name
+            type: string
+            description: The human readable title of the track.
+          - name: number
+            type: number
+            description: The track number as it is ordered on the album.
+          - name: placeholder
+            type: boolean
+            description: |
+              Whether or not the track is a placeholder track. A placeholder
+              track is created in playlists that have track references that
+              cannot be resolved.
+          - name: playable
+            type: boolean
+            description: |
+              True if this track can be played by the current user, otherwise
+              false.
+          - name: popularity
+            type: number
+            description: |
+              The popularity rating of the track; between 0 and 100. What
+              popularity means and how it is calculated is implementation
+              dependent. The popularity can be used to sort search results and
+              present to the user but there should not be any expectations on
+              the actual meaning of it.
+          - name: starred
+            type: boolean
+            description: |
+              True if this track is starred by the user; otherwise false.
+    - name: track_event_wait_any
+      description: |
+        Wait for any track change event. These are fired when a track gets
+        relinked, starred or changes any other metadata.
+- group: User
+  requests:
+    - name: user_metadata
+      description: Returns simple metadata for the user with the given URI.
+      arguments:
+        - type: string
+          description: The user URI.
+      returns:
+        type: object
+        fields:
+          - name: currentUser
+            type: boolean
+            description: |
+              Indicates whether the user is the current session user.
+          - name: identifier
+            type: string
+            description: |
+              An anonymous identifier for the user. This field must only be set
+              for the currently logged in user. It is calculated as
+              SHA1(applocation name + canonical username).
+          - name: name
+            type: string
+            description: The human readable name of the user.
+          - name: image
+            type: string
+            description: |
+              The URL for the user portrait. Not present if the user is missing
+              a portrait.
+          - name: username
+            type: string
+            description: The canonical username of the user.
+    - name: user_associated_artist
+      description: |
+        Returns the artist URI for the artist associated with the user profile URI,
+        if any association exists.
+      arguments:
+        - type: string
+          description: User URI.
+      returns:
+        type: string
+        description: The Artist URI.

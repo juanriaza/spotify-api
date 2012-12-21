@@ -1,0 +1,53 @@
+[
+	{
+		"name": "songkickconcerts",
+		"url": {
+			"en": "/assets/img/banners/songkickconcerts.jpg"
+		},
+		"SupportedLanguages": [
+			"en"
+		],
+		"manifest":"{&quot;AppURL&quot;:&quot;http://www.songkick.com&quot;,&quot;VendorIcon&quot;:{&quot;128x128&quot;:&quot;images/icons/songkick-128x128.png&quot;},&quot;VendorURL&quot;:&quot;http://www.songkick.com&quot;,&quot;SupportedLanguages&quot;:[&quot;en&quot;],&quot;RequiredPermissions&quot;:[&quot;https://*.songkick.com&quot;,&quot;https://*.songkick.net&quot;,&quot;http://songkick.local&quot;,&quot;http://*.googleapis.com&quot;,&quot;http://maps.googleapis.com/*&quot;,&quot;http://www.google-analytics.com&quot;,&quot;https://s3.amazonaws.com&quot;,&quot;http://*.sk-static.com&quot;],&quot;AppName&quot;:{&quot;fr&quot;:&quot;Concerts Songkick&quot;,&quot;en&quot;:&quot;Songkick Concerts&quot;,&quot;es&quot;:&quot;Songkick Conciertos&quot;},&quot;BundleIdentifier&quot;:&quot;songkickconcerts&quot;,&quot;AppDescription&quot;:{&quot;en&quot;:&quot;Get a personalized concert calendar based on your playlists.&quot;},&quot;VendorName&quot;:&quot;Songkick&quot;,&quot;BundleVersion&quot;:&quot;1119faafa5&quot;,&quot;VendorIdentifier&quot;:&quot;com.songkick&quot;,&quot;AppIcon&quot;:{&quot;256x256&quot;:&quot;images/icons/songkick-256x256.png&quot;,&quot;16x16&quot;:&quot;images/icons/songkick-16x16.png&quot;,&quot;36x18&quot;:&quot;images/icons/songkick-36x18.png&quot;,&quot;64x64&quot;:&quot;images/icons/songkick-64x64.png&quot;,&quot;128x128&quot;:&quot;images/icons/songkick-128x128.png&quot;,&quot;32x32&quot;:&quot;images/icons/songkick-32x32.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;RequiredInterface&quot;:1}",
+		"buttonText": "",
+		"weighting": "100"
+	},
+	{
+		"name": "lastfm",
+		"url": {
+			"en": "/assets/img/banners/lastfm.jpg"
+		},
+		"SupportedLanguages": [
+			"de",
+			"es",
+			"en",
+			"fr"
+		],
+		"manifest":"{&quot;VendorIcon&quot;:&quot;&quot;,&quot;AppURL&quot;:&quot;http://www.last.fm/download/spotify&quot;,&quot;AppDescription&quot;:{&quot;fr&quot;:&quot;Recommandations personnalis\u00e9es bas\u00e9es sur la musique que vous \u00e9coutez&quot;,&quot;en&quot;:&quot;Personalised recommendations based on the music you play&quot;,&quot;de&quot;:&quot;Personalisierte Empfehlungen basierend auf der Musik, die du h\u00f6rst&quot;,&quot;es&quot;:&quot;Recomendaciones personalizadas basadas en la m\u00fasica que escuchas&quot;},&quot;VendorURL&quot;:&quot;http://www.last.fm&quot;,&quot;SupportedLanguages&quot;:[&quot;en&quot;,&quot;fr&quot;,&quot;es&quot;,&quot;de&quot;],&quot;RequiredPermissions&quot;:[&quot;http://www.audioscrobbler.com&quot;,&quot;https://ws.audioscrobbler.com&quot;,&quot;http://ws.audioscrobbler.com&quot;,&quot;http://cdn.lst.fm&quot;,&quot;http://userserve-ak.last.fm&quot;,&quot;http://www.google-analytics.com&quot;,&quot;http://b.scorecardresearch.com&quot;],&quot;AcceptedLinkTypes&quot;:[&quot;track&quot;],&quot;BundleCopyright&quot;:&quot;Last.fm Ltd 2011&quot;,&quot;BundleIdentifier&quot;:&quot;lastfm&quot;,&quot;ApiPermissions&quot;:{&quot;core&quot;:[&quot;lastfm&quot;]},&quot;AppName&quot;:{&quot;fr&quot;:&quot;Last.fm&quot;,&quot;en&quot;:&quot;Last.fm&quot;,&quot;de&quot;:&quot;Last.fm&quot;,&quot;es&quot;:&quot;Last.fm&quot;},&quot;DefaultTabs&quot;:[{&quot;arguments&quot;:&quot;route:profile&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;Aper\u00e7u&quot;,&quot;en&quot;:&quot;Overview&quot;,&quot;de&quot;:&quot;\u00dcbersicht&quot;,&quot;es&quot;:&quot;General&quot;}},{&quot;arguments&quot;:&quot;route:nowplaying&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;En Lecture&quot;,&quot;en&quot;:&quot;Now Playing&quot;,&quot;de&quot;:&quot;Gerade l\u00e4uft&quot;,&quot;es&quot;:&quot;En Reproducci\u00f3n&quot;}},{&quot;arguments&quot;:&quot;route:recommended&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;Recommandations&quot;,&quot;en&quot;:&quot;Recommended&quot;,&quot;de&quot;:&quot;Empfehlungen&quot;,&quot;es&quot;:&quot;Recomendaciones&quot;}},{&quot;arguments&quot;:&quot;route:topalbums&quot;,&quot;title&quot;:{&quot;fr&quot;:&quot;Albums&quot;,&quot;en&quot;:&quot;Albums&quot;,&quot;de&quot;:&quot;Alben&quot;,&quot;es&quot;:&quot;\u00c1lbumes&quot;}}],&quot;VendorName&quot;:&quot;Last.fm Ltd&quot;,&quot;BundleVersion&quot;:&quot;1.0.8&quot;,&quot;SupportsOffline&quot;:&quot;false&quot;,&quot;VendorIdentifier&quot;:&quot;last.fm&quot;,&quot;AppIcon&quot;:{&quot;64x64&quot;:&quot;img/spotify_icon_64.png&quot;,&quot;128x128&quot;:&quot;img/spotify_icon_128.png&quot;,&quot;36x18&quot;:&quot;img/spotify_icon_36x18.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;RequiredInterface&quot;:1}",		"buttonText": "",
+		"weighting": "100"
+	},
+	{
+		"name": "soundrop",
+		"url": {
+			"en": "/assets/img/banners/soundrop.jpg"
+		},
+		"SupportedLanguages": [
+			"en"
+		],
+		"manifest":"{&quot;AppURL&quot;:&quot;http://www.soundrop.fm/&quot;,&quot;VendorIcon&quot;:{&quot;128x128&quot;:&quot;1/img/soundrop-icon-128.png&quot;},&quot;VendorURL&quot;:&quot;http://www.soundrop.com/&quot;,&quot;SupportedLanguages&quot;:[&quot;en&quot;],&quot;RequiredPermissions&quot;:[&quot;http://*.soundrop.fm&quot;,&quot;https://*.soundrop.fm&quot;,&quot;http://*.facebook.com&quot;,&quot;https://*.facebook.com&quot;,&quot;http://*.google-analytics.com&quot;,&quot;https://*.google-analytics.com&quot;],&quot;AppName&quot;:{&quot;en&quot;:&quot;Soundrop&quot;},&quot;BundleCopyright&quot;:&quot;2011 Soundrop AS. All rights reserved.&quot;,&quot;BundleIdentifier&quot;:&quot;soundrop&quot;,&quot;AppDescription&quot;:{&quot;en&quot;:&quot;Listen with friends and other Spotify users.&quot;},&quot;AcceptedLinkTypes&quot;:[&quot;track&quot;],&quot;RequiredInterface&quot;:1,&quot;BundleVersion&quot;:&quot;1.4.1.0.g4cb38e3&quot;,&quot;VendorIdentifier&quot;:&quot;com.soundrop&quot;,&quot;AppIcon&quot;:{&quot;64x64&quot;:&quot;1/img/soundrop-icon-64.png&quot;,&quot;128x128&quot;:&quot;1/img/soundrop-icon-128.png&quot;,&quot;36x18&quot;:&quot;1/img/soundrop-icon-18.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;VendorName&quot;:&quot;Soundrop AS&quot;}",
+		"buttonText": "",
+		"bannerText": "",
+		"weighting": "100"
+	},
+	{
+		"name": "top10",
+		"url": {
+			"en": "/assets/img/banners/top10.jpg"
+		},
+		"SupportedLanguages": [
+			"en"
+		],
+		"manifest":"{&quot;SupportedLanguages&quot;:[&quot;en&quot;],&quot;RequiredPermissions&quot;:[&quot;http://*.rackcdn.com&quot;,&quot;http://*.top10.com&quot;,&quot;http://top10.com&quot;,&quot;http://o.scdn.co&quot;,&quot;http://*.facebook.com&quot;,&quot;http://facebook.com&quot;,&quot;https://*.facebook.com&quot;,&quot;https://facebook.com&quot;,&quot;https://connect.facebook.net&quot;,&quot;http://connect.facebook.net&quot;,&quot;http://documentcloud.github.com&quot;,&quot;http://www.google-analytics.com&quot;],&quot;AppName&quot;:{&quot;en&quot;:&quot;Top10&quot;},&quot;BundleIdentifier&quot;:&quot;top10&quot;,&quot;AppDescription&quot;:{&quot;en&quot;:&quot;Create &amp; share Top10 playlists of the music you love!&quot;},&quot;BundleVersion&quot;:&quot;1.0.4&quot;,&quot;SupportsOffline&quot;:&quot;false&quot;,&quot;VendorIdentifier&quot;:&quot;com.top10&quot;,&quot;AppIcon&quot;:{&quot;64x64&quot;:&quot;64x64.png&quot;,&quot;128x128&quot;:&quot;128x128.png&quot;,&quot;36x18&quot;:&quot;36x18.png&quot;},&quot;BundleType&quot;:&quot;Application&quot;,&quot;RequiredInterface&quot;:1}",
+		"buttonText": "",
+		"weighting": "100"
+	}
+]

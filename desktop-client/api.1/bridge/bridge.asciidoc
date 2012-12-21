@@ -1,0 +1,65 @@
+Stitch Core Bridge 1.0
+======================
+
+*****************************************************************************
+Note: All information in this document is confidential and subject to change.
+*****************************************************************************
+
+Introduction
+------------
+To simplify bringing Stitch to new platforms, including platforms where we have very little control over the browser, we decided to re-write the Stitch bridge to use a request-response model, instead of the native bindings model that we use on the desktop. As an example, the browser on iOS is very much out of our control, so the communication between the native and JavaScript layers must be very simple, yet efficient.
+
+On iOS we bring up a WebSockets server on localhost and send the messages over that channel, on desktop we use CEF to open a direct channel to the web page, and on the web we post JavaScript messages between the application frame and its parent. On other future platforms other means of communication will be used.
+
+Errors
+------
+It is possible for any request that an error occurs. The error object that is returned contains two fields: "error" and "message". The "message" field is a human-readable message that is useful while debugging applications, to get more information about what went wrong, or what error the programmer made. It should not be used for anything else and should not really be used in production code. The "error" field contains an error type that can be used by the application to decide how to recover from the error. The type is one of the following strings:
+
+aborted::
+Can happen for any request if the request is in progress when starting to shut down the client or when logging out the current user. It can also occur in other circumstances depending on the implementation of the client.
+
+timeout::
+Occurs when the request times out. This could be due to connection problems of the server answering slowly. The exact duration before the request times out is implementation dependent and also varies between different requests.
+
+transient::
+The request was formed correctly but the service could not provide a valid reply at the moment. The application is free to try the same request at a later time.
+
+rate-limited::
+The application has tried to perform too many requests in a short time period. This and likely more requests to follow have been cancelled. Note that the maximum number of requests per time unit is implementation dependent.
+
+not-connected::
+This error occurs when Spotify needs to be connected and online to be able to carry out the request, but it is currently offline. The application may choose to try again later by listening to the session events to find when Spotify goes online.
+
+not-found::
+Spotify could connect to the required service but the requested resource was not found. This error can be returned by many requests, such as metadata lookups, most playlist requests, playback requests etc.
+
+unplayable::
+The specified track or context is not playable by the logged in user. To find out why the track metadata should be fetched and inspected. This error does not happen if the track could not be played because the client is offline; only when trying to play something that is not available for the current user.
+
+play-capped::
+Playing the track is not possible since the play cap has been reached for the logged in user. The cap can be either a maximum number of tracks per month played or a maximum number of hours per month.
+
+invalid-uri::
+The URI given to the request is not a valid Spotify URI or not a valid URI in the context of the request. Among other cases this can occur when sending an artist URI to a playlist request or sending a non-Spotify URI to any request.
+
+invalid-request::
+The request was not recognized by the bridge. Either the request name was invalid or the format of the request parameters did not match the specification.
+
+out-of-date::
+Returned when trying to modify a collection with a reference (index and uri pair) that is no longer valid, This happens when a snapshot is made and the collection subsequently change before the operations to modify the collection takes place. The application should make a new snapshot and try the same operation again.
+
+forbidden::
+The request was recognized by the bridge but the running application does not have permission to make the request. This can either be that the request type itself is not allowed or that the parameters were not allowed for the request, e.g., trying to add tracks to a playlist that is not owned by the user or marked as collaborative.
+
+not-implemented::
+If a request is not yet implemented in the client this error is returned. Note that this error should never occur in a production environment, since that would mean that the bridge is not fulfilling its contract and should not have passed verification tests.
+
+hermes::
+Hermes errors have an additional field called "code", which contains the status code returned by the Hermes service. For example, 404 if the requested resource could not be found.
+
+unknown::
+When the bridge cannot report the exact reason the error occurred, this error type is used. It does not necessarily mean that the bridge does not know, just that there is no matching error type defined here or that it does not want to tell the API for some reason.
+
+Snapshots
+---------
+XXX

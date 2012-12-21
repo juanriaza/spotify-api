@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Radio</title>
+    <link href="css/radio.css" rel="stylesheet">
+    <script>sp = getSpotifyApi(1); var radio = sp.require('scripts/radio').init();</script>
+</head>
+<body>
+<a id="anchor-top"></a>
+<div id="first-time">
+    <h2>Radio stations based on what you like</h2>
+    <div>We've started you off with a station similar to your current top artist.<br/>
+    Want to hear something else? Find more stations below.</div>
+    <button class="new-button primary" id="hide-first-time">Hide Message</button>
+</div>
+<div id="offline-panel">
+</div>
+<div id="offline-error">
+    <strong>Radio is not available when Spotify is offline.</strong><br/>
+</div>
+<div id="station-error">
+    <strong>Sorry. This radio station can't be started.</strong><br/>
+    Please try with something else.
+</div>
+<section id="playing">
+    <div id="playing-header">
+        <div id="radio-seed">
+            <span></span><h2></h2>
+        </div>
+        <div id="right-header">
+            <div id="share-radio" class="button">
+                <a href="radio:share"><span id="icon"></span><span id="text">Text for Share button</span></a>
+            </div>
+            <div id="create-station">
+                <div>
+                    <div class="button">
+                        <span>Text for Create New goes here...</span>
+                        <img src="/img/icon-arrow.png"></img>
+                    </div>
+                    <div class="upArrowContainer"><div class="upArrow"></div></div>
+                </div>
+                <div class="auto-completeForm">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="playing-carousel">
+        <ul id="playing-covers">
+        </ul>
+        <div id="playing-skip">
+            <a href="radio:skip"></a>
+        </div>
+    </div>
+    <div id="playing-info">
+        <a id="radio-star" href="radio:star"></a>
+        <div id="radio-track-info">
+            <h2 id="radio-track"></h2>
+            <h2 id="radio-artist"></h2>
+        </div>
+        <div id="thumbsdown" class="thumb"></div>
+        <div id="thumbsup" class="thumb"></div>
+    </div>
+    <a id="echonest" href="http://the.echonest.com">
+        <div></div>
+        <img src="/img/echonest_logo.png"/>
+    </a>
+    <div id="loading">
+    </div>
+    <div id="loading-throbber"></div>
+</section>
+<a id="anchor-recent"></a>
+<section id="recent">
+</section>
+<a id="anchor-popular"></a>
+<section class="top-list" id="popular">
+</section>
+<a id="anchor-playlists"></a>
+<!-- <section class="top-list" id="playlists">
+</section> -->
+<a id="anchor-genres"></a>
+<section class="top-list" id="genres">
+    <h2></h2>
+    <div>
+    </div>
+</section>
+</body>
+</html>

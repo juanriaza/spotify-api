@@ -1,0 +1,396 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "nl"
+  ],
+  "strings" : {
+    "buttons" : {
+      "sFollowButtonTitle" : {
+        "approved" : false,
+        "description" : "Title for button to follow a user.",
+        "translations" : {
+          "de" : "Folgen",
+          "en" : "Follow",
+          "es" : "Seguir",
+          "fr" : "Suivre",
+          "nl" : "Volgen"
+        }
+      },
+      "sFollowedPlaceHolderTitle" : {
+        "approved" : false,
+        "description" : "Title for unclickable placeholder indicated a user just started following another.",
+        "translations" : {
+          "de" : "Gefolgt",
+          "en" : "Followed",
+          "es" : "Siguiendo",
+          "fr" : "Abonné",
+          "nl" : "Gevolgd"
+        }
+      },
+      "sViewButtonTitle" : {
+        "approved" : false,
+        "description" : "Title for button to view a user's profile.",
+        "translations" : {
+          "de" : "Besuchen",
+          "en" : "View",
+          "es" : "Ver",
+          "fr" : "Voir",
+          "nl" : "Bekijken"
+        }
+      }
+    },
+    "mainUI" : {
+      "sClearAllButton" : {
+        "approved" : false,
+        "description" : "Clear all button text",
+        "translations" : {
+          "de" : "Alle entfernen",
+          "en" : "Clear All",
+          "es" : "Limpiar todo",
+          "fr" : "Tout effacer",
+          "nl" : "Alles wissen"
+        }
+      },
+      "sLoadError" : {
+        "approved" : false,
+        "description" : "Message displayed when user has not more notifications.",
+        "translations" : {
+          "de" : "Benachrichtigungen können gerade nicht abgerufen werden. ",
+          "en" : "Sorry. We cannot get your notifications right now.",
+          "es" : "No se pueden recibir notificaciones ahora.",
+          "fr" : "Impossible d'afficher d'autres notifications pour le moment.",
+          "nl" : "Je meldingen kunnen helaas niet worden weergegeven."
+        }
+      },
+      "sNoMoreMessage" : {
+        "approved" : false,
+        "description" : "Message displayed when user has no more notifications.",
+        "translations" : {
+          "de" : "Keine Benachrichtigungen mehr.",
+          "en" : "No more notifications.",
+          "es" : "No tienes más notificaciones.",
+          "fr" : "Pas d'autres notifications.",
+          "nl" : "Geen mededelingen meer."
+        }
+      },
+      "sTitle" : {
+        "approved" : false,
+        "description" : "Title for top of notification center",
+        "translations" : {
+          "de" : "Benachrichtigungen",
+          "en" : "Notifications",
+          "es" : "Notificaciones",
+          "fr" : "Notifications",
+          "nl" : "Mededelingen"
+        }
+      }
+    },
+    "notifications" : {
+      "sNotificationBodyFriendJoined" : {
+        "approved" : false,
+        "description" : "{0} is your friends name as a link.",
+        "translations" : {
+          "de" : "{0} benutzt jetzt auch Spotify.",
+          "en" : "Your friend {0} just joined Spotify.",
+          "es" : "{0} está usando Spotify ahora.",
+          "fr" : "Votre ami {0} vient de rejoindre Spotify.",
+          "nl" : "{0} gebruikt nu ook Spotify."
+        }
+      },
+      "sNotificationBodyNewFollower" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link.",
+        "translations" : {
+          "de" : "{0} folgt dir jetzt.",
+          "en" : "{0} started following you.",
+          "es" : "{0} te ha comenzado a seguir.",
+          "fr" : "{0} vous suit.",
+          "nl" : "{0} volgt je vanaf nu."
+        }
+      },
+      "sNotificationBodyPlaylistSubscribe" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link. {1} may be a playlist name as a link or may be an empty string.",
+        "translations" : {
+          "de" : "{0} hat deine Playlist {1} abonniert.",
+          "en" : "{0} subscribed to your playlist{1}.",
+          "es" : "{0} ha agregado tu lista {1}",
+          "fr" : "{0} s'est abonné à votre playlist {1}.",
+          "nl" : "{0} is nu geabonneerd op je afspeellijst {1}."
+        }
+      },
+      "sNotificationBodyStarredSubscribe" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link.",
+        "translations" : {
+          "de" : "{0} hat deine Starred Playlist abonniert",
+          "en" : "{0} subscribed to your starred tracks.",
+          "es" : "{0} se ha suscrito a tus canciones destacadas",
+          "fr" : "{0} s'est abonné à votre sélection.",
+          "nl" : "{0} heeft zich op je Favorieten geabonneerd."
+        }
+      },
+      "sNotificationBodyToplistSubscribe" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link.",
+        "translations" : {
+          "de" : "{0} hat deine Top-Titel abonniert.",
+          "en" : "{0} subscribed to your top tracks.",
+          "es" : "{0} se ha suscrito a tus canciones favoritas.",
+          "fr" : "'{0} s'est abonné à votre Top titres.",
+          "nl" : "{0} heeft zich geabonneerd op je topnummers."
+        }
+      },
+      "sNotificationBodyPlaylistUpdatedPlural" : {
+        "approved" : false,
+        "description" : "{0} is the person who owns the playlist. {2} is the number of tracks added. {1} is the playlist name",
+        "translations" : {
+          "de" : "{0} hat {2} Titel zu {1} hinzugefügt.",
+          "en" : "{0} added {2} tracks to {1}.",
+          "es" : "{0} añadió {2} canciones a {1}.",
+          "fr" : "{0} a ajouté {2} titres dans {1}.",
+          "nl" : "{0} heeft {2} nummers aan {1} toegevoegd."
+        }
+      },
+      "sNotificationBodyPlaylistUpdatedSingular" : {
+        "approved" : false,
+        "description" : "{0} is the person who owns the playlist. {1} is the playlist name",
+        "translations" : {
+          "de" : "{0} hat einen Titel zu {1} hinzugefügt.",
+          "en" : "{0} added a track to {1}.",
+          "es" : "{0} agregó una canción a {1}.",
+          "fr" : "{0} a ajouté un titre dans {1}.",
+          "nl" : "{0} heeft een nummer aan {1} toegevoegd."
+        }
+      },
+      "sNotificationBodyStarredTracksUpdatedName" : {
+        "approved" : false,
+        "description" : "Used in the sNotificationBodyPlaylistUpdatedPlural and sNotificationBodyPlaylistUpdatedSingular strings.",
+        "translations" : {
+          "de" : "Starred",
+          "en" : "Starred",
+          "es" : "Destacadas",
+          "fr" : "Sélection",
+          "nl" : "Favorieten"
+        }
+      },
+      "sNotificationBodyToplistUpdatedName" : {
+        "approved" : false,
+        "description" : "Used in the sNotificationBodyPlaylistUpdatedPlural and sNotificationBodyPlaylistUpdatedSingular strings.",
+        "translations" : {
+          "de" : "Top-Titel",
+          "en" : "Top Tracks",
+          "es" : "Canciones favoritas",
+          "fr" : "Top titres",
+          "nl" : "Topnummers"
+        }
+      },
+      "sNotificationBodyAlbumReleased" : {
+        "approved" : false,
+        "description" : "{0} is the album name, {1} the artist name",
+        "translations" : {
+          "de" : "",
+          "en" : "{0} by {1} is now available on Spotify",
+          "es" : "",
+          "fr" : "",
+          "nl" : ""
+        }
+      }
+
+    },
+    "systemNotifications" : {
+      "sBodyFriendJoined" : {
+        "approved" : false,
+        "description" : "Body for friend joined notification (in system notifier like Growl). {0} is the friend's name.",
+        "translations" : {
+          "de" : "{0} benutzt jetzt Spotify.",
+          "en" : "{0} just joined Spotify.",
+          "es" : "{0} está usando Spotify ahora.",
+          "fr" : "{0} vient de rejoindre Spotify.",
+          "nl" : "{0} gebruikt nu ook Spotify."
+        }
+      },
+      "sBodyNewFollower" : {
+        "approved" : false,
+        "description" : "Body for new follower notification (in system notifier like Growl). {0} is the new followers name.",
+        "translations" : {
+          "de" : "{0} folgt dir jetzt.",
+          "en" : "{0} is now following you.",
+          "es" : "{0} te está siguiendo.",
+          "fr" : "{0} vous suit.",
+          "nl" : "{0} volgt je vanaf nu."
+        }
+      },
+      "sBodyPlaylistSubscribe" : {
+        "approved" : false,
+        "description" : "Body for playlist subscribe notification (in system notifier like Growl). {0} is the new subscribers name.",
+        "translations" : {
+          "de" : "{0} hat eine deiner Playlists abonniert. ",
+          "en" : "{0} has just subscribed to one of your playlists.",
+          "es" : "{0} se ha suscrito a una de tus playlists.",
+          "fr" : "{0} s'est abonné à une de vos playlists.",
+          "nl" : "{0} is geabonneerd op een van je afspeellijsten."
+        }
+      },
+      "sBodyPlaylistUpdated" : {
+        "approved" : false,
+        "description" : "Body for playlist updated notification (in system notifier like Growl). {0} playlist owner's name.",
+        "translations" : {
+          "de" : "{0} hat Titel zu einer Playlist, die du abonniert hast, hinzugefügt. ",
+          "en" : "{0} added some tracks to a playlist you follow.",
+          "es" : "{0} ha añadido algunas canciones a una playlist que sigues.",
+          "fr" : "{0} a ajouté des titres dans une playlist à laquelle vous êtes abonné.",
+          "nl" : "{0} heeft nummers toegevoegd aan een afspeellijst waar je op geabonneerd bent."
+        }
+      },
+      "sTitleFriendJoined" : {
+        "approved" : false,
+        "description" : "Title for friend joined notification (in system notifier like Growl)",
+        "translations" : {
+          "de" : "Neuer Freund auf Spotify",
+          "en" : "Friend Joined",
+          "es" : "Nuevo amigo en Spotify",
+          "fr" : "Un nouvel ami dans Spotify",
+          "nl" : "Nieuwe vriend bij Spotify"
+        }
+      },
+      "sTitleNewFollower" : {
+        "approved" : false,
+        "description" : "Title for new follower notification (in system notifier like Growl)",
+        "translations" : {
+          "de" : "Neuer Follower",
+          "en" : "New Follower",
+          "es" : "Nuevo seguidor",
+          "fr" : "Un nouvel abonné",
+          "nl" : "Nieuwe volger"
+        }
+      },
+      "sTitlePlaylistSubscribe" : {
+        "approved" : false,
+        "description" : "Title for playlist subscribe notification (in system notifier like Growl)",
+        "translations" : {
+          "de" : "Neuer Abonnent",
+          "en" : "New Subscriber",
+          "es" : "Nuevo suscriptor",
+          "fr" : "Un nouvel abonné à une playlist",
+          "nl" : "Nieuwe abonnee"
+        }
+      },
+      "sTitlePlaylistUpdated" : {
+        "approved" : false,
+        "description" : "Title for playlist updated notification (in system notifier like Growl)",
+        "translations" : {
+          "de" : "Playlist aktualisiert",
+          "en" : "Playlist Updated",
+          "es" : "Playlist actualizada",
+          "fr" : "Mise à jour d'une playlist",
+          "nl" : "Afspeellijst bijgewerkt"
+        }
+      }
+    },
+    "time" : {
+      "s1Hour" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Vor ca. 1 Stunde",
+          "en" : "About 1 hour ago",
+          "es" : "Hace casi una hora",
+          "fr" : "Il y a 1 heure",
+          "nl" : "Ongeveer 1 uur geleden"
+        }
+      },
+      "s1Minute" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Vor ca. 1 Minute",
+          "en" : "About 1 minute ago",
+          "es" : "hace un minuto",
+          "fr" : "Il y a 1 minute",
+          "nl" : "Ongeveer 1 minuut geleden"
+        }
+      },
+      "sDaysAgo" : {
+        "approved" : false,
+        "description" : "{0} is number of days",
+        "translations" : {
+          "de" : "Vor {0} Tagen",
+          "en" : "{0} days ago",
+          "es" : "hace {0} días",
+          "fr" : "Il y a {0} jours",
+          "nl" : "{0} dagen geleden"
+        }
+      },
+      "sHoursAgo" : {
+        "approved" : false,
+        "description" : "{0} is number of hours",
+        "translations" : {
+          "de" : "Vor {0} Stunden",
+          "en" : "{0} hours ago",
+          "es" : "hace {0} horas",
+          "fr" : "Il y a {0} heures",
+          "nl" : "{0} uur geleden"
+        }
+      },
+      "sJustNow" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Gerade eben",
+          "en" : "Just now",
+          "es" : "hace un momento",
+          "fr" : "A l'instant",
+          "nl" : "Zojuist"
+        }
+      },
+      "sMinutesAgo" : {
+        "approved" : false,
+        "description" : "{0} is number of minutes",
+        "translations" : {
+          "de" : "Vor {0} Minuten ",
+          "en" : "{0} minutes ago",
+          "es" : "hace {0} minutos",
+          "fr" : "Il y a {0} minutes",
+          "nl" : "{0} minuten geleden"
+        }
+      },
+      "sOverAYear" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Vor über einem Jahr",
+          "en" : "Over a year ago",
+          "es" : "hace más de un año",
+          "fr" : "Il y a plus d'un an",
+          "nl" : "Meer dan een jaar geleden"
+        }
+      },
+      "sSecondsAgo" : {
+        "approved" : false,
+        "description" : "{0} is number of seconds",
+        "translations" : {
+          "de" : "Vor {0} Sekunden",
+          "en" : "{0} seconds ago",
+          "es" : "hace {0} segundos",
+          "fr" : "Il y a {0} secondes",
+          "nl" : "{0} seconden geleden"
+        }
+      },
+      "sYesterday" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Gestern",
+          "en" : "Yesterday",
+          "es" : "ayer",
+          "fr" : "Hier",
+          "nl" : "Gisteren"
+        }
+      }
+    }
+  }
+}

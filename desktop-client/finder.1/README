@@ -1,0 +1,30 @@
+                               SPOTIFY PROJECT
+                              -----------------
+
+
+Copyright (c) 2011 Spotify AB
+
+THIS REPOSITORY IS THE PROPERTY OF SPOTIFY AB
+UNAUTHORIZED ACCESS TO THIS DATA IS STRICTLY PROHIBITED.
+
+README Template Version 7
+
+Project     : App Finder
+Maintainer  : Richard Eklund <rille@spotify.com>
+Guild       : Web Development <web-dev@spotify.com>
+Dependencies: Stitch core, Hermes (Appstore service)
+Related     :
+System      : Stitch
+Environment : HTML, CSS, JavaScript
+
+DESCRIPTION
+------------
+
+Stitch application displaying released third party applications retrieved from the App Finder service.
+
+DOCUMENTATION
+-------------
+
+Documentation for this project should be found in the doc directory.
+Information on how Spotify projects should be documented is available on https://techdoc.spotify.net/projbooks/docs/
+

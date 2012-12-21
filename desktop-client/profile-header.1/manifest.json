@@ -1,0 +1,53 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "playlist": [
+            "private"
+        ],
+        "social": [
+            "private"
+        ],
+        "tutorial": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "de": "This application is rendered on the top of the profile page.",
+        "en": "This application is rendered on the top of the profile page.",
+        "es": "This application is rendered on the top of the profile page.",
+        "fr": "This application is rendered on the top of the profile page.",
+        "nl": "This application is rendered on the top of the profile page."
+    },
+    "AppName": {
+        "de": "Profile header",
+        "en": "Profile header",
+        "es": "Profile header",
+        "fr": "Profile header",
+        "nl": "Profile header"
+    },
+    "BundleIdentifier": "profile-header",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.3",
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "unstable": "0.1.0",
+        "util": "0.1.0"
+    },
+    "PlaybackOwner": false,
+    "RequiredPermissions": [
+        "https://graph.facebook.com",
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net"
+    ],
+    "SupportedLanguages": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "nl"
+    ],
+    "UserInstallable": false
+}

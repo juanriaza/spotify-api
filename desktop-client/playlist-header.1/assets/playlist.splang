@@ -1,0 +1,280 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "nl"
+  ],
+  "strings" : {
+    "header" : {
+      "sAvailableOffline" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Offline verfügbar",
+          "en" : "Available Offline",
+          "es" : "Disponible en Modo Offline",
+          "fr" : "Disponible hors connexion",
+          "nl" : "Beschikbaar offline"
+        }
+      },
+      "sBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "de",
+          "fr" : "par",
+          "nl" : "van"
+        }
+      },
+      "sByYou" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr"
+        ],
+        "translations" : {
+          "de" : "von dir",
+          "en" : "by you",
+          "es" : "por ti",
+          "fr" : "par vous",
+          "nl" : "van jou"
+        }
+      },
+      "sDay" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Tag",
+          "en" : "day",
+          "es" : "día",
+          "fr" : "jour",
+          "nl" : "dag"
+        }
+      },
+      "sDays" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Tage",
+          "en" : "days",
+          "es" : "días",
+          "fr" : "jours",
+          "nl" : "dagen"
+        }
+      },
+      "sFriendSubscribing" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Freund hat abonniert ",
+          "en" : "friend subscribing",
+          "es" : "amigo suscrito",
+          "fr" : "ami est abonné",
+          "nl" : "vriend is geabonneerd"
+        }
+      },
+      "sFriendsSubscribing" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Freunde haben abonniert",
+          "en" : "friends subscribing",
+          "es" : "amigos suscritos",
+          "fr" : "amis sont abonnés",
+          "nl" : " vrienden zijn geabonneerd"
+        }
+      },
+      "sGetPlaylist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlist kaufen",
+          "en" : "Get Playlist",
+          "es" : "Descargar lista",
+          "fr" : "Acheter la playlist",
+          "nl" : "Afspeellijst downloaden"
+        }
+      },
+      "sHour" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Stunde",
+          "en" : "hour",
+          "es" : "hora",
+          "fr" : "heure",
+          "nl" : "uur"
+        }
+      },
+      "sHours" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Stunden",
+          "en" : "hours",
+          "es" : "horas",
+          "fr" : "heures",
+          "nl" : "uur"
+        }
+      },
+      "sIncludingArtists" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "de" : "Mit",
+          "en" : "Including artists",
+          "es" : "Incluye a los siguientes artistas",
+          "fr" : "Avec",
+          "nl" : "Bevat artiesten"
+        },
+        "translationsNeedingReview" : [
+          "en"
+        ]
+      },
+      "sMinute" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Minute",
+          "en" : "minute",
+          "es" : "minute",
+          "fr" : "minuto",
+          "nl" : "minuut"
+        }
+      },
+      "sMinutes" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Minuten",
+          "en" : "minutes",
+          "es" : "minutos",
+          "fr" : "minutes",
+          "nl" : "minuten"
+        }
+      },
+      "sPlaylistRadio" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlist-Radio",
+          "en" : "Playlist Radio",
+          "es" : "Radio de playlist",
+          "fr" : "Radio de la playlist",
+          "nl" : "Afspeellijst radio"
+        }
+      },
+      "sSecond" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sekunde",
+          "en" : "second",
+          "es" : "segungo",
+          "fr" : "seconde",
+          "nl" : "seconde"
+        }
+      },
+      "sSeconds" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sekunden",
+          "en" : "seconds",
+          "es" : "segundos",
+          "fr" : "secondes",
+          "nl" : "seconden"
+        }
+      },
+      "sShare" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Teilen",
+          "en" : "Share",
+          "es" : "Compartir",
+          "fr" : "Partager",
+          "nl" : "Delen"
+        }
+      },
+      "sSubscribe" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abonnieren",
+          "en" : "Subscribe",
+          "es" : "Subscribirme",
+          "fr" : "Ajouter à mes playlists",
+          "nl" : "Abonneren"
+        }
+      },
+      "sSubscriber" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abonnent",
+          "en" : "Subscriber",
+          "es" : "Suscriptor",
+          "fr" : "Abonné",
+          "nl" : "Abonnee"
+        }
+      },
+      "sSubscribers" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abonnenten",
+          "en" : "Subscribers",
+          "es" : "Suscriptores",
+          "fr" : "Abonnés",
+          "nl" : "Abonnees"
+        }
+      },
+      "sTrack" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "track",
+          "es" : "canción",
+          "fr" : "titre",
+          "nl" : "nummer"
+        }
+      },
+      "sTracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "tracks",
+          "es" : "canciones",
+          "fr" : "titres",
+          "nl" : "nummers"
+        }
+      },
+      "sUnsubscribe" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abonnement beenden",
+          "en" : "Unsubscribe",
+          "es" : "Eliminar suscripción",
+          "fr" : "Retirer de mes playlists",
+          "nl" : "Abonnement opzeggen"
+        }
+      }
+    }
+  }
+}

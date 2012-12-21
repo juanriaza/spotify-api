@@ -1,0 +1,17 @@
+{
+  "artists": "Artistes",
+  "albums": "Albums",
+  "playlists": "Playlists",
+  "tracks": "Titres",
+  "search-paragraph-results": "Résultats correspondant à {0}.",
+  "search-paragraph-albums": "Albums correspondant à {0}.",
+  "search-paragraph-artists": "Artistes correspondant à {0}.",
+  "search-paragraph-tracks": "Titres correspondant à {0}.",
+  "search-paragraph-playlists": "Playlists correspondant à {0}.",
+  "did-you-mean": "Voulez-vous dire {0}?",
+  "empty-search-result": "Aucun résultat pour {0}.",
+  "empty-search": "Ce mot-clé est trop long, essayez un mot plus court.",
+  "snapshot-failed": "Une erreur est survenue. Merci de relancer votre recherche.",
+  "no-tracks": "Nous n'avons trouvé aucun titre correspondant à votre recherche. Vérifiez l’orthographe de chaque mot. Vous pouvez aussi simplifier votre recherche.",
+  "see-all": "Voir tous les résultats"
+}

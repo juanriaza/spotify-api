@@ -1,0 +1,104 @@
+@import url("sp://resources/css/adam.css");
+@import url("sp://resources/css/api.css");
+
+body {
+  position : fixed;
+  left     : 0;
+  top      : 0;
+  right    : 0;
+  bottom   : 0;
+  overflow : hidden;
+}
+
+.suggest {
+  background       : rgba(255, 255, 255, .9);
+  background-image : -webkit-linear-gradient(left,
+    rgba(238, 238, 238, .9),
+    rgba(238, 238, 238, .9) 27px,
+    rgba(225, 225, 225, .9) 28px,
+    rgba(255, 255, 255, .9) 29px);
+  border             : 1px solid rgba(0, 0, 0, .6);
+  width              : 100%;
+  position           : absolute;
+  display            : block;
+  overflow           : hidden;
+  font-family        : "Lucida Grande", Helvetica, Arial, "Helvetica Neue";
+  text-shadow        : initial;
+  -webkit-box-sizing : border-box;
+  box-sizing         : border-box;
+  
+  padding: 8px 0px;
+}
+
+.windows .suggest {
+  border-radius : 7px 7px 4px 4px;
+}
+
+/* Heading */
+.suggest div.tophit    { background: url("sp://resources/img/tophit.png")          5px 6px no-repeat; }
+.suggest div.artists   { background: url("sp://resources/img/artists.png")         5px 6px no-repeat; }
+.suggest div.albums    { background: url("sp://resources/img/albums.png")          5px 6px no-repeat; }
+.suggest div.tracks    { background: url("sp://resources/img/tracks.png")          5px 6px no-repeat; }
+.suggest div.playlists { background: url("sp://resources/img/playlist.png")        5px 6px no-repeat; }
+.suggest div.users     { background: url("sp://resources/img/artists.png")         5px 6px no-repeat; }
+.suggest div.recent    { background: url("sp://resources/img/recent-searches.png") 7px 7px no-repeat; }
+.suggest div {
+  padding-left  : 35px;
+  margin-bottom : -5px;
+  line-height   : 30px;
+  color         : rgba(0, 0, 0, .4);
+  font-size     : 11px;
+  font-weight   : normal;
+  display       : block;
+  white-space   : nowrap;
+}
+
+/* Result */
+.suggest a {
+  padding-left    : 35px;
+  line-height     : 24px;
+  color           : rgba(45, 45, 45, 0.9);
+  font-size       : 12px;
+  position        : relative;
+  display         : block;
+  text-decoration : none;
+  cursor          : default;
+  overflow        : hidden;
+  text-overflow   : ellipsis;
+  white-space     : nowrap;
+}
+
+.suggest a.selected {
+  background  : -webkit-linear-gradient(rgb(197, 232, 253), rgb(178, 223, 251) 1px, rgb(154, 210, 250) 15px);
+}
+
+/* Cover */
+.suggest a img {
+  position     : relative;
+  top          : 4px;
+  margin-right : 5px;
+  width        : 20px;
+  height       : 20px;
+  outline      : 1px solid rgba(225, 225, 225, .9);
+}
+
+.suggest img.all, .suggest a.selected img {
+  outline : 0;
+}
+
+/* by ... */
+.suggest a span {
+  color       : rgba(0, 0, 0, .4);
+  text-shadow : none;
+}
+
+.suggest a.selected span {
+  font-weight : normal;
+}
+
+/* Separator */
+hr {
+  border           : 0;
+  background-color : rgba(238, 238, 238, .9);
+  height           : 1px;
+}

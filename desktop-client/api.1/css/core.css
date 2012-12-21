@@ -1,0 +1,27 @@
+html {
+	font: 12px/1.42 'Helvetica Neue', Arial, sans-serif;
+	background-color: #ecebe8;
+	color: #343434;
+}
+
+a {
+	-webkit-user-drag: element;
+}
+
+.sp-dnd-tooltip {
+	background: #fff;
+	border: 1px solid #000;
+	color: #000;
+	font-size: 11px;
+	line-height: 18px;
+	max-width: 100%;
+	opacity: 0.99;
+	padding: 0 4px;
+	position: fixed;
+	text-shadow: initial;
+	z-index: -1;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

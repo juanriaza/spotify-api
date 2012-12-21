@@ -1,0 +1,56 @@
+Developing the Radio stitch app
+===============================
+Sriram Malladi <sriram@spotify.com>
+
+Files
+-----
+This is a description of the javascript files used in the project.
+
+radio.js
+~~~~~~~~
+This is the main javascript file for the app. Most of the logic and ui code is here in a class called Radio. Some of the important methods in this are as follows.
+
+init
+^^^^
+Sets up everything - handlers for various events; rows for the recent stations, top tracks/artists; the genre cloud; the search button etc. Registers hermes schemas. 
+
+_loadStationFromArguments
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Starts a radio from the arguments, if any. These are passed in when the user comes to the radio through a radio link (spotify:radio:... or spotify:app:radio:....) or by clicking something in the native client. 
+
+_loadStationFromLinksChanged
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Starts a radio from the links, if any. These are passed in when the user comes to the radio by dragging a link onto the radio link in the sidebar.
+
+_hermes
+^^^^^^^
+Makes a hermes call. Usually to get a new radio given a seed.
+
+_loadStation
+^^^^^^^^^^^^
+Parses the hermes response and loads a station.
+
+_stationAvailable
+^^^^^^^^^^^^^^^^^
+Called after a station has been loaded. Updates the ui and starts playing if necessary.
+
+_findNextTrack
+^^^^^^^^^^^^^^
+Finds a new track and adds it to the temp playlist that the radio uses.
+
+
+pipes.js
+~~~~~~~~
+We get a list of track ids from the backend for every seed. We then shuffle these to randomize them making sure that the same artist/track/album does not appear consecutively. pipes.js controls all that. It contains a bunch of 'pipes', each of which is basically a filter that applies a certain rule.
+
+imageCarousel.js
+~~~~~~~~~~~~~~~~
+This has a class that sets up the Recent Stations, Top Tracks, Top Artists etc. rows. It takes a lists of seeds and some info about them (uri, name, ...) as input and creates the HTML Element for the row. 
+
+autocomplete.js
+~~~~~~~~~~~~~~~
+This has code to create the search dropdown you see when you click the 'Create New Station' button. This is mostly copied for the common search dropdown but it has one major difference. When the user starts typing we first make a call to the autosuggest service, show the results for that and then make a call to the full search service and update the results if necessary. This is because the search service has more results but the autosuggest service is faster.
+
+cloud.js
+~~~~~~~~
+This sets up the genre links at the bottom of the page.

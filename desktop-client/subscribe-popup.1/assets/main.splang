@@ -1,0 +1,94 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en"
+  ],
+  "strings" : {
+    "buttons" : {
+      "sOkThanks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Ok, danke!",
+          "en" : "Ok, thanks!"
+        }
+      },
+      "sNoThanks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Danke, jetzt nicht!",
+          "en" : "Not now, thanks!"
+        }
+      }
+    },
+    "subscribe-popup" : {
+      "sHeaderTutorial" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Einführung abgeschlossen!",
+          "en" : "Tutorial completed!"
+        }
+      },
+      "sTaglineTutorial" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "en" : "Enjoy these playlists, recommended for you.",
+          "de" : "Viel Spaß mit den empfohlenen Playlists."
+        }
+      },
+      "sHeaderOldUser" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlists sind eine tolle Möglichkeit, neue Musik zu entdecken!",
+          "en" : "Playlists are a great way to discover new music!"
+        }
+      },
+      "sTaglineOldUser" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "en" : "Subscribe to these popular playlists suggested for you.",
+          "de" : "Abonniere diese Playlists, die wir für Dich ausgewählt haben."
+        }
+      },
+      "sBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "en" : "by",
+          "de" : "von"
+        }
+      },
+      "sNewPlaylist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "en" : "New Playlist",
+          "de" : "Neue Playlist"
+        }
+      },
+      "sSubscribers" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "en" : "subscribers",
+          "de" : "Abonnenten"
+        }
+      }
+    },
+    "idle-popup" : {
+      "sHeader" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "",
+          "en" : ""
+        }
+      }
+    }
+  }
+}

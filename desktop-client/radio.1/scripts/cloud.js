@@ -1,0 +1,3 @@
+exports.Cloud=Cloud;var dom=sp.require("$util/dom"),r=sp.require("$util/react");
+function Cloud(k,f){function i(){for(var e=parseInt(window.getComputedStyle(a).width.replace("px",""));a.hasChildNodes();)a.removeChild(a.lastChild);var b=dom.Element("ul",{className:"cloudLine"});a.appendChild(b);for(var c=0,d=0;d<f.length;d++)c+g[d]>e?(b.style.width=c+"px",b=dom.Element("ul",{className:"cloudLine"}),a.appendChild(b),c=g[d]):c+=g[d],b.appendChild(f[d]);b.style.width=c+"px"}var a=null,g=[];r.fromDOMEvent(window,"resize").subscribe(i);var a=dom.queryOne(k),e=dom.Element("ul");a.appendChild(e);
+for(var h=0;h<f.length;h++){var j=f[h];e.appendChild(j);g.push(parseInt(window.getComputedStyle(j).width.replace("px",""))+25)}a.appendChild(e);i()};

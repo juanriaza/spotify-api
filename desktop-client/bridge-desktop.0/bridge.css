@@ -1,0 +1,27 @@
+@import url("sp://import/css/eve.css");
+
+#quote {
+	font-weight: bold;
+	margin: 260px auto 0px auto;
+	width: 340px;
+}
+
+#person {
+	font-weight: bold;
+	text-align: right;
+	margin: 0px auto;
+	padding-right: 20px;
+	width: 340px;
+}
+
+#version {
+	opacity: 0.5;
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	-webkit-transition: opacity 0.25s ease-in-out;
+}
+
+#version:hover {
+	opacity: 1.0;
+)

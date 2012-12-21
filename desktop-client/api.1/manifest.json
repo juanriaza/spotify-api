@@ -1,0 +1,22 @@
+{
+    "AppDescription": {
+        "en": "The original JS API for integrating with the Spotify universe."
+    },
+    "AppName": {
+        "en": "Spotify JS API"
+    },
+    "BundleIdentifier": "api",
+    "BundleType": "Framework",
+    "BundleVersion": "1.17.2",
+    "Dependencies": {
+        "bridge-desktop": "0.8.1"
+    },
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "VendorIdentifier": "com.spotify"
+}

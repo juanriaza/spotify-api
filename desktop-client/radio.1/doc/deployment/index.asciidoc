@@ -1,0 +1,7 @@
+Deploying the Radio stitch app
+==============================
+Gandalf Hernandez <gandalf@spotify.com>
+
+We are waiting on the appstore to be finalized.
+
+TODO: Write

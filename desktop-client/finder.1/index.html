@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="sp://resources/css/eve.css">
+		<link rel="stylesheet" href="/assets/css/style.css">
+		<script>
+			sp = getSpotifyApi(1);
+			var appFinder = sp.require('assets/js/script'),
+			  models = sp.require('$api/models');
+		</script>
+	</head>
+	<body>
+		<script>
+			appFinder.init();
+			models.application.observe(models.EVENT.ARGUMENTSCHANGED, appFinder.argChanged);
+		</script>
+	</body>
+</html>

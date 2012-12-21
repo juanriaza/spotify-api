@@ -1,0 +1,379 @@
+@import url('../../popup-common/css/nano-scroller.css');
+body {
+  width: 935px;
+}
+
+#content {
+  width: 875px;
+}
+
+#content::after {
+  content : "";
+  display: block;
+  height: 0px;
+  width: 100%;
+  clear : both;
+}
+
+#suggestedPlaylists li {
+  float: left;
+}
+
+#suggestedPlaylists li, #suggestedPlaylists.large li  {
+  max-height: 258px;
+  min-height: 258px;
+  height: 258px;
+  max-width: 200px;
+  min-width: 200px;
+  width: 200px;
+}
+
+#suggestedPlaylists li div.meta {
+  text-align: left;
+  position: relative;
+  margin-left: -1px;
+  -webkit-animation: fadein 0.5s;
+}
+
+.meta .title {
+  font-weight: bold;
+  font-size: 12px;
+  color: #474747;
+  padding: 4px 0 3px;
+}
+
+.meta .title, .meta .byline, .meta .info {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta .byline {
+  height: 3em;
+  display: inline-block;
+  width: auto;
+}
+
+.sp-player {
+  width: 150px;
+  height: 150px;
+  -webkit-animation: fadein 1s;
+}
+
+.sp-player-image a {
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.199219) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.398438) 0px 0px 1px 0px inset, rgba(255, 255, 255, 0.496094) 0px 1px 0px 0px;
+}
+
+.list-item .sp-player {
+  position: relative;
+  vertical-align: top;
+}
+
+.sp-player .sp-image {
+  cursor: default;
+  background: url('sp://resources/img/placeholders/128-album.png') center center no-repeat;
+}
+
+.checkBox {
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-image: url('../img/checkbox.png');
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 5px;
+}
+
+.checkBox {
+    background-position: 0px 0px;
+}
+
+.checkBoxClear {
+    background-position: 0px -54px;
+}
+
+.checkBox:hover {
+    background-position: 0px -18px;
+}
+
+.checkBoxClear:hover {
+    background-position: 0px -72px;
+}
+
+.hideable.on {
+  opacity: 0;
+  -webkit-transition: opacity 200ms;
+}
+
+li:hover div .hideable.on {
+  opacity: 1;
+}
+
+/*.spinner {
+  display: block;
+  background: url("sp://resources/img/throbber-black.png") no-repeat right center;
+  -webkit-animation: throbber 1s step-start infinite;
+  height: 32px;
+  width: 30px;
+}*/
+
+/*#suggestedPlaylists li .spinner {
+  margin: 100px auto;
+}*/
+
+.image {
+  box-shadow: rgba(0, 0, 0, 0.199219) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.398438) 0px 0px 1px 0px inset, 0 1px 2px #222;
+  border: none;
+}
+
+.circle {
+  background: #ECEBE8;
+  border-top-right-radius: 30px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -30px;
+  left: 1px;
+  z-index: 15;
+  box-shadow: rgb(34, 34, 34) 0px 1px 2px 0px;
+}
+
+.specialCover {
+  background: #ECEBE8;
+  position: absolute;
+  width: 34px;
+  height: 7px;
+  top: 26px;
+  right: -4px;
+}
+
+.specialCoverB {
+  background: #ECEBE8;
+  position: absolute;
+  width: 5px;
+  height: 30px;
+  left: -3px;
+  top: 0;
+}
+
+.sp-player .sp-player-button, .sp-player.sp-player-paused .sp-player-button {
+  z-index: 5;
+  display: block;
+}
+
+.sp-player-button:active {
+  box-shadow: none;
+}
+
+.sp-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+  min-height: 100%;
+  background-color: #373737;
+}
+
+.sp-list a > :nth-child(2) {
+  width: 95px;
+}
+
+.sp-list div > a > :first-child {
+  width: 20px;
+}
+
+.sp-list .sp-icon-play {
+  background-image: url('../img/play-xs.png');
+  background-position: left center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 0;
+  padding: 2px 0;
+}
+
+.sp-list .sp-item:not(.sp-track-playing) .sp-icon-play:hover {
+  background-position-x: -17px;
+}
+
+.sp-list.getItemViewWithPlay .sp-track-playing .sp-icon-play {
+  background-image: url('sp://resources//img/mainlist-row-playing-marker.png');
+  width: 12px;
+  margin: 0 2px;
+}
+
+.sp-list.getItemViewWithPlay .sp-item.sp-track-selected.sp-track-playing .sp-icon-play:not(:hover) {
+  background-position-x: -12px;
+}
+
+.sp-list.getItemViewWithPlay:focus .sp-item.sp-track-selected.sp-track-playing .sp-icon-play:not(:hover) {
+  background-position-x: -24px;
+}
+
+.sp-list.getItemViewWithPlay .sp-track-playing.sp-track-paused .sp-icon-play:not(:hover) {
+  background-position-x: -36px;
+}
+
+.sp-list.getItemViewWithPlay .sp-item.sp-track-selected.sp-track-playing.sp-track-paused .sp-icon-play:not(:hover) {
+  background-position-x: -48px;
+}
+
+.sp-list.getItemViewWithPlay:focus .sp-item.sp-track-selected.sp-track-playing.sp-track-paused .sp-icon-play:not(:hover) {
+  background-position-x: -60px;
+}
+
+.sp-list.getItemViewWithPlay .sp-item.sp-track-playing .sp-icon-play:hover {
+  background-image: url('../img/play-xs.png');
+  width: 16px;
+  margin: 0;
+  background-position-x: 0px;
+}
+
+.sp-list.getItemViewWithPlay .sp-item.sp-track-playing:not(.sp-track-paused) .sp-icon-play:hover {
+  background-position-x: -51px;
+}
+
+.sp-list.getItemViewWithPlay a > :nth-child(2) {
+  width: 85px;
+}
+
+.sp-list.getItemViewWithPlay div > a > :first-child {
+  text-align: left;
+  width: 25px;
+}
+
+
+.sp-list {
+  overflow-y: auto;
+  height: 200px;
+  border-radius: 3px;
+}
+
+.sp-list > div {
+  border-radius: 3px; 
+  box-shadow: 0 0 1px rgba(0,0,0,.005);
+}
+
+.sp-list.getBigItemView {
+  background-image: -webkit-radial-gradient(50% 50%, ellipse farthest-corner, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.0) 60%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.sp-list.getBigItemView > div {
+  background-image: none;
+  background-color: transparent;
+}
+
+.sp-list.getBigItemView .sp-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid #000;
+  height: 42px;
+}
+
+.sp-list.getBigItemView .sp-item:first-child {
+  border-top-color: transparent;
+}
+
+.sp-list.getBigItemView .sp-item:last-child {
+  border-bottom-color: transparent;
+}
+
+.sp-list.getBigItemView .sp-item > span {
+  display: block;
+  width: auto;
+  text-align: left;
+  text-shadow: #000 0px 1px 1px;
+  height: auto;
+  line-height: 1.3em;
+  padding: 0;
+}
+
+.sp-list.getBigItemView .sp-item .sp-track-field-name {
+  font-size: 12px;
+  z-index: 1;
+  padding: 7px 0 2px 0;
+  font-weight: bold;
+}
+
+.sp-list.getBigItemView .sp-item .sp-track-field-artist {
+  padding-bottom: 5px;
+}
+
+.sp-list.getBigItemView .sp-item > .sp-track-field-play {
+    float: left;
+    margin: 0 5px 0 3px;
+}
+
+.sp-list.getBigItemView .sp-icon-play {
+  background-image : url('sp://resources/img/play-button-S.png');
+  background-position: left 50%;
+  display: block;
+  width: 30px;
+  height: 40px;
+  position: relative;
+  padding: 0;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-selected.sp-track-playing.sp-track-paused .sp-icon-play:not(:hover) {
+  background-position-x: 0px;
+}
+
+.sp-list.getBigItemView .sp-item:not(.sp-track-playing) .sp-icon-play:hover {
+  background-position-x: -32px;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-playing .sp-icon-play:not(:hover) {
+  background-position-x: -64px;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-playing .sp-icon-play:hover {
+  background-position-x: -64px;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-playing:not(.sp-track-paused) .sp-icon-play:hover {
+  background-position-x: -96px;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-selected.sp-track-playing .sp-icon-play:not(:hover) {
+  background-position-x: -64px;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-playing.sp-track-paused .sp-icon-play {
+  background-position-x: -32px;
+}
+
+.sp-list.getBigItemView .sp-item.sp-track-selected > span {
+  text-shadow: none;
+}
+
+/* playlist animation and scroller behaviour */
+
+/* basic show/hide */
+.sp-list, .sp-player-button:hover ~ .sp-track-list .sp-list, .sp-player-button:hover ~ .sp-track-list .pane {
+  opacity: 0;
+}
+
+.sp-player:hover .sp-list, .pane:active ~ .sp-list {
+  opacity: 1;
+}
+
+/* fade in/out */
+.sp-list.fade {
+  -webkit-transition: opacity .3s linear;
+}
+
+/* scrolled content */
+.sp-player .nano {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+
+
+

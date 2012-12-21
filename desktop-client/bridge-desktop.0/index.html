@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="bridge.css">
+		<script>
+			function readVersion()
+			{
+				var sp = getSpotifyApi();
+				var manifest = JSON.parse(sp.core.readFile("manifest.json"));
+				var version = manifest['BundleVersion'];
+				document.getElementById('version').innerText = version;
+			}
+		</script>
+	</head>
+	<body onload="readVersion()">
+		<div id="quote">Musically, I always allow myself to jump off of cliffs. At least that's what it feels like to me. Whether that's what it actually sounds like might depend on what the listener brings to the songs.</div>
+		<div id="person"><a href="spotify:artist:1KsASRNugxU85T0u6zSg32">Tori Amos</a></div>
+		<div id="version"></div>
+	</body>
+</html>

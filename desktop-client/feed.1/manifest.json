@@ -1,0 +1,60 @@
+{
+    "ApiPermissions": {
+        "core": [
+            "private"
+        ],
+        "installer": [
+            "private"
+        ],
+        "playlist": [
+            "private"
+        ],
+        "social": [
+            "private"
+        ],
+        "tutorial": [
+            "private"
+        ]
+    },
+    "AppDescription": {
+        "de": "Friend Feed",
+        "en": "Friend Feed",
+        "es": "Friend Feed",
+        "fr": "Friend Feed",
+        "nl": "Friend Feed"
+    },
+    "AppName": {
+        "de": "Feed",
+        "en": "Feed",
+        "es": "Feed",
+        "fr": "Feed",
+        "nl": "Feed"
+    },
+    "BundleIdentifier": "feed",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.9",
+    "InternalBundleVersion": 13,
+    "Dependencies": {
+        "api": "0.1.0",
+        "resources": "0.1.0",
+        "unstable": "0.1.0",
+        "util": "0.1.0"
+    },
+    "PlaybackOwner": false,
+    "RequiredPermissions": [
+        "https://graph.facebook.com",
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net",
+        "http://*.cloudfront.net",
+        "https://*.spotify.com"
+    ],
+    "SupportedLanguages": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "nl"
+    ],
+    "UserInstallable": false,
+    "VendorIdentifier": "com.spotify"
+}

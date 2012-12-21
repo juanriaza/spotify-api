@@ -1,0 +1,22 @@
+Setup for developing the Radio stitch app
+=========================================
+Gandalf Hernandez <gandalf@spotify.com>
+
+Register with Spotify to get the developer flag on your Spotify account.
+
+Clone the project
+
+.Getting the source
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cd ~/Spotify (Mac)
+cd ~/My Documents/Spotify (Win)
+git clone git.spotify.net:stitch-apps/radio
+git submodule update --init
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Restart your client. The radio you cloned will override the built-in radio.
+
+Click on the radio tab in the apps column in the client.
+See the 'Develop' menu in the client for debugger + reloading of the app,
+or right-click in the radio app.
+

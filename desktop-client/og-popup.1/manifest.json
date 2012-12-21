@@ -1,0 +1,36 @@
+{
+  "AppName" : {
+    "en" : "Open Graph popup"
+  },
+  "AppDescription" : {
+    "en" : "Open Graph popup"
+  },
+  "ApiPermissions" : {
+    "core" : ["private"],
+    "social" : ["private"],
+    "desktop" : ["private"],
+    "playlist" : ["private"],
+    "tutorial" : ["private"]
+  },
+  "BundleVersion": "1.0.1",
+  "BundleIdentifier": "og-popup",
+  "BundleType": "Application",
+  "PlaybackOwner": false,
+  "PreferredSize" : {"width":935, "height":457},
+  "RequiredPermissions": [ 
+    "https://fbcdn-profile-*.akamaihd.net",
+    "http://*.fbcdn.net/",
+    "http://www.spotify.com/"
+  ],
+  "SupportedLanguages": [
+    "en"
+  ],
+  "UserInstallable": false,
+  "Dependencies": {
+    "api": "0.1.0",
+    "resources": "0.1.0",
+    "unstable": "0.1.0",
+    "util": "0.1.0"
+  },
+  "VendorIdentifier" : "spotify"
+}

@@ -1,0 +1,708 @@
+@import url("sp://resources/css/adam.css");
+@import url("sp://resources/css/api.css");
+
+html {
+	position: relative;
+}
+body {
+	bottom: 0;
+	left: 0;
+	min-width: 400px;
+	overflow: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+h1 {
+	display: -webkit-box;
+	font-size: 19px;
+	font-weight: normal;
+	left: 158px;
+	line-height: 26px;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+	h1 span {
+		display: block;
+	}
+	h1 span:first-child {
+		-webkit-box-flex: 1;
+		padding-right: 7px;
+	}
+	h1 a {
+		color: #FFF;
+	}
+	h1 a:hover {
+		text-decoration: none;
+	}
+	h1 button {
+		font: 12px/17px "Lucida Grande", "Tahoma", "Arial", sans-serif;
+	}
+
+h2 {
+	font-size: 13px;
+	margin-bottom: 7px;
+}
+
+h3 {
+	color: #999;
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 36px;
+}
+
+section {
+	position: relative;
+}
+
+.bottom-align {
+	bottom: 0px;
+	display: block;
+	width: 100%;
+}
+.centered {
+	text-align: center;
+}
+/*
+ * Profile section
+ */
+.profile {
+	min-height: 103px;
+	padding: 40px 15px 15px 158px;
+	position: relative;
+}
+
+.loader {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height:200px;
+}
+	.loader .throbber {
+		background-color: transparent;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 32px;
+		height: 32px;
+	}
+	.throbber div {
+		margin: -16px -16px 0 0;
+	}
+
+p.activity {
+	font-size: 11px;
+	line-height: 28px;
+}
+	p.activity span {
+		background-repeat: no-repeat;
+		background-position: 0 0px;
+		padding-left: 17px;
+	}
+	p.activity .playlist {
+		background-image: url("sp://resources/img/buddylist-playlist-icon.png");
+	}
+	p.activity .starred {
+		background-image: url("sp://resources/img/buddylist-starred-icon.png");
+	}
+	p.activity .track {
+		background-image: url("sp://resources/img/buddylist-track-icon.png");
+	}
+
+p.picture {
+	height: 128px;
+	left: 15px;
+	position: absolute;
+	top: 15px;
+	width: 128px;
+}
+	p.picture .image {
+		background-image: url("sp://resources/img/placeholders/128-user.png");
+		border-radius: 5px;
+		height: 128px;
+		width: 128px;
+	}
+
+.send-tunes-form {
+	display: none;
+	min-width: 389px;
+}
+	.send-tunes-form > div {
+		-webkit-border-image: url("sp://resources/img/view-toolbar-bg.png") 5 5 5 5;
+		border-width: 5px;
+		padding: 5px 9px;
+		position: relative;
+		-webkit-transition-duration: 0.3s;
+	}
+	.send-tunes-form h2 {
+		color: #D7D7D7;
+		font-size: 15px;
+		font-weight: normal;
+		line-height: 21px;
+		margin-bottom: 5px;
+	}
+
+.send-tunes {
+	white-space:nowrap;
+	-webkit-box-align: center;
+	-webkit-box-orient: horizontal;
+	display: -webkit-box;
+	max-width: 600px;
+	min-width: 300px;
+}
+	.send-tunes li {
+		-webkit-box-flex: 1;
+		margin-right: 10px;
+		width: flex(2);
+	}
+	.send-tunes li:last-child {
+		-webkit-box-flex: 0;
+		margin-right: 0;
+		padding-top: 2px;
+	}
+
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	95% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+.send-music {
+	-webkit-animation-duration: 6s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: fadeOut;
+	-webkit-animation-timing-function: ease-in-out;
+
+	-webkit-box-align: center;
+	-webkit-box-orient: horizontal;
+
+	background-color: #222;
+	display: -webkit-box;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	padding-top: 0;
+	position: absolute;
+	top: 0;
+	text-align: center;
+	width: 100%;
+	z-index: 10000;
+}
+	.send-music div {
+		-webkit-box-flex: 1;
+		line-height: 20px;
+		width: flex(1);
+	}
+	.send-music img {
+		margin-right: 5px;
+	}
+	.send-music img,
+	.send-music span {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+/* `required` does not seem to work on real hidden inputs */
+#uri { display: none; }
+
+.input {
+	width: 100%;
+}
+/*
+ * Popover
+ */
+.popover .share div:first-child {
+	display: none;
+}
+/*
+ * Auto-complete
+ */
+.auto-complete {
+	background: rgba(255, 255, 255, .9);
+	background-image: -webkit-linear-gradient(left,
+		rgba(238, 238, 238, .9),
+		rgba(238, 238, 238, .9) 26px,
+		rgba(225, 225, 225, .9) 27px,
+		rgba(255, 255, 255, .9) 27px);
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .75);
+	display: none;
+	font-size: 11px;
+	left: -9px;
+	line-height: 15px;
+	min-width: 238px;
+	overflow: hidden;
+	position: absolute;
+	right: -9px;
+	text-shadow: initial;
+	top: 35px;
+	-webkit-transition-duration: 250ms;
+	-webkit-transition-property: color, opacity, width, height;
+	z-index: 10;
+}
+.auto-complete.show {
+	display: block;
+}
+	.auto-complete div {
+		border-bottom: 1px solid rgba(225, 225, 225, .9);
+		padding: 2px 0 2px 27px;
+		position: relative;
+	}
+	.auto-complete div:last-child { border: initial; }
+	.auto-complete .artists {
+		background: url("sp://resources/img/artists.png") 4px 4px no-repeat;
+	}
+	.auto-complete .albums {
+		background: url("sp://resources/img/albums.png") 4px 4px no-repeat;
+	}
+	.auto-complete .tracks {
+		background: url("sp://resources/img/tracks.png") 4px 4px no-repeat;
+	}
+	.auto-complete a {
+		color: #808080;
+		cursor: default;
+		display: block;
+		padding: 3px 5px 3px 27px;
+		position: relative;
+		text-decoration: none;
+	}
+	.auto-complete a.selected,
+	.auto-complete a:hover {
+		background: -webkit-linear-gradient(rgb(197, 232, 253),
+			rgb(178, 223, 251) 1px,
+			rgb(154, 210, 250) 15px);
+		color: #2B3844;
+		text-shadow: 0 1px 0 #AFD3F0;
+	}
+		.auto-complete img,
+		.auto-complete span {
+			pointer-events:none;
+		}
+		.auto-complete img {
+			height: 17px;
+			left: 5px;
+			outline: 1px solid rgba(225, 225, 225, .9);
+			outline-offset: -1px;
+			position: absolute;
+			top: 2px;
+			width: 17px;
+		}
+		.auto-complete span {
+			color: #222;
+		}
+
+/*
+ * Token input
+ */
+.token-input,
+.token-message {
+	-webkit-background-origin: border-box;
+	padding-right: 20px;
+	position: relative;
+	white-space: nowrap;
+}
+:-webkit-any(.token-input, .token-message) input {
+	background: initial;
+	background-position: 0px 0px !important;
+	background-repeat: no-repeat !important;
+	border: initial;
+	font: inherit;
+	height: 14px;
+	line-height: 14px;
+	margin: 0;
+	outline: 0;
+	padding: 0px 1px 0px 20px !important;
+	position: relative;
+	top: 9px;
+	width: 100%;
+}
+	.token {
+		background-image: -webkit-linear-gradient(#EEE,
+			#AAA);
+		border: 1px solid rgb(23, 23, 23);
+		border-radius: 3px;
+		color: #333;
+		bottom: 4px;
+		font-size: 11px;
+		left: -10px;
+		line-height: 25px;
+		padding: 0 23px 0 11px;
+		position: absolute;
+		right: -10px;
+		text-shadow: 0 1px 0 #E1E1E1;
+		top: 4px;
+		-webkit-transition-duration: 400ms;
+		z-index: 200;
+	}
+		.token div:first-child {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		.token .remove {
+			background: url("sp://resources/img/token-remove.png") ;
+			position: absolute;
+			right: 4px;
+			top: 4px;
+			width: 17px;
+			height: 17px;
+		}
+		.token .remove:active {
+			background-position-y: -17px;
+		}
+
+.token-input input {
+	background-image: url("sp://resources/img/search.png") !important;
+}
+.token-message input {
+	background-image: url("sp://resources/img/message.png") !important;
+}
+
+/*
+ * List wrapper used by fetchList template
+ */
+
+section .list-wrapper {
+	opacity: 1;
+}
+.list-wrapper > ul {
+	font-size: 11px;
+	line-height: 19px;
+	overflow-x: hidden;
+	position: relative;
+	white-space: nowrap;
+}
+	.list-wrapper > ul li {
+		-webkit-transition-property: opacity;
+		-webkit-transition-timing-function: ease-in;
+		-webkit-transition-duration: 250ms;
+
+		display: inline-block;
+		margin-left: 10px;
+		/*opacity: 0;*/
+		text-align: center;
+		vertical-align: top;
+	}
+	.list-wrapper > ul li:first-child {
+		margin-left: 0px;
+	}
+		.list-wrapper > ul a {
+			color: #D7D7D7;
+			display: inline-block;
+			line-height: 19px;
+			max-width: 128px;
+		}
+		.list-wrapper > ul a.cover {
+			display: block;
+			height: 128px;
+			margin-bottom: 3px;
+			position: relative;
+			text-decoration: none !important;
+			width: 128px;
+		}
+			.list-wrapper > ul .number {
+				background-color: rgba(0, 0, 0, 0.6);
+				border-radius: 12px;
+				color: #fff;
+				display: block;
+				font-family: helvetica, arial;
+				font-size: 13px;
+				left: 2px;
+				line-height: 23px;
+				padding-top: 1px;
+				position: absolute;
+				text-align: center;
+				top: 2px;
+				width: 25px;
+			}
+			.list-wrapper > ul .image {
+				background-image: url("sp://resources/img/placeholders/128-artist.png");
+				border-radius: 5px;
+				height: 128px;
+				width: 128px;
+			}
+			.list-wrapper > ul .bottom-align {
+				position: absolute;
+				bottom: 10px;
+			}
+	.list-wrapper .artist-wrap {
+		max-width: 128px;
+	}
+		.list-wrapper .artist-wrap a {
+			color: #D7D7D7;
+			display: inline;
+		}
+	.list-wrapper a.song-title {
+		display: inline-block;
+		color: #999;
+	}
+
+#search-button-wrapper {
+	padding: 10px 0;
+}
+.selected .sp-button.sp-flat {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popover {
+	left: auto;
+	right: auto;
+	max-width: none;
+	width: 200px;
+}
+/*
+ * Shared section for top tracks and top artists
+ */
+.top-track,
+.top-artist {
+	padding: 0;
+	position: relative;
+}
+
+/*
+ * Top tracks specific
+ */
+.top-tracks {
+	-webkit-border-image: url("sp://resources/img/view-toolbar-bg.png") 5 5 5 5;
+	border-width: 5px;
+	padding: 5px 9px;
+	position:relative;
+}
+.top-track .list-wrapper {
+}
+.top-track header h2 {
+	color: #D7D7D7;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 21px;
+	margin-bottom: 10px;
+}
+/*
+ * Top artists specific
+ */
+ body.artist form {
+ 	display: block !important;
+ }
+.top-artist header h2 {
+	background-image: -webkit-linear-gradient(#5B5B5B,
+		#4B4B4B);
+	border-bottom: 1px solid #292929;
+	border-top: 1px solid #686868;
+	color: #D7D7D7;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 14px;
+	margin: 0;
+	padding: 3px 15px 4px;
+	text-shadow: 0 -1px 0 #404040;
+}
+.top-artist .list-wrapper {
+	padding: 10px;
+}
+.top-artist a.song-title {
+	color: #d7d7d7;
+}
+
+/*
+ * Facebook specific
+ */
+body.facebook {
+	bottom: auto;
+	left: auto;
+	margin: 0 auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: static;
+	right: auto;
+	top: auto;
+}
+.facebook .profile {
+	padding: 17px 0px 0px;
+}
+.facebook h1 {
+	display: none;
+}
+.facebook .activity {
+	display: none;
+}
+.facebook .picture {
+	height: auto;
+	left: auto;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+	top: auto;
+	width: 128px;
+}
+.facebook .picture span {
+	bottom: 3px;
+	display: block;
+	left: 0px;
+	position: absolute;
+	width: 100%;
+}
+.facebook .picture button {
+	opacity: 0;
+	-webkit-appearance: none;
+	-webkit-transition: opacity 0.1s linear 0.5s;
+}
+
+.facebook .picture:hover button {
+	opacity: 1;
+}
+.facebook .send-tunes-form {
+	opacity: 0;
+	margin: 0px auto;
+	width: 710px;
+}
+.facebook .send-tunes-form > div {
+	-webkit-border-image: inherit;
+	border-width: 0px;
+	padding: 0px;
+}
+.facebook .send-tunes-container > ul {
+	-webkit-border-image: url("sp://resources/img/view-toolbar-bg.png") 5 5 5 5;
+	border-width: 5px;
+	padding: 20px;
+}
+.facebook .send-tunes {
+	max-width: none;
+}
+.facebook header {
+}
+.facebook h2 {
+	color: #fff;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 61px;
+	margin: 0 18px;
+	text-align: center;
+}
+.top-facebook {
+	margin: 0 15px;
+}
+.facebook .list-section {
+	opacity: 1;
+}
+.facebook .list-wrapper {
+	-webkit-border-image: url("sp://resources/img/view-toolbar-bg.png") 5 5 5 5;
+	border-width: 5px;
+	height: 535px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 11px;
+	position:relative;
+	width: 700px;
+}
+.facebook .list-wrapper > ul {
+	margin-left: -15px;
+	margin-top: -15px;
+	white-space: normal;
+}
+.facebook .list-wrapper li {
+	opacity: 1;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+	.facebook .list-wrapper > ul li:first-child {
+		margin-left: 15px;
+	}
+
+/* Facebook only 4 columns */
+@media all and (max-width: 739px) {
+	.facebook .send-tunes-form {
+		width: 570px;
+	}
+	.facebook .list-wrapper {
+		width: 557px;
+	}
+}
+@media all and (max-width: 606px) {
+	.facebook .send-tunes-form {
+		width: 434px;
+	}
+	.facebook .list-wrapper {
+		width: 414px;
+	}
+}
+@media all and (max-width: 561px) {
+	body {
+		min-width: 0px;
+	}
+	.send-tunes-form {
+		min-width: 228px;
+	}
+	.send-tunes-form,
+	#search-button {
+		-webkit-transition-property: opacity;
+		-webkit-transition-timing-function: ease;
+		-webkit-transition-duration: 500ms;
+		opacity: 1;
+	}
+	.send-tunes {
+		min-width: 200px;
+	}
+		.send-tunes li:nth-child(2) {
+			display: none;
+		}
+		.send-tunes li {
+			margin-right: 0px;
+		}
+		.send-tunes li:last-child {
+		}
+	.send-tunes button {
+	}
+}
+@media all and (max-width: 464px) {
+	.facebook .send-tunes-form {
+		width: 296px;
+	}
+	.facebook .list-wrapper {
+		width: 271px;
+	}
+}
+@media all and (max-width: 350px) {
+	h1 span:last-child {
+		display: none;
+	}
+	section.top-track,
+	body:not(.facebook) #search-button {
+		-webkit-transition-property: opacity height;
+		-webkit-transition-timing-function: ease;
+		-webkit-transition-duration: 500ms;
+		opacity: 0;
+		height: 0;
+	}
+}
+@media all and (max-width: 328px) {
+	.facebook .send-tunes-form {
+		width: 156px;
+	}
+	.facebook .list-wrapper {
+		width: 128px;
+	}
+}
+@media all and (max-width: 228px) {
+	.send-tunes-form,
+	.facebook #search-button {
+		-webkit-transition-property: opacity height;
+		-webkit-transition-timing-function: ease;
+		-webkit-transition-duration: 500ms;
+		opacity: 0;
+		height: 0;
+	}
+}
+

@@ -1,0 +1,457 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "nl"
+  ],
+  "strings" : {
+    "main" : {
+      "sAdHideButton" : {
+        "approved" : false,
+          "description" : "",
+          "translations" : {
+            "de" : "Ausblenden",
+            "en" : "Hide",
+            "es" : "Ocultar",
+            "fr" : "Cacher",
+            "nl" : "Verbergen"
+          }
+      },
+      "sAdBubbleText" : {
+        "description" : "",
+          "translations" : {
+            "de" : "Musikankündigungen ausblenden. Dies kann in den Einstellungen geändert werden.",
+            "en" : "Hide these music announcements. To show them again, just go to your Preferences.",
+            "es" : "Ocultar estos mensajes. Puedes activarlos de nuevo en tus Preferencias.",
+            "fr" : "Cacher les publicités musicales. Pour les réactiver, allez dans les Préférences.",
+            "nl" : "Verberg deze muziek aankondigingen. Om ze weer te tonen, ga je gewoon naar Voorkeuren."
+          }
+      },
+      "sArtist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler",
+          "en" : "Artist",
+          "es" : "Artista",
+          "fr" : "Artiste",
+          "nl" : "Artiest"
+        }
+      },
+      "sBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "nl" : "van"
+        }
+      },
+      "sCountryPlaylists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Playlist in deinem Land",
+          "en" : "Trending playlists in your country",
+          "es" : "Listas populares en tu país",
+          "fr" : "Playlists populaires dans votre pays",
+          "nl" : "Populaire afspeellijsten in je land"
+        }
+      },
+      "sCountryTracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Titel in deinem Land",
+          "en" : "Trending tracks in your country",
+          "es" : "Canciones populares en tu país",
+          "fr" : "Titres populaires dans votre pays",
+          "nl" : "Populaire nummers in je land"
+        }
+      },
+      "sFriendsPlaylistsA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Playlists",
+          "en" : "Trending playlists",
+          "es" : "Listas populares",
+          "fr" : "Playlists populaires",
+          "nl" : "Populaire afspeellijsten"
+        }
+      },
+      "sFriendsPlaylistsB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "unter Freunden",
+          "en" : "among friends",
+          "es" : "entre tus amigos",
+          "fr" : "parmi vos amis",
+          "nl" : "onder je vrienden"
+        }
+      },
+      "sFriendsTracksA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Titel",
+          "en" : "Top tracks",
+          "es" : "Canciones populares",
+          "fr" : "Top titres",
+          "nl" : "Top nummers"
+        }
+      },
+      "sFriendsTracksB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "unter Freunden",
+          "en" : "among friends",
+          "es" : "entre tus amigos",
+          "fr" : "parmi vos amis",
+          "nl" : "onder je vrienden"
+        }
+      },
+      "sNewFriendsA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Benutzer",
+          "en" : "People",
+          "es" : "Amigos",
+          "fr" : "Contacts",
+          "nl" : "Vrienden"
+        }
+      },
+      "sNewFriendsB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "die dich vielleicht interessieren",
+          "en" : "you may find interesting",
+          "es" : "que utilizan Spotify",
+          "fr" : "qui pourraient vous intéresser",
+          "nl" : "die je wellicht interesseren"
+        }
+      },
+      "sNewReleases" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Neuerscheinungen",
+          "en" : "New releases",
+          "es" : "Nuevos lanzamientos",
+          "fr" : "Nouveautés",
+          "nl" : "Nieuwe releases"
+        }
+      },
+      "sRecommended" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Empfohlen",
+          "en" : "Recommended",
+          "es" : "Recomendado",
+          "fr" : "Recommandé",
+          "nl" : "Aanbevolen"
+        }
+      },
+      "sRecommended Albums" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Empfohlene Alben",
+          "en" : "Recommended Albums",
+          "es" : "Álbumes recomendados",
+          "fr" : "Albums recommandés",
+          "nl" : "Aanbevolen Albums"
+        }
+      },
+      "sRegionPlaylistsA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Playlists",
+          "en" : "Top playlists",
+          "es" : "Listas más escuchadas",
+          "fr" : "Top playlists",
+          "nl" : "Top afspeellijsten"
+        }
+      },
+      "sRegionPlaylistsB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "in deiner Nähe",
+          "en" : "near you",
+          "es" : "cerca de ti",
+          "fr" : "près de chez vous",
+          "nl" : "in je omgeving"
+        }
+      },
+      "sRegionTracksA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Titel",
+          "en" : "Top tracks",
+          "es" : "Canciones populares",
+          "fr" : "Top titres",
+          "nl" : "Top nummers"
+        }
+      },
+      "sRegionTracksB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "in deiner Nähe",
+          "en" : "near you",
+          "es" : "cerca de ti",
+          "fr" : "près de chez vous",
+          "nl" : "in je omgeving"
+        }
+      },
+      "sTitle" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "Title",
+          "es" : "Título",
+          "fr" : "Titre",
+          "nl" : "Titel"
+        }
+      },
+      "sTopList" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Liste",
+          "en" : "Top List",
+          "es" : "Éxito",
+          "fr" : "Dans les Tops",
+          "nl" : "Top Lijst"
+        }
+      },
+      "sUnavailableOffline" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Neuheiten sind offline nicht verfügbar.",
+          "en" : "What's New is not available offline.",
+          "es" : "Novedades no está disponible sin conexión",
+          "fr" : "Les Nouveautés ne sont pas disponibles hors connexion.",
+          "nl" : "Wat Is Nieuw is niet offline beschikbaar."
+        }
+      }
+    },
+    "spotify-apps" : {
+      "sBrowseNewMusic" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Entdecke neue Musik",
+          "en" : "Browse new music",
+          "es" : "Busca nueva música",
+          "fr" : "Découvrez de la musique",
+          "nl" : "Nieuwe muziek verkennen"
+        }
+      },
+      "sExploreMoreApps" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Entdecke mehr Apps...",
+          "en" : "Explore More Apps...",
+          "es" : "Descubre más Apps…",
+          "fr" : "Voir plus d'applis...",
+          "nl" : "Vind meer Apps..."
+        }
+      },
+      "sFeaturedSpotifyApps" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Ausgewählte Apps",
+          "en" : "Featured Spotify Apps",
+          "es" : "Apps destacadas",
+          "fr" : "Quelques Applis",
+          "nl" : "Uitgelichte Apps"
+        }
+      },
+      "sListenAndSingAlong" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Hören und mitsingen",
+          "en" : "Listen and sing along",
+          "es" : "Escucha y canta a la vez",
+          "fr" : "Ecoutez et chantez en coeur",
+          "nl" : "Luisteren en meezingen"
+        }
+      },
+      "sPopularApps" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Apps",
+          "en" : "Popular Spotify Apps",
+          "es" : "Apps más populares",
+          "fr" : "Applis populaires",
+          "nl" : "Populaire Apps"
+        }
+      },
+      "sSpotifyApps" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Spotify Apps",
+          "en" : "Spotify Apps",
+          "es" : "Spotify Apps",
+          "fr" : "Applis Spotify",
+          "nl" : "Apps"
+        }
+      },
+      "sView" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Ansehen",
+          "en" : "View",
+          "es" : "Ver",
+          "fr" : "Voir",
+          "nl" : "Toon"
+        }
+      }
+    },
+		"survey" : {
+      "sTitle" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sag uns deine Meinung und hilf uns, unseren Musik-Service noch besser zu machen.",
+          "en" : "Share your thoughts and help us build the world's greatest music service!",
+          "es" : "Comparte tus ideas y ayúdanos a construir el mejor servicio de música del mundo",
+          "fr" : "Partagez votre avis et aidez-nous à construire le meilleur service de musique au monde.",
+          "nl" : "Deel je mening en help ons de beste muziekservice van de wereld te bouwen."
+        }
+      },
+			"sQ1Question" : {
+		    "approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Wirst du Spotify deinen Freunden oder Kollegen weiterempfehlen?",
+	        "en" : "How likely is it that you’d recommend Spotify to a friend or colleague?",
+	        "es" : "¿Recomendarías Spotify a tus amigos?",
+	        "fr" : "Recommanderiez-vous Spotify à un ami ou un collègue?",
+	        "nl" : "Zou je Spotify aanbevelen aan een vriend of collega?"
+				}
+		  },
+		  "sQ1Negative" : {
+				"approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Wahrscheinlich nicht",
+	        "en" : "Not at all likely",
+	        "es" : "Nada probable",
+	        "fr" : "Pas du tout",
+	        "nl" : "Zeker niet"
+			  }
+			},
+			"sQ1Positive" : {
+				"approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Höchstwahrscheinlich",
+	        "en" : "Extremely likely",
+	        "es" : "Muy problable",
+	        "fr" : "Tout à fait",
+	        "nl" : "Zeer waarschijnlijk wel"
+			  }
+			},
+		  "sQ2Question" : {
+		    "approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Warum?",
+	        "en" : "Why do you feel that way?",
+	        "es" : "¿Por qué te sientes de ese modo?",
+	        "fr" : "Pourquoi pensez-vous cela?",
+	        "nl" : "Waarom (niet)?"
+				}
+		  },
+		  "sQ3Question" : {
+		    "approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Wie zufrieden bist du mit Spotify?",
+	        "en" : "Overall, how satisfied are you with Spotify?",
+	        "es" : "En general, ¿cómo estás de satisfecho con Spotify?",
+	        "fr" : "Globalement, êtes-vous satisfait de Spotify?",
+	        "nl" : "Al met al, hoe tevreden ben je over Spotify?"
+				}
+		  },
+		  "sQ3Negative" : {
+				"approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Sehr unzufrieden",
+	        "en" : "Very dissatisfied",
+	        "es" : "Muy insatisfecho",
+	        "fr" : "Extrêmement mécontent",
+	        "nl" : "Erg ontevreden"
+			  }
+			},
+			"sQ3Positive" : {
+				"approved" : false,
+	      "description" : "",
+	      "translations" : {
+          "de" : "Sehr zufrieden",
+	        "en" : "Very satisfied",
+	        "es" : "Muy satisfecho",
+	        "fr" : "Tout à fait satisfait",
+	        "nl" : "Erg tevreden"
+			  }
+			},
+	    "sSubmit" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Umfrage abschließen",
+          "en" : "Submit survey",
+          "es" : "Enviar encuesta",
+          "fr" : "Soumettre mes réponses",
+          "nl" : "Enquête versturen"
+        }
+      },
+      "sThanks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Danke für deine Hilfe und dass du dir Zeit genommen hast.",
+          "en" : "Thanks very much for your help. We appreciate your time.",
+          "es" : "Muchas gracias por tu colaboración. Valoramos mucho el tiempo invertido.",
+          "fr" : "Merci beaucoup pour votre aide, elle nous sera très utile.",
+          "nl" : "Hartstikke bedankt voor je hulp! We stellen je medewerking erg op prijs."
+        }
+      },
+      "sTeam" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Das Spotify-Team",
+          "en" : "The Spotify Team",
+          "es" : "El equipo de Spotify",
+          "fr" : "L'équipe Spotify",
+          "nl" : "Het Spotify Team"
+        }
+      }
+		}
+	
+  }
+}

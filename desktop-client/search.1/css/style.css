@@ -1,0 +1,327 @@
+/* ==========================================================================
+   General
+   ========================================================================== */
+
+html {
+    overflow-y: auto;
+    height: 100%;
+}
+
+html.overflow-hidden {
+    overflow-y: hidden;
+}
+
+body {
+    height: auto;
+    min-width: 300px;
+}
+
+hgroup {
+    display: block;
+    overflow: hidden;
+    padding: 16px 0 8px 2px;
+}
+
+h2 {
+    float: left;
+    font-size: 18px;
+    padding: 0;
+    text-shadow: 0 1px 0 white;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+p {
+    color: #707070;
+    font-size: 13px;
+    text-shadow: 0 1px 0 white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.tracks,
+.empty-search-result {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: default;
+}
+
+.no-link {
+    cursor: default !important;
+}
+
+a[href=''] {
+    text-decoration: none !important;
+}
+
+.search-result {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 20px;
+    position: relative;
+    height: 0;
+}
+
+.rows-1 .search-result {
+    height: 191px;
+}
+
+.rows-2 .search-result {
+    height: 364px;
+}
+
+.sp-throbber {
+    top: 100px !important;
+}
+
+.page.loner .sp-throbber.down {
+    top: auto !important;
+    bottom: 20px !important;
+}
+
+.page.loner {
+    visibility: visible !important;
+}
+
+
+/* ==========================================================================
+   Grid
+   ========================================================================== */
+
+.grid {
+    overflow: hidden;
+    position: relative;
+}
+
+.grid li {
+    display: inline-block;
+}
+
+.grid li.hidden {
+   display: none;
+}
+
+.loner .search-result {
+    width: 100% !important;
+    min-height: 600px;
+    pointer-events: auto !important;
+    height: auto;
+}
+
+.loner .grid {
+    padding-bottom: 50px;
+}
+
+.loner .grid li:nth-child(3n+1) .sp-image {
+    float: left;
+}
+
+.loner .grid li:nth-child(3n+2) .sp-image {
+    margin: 0 auto;
+}
+
+.loner .grid li:nth-child(3n+3) .sp-image {
+    float: right;
+}
+
+.loner .grid li {
+    width: 33.3%;
+    height: auto;
+    margin: 0 0 20px 0;
+}
+
+.loner .grid li .sp-image {
+    width: 230px !important;
+    height: 230px !important;
+}
+
+@media all and (max-width: 810px) {
+    .loner .grid li .sp-image {
+        width: 200px !important;
+        height: 200px !important;
+    }
+}
+
+@media all and (max-width: 650px) {
+    .loner .grid li .sp-image {
+        width: 160px !important;
+        height: 160px !important;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .loner .grid li .sp-image {
+        width: 120px !important;
+        height: 120px !important;
+    }
+}
+
+@media all and (max-width: 410px) {
+    .loner .grid li .sp-image {
+        width: 85px !important;
+        height: 85px !important;
+    }
+}
+
+/* ==========================================================================
+   Pod
+   ========================================================================== */
+
+.pod {
+    width: 100%;
+    /*position: fixed !important; /* has to be important because of throbber */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 180px;
+}
+
+.pod.loner {
+    position: static;
+    height: auto;
+    margin: 0 auto;
+    width: auto;
+    max-width: 800px;
+}
+
+.see-all {
+    position: absolute;
+    top: 17px;
+    right: 0;
+    border: 0;
+    z-index: 199;
+    background: #deddd9;
+    border-radius: 3px;
+    color: #4E4E4E;
+    cursor: pointer;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    display: block;
+}
+
+.tracks {
+    display: block;
+    top: 40px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 10;
+}
+
+.rows-1 .tracks {
+    top: 237px;
+}
+
+.rows-2 .tracks {
+    top: 414px;
+}
+
+/* ==========================================================================
+   UI elements
+   ========================================================================== */
+
+.ui {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.ui .sp-image-overlay {
+    z-index: 100;
+}
+
+.ui .sp-image-overlay a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ui .sp-image-overlay a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Top bar
+   ========================================================================== */
+
+.search-query {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: default;
+    background: white;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 12px;
+    position: relative;
+    z-index: 300;
+}
+
+.search-query p {
+    color: #292929;
+    display: inline;
+}
+
+.search-query p + p {
+    margin-left: 5px;
+}
+
+.search-paragraph.hidden,
+.fuzzy-match.hidden {
+    display: none;
+}
+
+.fuzzy-match a {
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   Empty search results
+   ========================================================================== */
+
+.empty-search-result {
+    display: none;
+}
+
+.empty-search .empty-search-result {
+    display: block;
+}
+
+.empty-search .search-result .tracks {
+    display: none;
+}
+
+.empty-search-result {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.empty-search-result div {
+    left: 50%;
+    margin-left: -150px;
+    padding-top: 87px;
+    margin-bottom: 20px;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.empty-search-result div:after {
+    background: transparent url('../img/search-glass.png') no-repeat;
+    display: block;
+    content: '';
+    height: 155px;
+    left: 50%;
+    margin: -77px 0 0 -77px;
+    position: absolute;
+    top: 0;
+    width: 155px;
+}

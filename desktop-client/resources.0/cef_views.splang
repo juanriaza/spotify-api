@@ -1,0 +1,1959 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "nl"
+  ],
+  "strings" : {
+    "Buddy list" : {
+      "Add people" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Für schnelleren Zugang, füge Freunde hinzu",
+          "en" : "Add people for quicker access",
+          "es" : "Agregar amigos para acceder a su música más fácilmente",
+          "fr" : "Ajouter des amis pour les retrouver facilement.",
+          "nl" : "Voeg vrienden toe voor snellere toegang"
+        }
+      },
+      "Cancel" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abbrechen",
+          "en" : "Cancel",
+          "es" : "Cancelar",
+          "fr" : "Annuler",
+          "nl" : "Annuleer"
+        }
+      },
+      "Favorites group" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Favoriten",
+          "en" : "Favorites",
+          "es" : "Favoritos",
+          "fr" : "Favoris",
+          "nl" : "Favorieten"
+        }
+      },
+      "Loading" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Wird geladen...",
+          "en" : "Loading…",
+          "es" : "Cargando…",
+          "fr" : "Chargement…",
+          "nl" : "Wordt geladen..."
+        }
+      },
+      "No favorites" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Keine Favoriten",
+          "en" : "No Favorites",
+          "es" : "No tienes favoritos",
+          "fr" : "Aucun favori",
+          "nl" : "Geen favorieten"
+        }
+      },
+      "Recently active group" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Vor Kurzem aktiv",
+          "en" : "Recently Active",
+          "es" : "Recientemente",
+          "fr" : "Actifs récemment",
+          "nl" : "Recentelijk actief"
+        }
+      },
+      "Send" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Senden",
+          "en" : "Send",
+          "es" : "Enviar",
+          "fr" : "Envoyer",
+          "nl" : "Zenden"
+        }
+      },
+      "Share message placeholder" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Anmerkungen",
+          "en" : "Optional message",
+          "es" : "Mensaje opcional",
+          "fr" : "Message (en option)",
+          "nl" : "Optioneel bericht"
+        }
+      },
+      "Show people" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Freunde anzeigen",
+          "en" : "Show People",
+          "es" : "Mostrar amigos",
+          "fr" : "Publier",
+          "nl" : "Toon vrienden"
+        }
+      },
+      "View profile" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Profil anzeigen",
+          "en" : "View profile",
+          "es" : "Ver perfil",
+          "fr" : "Afficher le profil",
+          "nl" : "Bekijk profiel"
+        }
+      },
+      "unsupportedDropType" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Es tut uns leid {0}, aber du kannst das hier nicht ablegen.",
+          "en" : "I'm sorry {0}, but you can't drop that thing there.",
+          "es" : "Lo sentimos {0}, pero no puedes soltar eso aquí.",
+          "fr" : "Désolé {0}, vous ne pouvez pas glisser cela ici.",
+          "nl" : "Helaas, maar je kunt hier niets heen slepen."
+        }
+      }
+    },
+    "Datetime" : {
+      "Day" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Tag",
+          "en" : "day",
+          "es" : "día",
+          "fr" : "jour",
+          "nl" : "dag"
+        }
+      },
+      "Days" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Tage",
+          "en" : "days",
+          "es" : "días",
+          "fr" : "jours",
+          "nl" : "dagen"
+        }
+      },
+      "Days ago" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "vor {0} {1} ",
+          "en" : "{0} {1} ago",
+          "es" : "hace {0} {1}",
+          "fr" : "il y a {0} {1}",
+          "nl" : " {0} {1} geleden"
+        }
+      },
+      "Hour" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Stunde",
+          "en" : "hour",
+          "es" : "hora",
+          "fr" : "heure",
+          "nl" : "uur"
+        }
+      },
+      "Hours" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Stunden",
+          "en" : "hours",
+          "es" : "horas",
+          "fr" : "heures",
+          "nl" : "uur"
+        }
+      },
+      "Hours ago" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "vor  {0} {1} ",
+          "en" : "{0} {1} ago",
+          "es" : "hace {0} {1}",
+          "fr" : "il y a {0} {1}",
+          "nl" : " {0} {1} geleden"
+        }
+      },
+      "Minute" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Minute",
+          "en" : "minute",
+          "es" : "minuto",
+          "fr" : "minute",
+          "nl" : "minuut"
+        }
+      },
+      "Minutes" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Minuten",
+          "en" : "minutes",
+          "es" : "minutos",
+          "fr" : "minutes",
+          "nl" : "minuten"
+        }
+      },
+      "Minutes ago" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "vor {0} {1} ",
+          "en" : "{0} {1} ago",
+          "es" : "hace {0} {1}",
+          "fr" : "il y a {0} {1}",
+          "nl" : " {0} {1} geleden"
+        }
+      },
+      "Moment ago" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "vor einem Moment",
+          "en" : "a moment ago",
+          "es" : "hace un momento",
+          "fr" : "à l'instant",
+          "nl" : "een ogenblik geleden"
+        }
+      },
+      "Now" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "jetzt",
+          "en" : "now",
+          "es" : "ahora",
+          "fr" : "maintenant",
+          "nl" : "nu"
+        }
+      },
+      "Second" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sekunde",
+          "en" : "second",
+          "es" : "segundo",
+          "fr" : "seconde",
+          "nl" : "seconde"
+        }
+      },
+      "Seconds" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sekunden",
+          "en" : "seconds",
+          "es" : "segundos",
+          "fr" : "secondes",
+          "nl" : "seconden"
+        }
+      },
+      "Week" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Woche",
+          "en" : "week",
+          "es" : "semana",
+          "fr" : "semaine",
+          "nl" : "week"
+        }
+      },
+      "Weeks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Wochen",
+          "en" : "weeks",
+          "es" : "semanas",
+          "fr" : "semaines",
+          "nl" : "weken"
+        }
+      }
+    },
+    "Generic" : {
+      "sGenericCancel" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abbrechen",
+          "en" : "Cancel",
+          "es" : "Cancelar",
+          "fr" : "Annuler",
+          "nl" : "Annuleren"
+        }
+      },
+      "sGenericLoading" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Laden...",
+          "en" : "Loading…",
+          "es" : "Cargando…",
+          "fr" : "Chargement...",
+          "nl" : "Laden..."
+        }
+      },
+      "sGenericPresenceError" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Presence error",
+          "en" : "Presence error",
+          "es" : "Error en el estado",
+          "fr" : "Erreur présence",
+          "nl" : "Presence error"
+        }
+      },
+      "sGenericSend" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Senden",
+          "en" : "Send",
+          "es" : "Enviar",
+          "fr" : "Envoyer",
+          "nl" : "Verzenden"
+        }
+      },
+      "sGenericSendMessageError" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Nachricht konnte nicht gesendet werden",
+          "en" : "Message couldn't be sent",
+          "es" : "El mensaje no se ha podido enviar",
+          "fr" : "Le message n'a pas été envoyé",
+          "nl" : "Bericht kon niet worden verzonden"
+        }
+      },
+      "sGenericShareMessagePlaceholder" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Optionale Nachricht",
+          "en" : "Optional message",
+          "es" : "Mensaje opcional",
+          "fr" : "Message (en option)",
+          "nl" : "Optioneel bericht"
+        }
+      }
+    },
+    "Misc" : {
+      "Item by artists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} von {1}",
+          "en" : "{0} by {1}",
+          "es" : "{0} de {1}",
+          "fr" : "{0} par {1}",
+          "nl" : "{0} van {1}"
+        }
+      },
+      "temporaryPlaylistByUser" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Temporäre Playlist #{0} von {1}",
+          "en" : "Temporary playlist #{0} by {1}",
+          "es" : "Lista de reproducción temporal #{0} de {1}",
+          "fr" : "Playlist temporaire #{0} par {1}",
+          "nl" : "Tijdelijke afspeellijst #{0} van #{1}"
+        }
+      }
+    },
+    "People" : {
+      "Unnamed group" : {},
+      "sPeopleAddToFavourites" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Zu Favoriten hinzufügen",
+          "en" : "Add to Favorites",
+          "es" : "Agregar a favoritos",
+          "fr" : "Ajouter à mes favoris",
+          "nl" : "Aan favorieten toevoegen"
+        }
+      },
+      "sPeopleFindFriends" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Find friends at facebook"
+        }
+      },
+      "sPeopleGetStarted" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Get started"
+        }
+      },
+      "sPeopleNoFriendsWarning" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Wenn du deine Freunde hinzugefügt hast, scheinen sie hier auf. ",
+          "en" : "When you've connected with your friends, they'll show up here.",
+          "es" : "Una vez que te hayas conectado con tus amigos, aparecerán aquí.",
+          "fr" : "Lorsque vous serez connecté avec vos amis, ils apparaîtront ici.",
+          "nl" : "Wanneer je met je vrienden verbonden bent zullen ze hier te zien zijn."
+        }
+      },
+      "sPeopleOfflineWarning" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Online gehen um deine Freunde zu sehen.",
+          "en" : "Go online to see your friends.",
+          "es" : "Necesitas estar en línea para ver a tus amigos.",
+          "fr" : "Connectez-vous pour voir vos amis.",
+          "nl" : "Ga online om je vrienden te zien."
+        }
+      },
+      "sPeopleRemoveFromFavourites" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Favorit entfernen",
+          "en" : "Remove Favorite",
+          "es" : "Eliminar de favoritos",
+          "fr" : "Supprimer des favoris",
+          "nl" : "Favoriet verwijderen"
+        }
+      },
+      "sPeopleShareMusic" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Share your music and see what your friends are listening to"
+        }
+      },
+      "sPeopleSpotifyIsMoreFun" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "de",
+          "es",
+          "fr",
+          "nl"
+        ],
+        "translations" : {
+          "en" : "Spotify is more fun with friends"
+        }
+      }
+    },
+    "Presence" : {
+      "A playlist" : {
+        "approved" : false,
+        "description" : "Fallback for when playlist name is not available",
+        "translations" : {
+          "de" : "eine Playlist",
+          "en" : "a playlist",
+          "es" : "una lista de reproducción",
+          "fr" : "une playlist",
+          "nl" : "een afspeellijst"
+        }
+      },
+      "Added track" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<a href=\"{0}\">{1}</a> zu <a href=\"{2}\">{3}</a> hinzugefügt",
+          "en" : "Added <a href=\"{0}\">{1}</a> to <a href=\"{2}\">{3}</a>",
+          "es" : "Se ha añadido <a href=\"{0}\">{1}</a> de <a href=\"{2}\">{3}</a>",
+          "fr" : "A ajouté <a href=\"{0}\">{1}</a> à <a href=\"{2}\">{3}</a>.",
+          "nl" : "<a href=\"{0}\">{1}</a> aan <a href=\"{2}\">{3}</a> toegevoegd"
+        }
+      },
+      "Facebook activity" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Geteilte Musik macht mehr Freunde, sende Musik an {0}!",
+          "en" : "Music is more fun when sharing, send some sweet tunes to {0}!",
+          "es" : "¡La música es más divertida si la compartes! Envía algunas canciones de {0}",
+          "fr" : "La musique est faite pour être partagée, envoyez des chansons à {0} !",
+          "nl" : "Muziek is veel leuker wanneer het gedeeld wordt! Stuur muziek naar {0}"
+        }
+      },
+      "Listened to" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hörte",
+          "en" : "{0} listened to",
+          "es" : "{0} escuchó",
+          "fr" : "{0} a écouté",
+          "nl" : "{0} luisterde naar"
+        }
+      },
+      "Most listened track" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Du hast vor Kurzem {0} angehört, teile es mit {1}!",
+          "en" : "You've listened to {0} lately, share it with {1}!",
+          "es" : "Has escuchado a {0} últimamente, ¡compártelo con {1}!",
+          "fr" : "Vous avez écouté {0}, envoyez-la à {1} !",
+          "nl" : "Je hebt laatst naar {0} geluisterd, deel het met {1}!"
+        }
+      },
+      "My playlist subscribed" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hat deine Playlist {1} abonniert",
+          "en" : "{0} subscribed to your playlist {1}",
+          "es" : "{0} ha agregado tu lista {1}",
+          "fr" : "{0} s'est abonné à votre playlist {1}",
+          "nl" : "{0} heeft zich geabonneerd op jouw afspeellijst {1}"
+        }
+      },
+      "Playlist published" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hat {1} veröffentlicht",
+          "en" : "{0} published {1}",
+          "es" : "{0} publicó {1}",
+          "fr" : "{0} a publié {1}.",
+          "nl" : "{0} heeft {1} gepubliceerd"
+        }
+      },
+      "Playlist subscribed" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hat die Playlist {1} von {2} abonniert",
+          "en" : "{0} subscribed to playlist {1} by {2}",
+          "es" : "{0} ha agregado la lista {1} de {2}",
+          "fr" : "{0} s'est abonné à la playlist {1} par {2}",
+          "nl" : "{0} heeft zich geabonneerd op afspeellijst {1} van {2}"
+        }
+      },
+      "Playlist track added" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hat {1} zu {2} hinzugefügt",
+          "en" : "{0} added {1} to {2}",
+          "es" : "{0} agregó {1} a {2}",
+          "fr" : "{0} a ajouté {1} à {2}.",
+          "nl" : "{0} heeft {1} aan {2} toegevoegd"
+        }
+      },
+      "Playlist track starred" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} starred {1} von {2}",
+          "en" : "{0} starred {1} by {2}",
+          "es" : "{0} destacó {1} de {2}",
+          "fr" : "{0} a ajouté {1} par {2} à sa sélection.",
+          "nl" : "{0} heeft {1} van {2} aan favorieten toegevoegd"
+        }
+      },
+      "Published playlist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Veröffentlichte {0}",
+          "en" : "Published {0}",
+          "es" : "Publicó {0}",
+          "fr" : "A publié {0}",
+          "nl" : "Publiceerde {0}"
+        }
+      },
+      "Send music" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Musik senden",
+          "en" : "Send music",
+          "es" : "Compartir música",
+          "fr" : "Partager",
+          "nl" : "Muziek zenden"
+        }
+      },
+      "Starred track" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Starred <a href=\"{uri}\">{name}</a>",
+          "en" : "Starred <a href=\"{uri}\">{name}</a>",
+          "es" : "Destacó <a href=\"{uri}\">{name}</a>",
+          "fr" : "A ajouté <a href=\"{uri}\">{name}</a> à sa sélection.",
+          "nl" : "<a href=\"{uri}\">{name}</a> aan favorieten toegevoegd"
+        }
+      },
+      "Subscribed to playlist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Abonnierte {0}",
+          "en" : "Subscribed to {0}",
+          "es" : "Ha agregado {0}",
+          "fr" : "s'est abonné à {0}",
+          "nl" : "Heeft zich geabonneerd op {0}"
+        }
+      },
+      "Track" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<a href=\"{uri}\">{name}</a> von {artists}",
+          "en" : "<a href=\"{uri}\">{name}</a> by {artists}",
+          "es" : "<a href=\"{uri}\">{name}</a> por {artists}",
+          "fr" : "<a href=\"{uri}\">{name}</a> par {artists}",
+          "nl" : "<a href=\"{uri}\">{name}</a> van {artists}"
+        }
+      },
+      "Track finished playing" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hat sich {1} von {2} angehört",
+          "en" : "{0} listened to {1} by {2}",
+          "es" : "{0} escuchó {1} de {2}",
+          "fr" : "{0} a écouté {1} par {2}.",
+          "nl" : "{0} luisterde naar {1} van {2}"
+        }
+      },
+      "User add the app" : {
+        "approved" : false,
+        "description" : "{0} added the {1} app",
+        "outOfDateTranslations" : [
+          "nl"
+        ],
+        "translations" : {
+          "de" : "{0} hat die {1}-App hinzugefügt",
+          "en" : "{0} added the {1} app",
+          "es" : "{0} agregó la app de {1}",
+          "fr" : "{0} vient d'ajouter l'appli {1}"
+        }
+      },
+      "User added track" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} hat Titel zu {1} hinzugefügt",
+          "en" : "{0} added track to {1}",
+          "es" : "{0} agregó esta canción a {1}",
+          "fr" : "{0} a ajouté un titre à {1}.",
+          "nl" : "{0} heeft een nummer aan {1} toegevoegd"
+        }
+      },
+      "User published playlist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} veröffentlichte die Playlist",
+          "en" : "{0} published the playlist",
+          "es" : "{0} publicó la lista",
+          "fr" : "{0} a publié la playlist.",
+          "nl" : "{0} publiceerde een afspeellijst"
+        }
+      },
+      "User starred" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} starred",
+          "en" : "{0} starred",
+          "es" : "{0} destacada",
+          "fr" : "{0} sélectionné"
+        }
+      },
+      "User subscribed to playlist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "{0} abonnierte die Playlist",
+          "en" : "{0} subscribed to the playlist",
+          "es" : "{0} añadió la lista",
+          "fr" : "{0} s'est abonné à la playlist",
+          "nl" : "{0} heeft zich geabonneerd op de afspeellijst"
+        }
+      },
+      "Using app" : {
+        "approved" : false,
+        "description" : "Using {0}",
+        "outOfDateTranslations" : [
+          "nl"
+        ],
+        "translations" : {
+          "de" : "auf {0}",
+          "en" : "Using {0}",
+          "es" : "por {0}",
+          "fr" : "Avec {0}"
+        }
+      }
+    },
+    "Profile" : {
+      "sProfileAddFavorite" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Zu Favoriten hinzufügen",
+          "en" : "Add to Favorites",
+          "es" : "Agregar a favoritos",
+          "fr" : "Ajouter à mes favoris",
+          "nl" : "Aan favorieten toevoegen"
+        }
+      },
+      "sProfileBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "nl" : "van"
+        }
+      },
+      "sProfileFindMusic" : {
+        "approved" : false,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "es"
+        ],
+        "translations" : {
+          "de" : "Musik finden...",
+          "en" : "Find music…",
+          "es" : "Encontrar música…",
+          "fr" : "Recherchez de la musique",
+          "nl" : "Muziek vinden..."
+        }
+      },
+      "sProfileLoadUserError" : {
+        "approved" : false,
+        "description" : "Load user error",
+        "outOfDateTranslations" : [
+          "es"
+        ],
+        "translations" : {
+          "de" : "Fehler beim Laden des Benutzers",
+          "en" : "Load user error",
+          "es" : "Load user error",
+          "fr" : "Erreur de chargement",
+          "nl" : "Fout bij het laden van gebruiker"
+        }
+      },
+      "sProfileMessage" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Schreib etwas",
+          "en" : "Say something",
+          "es" : "Escribe algo",
+          "fr" : "Ajoutez un message",
+          "nl" : "Zeg iets"
+        }
+      },
+      "sProfileMusicSent" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Musik ist unterwegs.",
+          "en" : "Yay! Awesome music is on its way.",
+          "es" : "¡Guay! Música increíble está en camino.",
+          "fr" : "Et en avant la musique !",
+          "nl" : "Geweldige muziek is onderweg!"
+        }
+      },
+      "sProfilePickSomethingLabel" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Wähle stattdessen einen deiner Top-Titel",
+          "en" : "Pick one of your top tracks instead",
+          "es" : "Elige una de tus canciones favoritas en su lugar",
+          "fr" : "Ou choisissez un titre dans votre top.",
+          "nl" : "Kies anders één van je top nummers."
+        }
+      },
+      "sProfilePresenceError" : {
+        "approved" : false,
+        "description" : "Presence error",
+        "translations" : {
+          "de" : "Presence error",
+          "en" : "Presence error",
+          "es" : "Error de estado",
+          "fr" : "Erreur présence",
+          "nl" : "Presence fout"
+        }
+      },
+      "sProfileRemoveFavorite" : {
+        "approved" : true,
+        "description" : "",
+        "outOfDateTranslations" : [
+          "fr"
+        ],
+        "translations" : {
+          "de" : "Favorit entfernen",
+          "en" : "Remove Favorite",
+          "es" : "Quitar de favoritos",
+          "fr" : "Supprimer des favoris",
+          "nl" : "Favoriet verwijderen"
+        }
+      },
+      "sProfileSearchLabel" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Suche stattdessen nach etwas",
+          "en" : "Search for something instead",
+          "es" : "Buscar algo en lugar de eso",
+          "fr" : "Ou recherchez de la musique",
+          "nl" : "Zoek anders naar iets"
+        }
+      },
+      "sProfileSend" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Senden",
+          "en" : "Send",
+          "es" : "Compartir",
+          "fr" : "Envoyer",
+          "nl" : "Verzenden"
+        }
+      },
+      "sProfileSendMessageError" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Nachricht konnte nicht gesendet werden",
+          "en" : "Message couldn't be sent",
+          "es" : "No se ha podido enviar el mensaje",
+          "fr" : "Le message n'a pas été envoyé",
+          "nl" : "Het bericht kon niet worden verstuurd"
+        }
+      },
+      "sProfileSendTopTracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sende {0} einen deiner Lieblingstitel",
+          "en" : "Send {0} one of your favorite tracks",
+          "es" : "Comparte con {0} una de tus canciones más escuchadas",
+          "fr" : "Envoyez un de vos titres préférés à {0}",
+          "nl" : "Stuur {0} een van je favoriete nummers"
+        }
+      },
+      "sProfileSendTrack" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel senden",
+          "en" : "Send Track",
+          "es" : "Enviar canción",
+          "fr" : "Envoyer le titre",
+          "nl" : "Verstuur nummer"
+        }
+      },
+      "sProfileSendTunes" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Sende Musik an {0}",
+          "en" : "Send some sweet tunes to {0}",
+          "es" : "Enviar algunas canciones de {0}",
+          "fr" : "Envoyez des chansons à {0}",
+          "nl" : "Verzend muziek naar {0}"
+        }
+      },
+      "sProfileTopArtists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Künstler",
+          "en" : "Top Artists",
+          "es" : "Artistas más escuchados",
+          "fr" : "Artistes les plus écoutés",
+          "nl" : "Top Artiesten"
+        }
+      },
+      "sProfileUnknownUser" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Unbekannter Benutzer",
+          "en" : "Unknown user",
+          "es" : "Usuario desconocido",
+          "fr" : "Utilisateur inconnu",
+          "nl" : "Onbekende gebruiker"
+        }
+      },
+      "sProfileUnsureWhichTunes" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Du weißt nicht was du senden sollst? HIer ist eine Auswahl deiner Lieblingstitel.",
+          "en" : "Not sure what to send? Here are some of your favorite tracks.",
+          "es" : "¿No sabes qué compartirle? Aquí están algunas de tus canciones favoritas.",
+          "fr" : "Besoin d'idées ? Voici quelques-uns de vos morceaux préférés.",
+          "nl" : "Niet zeker wat te zenden? Hier zijn enkele van je favoriete nummers."
+        }
+      },
+      "sProfileUnsureWhichTunesWorldwide" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Du weißt nicht was du senden sollst? Hier sind einige beliebte Titel.",
+          "en" : "Not sure what to send? Here are some popular tracks.",
+          "es" : "¿No sabes qué compartirle? Aquí están algunas de tus canciones favoritas.",
+          "fr" : "Besoin d'idées ? Voici des titres très populaires.",
+          "nl" : "Niet zeker wat te zenden? Hier zijn enkele van je populaire nummers."
+        }
+      },
+      "sProfileUserOffline" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Die Profilansicht ist offline nicht verfügbar.",
+          "en" : "The profile view is not available when offline.",
+          "es" : "Esta página sólo está disponible en línea.",
+          "fr" : "Les profils ne sont visibles qu'en ligne.",
+          "nl" : "De profielpagina is niet offline beschikbaar."
+        }
+      }
+    },
+    "Radio" : {
+      "60s" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "60er",
+          "en" : "60s",
+          "es" : "60s",
+          "fr" : "60s",
+          "nl" : "60s"
+        }
+      },
+      "70s" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "70er",
+          "en" : "70s",
+          "es" : "70s",
+          "fr" : "70s",
+          "nl" : "70s"
+        }
+      },
+      "80s" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "80er",
+          "en" : "80s",
+          "es" : "80s",
+          "fr" : "80s",
+          "nl" : "80s"
+        }
+      },
+      "90s" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "90er",
+          "en" : "90s",
+          "es" : "90s",
+          "fr" : "90s",
+          "nl" : "90s"
+        }
+      },
+      "Albums" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Alben",
+          "en" : "Albums",
+          "es" : "Álbums",
+          "fr" : "Albums",
+          "nl" : "Albums"
+        }
+      },
+      "Alternative" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Alternative",
+          "en" : "Alternative",
+          "es" : "Alternativa",
+          "fr" : "Alternatif",
+          "nl" : "Alternatief"
+        }
+      },
+      "Artists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler",
+          "en" : "Artists",
+          "es" : "Artistas",
+          "fr" : "Artistes",
+          "nl" : "Artiesten"
+        }
+      },
+      "Black Metal" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Black Metal",
+          "en" : "Black Metal",
+          "es" : "Black Metal",
+          "fr" : "Black Metal",
+          "nl" : "Black Metal"
+        }
+      },
+      "Blues" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Blues",
+          "en" : "Blues",
+          "es" : "Blues",
+          "fr" : "Blues",
+          "nl" : "Blues"
+        }
+      },
+      "Classical" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Klassisch",
+          "en" : "Classical",
+          "es" : "Clásica",
+          "fr" : "Classique",
+          "nl" : "Klassiek"
+        }
+      },
+      "Club/House" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Club/House",
+          "en" : "Club/House",
+          "es" : "Dance",
+          "fr" : "Dance",
+          "nl" : "Club/House"
+        }
+      },
+      "Country" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Country",
+          "en" : "Country",
+          "es" : "Country",
+          "fr" : "Country",
+          "nl" : "Country"
+        }
+      },
+      "Create Station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Neuen Radiosender erstellen",
+          "en" : "Create New Station",
+          "es" : "Crear nueva emisora",
+          "fr" : "Créer une nouvelle radio",
+          "nl" : "Creëer een nieuw station"
+        }
+      },
+      "Current album station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Album-Radio basierend auf <div>{0} <strong>von</strong> {1}</div>",
+          "en" : "Album Radio based on <div>{0} <strong>by</strong> {1}</div>",
+          "es" : "Radio Álbum basado en <div>{0} <strong>por</strong> {1}</div>",
+          "fr" : "Radio album liée à <div>{0} <strong>par</strong> {1}</div>",
+          "nl" : "Radiozender met albums als <div>{0} <strong>van</strong> {1}</div>"
+        }
+      },
+      "Current artist station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler-Radio basierend auf <div>{0}</div>",
+          "en" : "Artist Radio based on <div>{0}</div>",
+          "es" : "Radio del artista basada en <div>{0}</div>",
+          "fr" : "Radio artiste liée à <div>{0}</div>",
+          "nl" : "Radiozender met artiesten als <div>{0}</div>"
+        }
+      },
+      "Current genre station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Musik-Genre <div>{0}</div>",
+          "en" : "Genre Radio for <div>{0}</div>",
+          "es" : "Género musical <div>{0}</div>",
+          "fr" : "Radio thématique <div>{0}</div>",
+          "nl" : "Radio genre <div>{0}</div>"
+        }
+      },
+      "Current playlist station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Radio für Playlist <div>{0}</div>",
+          "en" : "Playlist Radio for <div>{0}</div>",
+          "es" : "Radio de la lista de reproducción <div>{0}</div>",
+          "fr" : "Radio liée à la playlist <div>{0}</div>",
+          "nl" : "Afspeellijst Radio voor <div>{0}</div>"
+        }
+      },
+      "Current track station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel-Radio basierend auf <div>{0} <strong>von</strong> {1}</div>",
+          "en" : "Track Radio based on <div>{0} <strong>by</strong> {1}</div>",
+          "es" : "Radio de canciones basada en <div>{0} <strong>por</strong> {1}</div>",
+          "fr" : "Radio liée à <div>{0} <strong>par</strong> {1}</div>",
+          "nl" : "Radiozender met nummers als <div>{0} <strong>van</strong> {1}</div>"
+        }
+      },
+      "Death Metal" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Death Metal",
+          "en" : "Death Metal",
+          "es" : "Death Metal",
+          "fr" : "Death Metal",
+          "nl" : "Death Metal"
+        }
+      },
+      "Electronic" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Electronic",
+          "en" : "Electronic",
+          "es" : "Electrónica",
+          "fr" : "Electro",
+          "nl" : "Electro"
+        }
+      },
+      "Emo" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Emo",
+          "en" : "Emo",
+          "es" : "Emo",
+          "fr" : "Emo",
+          "nl" : "Emo"
+        }
+      },
+      "First time header" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Radiosender basierend auf deinem Musikgeschmack",
+          "en" : "Radio stations based on what you like",
+          "es" : "Emisoras de radio basadas en tus gustos",
+          "fr" : "Radios associées à ce que vous aimez",
+          "nl" : "Radio stations gebasseerd op wat je leuk vindt"
+        }
+      },
+      "First time hide" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Nachricht verbergen",
+          "en" : "Hide Message",
+          "es" : "Esconder mensaje",
+          "fr" : "Cacher le message",
+          "nl" : "Verberg bericht"
+        }
+      },
+      "First time message" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Wir haben für dich einen Radiosender ähnlich deiner Top-Künstler erstellt.<br/>Möchtest du etwas anderes hören? Du findest mehr Sender unten.",
+          "en" : "We've started you off with a station similar to your current top artist.<br/>Want to hear something else? Find more stations below.",
+          "es" : "Hemos empezado con una emisora basada en tus artistas favoritos.<br/>¿Quieres escuchar algo distinto? Encuentra más emisoras aquí.",
+          "fr" : "Pour démarrer, nous vous proposons une radio similaire à votre Top artiste.<br/>Vous souhaitez écouter autre chose? Découvrez d'autres radios ci-dessous.",
+          "nl" : "We zijn een radiostation begonnen op basis van jouw top artiest.<br/>Wil je iets anders luisteren? Hieronder vind je meer radiostation."
+        }
+      },
+      "Folk" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Volkstümlich",
+          "en" : "Folk",
+          "es" : "Tradicional",
+          "fr" : "Folk",
+          "nl" : "Folk"
+        }
+      },
+      "Hardcore" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Hardcore",
+          "en" : "Hardcore",
+          "es" : "Hardcore",
+          "fr" : "Hardcore",
+          "nl" : "Hardcore"
+        }
+      },
+      "Heavy Metal" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Heavy Metal",
+          "en" : "Heavy Metal",
+          "es" : "Heavy Metal",
+          "fr" : "Heavy Metal",
+          "nl" : "Heavy Metal"
+        }
+      },
+      "Hip-Hop" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Hip-Hop",
+          "en" : "Hip-Hop",
+          "es" : "Hip-Hop",
+          "fr" : "Hip-Hop",
+          "nl" : "Hip-Hop"
+        }
+      },
+      "Indie" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Indie",
+          "en" : "Indie",
+          "es" : "Indie",
+          "fr" : "Indie",
+          "nl" : "Indie"
+        }
+      },
+      "Jazz" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Jazz",
+          "en" : "Jazz",
+          "es" : "Jazz",
+          "fr" : "Jazz",
+          "nl" : "Jazz"
+        }
+      },
+      "Latin" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Latin",
+          "en" : "Latin",
+          "es" : "Latina",
+          "fr" : "Latina",
+          "nl" : "Latin"
+        }
+      },
+      "Missing station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Leider kann dieser Radiosender nicht gestartet werden.</strong><br/>Bitte versuche es mit etwas anderem erneut.",
+          "en" : "<strong>Sorry. This radio station cannot be started.</strong><br/>Please try with something else.",
+          "es" : "<strong>Lo sentimos. Esta emisora de radio no puede volver a iniciarse.</strong><br/>Por favor prueba con algo distinto.",
+          "fr" : "<strong>Désolé, cette radio ne peut pas être démarrée.</strong><br/>Merci d'essayer avec un autre contenu.",
+          "nl" : "<strong>Sorry. Dit radiostation kan niet worden opgestart.</strong><br/>Probeer het met iets anders."
+        }
+      },
+      "Offline" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Das Radio steht nicht zur Verfügung da Spotify offline ist.</strong><br/>",
+          "en" : "<strong>Radio is not available when Spotify is offline.</strong><br/>",
+          "es" : "<strong>La radio no está disponible cuando Spotify está offline.</strong><br/>",
+          "fr" : "<strong>La radio n'est pas disponible lorsque Spotify est hors connexion.</strong><br/>",
+          "nl" : "<strong>Radio is momenteel niet beschikbaar omdat Spotify offline is.</strong><br/>"
+        }
+      },
+      "Playlists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlists",
+          "en" : "Playlists",
+          "es" : "Listas",
+          "fr" : "Playlists",
+          "nl" : "Afspeellijsten"
+        }
+      },
+      "Pop" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Pop",
+          "en" : "Pop",
+          "es" : "Pop",
+          "fr" : "Pop",
+          "nl" : "Pop"
+        }
+      },
+      "Popular Genres" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Beliebte</strong> Genre-Radiosender",
+          "en" : "<strong>Popular Genre</strong> Radio Stations",
+          "es" : "Estaciones de radio <strong>populares</strong>",
+          "fr" : "<strong>Top</strong> radios thématiques",
+          "nl" : "Radiostations van <strong>populaire genres</strong>"
+        }
+      },
+      "Popular Stations" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Beliebte</strong> Radiosender",
+          "en" : "<strong>Popular</strong> Radio Stations",
+          "es" : "Emisoras de radio <strong>más destacadas</strong>",
+          "fr" : "Radio <strong>populaires</strong>",
+          "nl" : "<strong>Populaire</strong> radiostations"
+        }
+      },
+      "Powered By" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Zur Verfügung gestellt von",
+          "en" : "POWERED BY",
+          "es" : "Desarrollado por",
+          "fr" : "Créée par",
+          "nl" : "MEDE MOGELIJK GEMAAKT DOOR"
+        }
+      },
+      "Punk" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Punk",
+          "en" : "Punk",
+          "es" : "Punk",
+          "fr" : "Punk",
+          "nl" : "Punk"
+        }
+      },
+      "R&B" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "R&B",
+          "en" : "R&B",
+          "es" : "R&B",
+          "fr" : "R&B",
+          "nl" : "R&B"
+        }
+      },
+      "Recent Stations" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Letzte</strong> Radiosender",
+          "en" : "<strong>Recent</strong> Radio Stations",
+          "es" : "Emisoras de radio <strong>recientes</strong>",
+          "fr" : "Radios <strong>récentes</strong>",
+          "nl" : "<strong>Recente</strong> radiostations"
+        }
+      },
+      "Reggae" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Reggae",
+          "en" : "Reggae",
+          "es" : "Reggae",
+          "fr" : "Reggae",
+          "nl" : "Reggae"
+        }
+      },
+      "Rock" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Rock",
+          "en" : "Rock",
+          "es" : "Rock",
+          "fr" : "Rock",
+          "nl" : "Rock"
+        }
+      },
+      "Share Station" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Radiosender teilen",
+          "en" : "Share Station",
+          "es" : "Compartir emisora",
+          "fr" : "Partager la radio",
+          "nl" : "Deel station"
+        }
+      },
+      "Singer-Songwriter" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Singer-Songwriter",
+          "en" : "Singer-Songwriter",
+          "es" : "Cantautor",
+          "fr" : "Auteur-compositeur",
+          "nl" : "Singer-Songwriter"
+        }
+      },
+      "Soul" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Soul",
+          "en" : "Soul",
+          "es" : "Soul",
+          "fr" : "Soul",
+          "nl" : "Soul"
+        }
+      },
+      "Tracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "Tracks",
+          "es" : "Canciones",
+          "fr" : "Titres",
+          "nl" : "Nummers"
+        }
+      },
+      "Trance" : {
+        "approved" : false,
+        "description" : "genre",
+        "translations" : {
+          "de" : "Trance",
+          "en" : "Trance",
+          "es" : "Trance",
+          "fr" : "Trance",
+          "nl" : "Trance"
+        }
+      },
+      "Your Playlists Stations" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Top-Titel</strong> Radiosender",
+          "en" : "<strong>Your Playlists</strong> Radio Stations",
+          "es" : "Emisoras de <strong>tus canciones favoritas</strong>",
+          "fr" : "Votre radio <strong>Top titres</strong>",
+          "nl" : "Radiostation van <strong>jouw top nummers</strong>"
+        }
+      },
+      "Your Top Artists Stations" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Top-Künstler</strong> Radiosender",
+          "en" : "<strong>Your Top Artists</strong> Radio Stations",
+          "es" : "Emisoras de <strong>tus artistas favoritos</strong>",
+          "fr" : "Votre radio <strong>Top artistes</strong>",
+          "nl" : "Radiostations van <strong>jouw top artiesten</strong>"
+        }
+      },
+      "Your Top Tracks Stations" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "<strong>Top-Titel</strong> Radiosender",
+          "en" : "<strong>Your Top Tracks</strong> Radio Stations",
+          "es" : "Emisoras de <strong>tus canciones favoritas</strong>",
+          "fr" : "Votre radio <strong>Top titres</strong>",
+          "nl" : "Radiostation van <strong>jouw top nummers</strong>"
+        }
+      }
+    },
+    "Search Dropdown" : {
+      "by" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "nl" : "van"
+        }
+      },
+      "sDropdownAlbums" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Alben",
+          "en" : "Albums",
+          "es" : "Álbums",
+          "fr" : "Albums",
+          "nl" : "Albums"
+        }
+      },
+      "sDropdownArtists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler",
+          "en" : "Artists",
+          "es" : "Artistas",
+          "fr" : "Artistes",
+          "nl" : "Artiesten"
+        }
+      },
+      "sDropdownBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "nl" : "door"
+        }
+      },
+      "sDropdownClearRecentSearches" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Letzte Suchabfragen entfernen",
+          "en" : "Clear Recent Searches",
+          "es" : "Eliminar búsquedas recientes",
+          "fr" : "Effacer les recherches récentes",
+          "nl" : "Wis laatste zoekvragen"
+        }
+      },
+      "sDropdownPlaylists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlists",
+          "en" : "Playlists",
+          "es" : "Listas",
+          "fr" : "Playlists",
+          "nl" : "Afspeellijsten"
+        }
+      },
+      "sDropdownRecentSearches" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Letzte Suchabfragen",
+          "en" : "Recent Searches",
+          "es" : "Búsquedas Recientes",
+          "fr" : "Recherches récentes",
+          "nl" : "Recente zoekvragen"
+        }
+      },
+      "sDropdownShowAllResults" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Alle Ergebnisse anzeigen...",
+          "en" : "Show All Results…",
+          "es" : "Mostrar todos los resultados…",
+          "fr" : "Voir tous les résultats",
+          "nl" : "Toon alle resultaten..."
+        }
+      },
+      "sDropdownTopHit" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Bestes Ergebnis",
+          "en" : "Top Hit",
+          "es" : "Resultado principal",
+          "fr" : "Titre le plus populaire",
+          "nl" : "Top Hit"
+        }
+      },
+      "sDropdownTracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "Tracks",
+          "es" : "Canciones",
+          "fr" : "Titres",
+          "nl" : "Nummers"
+        }
+      },
+      "sDropdownUsers" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Benutzer",
+          "en" : "Users",
+          "es" : "Usuarios",
+          "fr" : "Utilisateurs",
+          "nl" : "Gebruikers"
+        }
+      }
+    },
+    "What's New" : {
+      "sArtist" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler",
+          "en" : "Artist",
+          "es" : "Artista",
+          "fr" : "Artiste",
+          "nl" : "Artiest"
+        }
+      },
+      "sBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "nl" : "van"
+        }
+      },
+      "sCountryPlaylists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Playlist in deinem Land",
+          "en" : "Trending playlists in your country",
+          "es" : "Listas populares en tu país",
+          "fr" : "Playlists populaires dans votre pays",
+          "nl" : "Populaire afspeellijsten in je land"
+        }
+      },
+      "sCountryTracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Titel in deinem Land",
+          "en" : "Trending tracks in your country",
+          "es" : "Canciones populares en tu país",
+          "fr" : "Titres populaires dans votre pays",
+          "nl" : "Populaire nummers in je land"
+        }
+      },
+      "sFriendsPlaylistsA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Beliebte Playlists",
+          "en" : "Trending playlists",
+          "es" : "Listas populares",
+          "fr" : "Playlists populaires",
+          "nl" : "Populaire afspeellijsten"
+        }
+      },
+      "sFriendsPlaylistsB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "unter Freunden",
+          "en" : "among friends",
+          "es" : "entre tus amigos",
+          "fr" : "parmi vos amis",
+          "nl" : "onder je vrienden"
+        }
+      },
+      "sFriendsTracksA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Titel",
+          "en" : "Top tracks",
+          "es" : "Canciones más escuchadas",
+          "fr" : "Top titres",
+          "nl" : "Top nummers"
+        }
+      },
+      "sFriendsTracksB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "unter Freunden",
+          "en" : "among friends",
+          "es" : "entre tus amigos",
+          "fr" : "parmi vos amis",
+          "nl" : "onder je vrienden"
+        }
+      },
+      "sNewFriendsA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Benutzer",
+          "en" : "People",
+          "es" : "Amigos",
+          "fr" : "Contacts",
+          "nl" : "Vrienden"
+        }
+      },
+      "sNewFriendsB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "die dich vielleicht interessieren",
+          "en" : "you may find interesting",
+          "es" : "que utilizan Spotify",
+          "fr" : "qui pourraient vous intéresser",
+          "nl" : "die je wellicht interesseren"
+        }
+      },
+      "sNewReleases" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Neuerscheinungen",
+          "en" : "New releases",
+          "es" : "Nuevos lanzamientos",
+          "fr" : "Nouveautés",
+          "nl" : "Nieuwe releases"
+        }
+      },
+      "sRegionPlaylistsA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Playlists",
+          "en" : "Top playlists",
+          "es" : "Listas más escuchadas",
+          "fr" : "Top playlists",
+          "nl" : "Top afspeellijsten"
+        }
+      },
+      "sRegionPlaylistsB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "in deiner Nähe",
+          "en" : "near you",
+          "es" : "cerca de ti",
+          "fr" : "près de chez vous",
+          "nl" : "in je omgeving"
+        }
+      },
+      "sRegionTracksA" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Top-Titel",
+          "en" : "Top tracks",
+          "es" : "Canciones más escuchadas",
+          "fr" : "Top titres",
+          "nl" : "Top nummers"
+        }
+      },
+      "sRegionTracksB" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "in deiner Nähe",
+          "en" : "near you",
+          "es" : "cerca de ti",
+          "fr" : "près de chez vous",
+          "nl" : "in je omgeving"
+        }
+      },
+      "sTitle" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "Title",
+          "es" : "Título",
+          "fr" : "Titre",
+          "nl" : "Titel"
+        }
+      },
+      "sUnavailableOffline" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Neuheiten sind offline nicht verfügbar.",
+          "en" : "What's New is not available offline.",
+          "es" : "Novedades no está disponible sin conexión",
+          "fr" : "Les Nouveautés ne sont pas disponibles hors connexion.",
+          "nl" : "Wat Is Nieuw is niet offline beschikbaar."
+        }
+      }
+    },
+    "album-header" : {
+      "sAlbumBy" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "von {0}",
+          "en" : "by {0}",
+          "es" : "de {0}",
+          "fr" : "par {0}",
+          "nl" : "van {0}"
+        }
+      },
+      "sGetAlbum" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Album kaufen",
+          "en" : "Get Album",
+          "es" : "Descargar álbum",
+          "fr" : "Acheter l'album",
+          "nl" : "Album ophalen"
+        }
+      },
+      "sMoreBy" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Mehr von {0}",
+          "en" : "More by {0}",
+          "es" : "Más de {0}",
+          "fr" : "Plus de {0}",
+          "nl" : "Meer van {0}"
+        }
+      },
+      "sSeeAll" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Alle Alben anzeigen",
+          "en" : "See all albums",
+          "es" : "Ver álbumes",
+          "fr" : "Voir les albums",
+          "nl" : "Bekijk alle albums"
+        }
+      },
+      "sShare" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Teilen",
+          "en" : "Share",
+          "es" : "Compartir en",
+          "fr" : "Partager",
+          "nl" : "Delen"
+        }
+      },
+      "sStartAlbumRadio" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Radio für dieses Album starten",
+          "en" : "Start Album Radio",
+          "es" : "Empezar radio del álbum",
+          "fr" : "Ecouter la radio liée à l'album",
+          "nl" : "Radiozender voor dit album starten"
+        }
+      }
+    },
+    "search-header" : {
+      "sAlbums" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Alben",
+          "en" : "Albums",
+          "es" : "Álbumes",
+          "fr" : "Albums",
+          "nl" : "Albums"
+        }
+      },
+      "sArtists" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler",
+          "en" : "Artists",
+          "es" : "Artistas",
+          "fr" : "Artistes",
+          "nl" : "Artiesten"
+        }
+      },
+      "sDidYouMean" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Meintest du {0}?",
+          "en" : "Did you mean {0}?",
+          "es" : "¿Quieres decir {0}?",
+          "fr" : "Vouliez-vous dire {0} ?",
+          "nl" : "Bedoel je {0}?"
+        }
+      },
+      "sPlaylists" : {
+        "approved" : true,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlists",
+          "en" : "Playlists",
+          "es" : "Listas",
+          "fr" : "Playlists",
+          "nl" : "Afspeellijsten"
+        }
+      }
+    }
+  }
+}

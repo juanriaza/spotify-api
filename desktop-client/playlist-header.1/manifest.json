@@ -1,0 +1,37 @@
+{
+  "ApiPermissions": {
+    "core": [
+      "private"
+    ],
+    "playlist": [
+      "private"
+    ],
+    "social": [
+      "private"
+    ],
+    "playlistContainer" : [
+      "private"
+    ]
+  },
+  "BundleIdentifier": "playlist-header",
+  "BundleType": "Application",
+  "BundleVersion": "1.0.0",
+  "Dependencies": {
+    "api": "0.1.0",
+    "resources": "0.1.0",
+    "unstable": "0.1.0",
+    "util": "0.1.0"
+  },
+  "RequiredPermissions": [
+    "https://fbcdn-profile-*.akamaihd.net",
+    "http://*.fbcdn.net"
+  ],
+  "SupportedLanguages": [
+    "en",
+    "fr",
+    "es",
+    "de",
+    "nl"
+  ],
+  "UserInstallable": false
+}

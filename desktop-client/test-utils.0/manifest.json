@@ -1,0 +1,6 @@
+{
+    "BundleType": "Framework",
+    "BundleVersion": "0.1.0",
+    "BundleIdentifier" : "test-utils",
+    "VendorIdentifier" : "com.spotify"
+}

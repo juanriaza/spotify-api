@@ -1,0 +1,20 @@
+The Stitch Application: Search's Deployment Book
+================================================
+Martin Jönsson <mart@spotify.com>
+
+Overview
+--------
+
+This application is currently a part of link:https://techdoc.spotify.net/projbooks/web-site-player/[web-site-player]. Setting up the web-site-player is a requirement to run this application.
+
+
+Walkthrough
+-----------
+
+* Clone the web-site-player and make sure it is set up correctly.
+* Navigate to ~src/web-site-player/src/app/search/
+* Update what is needed.
+* Commit your changes to the master branch and get it reviewed (send to mart@spotify.com).
+* Once it's in the master branch, update the search-app submodule in the web-site-player repo.
+* Commit to the master branch of web-site-player. Add the people responsible for Link as reviewers.
+* Wait for a new deploy for web-site-player or talk to the people responsible for Link to request a new deploy.

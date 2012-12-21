@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="popup-common/css/popup.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/og-popup.css">
+</head>
+<body>
+  <div id="content">
+    <hgroup>
+      <h1>Sharing music with friends is awesome!</h1>
+    </hgroup>
+    <div id="friends-container" class="expanded"></div>
+</div>   
+
+<section id="button-container">
+  <span id="footer-info">Check out your friends' music and share what you are listening to and more on Facebook</span>
+  <button class="action large face-img" id="connect-og">Ok, start sharing</button>
+</section>
+
+
+<script>
+    var sp = getSpotifyApi(1);
+    sp.requireAsync('assets/js/og-popup', function(r) { r.init(); });
+  </script>
+</body>
+</html>

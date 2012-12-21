@@ -1,0 +1,320 @@
+@import url("sp://resources/css/api.css");
+@import url("sp://resources/css/adam.css");
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  min-width: 790px;
+}
+
+a {
+  color: #bfbfbf;
+}
+
+#wrapper {
+  position: relative;
+  height: 188px;
+  width: 100%;
+  min-width: 680px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#cover {
+  width: 148px;
+  height: 148px;
+  margin: 20px 15px 20px 10px;
+  float: left;
+  background: url('sp://resources/img/missing-playlist-artwork.png') center center no-repeat;
+  background-size: 100% 100%;
+}
+
+#cover .sp-image {
+  width: 148px;
+  height: 148px;
+  cursor: default;
+  box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1), 0 1px 2px #222;
+  border-radius: 3px;
+}
+
+#meta {
+  position: relative;
+  width: 70%;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#meta-title {
+  position: relative;
+  font-size: 18px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  margin: 20px 0 3px;
+  padding-left: 50px;
+}
+
+#meta-title a {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: default;
+  font-weight: bold;
+}
+
+#meta-title span {
+  position: absolute;
+  font-weight: normal;
+  font-size: 14px;
+  color: #808080;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  margin: 1px 0px 0px 5px;
+}
+
+#meta-owner {
+  font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #808080;
+  margin: -22px 0 7px;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#meta-owner .sp-image {
+  width: 42px;
+  height: 42px;
+  vertical-align: bottom;
+  margin-right: 8px;
+  background-image: url("sp://resources/img/placeholders/128-user.png");
+  border-radius: 3px;
+}
+
+#meta-desc {
+  white-space: normal;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 11px;
+}
+
+#meta-buttons {
+  background-color: #222222;
+  border-radius: 4px;
+  padding: 6px;
+  width: 100%;
+  position: absolute;
+  bottom: 18px;
+  left: 169px;
+}
+
+.sp-button {
+  margin-right: 5px;
+}
+.sp-button.sp-icon span {
+  top: 6px;
+}
+
+#checkbox-star + label {
+  margin-left: 5px;
+}
+
+#more {
+  box-sizing: border-box;
+  width: 29%;
+  padding: 0 10px;
+  height: 130px;
+  float: right;
+  text-align: right;
+  position: relative;
+}
+
+#more h2 {
+  font-size: 13px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #bbb;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
+}
+
+#more h2 a,
+#more h2 strong {
+  color: #eee;
+}
+
+#more h2 strong {
+  display: block;
+  font-size: 20px;
+}
+
+#more-users {
+  margin: 5px 3px 8px 0;
+  height: 42px;
+  overflow: hidden;
+}
+
+#more .sp-image {
+  width: 42px;
+  height: 42px;
+  margin-left: 4px;
+  background-image: url("sp://resources/img/placeholders/128-user.png");
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#more .sp-image:first-child {
+  margin-left: 0;
+}
+
+#more .more-additional {
+  bottom: 0;
+  position: absolute;
+  right: 10px;
+  z-index: 2;
+}
+
+#additional-button {
+  background-color: #222;
+  border-radius: 4px;
+  height: 22px;
+  padding: 7px 6px 8px;
+  position: absolute;
+  width: 30%;
+  bottom: 18px;
+  right: 10px;
+  text-align: right
+}
+
+.offline-button {
+  color: #999;
+  border: none;
+  background: url("sp://resources/img/switch.png") 100% 0 no-repeat transparent;
+  padding-right: 60px;
+  height: 22px;
+  line-height: 22px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  float: right;
+}
+
+.offline-button.turn-on {
+  background-position: 100% 100%;
+}
+
+.get-playlist-button {
+  color: #999;
+  border: none;
+  background: url("../img/get-playlist-button.png") 0 2px no-repeat transparent;
+  padding-left: 20px;
+  height: 18px;
+  line-height: 16px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  float: right;
+}
+
+.offline-button:hover,
+.get-playlist-button:hover {
+  color: #fff;
+}
+
+#button-see-all {
+  margin-left: 15px;
+}
+
+.sp-tooltip {
+  display: block;
+  position: absolute;
+  top: -1000px;
+  background: #f5f5f5;
+  color: #333333;
+  padding: 2px 7px 3px 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 3;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.9);
+  -webkit-transform: scale(0);
+  -webkit-transform-origin: 50% 0%;
+  -webkit-transition: -webkit-transform cubic-bezier(0.0, 0.35, 0.5, 1.3) 0.2s;
+}
+
+.sp-tooltip span {
+  color: #777777;
+}
+
+.sp-tooltip.sp-tooltip-show {
+  -webkit-transform: scale(1);
+}
+
+.sp-tooltip:before,
+.sp-tooltip:after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: -5px;
+  margin-left: -4px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid rgba(0, 0, 0, 0.5);
+}
+
+.sp-tooltip:after {
+  top: -4px;
+  border-bottom: 4px solid #ffffff;
+}
+
+input[type=checkbox].sp-star {
+  display: none;
+}
+
+input[type=checkbox].sp-star + label {
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+  font-family: 'Lucida Grande', Tahoma, sans-serif;
+  color: #808080;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+input[type=checkbox].sp-star + label span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  background-image: url("sp://resources/img/mainlist-star-simple-dark.png");
+  background-repeat: no-repeat;
+}
+
+input[type=checkbox].sp-star:checked  + label        span {
+  background-position: 0px 0px;
+}
+
+input[type=checkbox].sp-star:checked  + label:hover  span {
+  background-position: -16px 0px;
+}
+
+input[type=checkbox].sp-star:checked  + label:active span {
+  background-position: -32px 0px;
+}
+
+input[type=checkbox].sp-star          + label        span {
+  background-position: -48px 0px;
+}
+
+input[type=checkbox].sp-star          + label:hover  span {
+  background-position: -64px 0px;
+}
+
+input[type=checkbox].sp-star          + label:active span {
+  background-position: -80px 0px;
+}

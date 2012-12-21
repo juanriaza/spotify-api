@@ -1,0 +1,15 @@
+{
+    "AppDescription": {
+        "en": "Stitch application that shows whether the currently in-use browser supports various HTML(5) features."
+    },
+    "AppName": {
+        "en": "HTML5 Test"
+    },
+    "BundleIdentifier": "html",
+    "BundleType": "Application",
+    "BundleVersion": "0.1.0",
+    "SupportedLanguages": [
+        "en"
+    ],
+    "UserInstallable": false
+}

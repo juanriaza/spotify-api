@@ -1,0 +1,407 @@
+/**
+ *  Main Structure 
+ */
+
+body {
+  word-wrap:break-word;
+  margin: 0px;
+  font: 11px/15px "Lucida Grande", "Tahoma", "Arial", sans-serif;
+  color: #555;
+  -webkit-font-smoothing: antialiased;
+}
+
+#noteCenter {
+  position: relative;
+  width: 340px;
+  background-color: #F5F5F5;
+}
+
+a {
+color: #454545;
+text-decoration: none;
+}
+
+#notificationList {
+  max-height: 280px;
+}
+
+
+/**
+ *  Top and Bottom Bars
+ */
+
+#topBar {
+  height: 28px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  color: #484848;
+  line-height: 28px;
+  font-family: Helvetica, Arial, sans-serif;
+  border-bottom: 1px solid #ddd;
+}
+
+#noteCenter.loaded #topBar {
+  height: 28px;
+  line-height: 28px;
+}
+
+/* Bottom Bar */
+
+#bottomBar {
+  margin-top: 0;
+  height: 38px;
+  text-align: center;
+  z-index: 99999;
+}
+
+#clearAllButton {
+  display: inline-block;
+  margin-top: 6px;
+  color: #555;
+  font-weight: normal;
+  display: none;
+  opacity: 0;
+}
+
+#noteCenter.loaded #bottomBar {
+  height: 8px;
+  max-height: 8px;
+  background-color: #F5F5F5;
+  border-top: 1px solid #ddd;
+}
+
+#loadingSpin {
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  opacity: 1;
+  margin-top: 4px;
+}
+
+#noteCenter.loaded #loadingSpin, #noteCenter.empty #loadingSpin {
+  display: none;
+  opacity: 0;
+}
+
+#noMoreMessage {
+  display: none;
+}
+
+#noteCenter.empty #bottomBar #noMoreMessage {
+  line-height: 39px;
+  display: inline-block;
+}
+
+
+/**
+ *  Notification Opening And Closing
+ */
+
+@-webkit-keyframes notification-open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes notification-close {
+  0% {
+    position: relative;
+    left: 0;
+    opacity: 1;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+body.animated div.notification {
+  -webkit-animation-duration: 180ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: notification-open;
+  -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1.0);
+}
+
+body.animated .notification.close {
+  -webkit-animation-duration: 180ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: notification-close;
+  -webkit-animation-curve: linear;
+  opacity: 0;
+}
+
+
+/**
+ *  Notification Style
+ */
+
+div.notification {
+  opacity: 1;
+  max-height: none;
+  box-shadow: 0 -1px 0px rgba(0,0,0,0.10) inset;
+  position: relative;
+  word-wrap:break-word;
+  max-width: 100%;
+}
+div.clearFloat {
+  clear: both;
+}
+
+div.notification:last-child {
+  box-shadow: none;
+}
+
+div.notification.selected {
+  background: -webkit-gradient(linear, left top, left bottom,color-stop(1%, #b2dffb), color-stop(100%, #9ad2fa));
+  color: #34424b;
+}
+
+div.notification.unread {
+  background-color: #eaf0f7;
+}
+
+div.notification.selected .actionDoneCover {
+  box-shadow: 0 0 3px 3px #A5D8FA;
+}
+
+div.notification.unread .actionDoneCover {
+  box-shadow: 0 0 3px 3px #eaf0f7;
+}
+
+
+
+
+
+.imageLink {
+  margin: 7px 8px 8px;
+  width: 48px;
+  max-width: 48px;
+  min-width: 48px;
+  float: left;
+}
+
+.messageCell {
+  padding: 7px 0 8px;
+  vertical-align: top;
+  margin-left: 65px;
+  max-width: 190px;
+}
+
+.buttonCell {
+  vertical-align: middle;
+  position: relative;
+  height: 100%;
+  float: right;
+  margin-top: 20px;
+}
+
+a.senderName, a.objectName {
+  font-weight: bold;
+  color: #444;
+}
+
+div.notification.selected a.senderName, div.notification.selected a.objectName {
+  color: #33424b;
+}
+
+a.senderName:hover, a.objectName:hover {
+  text-decoration: underline;
+}
+
+.submessage {
+  font-size: 9px;
+  color: #888;
+  margin-top: 2px;
+}
+
+div.notification.selected .submessage {
+  color: #526b7d;
+}
+
+.image {
+  position: relative;
+  border-radius: 3px;
+  background-color: #C1C0BE;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.2), inset 0 0 1px rgba(0,0,0,0.8), 0 1px 0px rgba(255,255,255,0.5);
+  border: 0;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+}
+
+
+/**
+ * Buttons
+ */
+
+ /* Close Button */
+
+.closeButton {
+  visibility: hidden;
+  border: 1px solid transparent;
+  position: absolute;
+  right: 7px;
+  top: -18px;
+  padding: 0 3px 3px;
+  line-height:  9px;
+  border-radius: 2px;
+}
+
+div.notification.selected .closeButton, div.notification:hover .closeButton {
+  visibility: visible;
+}
+
+.closeButton:hover {
+  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #FAFAFA), color-stop(100%, #E8E8E8));
+  border:1px solid rgba(0,0,0,.30);
+  box-shadow:0px 1px 0px #FFF inset;
+}
+
+.closeButton:active {
+  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #E8E8E8), color-stop(100%, #CECECE));
+  border:1px solid rgba(0,0,0,.35);
+  box-shadow:0px 1px 1px rgba(0,0,0, .4) inset;
+}
+
+/* General Button Classes */
+/* TODO: these should be shared */
+
+.spotifyButtonGrey, .spotifyButtonBlue {
+  font-family:'Lucida Grande', Tahoma, sans-serif;  
+  font-size:11px;
+  font-weight:normal;
+  text-decoration:none;
+  border-radius: 3px;
+  line-height: 1em;
+  padding: 5px 10px 6px;
+  background-clip: padding-box;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.spotifyButtonGrey {
+  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #FAFAFA), color-stop(100%, #E8E8E8));
+  border:1px solid rgba(0,0,0,.30);
+  box-shadow:0px 1px 0px #FFF inset;
+  color: #404040;
+  text-shadow:0px 1px 0px #F4F4F4;
+  opacity: 1;
+}
+
+.spotifyButtonGrey:active {
+  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #E8E8E8), color-stop(100%, #CECECE));
+  border:1px solid rgba(0,0,0,.35);
+  box-shadow:0px 1px 1px rgba(0,0,0, .4) inset;
+}
+
+.spotifyButtonBlue {
+  background-image: -webkit-gradient(linear, left top, left bottom,color-stop(1%, #449fdb), color-stop(100%, #2884C6), color-stop(50%, #256fb5), color-stop(50%, #1764ad));
+  border: 1px solid #1766b0;
+  box-shadow: 0px 1px 0px #77B9E6 inset;
+  color: white;
+  text-shadow: 0px -1px 0px rgb(35, 95, 144);
+  background-color: #449fdb;
+}
+
+.spotifyButtonBlue:active {
+  box-shadow:0px 1px 0px rgba(0,0,0,.2) inset;
+  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #5B97C4), color-stop(100%, #1A63A4), color-stop(50%, #316B9f), color-stop(50%, #1E5B95));
+  border: 1px solid #084C8D;
+  background-color: #5B97C4;
+}
+
+
+
+
+/* Button Animations */
+
+.secondaryActionButton {
+  margin-top: -24px;
+  clear: both;
+  margin-bottom: 19px;
+}
+
+.mainActionButton, .secondaryActionButton, .actionDoneCover {
+  float: right;
+  position: relative;
+  -webkit-transition: opacity 140ms linear;
+  margin-right: 10px;
+  margin-left: 2px;
+  opacity: 0;
+}
+
+.actionDoneCover {
+  font-family:'Lucida Grande', Tahoma, sans-serif;  
+  font-size:11px;
+  font-weight:normal;
+  text-decoration:none;
+  border-radius: 3px;
+  line-height: 1em;
+  padding: 5px 10px 6px 22px;
+  border:1px solid rgba(0,0,0,.20);
+  color: #777;
+  display: block;
+  position: absolute;
+  top: 0;
+  background: #E6E6E6 url("../img/notifications-checkmark.png") 7px center no-repeat;
+  box-shadow: 0 0 3px 3px #f3f3f3;
+  right: 0;
+}
+
+.selected .actionDoneCover {
+  background-color: #9ACAEC
+}
+
+.uncompleted  .mainActionButton {
+  opacity: 1;
+  z-index: 99;
+}
+
+.completed   .secondaryActionButton { 
+  opacity: 1;
+  z-index: 99;
+}
+
+.completing .actionDoneCover {
+  opacity: 1;
+  z-index: 99;
+}
+
+
+/** 
+ * Spinner
+ */
+
+.spinner {
+  display: block;
+  background: url("../img/throbber-black.png") no-repeat right center;
+  height: 32px;
+  width: 30px;
+  opacity: 0;
+}
+
+@-webkit-keyframes throbber {
+  0%     { background-position-x: 0; }
+  8.33%  { background-position-x: -30px; }
+  16.66% { background-position-x: -60px; }
+  25%    { background-position-x: -90px; }
+  33.33% { background-position-x: -120px; }
+  41.66% { background-position-x: -150px; }
+  50%    { background-position-x: -180px; }
+  58.33% { background-position-x: -210px; }
+  66.66% { background-position-x: -240px; }
+  75%    { background-position-x: -270px; }
+  83.33% { background-position-x: -300px; }
+  91.66% { background-position-x: -330px; }
+}
+
+.spinner.on {
+  -webkit-animation: show-at-33-percent 300ms, throbber 1s step-start infinite;
+  opacity: 1;
+}

@@ -1,0 +1,99 @@
+#inspector-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+#inspector-wrapper.global {
+    left: 200px;
+}
+
+#appfilter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    background: #a4aab0;
+    color: #000;
+
+    box-shadow: inset -2px 0 12px -5px rgba(0, 0, 0, 0.2);
+    border-right: 1px solid #888;
+}
+
+#appfilter .sidebar-tree-section {
+	font-size: 11px;
+	color: #424F5C;
+}
+
+#appfilter .applist {
+	padding: 0;
+	margin: 0;
+	font-size: 11px;
+	border-top: 1px solid #888;
+	position: relative;
+}
+
+#appfilter .applist li {
+	height: 37px;
+	line-height: 35px;
+	padding: 0 8px;
+	list-style: none;
+	position: relative;
+
+	background: #e0e0e0;
+	background: -webkit-linear-gradient(#e0e0e0, #d3d3d3);
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #888;
+}
+#appfilter .applist li:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: -1px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	background: #999;
+	opacity: 0.7;
+	pointer-events: none;
+}
+#appfilter .applist li.checked:before {
+	display: none;
+}
+
+#appfilter .applist li .checkbox {
+	-webkit-appearance: none;
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	top: -1px;
+	left: 0;
+	margin: 0;
+	box-shadow: inset -7px 0 7px -7px rgba(0, 0, 0, 0.3);
+
+	background: #999 url(Images/checkbox.png) no-repeat -1000px 0;
+}
+#appfilter .applist li .checkbox:checked {
+	background-position: center center;
+}
+
+#appfilter .applist li .color {
+	width: 5px;
+	height: 36px;
+	background: #000;
+	position: absolute;
+	top: -1px;
+	left: 36px;
+}
+
+#appfilter .applist li .appname {
+	position: absolute;
+	top: -1px;
+	bottom: 0;
+	left: 36px;
+	right: 0;
+	padding: 0 0 0 13px;
+}

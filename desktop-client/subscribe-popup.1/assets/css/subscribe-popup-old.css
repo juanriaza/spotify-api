@@ -1,0 +1,198 @@
+#container {
+  padding: 25px 0 15px;
+}
+
+#headlineTable {
+  width: 100%;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 0 30px;
+}
+
+#suggestedPlaylists li {
+  float: left;
+  text-align: left;
+  margin-left: 30px;
+  position: relative;
+}
+
+#suggestedPlaylists.small li  {
+  max-height: 222px;
+  min-height: 222px;
+  height: 222px;
+  max-width: 150px;
+  min-width: 150px;
+  width: 150px;
+}
+
+#suggestedPlaylists.large li  {
+  max-height: 272px;
+  min-height: 272px;
+  height: 272px;
+  max-width: 200px;
+  min-width: 200px;
+  width: 200px;
+}
+
+#suggestedPlaylists li div.meta {
+  text-align: center;
+  font-size:10px;
+  position: relative;
+  margin-left: -1px;
+  margin-bottom: 10px;
+}
+
+.meta .title {
+  font-weight: bold;
+  font-size: 12px;
+  color: #474747;
+  padding-top: 7px;
+}
+
+.meta .title, .meta .byline, .meta .info {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sp-player {
+  width: 150px;
+  height: 150px;
+}
+
+.sp-player-image {
+  box-shadow: none;
+}
+
+.sp-player-image a {
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.199219) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.398438) 0px 0px 1px 0px inset, rgba(255, 255, 255, 0.496094) 0px 1px 0px 0px;
+}
+
+.sp-player .sp-image {
+  cursor: default;
+}
+
+.sp-player-button:active {
+  box-shadow: none;
+}
+
+#mainSubtitle {
+  margin: 8px 0 0 0;
+}
+
+.checkBox {
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: absolute;
+  background-image: url('../img/checkbox.png');
+  width: 18px;
+  height: 18px;
+  top: 11px;
+  left: -3px;
+}
+
+.checkBox {
+    background-position: 0px 0px;
+}
+
+.checkBoxClear {
+    background-position: 0px -54px;
+}
+
+.checkBox:hover {
+    background-position: 0px -18px;
+}
+
+.checkBoxClear:hover {
+    background-position: 0px -72px;
+}
+
+
+#subscribeButton {
+  font-family:'Lucida Grande', Tahoma, sans-serif;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration:none;
+  border-radius:4px;
+  padding:5px 8px;
+  text-align: center;
+}
+
+#subscribeButton {
+  background: -webkit-gradient(linear, left top, left bottom,color-stop(1%, #449fdb), color-stop(100%, #2884C6), color-stop(50%, #256fb5), color-stop(50%, #1764ad));
+  border: 1px solid rgba(21, 57, 215, .5);
+  box-shadow: 0px 1px 0px #77B9E6 inset;
+  color: white;
+  text-shadow: 0px -1px 0px rgb(35, 95, 144);
+  white-space: nowrap;
+}
+
+#subscribeButton:active {
+  box-shadow:0px 2px 4px #1B4C6B inset;
+  background:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #449fdb), color-stop(100%, #267DBC), color-stop(50%, #1C65A8), color-stop(50%, #165FA3));
+}
+
+#mainTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #474747;
+}
+
+.hideable.on {
+  opacity: 0;
+  -webkit-transition: opacity 200ms;
+}
+
+li:hover div .hideable.on {
+  opacity: 1;
+}
+
+#suggestedPlaylists .spinner {
+  display: block;
+  background: url("sp://import/img/throbber-black.png") no-repeat right center;
+  -webkit-animation: throbber 1s step-start infinite;
+  height: 32px;
+  width: 30px;
+}
+
+/*#suggestedPlaylists.large li .spinner {
+  margin: 100px auto;
+}
+
+#suggestedPlaylists.small li .spinner {
+  margin: 60px auto;
+}*/
+
+
+.circle {
+  background: #ECEBE8;
+  border-top-right-radius: 30px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -30px;
+  left: 1px;
+  z-index: 15;
+  box-shadow: rgb(34, 34, 34) 0px 1px 2px 0px;
+}
+
+.specialCover {
+  background: #ECEBE8;
+  position: absolute;
+  width: 34px;
+  height: 7px;
+  top: 26px;
+  right: -4px;
+}
+
+.specialCoverB {
+  background: #ECEBE8;
+  position: absolute;
+  width: 5px;
+  height: 30px;
+  left: -3px;
+  top: 0;
+}

@@ -1,0 +1,5 @@
+Event log and test case reference
+=================================
+Gandalf Hernandez <gandalf@spotify.com>
+
+TODO - reference the ClientEvents used

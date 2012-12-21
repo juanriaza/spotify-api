@@ -1,0 +1,182 @@
+section#tutorial {
+  display : none;
+}
+
+section#tutorial div#header {
+  position      : relative;
+  padding       : 3px 0px 4px 7px;
+  background    : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bebebe), color-stop(100%, #959595));
+  box-sizing    : border-box;
+  box-shadow    : inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  border-bottom : 1px solid #272727;
+  font-family   : Arial, sans-serif;
+  font-size     : 12px;
+  font-weight   : bold;
+  color         : #222;
+  text-shadow   : 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+section#tutorial div#header a#close {
+  display    : none;
+  width      : 18px;
+  height     : 18px;
+  position   : absolute;
+  top        : 2px;
+  right      : 3px;
+  background : 50% 50% no-repeat url('images/close.png');
+  cursor     : default;
+}
+
+section#tutorial div#header a#close:active {
+  background : 50% 50% no-repeat url('images/close-pressed.png');
+}
+
+div#progress {
+  position : relative;
+  padding  : 7px 40px 7px 10px;
+}
+
+div#progress-outer {
+  width         : 100%;
+  height        : 8px;
+  border-radius : 5px;
+  background    : rgba(0, 0, 0, 0.4);
+  display       : inline-block;
+  box-shadow    : inset 0px 1px 3px rgba(0, 0, 0, 0.6), 0px 1px 0px 0px rgba(255, 255, 255, 0.10);
+  padding-right : 2px;
+}
+
+div#progress-inner {
+  width              : 0%;
+  height             : 6px;
+  margin             : 1px;
+  -webkit-transition : width 1s ease-in-out;
+  border-radius      : 5px;
+  background         : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #86b410), color-stop(100%, #649e0b));
+  box-shadow         : inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+div#progress-text {
+  position   : absolute;
+  top        : 7px;
+  right      : 0px;
+  width      : 40px;
+  text-align : center;
+  font-size  : 10px;
+}
+
+div.step div.step-content {
+  padding      : 8px 10px 7px 10px;
+  margin-right : 10px;
+  line-height  : 1em;
+}
+
+div.step div.step-content div.step-number {
+  background    : rgba(0, 0, 0, 0.4);
+  display       : inline-block;
+  width         : 22px;
+  height        : 18px;
+  border-radius : 15px;
+  margin-right  : 10px;
+  box-shadow    : inset 0px 1px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px rgba(255, 255, 255, 0.10);
+  text-align    : center;
+  padding-top   : 4px;
+}
+
+div.step div.step-content div.step-number span {
+  font-family   : "Lucida Grande", Tahoma;
+  font-weight   : bold;
+  font-size     : 12px;
+  line-height   : 12px;
+  color         : white;
+  text-shadow   : 0px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+#steps div.step:nth-child(n+10) div.step-content div.step-number span {
+  font-size : 11px;
+}
+
+div.step.step-current div.step-content div.step-number {
+  box-shadow : inset 0px 1px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px rgba(255, 255, 255, 0.30);
+}
+
+div.step.step-complete div.step-content div.step-number span {
+  color : rgba(255, 255, 255, 0.5);
+}
+
+div.step div.step-content h4 {
+  font-family : "Lucida Grande", Tahoma;
+  font-size   : 12px;
+  color       : white;
+  text-shadow : 0px 1px 1px rgba(0, 0, 0, 0.4);
+  display     : inline-block;
+}
+
+div.step.step-current div.step-content h4 {
+  font-weight : bold;
+}
+
+div.step.step-complete div.step-content h4 {
+  color : rgba(255, 255, 255, 0.5);
+}
+
+div.step.step-complete div.step-content {
+  background-repeat   : no-repeat;
+  background-image    : url('images/check.png');
+  background-position : right;
+}
+
+div.step.step-goal.unlocked:hover {
+  background-color : #545454;
+  box-shadow       : inset 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+div.step.step-goal.locked div.step-content h4 {
+  color : rgba(255, 255, 255, 0.5);
+}
+
+div.step.step-goal.locked div.step-content div.step-number {
+  background : rgba(0, 0, 0, 0.4) 50% 50% no-repeat url('images/lock-locked.png');
+}
+
+div.step.step-goal.unlocked div.step-content div.step-number{
+  background : rgba(0, 0, 0, 0.4) 50% 50% no-repeat url('images/lock-unlocked.png');
+}
+
+div.step.step-goal.unlocked {
+  cursor : pointer;
+}
+
+div.step.step-goal.unlocked div.step-content {
+  background-repeat   : no-repeat;
+  background-image    : url('images/link-arrow.png');
+  background-position : right;
+}
+
+@-webkit-keyframes hide {
+  from {
+    height : 37px;
+  }
+  85% {
+    height : 37px;
+  }
+  to {
+    height : 0px;
+  }
+}
+
+div.step.step-complete {
+  -webkit-animation: hide 7s forwards;
+}
+
+div.step {
+  position         : relative;
+  overflow         : hidden;
+  background-color : #474747;
+  box-shadow       : inset 0px 1px 0px rgba(0, 0, 0, 0.15);
+}
+
+div.step.step-current {
+  background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #86b410), color-stop(100%, #649e0b));
+  box-shadow : inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+}

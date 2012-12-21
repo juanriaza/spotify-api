@@ -1,0 +1,33 @@
+{
+    "ApiPermissions" : {
+        "core" : ["private"]
+    },
+    "AppName": {
+        "en": "Search",
+        "fr": "Search",
+        "es": "Search",
+        "de": "Search",
+        "nl": "Search"
+    },
+    "BundleIdentifier": "search",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.0",
+    "Dependencies": {
+        "api": "1.6.0",
+        "views": "1.0.0",
+        "shared": "0.0.2"
+    },
+    "RequiredPermissions": [
+        "https://*",
+        "http://*"
+    ],
+    "SupportedLanguages": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "nl"
+    ],
+    "UserInstallable": false,
+    "VendorIdentifier": "com.spotify"
+}

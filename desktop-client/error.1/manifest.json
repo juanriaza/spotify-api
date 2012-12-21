@@ -1,0 +1,18 @@
+{
+    "AppDescription": {
+        "en": "This application will show any errors detected when trying to load _other_ apps."
+    },
+    "AppName": {
+        "en": "Error"
+    },
+    "BundleIdentifier": "error",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.0",
+    "Dependencies": {
+        "resources": "0.1.0"
+    },
+    "SupportedLanguages": [
+        "en"
+    ],
+    "UserInstallable": false
+}

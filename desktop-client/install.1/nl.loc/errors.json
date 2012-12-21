@@ -1,0 +1,20 @@
+{
+	"metadataFailed":
+	{
+		"unknownError": "Helaas, deze App kon niet worden gedownload. Probeer het later nogmaals.",
+		"clientOffline": "Maak verbinding met internet om deze App te starten.",
+		"connectionFailed": "Helaas, deze App kon niet worden gedownload. Probeer het later nogmaals.",
+		"appNotFound": "Helaas, deze App kon niet gevonden worden."
+	},
+	"downloadFailed":
+	{
+		"unknownError": "Helaas, deze App kon niet worden gedownload. Probeer het later nogmaals.",
+		"clientOffline": "Maak verbinding met internet om deze App te starten.",
+		"connectionFailed": "Helaas, deze App kon niet worden gedownload. Probeer het later nogmaals.",
+		"urlNotFound": "Helaas, deze App kon niet worden gedownload. Probeer het later nogmaals."
+	},
+	"installFailed":
+	{
+		"incorrectChecksum": "Helaas, deze App kon niet worden gedownload. Probeer het later nogmaals."
+	}
+}

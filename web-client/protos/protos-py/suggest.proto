@@ -1,0 +1,36 @@
+message Track {
+          optional bytes gid = 1;
+          optional string name = 2;
+          optional bytes image = 3;
+          repeated string artist_name = 4;
+          repeated bytes artist_gid = 5;
+          optional uint32 rank = 6;
+      }
+      message Artist {
+          optional bytes gid = 1;
+          optional string name = 2;
+          optional bytes image = 3;
+          optional uint32 rank = 6;
+      }
+      message Album {
+          optional bytes gid = 1;
+          optional string name = 2;
+          optional bytes image = 3;
+          repeated string artist_name = 4;
+          repeated bytes artist_gid = 5;
+          optional uint32 rank = 6;
+      }
+      message Playlist {
+          optional string uri = 1;
+          optional string name = 2;
+          optional string image_uri = 3;
+          optional string owner_name = 4;
+          optional string owner_uri = 5;
+          optional uint32 rank = 6;
+      }
+      message Suggestions {
+          repeated Track track = 1;
+          repeated Album album = 2;
+          repeated Artist artist = 3;
+          repeated Playlist playlist = 4;
+      }

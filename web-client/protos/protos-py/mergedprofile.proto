@@ -1,0 +1,7 @@
+message MergedProfileRequest {
+      }
+
+      message MergedProfileReply {
+        optional string username = 1;
+        optional string artistid = 2;
+      }

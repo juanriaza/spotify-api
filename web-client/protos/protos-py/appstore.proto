@@ -1,0 +1,71 @@
+package spotify.appstore.proto;
+      message AppInfo {
+          required string app_name = 1;
+          required int32 original_bundle_version = 2;
+      }
+      message AppInfoList {
+          repeated AppInfo items = 1;
+      }
+      message RequestHeader {
+
+        enum Platform {
+          WIN32_X86      = 0;
+          OSX_X86        = 1;
+          LINUX_X86      = 2;
+          IPHONE_ARM     = 3;
+          SYMBIANS60_ARM = 4;
+          OSX_POWERPC    = 5;
+          ANDROID_ARM    = 6;
+          WINCE_ARM      = 7;
+          LINUX_X86_64   = 8;
+          OSX_X86_64     = 9;
+          PALM_ARM       = 10;
+          LINUX_SH       = 11;
+          FREEBSD_X86    = 12;
+          FREEBSD_X86_64 = 13;
+          BLACKBERRY_ARM = 14;
+          SONOS_UNKNOWN  = 15;
+          LINUX_MIPS     = 16;
+          LINUX_ARM      = 17;
+          LOGITECH_ARM   = 18;
+          LINUX_BLACKFIN = 19;
+          ONKYO_ARM      = 21;
+          QNXNTO_ARM     = 22;
+          BADPLATFORM    = 255;
+        }
+
+        enum Priority {
+          PRIORITY_DEFAULT = 0;
+          PRIORITY_POLLING = 1;
+        }
+
+        optional string market  = 1;
+        optional Platform platform = 2;
+        optional Priority priority = 3;
+        optional int32 client_api_version_low = 4;
+        optional int32 client_api_version_high = 5;
+        optional AppInfoList app_infos = 6;
+      }
+      message AppItem {
+        enum Requirement {
+          REQUIRED_INSTALL = 1;
+          LAZYLOAD = 2;
+          OPTIONAL_INSTALL = 3;
+        }
+        optional string app_name = 1;
+        optional Requirement requirement = 2;
+        optional int32 status = 3;
+        optional string manifest = 4;
+        optional string checksum = 5;
+        optional string bundle_uri = 6;
+        optional string small_icon_uri = 7;
+        optional string large_icon_uri = 8;
+        optional string medium_icon_uri = 9;
+        optional IdentifierList categories = 10;
+      }
+      message AppList {
+        repeated AppItem items = 1;
+      }
+      message IdentifierList {
+          repeated string identifiers = 1;
+      }

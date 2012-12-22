@@ -1,0 +1,12 @@
+package spotify.popcount2.proto;
+
+    message PopcountRequest {
+    }
+
+    message PopcountResult {
+      optional sint64 count = 1;
+      optional bool truncated = 2;
+      repeated string user = 3;
+      repeated sint64 subscriptionTimestamps = 4;
+      repeated sint64 insertionTimestamps = 5;
+    }

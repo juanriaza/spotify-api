@@ -1,0 +1,48 @@
+package spotify.socialgraph.proto;
+
+     message CountReply {
+       repeated int32 counts = 1;
+     }
+
+     message UserListRequest {
+       optional string last_result = 1;
+       optional int32 count = 2;
+       optional bool include_length = 3;
+     }
+
+     message UserListReply {
+       repeated User users = 1;
+       optional int32 length = 2;
+     }
+
+     message User {
+       optional string username = 1;
+       optional int32 subscriber_count = 2;
+       optional int32 subscription_count = 3;
+     }
+
+     message ArtistListReply {
+       repeated Artist artists = 1;
+     }
+
+     message Artist {
+       optional string artistid = 1;
+       optional int32 subscriber_count = 2;
+     }
+
+     message StringListRequest {
+       repeated string args = 1;
+     }
+
+     message StringListReply {
+       repeated string reply = 1;
+     }
+
+    message TopPlaylistsRequest {
+      optional string username = 1;
+      optional int32 count = 2;
+    }
+
+    message TopPlaylistsReply {
+      repeated string uris = 1;
+    }

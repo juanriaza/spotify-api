@@ -1,0 +1,142 @@
+package spotify.discovery.proto;
+
+
+message VoidRequest {
+}
+
+message UserInfo {
+        optional string country = 1;
+}
+message WhatsNewRequest {
+        optional UserInfo user_info = 1;
+}
+
+message SuggestPlaylistsRequest {
+        repeated string fb_uids = 1;
+        repeated string staff_ids = 2;
+
+        // Number of (in)active playlists to get, will get max_playlists each
+        optional int32 max_playlists = 3;
+        optional int32 max_staff_pick_playlists = 4;
+}
+
+enum SuggestionSourceType {
+        SUGGESTION_SOURCE_FRIEND = 1;
+        SUGGESTION_SOURCE_NON_FRIEND = 2;
+        SUGGESTION_SOURCE_STAFF = 3;
+}
+
+message SuggestedPlaylist {
+        optional string playlist_uri = 1;
+        optional string playlist_picture = 2;
+        optional string playlist_name = 3;
+        optional string playlist_creator_social_name = 4;
+
+        // fb_uid or username depending on what kind of suggested playlist this is
+        optional string suggestion_source = 5;
+        optional SuggestionSourceType suggestion_source_type = 6;
+}
+
+message SuggestPlaylistsReply {
+        repeated SuggestedPlaylist inactive_playlists = 1;
+        repeated SuggestedPlaylist active_playlists = 2;
+        repeated SuggestedPlaylist staff_pick_playlists = 3;
+}
+
+message NewAlbum {
+        optional string album_uri = 1;
+
+        // The artists on the album
+        repeated string artist_uris = 2;
+}
+
+message NewAlbumsReply {
+        repeated NewAlbum albums = 1;
+}
+
+message FriendsPlaylist {
+        optional string playlist_uri = 1;
+        repeated string friends = 2;
+
+        // Total friends that has this playlist
+        // This number may be higher than len(friends)
+        optional int32 total_friends = 3;
+        optional string playlist_name = 4;
+        optional string playlist_creator_social_name = 5;
+}
+
+message FriendsPlaylistsReply {
+        repeated FriendsPlaylist playlists = 1;
+}
+
+message FriendsTrackToplists {
+        optional string track_uri = 1;
+        repeated string friends = 2;
+
+        // Total friends that has this playlist
+        // This number may be higher than len(friends)
+        optional int32 total_friends = 3;
+}
+
+message FriendsToplistEntry {
+        optional string item_uri = 1;
+        repeated string friends = 2;
+        optional int32 total_friends = 3;
+}
+
+message FriendsToplist {
+        optional string toplist_type = 1;
+        repeated FriendsToplistEntry entries = 2;
+}
+
+message FriendsToplistsReply {
+        repeated FriendsToplist toplists = 1;
+}
+
+message FriendsTrackToplistsReply {
+        repeated FriendsTrackToplists track_toplists = 1;
+}
+
+message NewFriendsReply {
+        repeated string new_friends = 1;
+}
+
+message RegionTrack {
+        optional string track_uri = 1;
+}
+
+message RegionTracksReply {
+        repeated RegionTrack region_tracks = 1;
+}
+
+message RegionPlaylist {
+        optional string playlist_uri = 1;
+        optional int32 popularity = 2; // in parts per thousand
+        optional string playlist_name  = 3;
+        optional string playlist_creator_social_name = 4;
+}
+
+message RegionPlaylistReply {
+        repeated RegionPlaylist region_playlists = 1;
+}
+
+message WhatsNewReply {
+        optional NewAlbumsReply new_albums = 1;
+        optional FriendsPlaylistsReply friends_playlists = 2;
+        optional FriendsTrackToplistsReply friends_track_toplists = 3;
+        optional NewFriendsReply new_friends = 4;
+        optional RegionTracksReply region_tracks = 5;
+        optional RegionPlaylistReply region_playlists = 6;
+}
+
+message RegionTracksPlaylistsReply {
+        repeated RegionTrack region_tracks = 1;
+        repeated RegionPlaylist region_playlists = 2;
+}
+
+//#service DiscoveryService {
+//      rpc get_new_albums (VoidRequest) returns (NewAlbumsReply);
+//      rpc get_friends_playlists (VoidRequest) returns (FriendsPlaylistsReply);
+//      rpc get_friends_track_toplists (VoidRequest) returns (FriendsTrackToplistsReply);
+//      rpc get_new_friends (VoidRequest) returns (NewFriendsReply);
+//}

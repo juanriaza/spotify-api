@@ -1,3 +1,7 @@
+import "playlist4content.proto";
+import "playlist4issues.proto";
+import "playlist4meta.proto";
+import "playlist4ops.proto";
 package spotify.playlist4.proto;
 
       option optimize_for = SPEED;

@@ -1,0 +1,624 @@
+@import url("sp://resources/css/adam.css");
+@import url("sp://resources/css/api.css");
+
+/**
+ * Generic
+ * ================================================================================
+ */
+
+html {
+  font: normal 11px/15px "Lucida Grande", "Tahoma", sans-serif;
+  overflow: hidden;
+}
+
+body {
+  background: #474747;
+  bottom: 0;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+h1 {
+  color: #FFF;
+  font-family: "Lucida Grande", "Tahoma", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 3px 7px;
+  text-shadow: 0 1px 0 #444;
+}
+
+.section-header {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bebebe), color-stop(100%, #959595));
+  box-sizing: border-box;
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  border-bottom:; 1px solid #272727;
+  font-size: 11px;
+  font-weight: bold;
+  color: #222;
+  padding: 3px 0px 4px 8px;
+  position: relative;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.offline-message,
+.error-msg {
+  box-sizing: border-box;
+  color: #999;
+  font-size: 12px;
+  left: auto;
+  margin-top: -6px;
+  padding: 0 20px;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  text-shadow: 1px 1px 0 #515151;
+  width: 100%;
+}
+
+.error-msg .button {
+  margin-top: 10px;
+}
+
+section { box-sizing: border-box; }
+
+/**
+ * Animations
+ * ================================================================================
+ */
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeInDelayed {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**
+ * Recommended area
+ * ================================================================================
+ */
+#recommended {
+  background-color: #313131;
+  min-height: 151px;
+  position: relative;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+#recommended.double {
+  height: 270px;
+}
+
+#recommended.close {
+  -webkit-animation-duration: .8s;
+  -webkit-animation-name: fadeOut;
+}
+
+#recommended.hidden {
+  display: none;
+}
+
+#recommended header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 6px 45px 6px 8px;
+  position: relative;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+  white-space: pre;
+}
+
+#recommended header a {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+}
+
+#recommended .recommended-item {
+  -webkit-box-sizing: border-box;
+  height: 123px;
+  padding: 6px 8px 12px 8px;
+  position: relative;
+  width: 100%;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: fadeInDelayed;
+}
+
+#recommended .recommended-item.second {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+}
+
+#recommended .recommended-item.close {
+  width: 100%;
+  -webkit-animation-duration: .5s;
+  -webkit-animation-name: fadeOut;
+}
+
+#recommended .recommended-item .sp-image {
+  background-image: url("sp://resources/img/placeholders/64-user.png");
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 64px;
+  left: 8px;
+  position: absolute;
+  top: 6px;
+  width: 64px;
+}
+
+#recommended .recommended-item .name {
+  display: block;
+  font-size: 12px;
+  margin: 0 20px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+#recommended .recommended-item .name a {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+#recommended .recommended-item .content {
+  margin-bottom: 8px;
+  margin-left: 76px;
+  min-height: 66px;
+}
+
+#recommended .recommended-item .content .type {
+  display: block;
+  line-height: 1.3;
+  margin: 3px 0 5px;
+}
+
+#recommended .recommended-item .listen-to-content {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#recommended .recommended-item .listen-to-content a {
+  color: #ccc;
+}
+
+#recommended .dismiss-link {
+  color: #aaa;
+  cursor: default;
+  float: right;
+  font-size: 12px;
+  right: 3px;
+  padding: 4px;
+  position: absolute;
+  top: 0;
+}
+
+#recommended .dismiss-link:hover {
+  color: #ccc;
+}
+
+.follow-button {
+  position: relative;
+  z-index: 1;
+  background: url('../images/button-border.png');
+  background-position: 0 -25px;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 8px 2px 8px;
+  font: bold 12px/25px 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.27);
+  min-width: 45px;
+  height: 23px;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-box-sizing: content-box;
+  -webkit-user-select: none;
+}
+
+.follow-button:hover {
+  background-position: 0 -100px;
+}
+
+.follow-button:active {
+  box-shadow: inset 0 3px 2px -1px rgba(0,0,0, 0.4);
+}
+
+.follow-button-background {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  z-index: -1;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  height: 23px;
+  border-radius: 3px;
+
+  background: url(../images/button.png) 0 -1px;
+}
+.follow-button .follow-button-background {
+  background-position: 0 -26px;
+  box-shadow: inset 0 1px 0 0 #95c800;
+}
+
+.follow-button:hover .follow-button-background {
+  background-position: 0 -101px;
+  box-shadow: inset 0 1px 0 0 #9bd003;
+}
+
+.follow-button:active .follow-button-background {
+  box-shadow: inset 0 2px 3px -1px rgba(0,0,0, 0.8), inset 0 1px 0 0 #95c800;
+}
+
+.follow-icon-add {
+  background-image: url(../images/button-icons.png);
+  background-position: -15px 0;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 15px;
+  margin: 0 5px 0 -2px;
+  vertical-align: text-top;
+  width: 15px;
+}
+
+.follow-button-text {
+  white-space: nowrap;
+}
+
+
+/**
+ * Feed area
+ * ================================================================================
+ */
+#feed {
+  background-color: #474747;
+  -webkit-box-flex: 2;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+#feed .no-items {
+  margin: 20px 0;
+  opacity: 1;
+  position: relative;
+  padding: 20px 0;
+  text-align: center;
+}
+
+#feed .no-items h1 {
+  background: url("../images/user-icon.png") top center no-repeat;
+  color: #90908f;
+  font-weight: bold;
+  margin: 0 auto 10px;
+  max-width: 160px;
+  padding-top: 50px;
+  text-shadow: 0 1px 0 #000;
+  white-space: normal;
+}
+
+#feed .button:hover {
+  text-decoration: none;
+  -webkit-user-drag: none;
+}
+
+.feed {
+  line-height: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+#feed .loader {
+  background: url('/images/loader.gif') right 6px no-repeat #86B410;
+  color: #333;
+  padding: 7px 10px;
+  text-shadow: 0 1px 0 #CCC;
+}
+
+.feed .item {
+  background-color: #474747;
+  border-color: hsla(0, 100%, 100%, 0.05) transparent hsla(0, 0%, 0%, 0.2);
+  border-style: solid;
+  border-width: 1px 0;
+  color: #999;
+  cursor: default;
+  display: block;
+  min-height: 28px;
+  overflow: hidden;
+  padding: 6px 8px;
+  position: relative;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .9);
+}
+
+.feed .item:last-child { border-bottom: initial; }
+.feed .item.show {
+  -webkit-transition-duration: 500ms;
+  -webkit-transition-property: background-color, margin-top;
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.05, 1.0);
+}
+
+.feed .sp-image {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1), 0 1px 2px #222;
+  display: block;
+  height: 40px;
+  overflow: hidden;
+  line-height: 0;
+  width: 40px;
+}
+
+.feed .sp-image.playlist {
+  background: url('sp://resources/img/missing-playlist-artwork.png') center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.feed .sp-image.track {
+  background-image:  url(../images/items-icons.png), -webkit-linear-gradient(top, #383838 0%,#1c1c1c 100%);
+}
+
+.feed .sp-image.artist {
+  background-image:  url(../images/items-icons.png), -webkit-linear-gradient(top, #383838 0%,#1c1c1c 100%);
+  background-position: 0 -80px, 0 0;
+  background-repeat: no-repeat, repeat;
+  border-radius: 2px;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, .2) inset;
+  height: 40px;
+  width: 40px;
+}
+
+.feed .item a {
+  color: #ccc;
+}
+
+.feed .item .bubble {
+  background: -webkit-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  border: 1px solid #3f3f3f;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+  color: #333;
+  margin: 8px 0;
+  padding: 7px 8px;
+  position: relative;
+  text-shadow: none;
+}
+
+.feed .item .bubble a {
+  color: #333;
+  text-shadow: none;
+}
+
+.feed .item .bubble::before {
+  content: '';
+  background: url(/images/bubble.png) center center no-repeat;
+  display: block;
+  height: 9px;
+  left: 2px;
+  position: absolute;
+  top: -9px;
+  width: 7px;
+}
+
+.feed .item em {
+  display: block;
+  font-style: normal;
+  text-shadow: none;
+}
+
+.feed .item em::before {
+  content: '\201C';
+}
+
+.feed .item em::after {
+  content: '\201D';
+}
+
+.feed .item .info {
+  color: #ccc;
+  display: -webkit-box;
+  margin-top: 6px;
+  min-height: 40px;
+  padding-left: 47px;
+  position: relative;
+  -webkit-box-align: center;
+}
+
+.feed .item .info div:first-child {
+  width: 100%;
+}
+
+.feed .item .bubble .info {
+  color: #666;
+}
+
+.feed .item.big-image .info {
+  min-height: 62px;
+  padding-left: 67px;
+}
+
+.feed .item .strong {
+  color: #fff;
+  font-weight: bold;
+}
+
+.feed .item .h6 {
+  color: #fff;
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+.feed .info .artist {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: none;
+  white-space: pre;
+}
+
+.feed .info .duration,
+.feed .info span {
+  display: block;
+  margin-top: 3px;
+}
+
+.feed .info .duration,
+.feed .info span {
+  text-shadow: none;
+}
+
+.feed .app-link {
+  display: block;
+  margin-left: 47px;
+  min-height: 18px;
+  overflow: hidden;
+  padding-left: 22px;
+  padding-top: 2px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+.feed .app-link .app-icon {
+  background-position: top left;
+  background-repeat: no-repeat;
+  height: 18px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 18px;
+}
+
+.feed .app-link .app-icon.radio {
+  height: 14px;
+  margin-top: 2px;
+}
+
+.feed .app-link .app-info {
+  text-shadow: none;
+}
+
+.feed .item .placeholder,
+.feed .item .player,
+.feed .item .sp-image {
+  left: 0;
+  position: absolute;
+  top: 1px;
+}
+
+.feed .item .placeholder {
+  border-radius: 2px;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, .2) inset;
+  height: 40px;
+  width: 40px;
+}
+
+.feed .item .placeholder.starred {
+  background-image: url(../images/items-icons.png), -webkit-linear-gradient(top, #383838 0%,#1c1c1c 100%);
+  background-position: 0 0, 0 0;
+  background-repeat: no-repeat, repeat;
+}
+
+.feed .player {
+  border-radius: 2px;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, .2) inset;
+  height: 40px;
+  width: 40px;
+  -webkit-transition: opacity .2s linear;
+}
+
+.feed .player.paused {
+  opacity: 0;
+}
+.feed .player:hover {
+  opacity: 1;
+}
+
+.feed .player .play {
+  background-image: url("sp://resources/img/play-small.png");
+  background-repeat: no-repeat;
+  background-size: 154px 24px;
+  border-color: transparent;
+  cursor: default;
+  height: 24px;
+  left: 8px;
+  position: absolute;
+  top: 8px;
+  width: 24px;
+}
+
+.feed .player .play {
+  background-position-x: -78px;
+}
+
+.feed .player.paused .play {
+  background-position-x: 0;
+}
+
+.feed .item.big-image .sp-image,
+.feed .item.big-image .placeholder,
+.feed .item.big-image .player {
+  height: 60px;
+  width: 60px;
+}
+
+.feed .item.big-image .h6 {
+  margin-bottom: 5px;
+  padding-top: 3px;
+}
+
+.feed .item.big-image .info .duration,
+.feed .item.big-image .info span {
+  margin-top: 5px;
+}
+
+.feed .item.big-image .player {
+  background: none;
+  box-shadow: none;
+}
+
+.feed .item.big-image .player .play {
+  background-size: 179px 29px;
+  background-position-x: -90px;
+  height: 30px;
+  left: 16px;
+  top: 16px;
+  width: 30px;
+}
+
+.feed .item.big-image .player.paused .play {
+  background-position-x: 0;
+}

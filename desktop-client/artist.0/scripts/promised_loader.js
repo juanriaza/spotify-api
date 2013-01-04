@@ -1,0 +1,2 @@
+require(["$api/models"],function(g){function a(){this.stack=[]}a.prototype.enqueue=function(a,c,d){var e=Array.prototype.slice.call(arguments,3),b=new g.Promise(a);if(0===this.stack.length){var f=c.apply(d,e);this.stack.push(f);f.done(function(){b.setDone()})}else this.stack[this.stack.length-1].done(function(){c.apply(d,e).done(function(){b.setDone()})});this.stack.push(b);return b};a.prototype.destroy=function(){0<this.stack.length&&(this.stack[this.stack.length-1].setFail(),this.stack=[])};exports.PromisedLoader=
+a});

@@ -1,0 +1,36 @@
+{
+  "BundleType": "Application",
+  "RequiredPermissions": [
+    "http://*.cloudfront.net"
+  ],
+  "BundleVersion": "0.1.4",
+  "UserInstallable": false,
+  "ApiPermissions" : {
+      "installer" : ["private"],
+        "core" : ["private"]
+    },
+  "SupportedLanguages": [
+    "en", "de", "nl", "es", "fr"
+  ],
+  "AppName": {
+      "en": "Album",
+      "de": "Album",
+      "nl": "Album",
+      "es": "Album",
+      "fr": "Album"
+  },
+  "AppDescription": {
+      "en": "Album",
+      "de": "Album",
+      "nl": "Album",
+      "es": "Album",
+      "fr": "Album"
+  },
+  "BundleIdentifier" : "album",
+  "VendorIdentifier" : "com.spotify",
+  "Dependencies": {
+      "api": "1.5.0",
+      "views": "1.18.9",
+      "shared": "0.1.0"
+  }
+}

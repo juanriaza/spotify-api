@@ -1,0 +1,32 @@
+Development book for Album Stitch Application
+=============================================
+Erik Johansson <tozz@spotify.com>
+
+Project information
+-------------------
+Supported Stitch API: 1.x.
+
+Description
+~~~~~~~~~~~
+Displays an album inside Link. Will support client in the future (end of june 2012).
+
+Coding Conventions
+~~~~~~~~~~~~~~~~~~
+Follows spotify standard.
+link:https://wiki.spotify.net/wiki/JS_Style_Details[Coding Conventions Wiki]
+
+Application flow overview
+-------------------------
+  * Initialize stitch album based on parameters. 
+----------------------------------
+var album = Models.Album.fromURI('spotify:album:' + uri);
+var l = list;
+album.load('name', 'playable', 'artists', 'image', 'date').done(function(a) {
+  var artist = new ArtistScope(a.artists._uri[0].split(':')[2], ['AlbumPage'],
+      {'models': models, album: a, list: l});
+});
+----------------------------------
+  * Artist Scope
+    - Contains references to stitch models and views. See stitch documentation. Contains reference to current artist as a stitch artist object.
+  * Render content.
+

@@ -1,0 +1,1 @@
+require(["$api/models"],function(b){function c(){}function d(){}function e(){}var f=b.application.clientEvent.bind(b.application);c.prototype.log=function(a){var b=a.uri||"",c=a.version||"1.0",g=a.testVersion||null,h=a.type||"";delete a.uri;f(b,h,c,g,a).done(this,d).fail(this,e);return this};exports.Logger=new c});

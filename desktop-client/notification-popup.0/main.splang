@@ -40,6 +40,17 @@
           "fr" : "Voir",
           "nl" : "Bekijken"
         }
+      },
+      "sPlayButtonTitle" : {
+        "approved" : false,
+        "description" : "Title for button to play a track and go to relevant page.",
+        "translations" : {
+          "de" : "Play",
+          "en" : "Play",
+          "es" : "Reproducir",
+          "fr" : "Lecture",
+          "nl" : "Afspelen"
+        }
       }
     },
     "mainUI" : {
@@ -88,29 +99,7 @@
         }
       }
     },
-    "notifications" : {
-      "sNotificationBodyFriendJoined" : {
-        "approved" : false,
-        "description" : "{0} is your friends name as a link.",
-        "translations" : {
-          "de" : "{0} benutzt jetzt auch Spotify.",
-          "en" : "Your friend {0} just joined Spotify.",
-          "es" : "{0} está usando Spotify ahora.",
-          "fr" : "Votre ami {0} vient de rejoindre Spotify.",
-          "nl" : "{0} gebruikt nu ook Spotify."
-        }
-      },
-      "sNotificationBodyNewFollower" : {
-        "approved" : false,
-        "description" : "{0} is the new followers name as a link.",
-        "translations" : {
-          "de" : "{0} folgt dir jetzt.",
-          "en" : "{0} started following you.",
-          "es" : "{0} te ha comenzado a seguir.",
-          "fr" : "{0} vous suit.",
-          "nl" : "{0} volgt je vanaf nu."
-        }
-      },
+    "notificationsPreSocial" : {
       "sNotificationBodyPlaylistSubscribe" : {
         "approved" : false,
         "description" : "{0} is the new followers name as a link. {1} may be a playlist name as a link or may be an empty string.",
@@ -142,6 +131,63 @@
           "es" : "{0} se ha suscrito a tus canciones favoritas.",
           "fr" : "'{0} s'est abonné à votre Top titres.",
           "nl" : "{0} heeft zich geabonneerd op je topnummers."
+        }
+      }
+    },
+    "notifications" : {
+      "sNotificationBodyFriendJoined" : {
+        "approved" : false,
+        "description" : "{0} is your friends name as a link.",
+        "translations" : {
+          "de" : "{0} benutzt jetzt auch Spotify.",
+          "en" : "Your friend {0} just joined Spotify.",
+          "es" : "{0} está usando Spotify ahora.",
+          "fr" : "Votre ami {0} vient de rejoindre Spotify.",
+          "nl" : "{0} gebruikt nu ook Spotify."
+        }
+      },
+      "sNotificationBodyNewFollower" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link.",
+        "translations" : {
+          "de" : "{0} folgt dir jetzt.",
+          "en" : "{0} started following you.",
+          "es" : "{0} te ha comenzado a seguir.",
+          "fr" : "{0} vous suit.",
+          "nl" : "{0} volgt je vanaf nu."
+        }
+      },
+      "sNotificationBodyPlaylistSubscribe" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link. {1} may be a playlist name as a link or may be an empty string.",
+        "translations" : {
+          "de" : "{0} folgt jetzt deiner Playlist: {1}",
+          "en" : "{0} is now following your playlist: {1}.",
+          "es" : "{0} ahora sigue tu playlist {1}.",
+          "fr" : "{0} s’est abonné à votre playlist : {1}.",
+          "nl" : "{0} volgt nu je afspeellijst: {1}."
+        }
+      },
+      "sNotificationBodyStarredSubscribe" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link.",
+        "translations" : {
+          "de" : "{0} folgt jetzt deiner Starred Playlist.",
+          "en" : "{0} is now following your starred tracks.",
+          "es" : "{0} ahora sigue tus canciones destacadas.",
+          "fr" : "{0} s’est abonné à votre Sélection.",
+          "nl" : "{0} volgt nu je favorieten."
+        }
+      },
+      "sNotificationBodyToplistSubscribe" : {
+        "approved" : false,
+        "description" : "{0} is the new followers name as a link.",
+        "translations" : {
+          "de" : "{0} folgt jetzt deinen Top-Titeln.",
+          "en" : "{0} is now following your top tracks.",
+          "es" : "{0} ahora sigue tus canciones favoritas.",
+          "fr" : "{0} s’est abonné à vos Top titres.",
+          "nl" : "{0} volgt nu je topnummers."
         }
       },
       "sNotificationBodyPlaylistUpdatedPlural" : {
@@ -192,14 +238,37 @@
         "approved" : false,
         "description" : "{0} is the album name, {1} the artist name",
         "translations" : {
-          "de" : "",
-          "en" : "{0} by {1} is now available on Spotify",
-          "es" : "",
-          "fr" : "",
-          "nl" : ""
+          "de" : "{0} von {1} gibt's jetzt auf Spotify.",
+          "en" : "{0} by {1} is now available on Spotify.",
+          "es" : "{0} de {1} ya está disponible en Spotify.",
+          "fr" : "{0} de {1} est maintenant disponible sur Spotify.",
+          "nl" : "{0} van {1} is nu verkrijgbaar op Spotify."
         }
       }
-
+    },
+    "systemNotificationsPreSocial" : {
+      "sBodyPlaylistSubscribe" : {
+        "approved" : false,
+        "description" : "Body for playlist subscribe notification (in system notifier like Growl). {0} is the new subscribers name.",
+        "translations" : {
+          "de" : "{0} hat eine deiner Playlists abonniert. ",
+          "en" : "{0} has just subscribed to one of your playlists.",
+          "es" : "{0} se ha suscrito a una de tus playlists.",
+          "fr" : "{0} s'est abonné à une de vos playlists.",
+          "nl" : "{0} is geabonneerd op een van je afspeellijsten."
+        }
+      },
+      "sTitlePlaylistSubscribe" : {
+        "approved" : false,
+        "description" : "Title for playlist subscribe notification (in system notifier like Growl)",
+        "translations" : {
+          "de" : "Neuer Abonnent",
+          "en" : "New Subscriber",
+          "es" : "Nuevo suscriptor",
+          "fr" : "Un nouvel abonné à une playlist",
+          "nl" : "Nieuwe abonnee"
+        }
+      }
     },
     "systemNotifications" : {
       "sBodyFriendJoined" : {
@@ -228,11 +297,11 @@
         "approved" : false,
         "description" : "Body for playlist subscribe notification (in system notifier like Growl). {0} is the new subscribers name.",
         "translations" : {
-          "de" : "{0} hat eine deiner Playlists abonniert. ",
-          "en" : "{0} has just subscribed to one of your playlists.",
-          "es" : "{0} se ha suscrito a una de tus playlists.",
-          "fr" : "{0} s'est abonné à une de vos playlists.",
-          "nl" : "{0} is geabonneerd op een van je afspeellijsten."
+          "de" : "{0} folgt jetzt deinen Playlists.",
+          "en" : "{0} is now following your playlists.",
+          "es" : "{0} ahora sigue tus playlists.",
+          "fr" : "{0} s’est abonné à vos playlists.",
+          "nl" : "{0} volgt nu je afspeellijsten."
         }
       },
       "sBodyPlaylistUpdated" : {
@@ -272,11 +341,11 @@
         "approved" : false,
         "description" : "Title for playlist subscribe notification (in system notifier like Growl)",
         "translations" : {
-          "de" : "Neuer Abonnent",
-          "en" : "New Subscriber",
-          "es" : "Nuevo suscriptor",
-          "fr" : "Un nouvel abonné à une playlist",
-          "nl" : "Nieuwe abonnee"
+          "de" : "Neue Playlist Follower",
+          "en" : "New Playlist Follower",
+          "es" : "Nuevo seguidor de playlist",
+          "fr" : "Nouvel abonné à votre playlist",
+          "nl" : "Nieuwe afspeellijstvolger"
         }
       },
       "sTitlePlaylistUpdated" : {

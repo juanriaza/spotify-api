@@ -522,7 +522,7 @@ section section {
 
 	.playlistsTable .window .nameColumn {
 		-webkit-box-flex: 1;
-		padding: 3px 5px 0 4px;
+		padding: 6px 10px 0 8px;
 		font-size: 11px;
 	}
 

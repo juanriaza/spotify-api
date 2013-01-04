@@ -101,6 +101,139 @@ require([
 
   });
 
+  describe('SP.varargs', function() {
+
+    var route = function() {
+      return SP.varargs(arguments);
+    };
+
+    var indexRoute = function() {
+      return SP.varargs(arguments, 1);
+    };
+
+    var slice = Array.prototype.slice;
+
+    it('should accept an arguments list', function() {
+
+      assert.deepEqual(slice.call(route(1, 2, 3, 4)), [1, 2, 3, 4]);
+
+    });
+
+    it('should accept an arguments list with an array as first item', function() {
+      var expected = [1, 2, 3, 4];
+
+      assert.deepEqual(route(expected), expected);
+
+    });
+
+    it('should throw if the first argument is an array and more arguments are passed', function() {
+
+      assert.throws(function() {
+        route([1, 2, 3, 4], 5);
+      });
+
+    });
+
+    it('should allow arrays in the arguments list (?)', function() {
+
+      assert.deepEqual(slice.call(route(1, [1, 2, 3, 4], 5)), [1, [1, 2, 3, 4], 5]);
+
+    });
+
+    it('should allow selecting the array index', function() {
+
+      assert.deepEqual(slice.call(indexRoute(1, [1, 2, 3, 4])), [1, 2, 3, 4]);
+
+    });
+
+    it('should only consider arguments after the index if the index argument is not an array', function() {
+
+      assert.deepEqual(slice.call(indexRoute(1, 2, 3, 4)), [2, 3, 4]);
+
+    });
+
+    it('should throw if more arguments are passed after index, and the index argument is an array', function() {
+
+      assert.throws(function() {
+        indexRoute(1, [1, 2, 3, 4], 2);
+      });
+
+    });
+
+    it('should copy an array if opt_copy is set', function() {
+      var original = [1, 2, 3, 4];
+      var copy = SP.varargs(original, 0, true);
+      assert.notStrictEqual(original, copy);
+    });
+
+    it('should convert an arguments list to a new array if opt_copy is set', function() {
+      var original = (function() {
+        return arguments;
+      })(1, 2, 3, 4);
+
+      var copy = SP.varargs(original, 0, true);
+      assert.notStrictEqual(original, copy);
+    });
+
+  });
+
+  describe('SP.defer', function() {
+
+    it('should delay the execution of one function and assign the correct context', function(done) {
+
+      var object = {};
+
+      SP.defer(object, function() {
+        assert.strictEqual(object, this);
+        done();
+      });
+
+    });
+
+    it('should delay the execution of multiple nested functions', function(done) {
+      var index = 0;
+      var check = function() {
+        if (index++ == 2) done();
+      };
+
+      SP.defer(window, function() {
+        SP.defer(window, function() {
+          check();
+        });
+        check();
+      });
+
+      SP.defer(window, function() {
+        check();
+      });
+
+    });
+
+    it('should delay the execution of multiple nested functions in the specified order', function(done) {
+      var index = 0;
+      var globaln = 0;
+      var check = function(n) {
+        assert.equal(n, globaln);
+
+        if (n != globaln++) return;
+        if (index++ == 2) done();
+      };
+
+      SP.defer(window, function() {
+        SP.defer(window, function() {
+          check(2);
+        });
+        check(0);
+      });
+
+      SP.defer(window, function() {
+        check(1);
+      });
+
+    });
+
+  });
+
   describe('XMLHttpRequest', function() {
 
     var setRequestHeader;
@@ -127,25 +260,34 @@ require([
       var xhr = new XMLHttpRequest();
       xhr.open('GET', window.location.href, true);
       assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
-
     });
 
     it('should not set a Spotify header on cross-domain request', function() {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'sp://undef.ined.com', true);
+      xhr.open('GET', 'sp://oti.fy', true);
       assert.equal(header['X-Spotify-Requested-With'], null);
     });
 
-    it('should set a Spotify header on relative uris', function() {
+    it('should set a Spotify header on relative urls', function() {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'relative', true);
+      xhr.open('GET', '/home', true);
       assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
     });
 
-    it('should set a Spotify header on relative uris starting with //', function() {
+    it('should not set a Spotify header on cross domain requests with implicit protocol', function() {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', '//relative', true);
-      assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
+      xhr.open('GET', '//host.com', true);
+      assert.equal(header['X-Spotify-Requested-With'], null);
+    });
+
+    it('should not set a Spotify header on cross domain requests when a <base> is present', function() {
+      var base = document.createElement('base');
+      base.href = 'http://google.com';
+      document.documentElement.appendChild(base);
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/', true);
+      assert.equal(header['X-Spotify-Requested-With'], null);
+      document.documentElement.removeChild(base);
     });
 
   });

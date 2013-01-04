@@ -1,0 +1,92 @@
+package spotify.searchsuggest.proto;
+
+//option java_package = "com.spotify.suggest.proto";
+
+message Track {
+    // Track ID
+    optional bytes gid = 1;
+
+    // Title of track
+    optional string name = 2;
+
+    // Track cover art gid (image gid)
+    optional bytes image = 3;
+
+    // Artist name(s)
+    repeated string artist_name = 4;
+
+    // Artist gid(s)
+    repeated bytes artist_gid = 5;
+
+    // Rank for this hit (0 - Integer.MAX_VALUE = 2147483647)
+    optional uint32 rank = 6;
+}
+
+
+
+message Artist {
+    // Artist ID
+    optional bytes gid = 1;
+
+    // Name of the artist
+    optional string name = 2;
+
+    // Artist portrait gid (image gid)
+    optional bytes image = 3;
+
+    // Rank for this hit (0 - Integer.MAX_VALUE = 2147483647)
+    optional uint32 rank = 6;
+}
+
+message Album {
+    // Album ID
+    optional bytes gid = 1;
+
+    // Title of the album
+    optional string name = 2;
+
+    // Album cover art (image gid)
+    optional bytes image = 3;
+
+    // Artist name
+    repeated string artist_name = 4;
+
+    // Artist gid
+    repeated bytes artist_gid = 5;
+
+    // Rank for this hit (0 - Integer.MAX_VALUE = 2147483647)
+    optional uint32 rank = 6;
+}
+
+message Playlist {
+    // Playlist URI.
+    optional string uri = 1;
+
+    // Title of playlist
+    optional string name = 2;
+
+    // Playlist image URI.
+    optional string image_uri = 3;
+
+    // Username of owner
+    optional string owner_name = 4;
+
+    // Owner uri (spotify:user:user_name)
+    optional string owner_uri = 5;
+
+    // Rank for this hit (popularity)
+    optional uint32 rank = 6;
+}
+
+
+message Suggestions {
+    repeated Track track = 1;
+    repeated Album album = 2;
+    repeated Artist artist = 3;
+    repeated Playlist playlist = 4;
+}
+
+message Version {
+    optional string indexVersion = 1;
+    optional string indexPatchVersion = 2;
+}

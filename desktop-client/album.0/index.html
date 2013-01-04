@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/css/normalize.css">
+		<link rel="stylesheet" href="$shared/css/default.css">
+        <link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="$views/css/list.css">
+		<link rel="stylesheet" href="$views/css/image.css">
+		<link rel="stylesheet" href="$views/css/buttons.css">
+	</head>
+	<body id="body">
+		<div class="throbber"></div>
+		<div class="error">
+			<h1 class="localize" data-string="album-not-found-heading"></h1>
+			<br>
+			<p class="localize" data-string="album-not-found-content"></p>
+		</div>
+		<div id="album-page" style="display: none;">
+			<div id="header">
+				<div id="album-header" class="fluid cf">
+					<div id="album-image" class="l"></div>
+					<div id="album-details" class="l">
+						<h1 id="album-title"></h1>
+						<span id="album-label"></span>
+						<div id="album-buttons"></div>
+					</div>
+					<div id="artist-details" class="cf">
+						<div id="artist-image" class="l"></div>
+						<div class="l">
+							<span id="album-by"></span>
+							<a id="artist-name"></a>
+						</div>
+					</div>
+                    <div id="artist-details-various"></div>
+				</div>
+			</div>
+            <hr class="white-line">
+			<div class="fluid cf" id="album-data">
+				<div id="album-main">
+					<div id="album-tracks"></div>
+					<div id="album-additional"></div>
+					<div id="album-extras">
+						<div id="album-rights"></div>
+						<div id="album-more-albums"></div>
+						<div id="album-dropdown"></div>
+					</div>
+				</div>
+				<div id="albums-more">
+					<h2></h2>
+					<ul id="albums-list" class="ns"></ul>
+				</div>
+			</div>
+		</div>
+		<script src="$shared/scripts/mootools-core-1.4.5.js"></script>
+		<script src="/scripts/main.js"></script>
+	</body>
+</html>

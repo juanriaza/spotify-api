@@ -1,0 +1,1099 @@
+/* GENERIC
+   ================================================== */
+html {
+  background-color: #ecebe8;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.apply-width {
+  margin: 0 auto;
+  max-width: 760px;
+  min-width: 460px;
+  padding: 0 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-link {
+  background-color: #ecebe8;
+  border-radius: 4px;
+  color: #757574;
+  padding: 3px 7px 4px;
+}
+
+/* OFFLINE MODE */
+.offline-message {
+  box-sizing: border-box;
+  color: #767574;
+  display: none;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: -5%;
+  line-height: 1.5;
+  padding: 0 20px;
+  position: absolute;
+  text-align: center;
+  text-shadow: #F9F9F8 0 1px 1px;
+  top: 50%;
+  width: 100%;
+}
+
+.offline .offline-message {
+  display: block;
+}
+
+.offline .profile-app {
+  display: none;
+}
+
+/* PLAYLIST CONTENT
+   ================================================== */
+.app-playlists .playlist {
+  opacity: 1;
+  position: relative;
+}
+
+.app-playlists hr {
+  background-color: #d6d5d2;
+  border: 0;
+  height: 1px;
+  margin-bottom: 20px;
+  opacity: 1;
+}
+
+.app-playlists .playlist .playlist-image {
+  left: 20px;
+  position: absolute;
+  top: 0;
+  width: 145px;
+}
+
+.app-playlists .playlist .playlist-followers small {
+  color: #343434;
+  display: block;
+  font-size: 12px;
+  text-align: right;
+  text-shadow: 0 1px 0 rgba(255,255,255, 0.4);
+}
+
+.app-playlists .playlist .playlist-followers p {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.app-playlists .playlist .playlist-content {
+  min-height: 170px;
+  padding: 0 0 15px 145px;
+}
+
+.app-playlists .playlist .playlist-content .flex-box {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.app-playlists .playlist .playlist-followers {
+  position: absolute;
+  right: 0;
+  top: 6px;
+}
+
+.app-playlists .playlist .playlist-header {
+  padding-right: 90px;
+}
+
+.app-playlists .playlist .playlist-header .playlist-icon {
+  background: url('../img/icons.png') 0 5px transparent no-repeat;
+  float: left;
+  height: 20px;
+  padding: 0 0 0 5px;
+  width: 18px;
+}
+
+.app-playlists .playlist .playlist-header .playlist-icon.collaborative {
+ background-position: 0 -58px;
+}
+
+.app-playlists .playlist .playlist-header h2 {
+  color: #757574;
+  font-weight: normal;
+  margin: 0 0 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-playlists .playlist .playlist-header h2 a {
+  color: #343434;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255, 0.4);
+}
+
+.app-playlists .playlist .playlist-listview {
+  border-left: 1px solid #d6d5d2;
+  border-right: 1px solid #d6d5d2;
+  border-bottom: 1px solid #d6d5d2;
+}
+
+.app-playlists .playlist .playlist-buttonview {
+  margin: 0 0 15px 0;
+  min-height: 25px;
+}
+
+.app-playlists .playlist .playlist-buttonview .sp-button {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.app-playlists .playlist .playlist-buttonview .playlist-followers-container {
+  color: #757574;
+  display: block;
+  line-height: 24px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-playlists .playlist .playlist-buttonview .playlist-followers-container a {
+  color: #343434;
+  text-decoration: none;
+}
+
+.app-playlists .playlist .playlist-buttonview .playlist-followers-container a:hover {
+  text-decoration: underline;
+}
+
+.app-playlists .playlist .playlist-morebutton {
+  background-color: #e0dfdc;
+  border: none;
+  border-radius: 2px;
+  color: #141414;
+  font: normal 11px/1.4 "Lucida Grande", "Tahoma", sans-serif;
+  margin: 0 0 20px 145px;
+  padding: 5px 10px;
+  text-shadow: 0 1px 1px white;
+}
+
+.app-playlists .playlist .playlist-morebutton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.app-playlists .empty-message,
+.app-following .empty-message,
+.app-followers .empty-message {
+  background-color: white;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  color: #666;
+  padding: 12px;
+  position: relative;
+}
+
+.app-following .empty-message,
+.app-followers .empty-message {
+  margin-top: 20px;
+}
+
+.app-section .empty-message a {
+  color: #343434;
+}
+
+.playlist-publishbutton {
+  border: none;
+  color: #434343;
+  font-size: 11px;
+  padding: 0 0 0 21px;
+  position: relative;
+  margin:  20px 0 0 0;
+}
+
+.playlist-publishbutton-public {
+  background: url('../img/icons.png') 0 -40px transparent no-repeat;
+}
+
+.playlist-publishbutton-secret {
+  background: url('../img/icons.png') 0 -22px transparent no-repeat;
+}
+
+.element-hide {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 250ms; /* this matches a timeout in the js */
+  -webkit-transition-timing-function: ease-in;
+}
+
+ @media all and (max-width: 600px) {
+  .app-playlists .playlist .playlist-content {
+    padding-left: 0;
+  }
+
+  .app-playlists .playlist .playlist-image {
+    bottom: 23px;
+    left: auto;
+    right: 20px;
+    top: auto;
+    width: auto;
+  }
+
+  .app-playlists .playlist .playlist-image .sp-image{
+    display: none;
+  }
+
+  .app-playlists .playlist .playlist-morebutton {
+    margin-left: 0;
+  }
+}
+
+/* NAV
+   ================================================== */
+
+/* to remove double border when .section-header is after nav */
+.nav-separator + .app-section {
+  margin-top: -1px;
+}
+
+
+/* MAIN CONTENT
+   ================================================== */
+.section-content{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.app-section .sp-throbber {
+  position: relative;
+  margin: 20px auto;
+}
+
+.section-header {
+  background-image: -webkit-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: -moz-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: -o-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: -ms-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: linear-gradient(#f6f6f6, #e8e8e8);
+  box-shadow: 0 1px 0 #e0dfdc, 0 1px 0 #fff inset;
+  border-bottom: 1px solid #b2b1b2;
+  border-top: 1px solid #d1d0ce;
+  padding: 6px 0;
+}
+
+.section-header h1 {
+  color: #333333;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.section-header h1 span {
+  color: #969696;
+  font-weight: normal;
+}
+
+/**
+*   RECENT ACTIVITY
+*   ============================================================================
+*/
+.recent-activity {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 4px;
+  color: #747475;
+  font-size: 13px;
+  min-height: 30px;
+  padding: 0;
+  position: relative;
+}
+
+.recent-activity::after {
+  content: '';
+  display:block;
+  background: url(../img/ra.png);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.recent-activity .item {
+  border-top: 1px solid #ccc;
+  min-height: 40px;
+  padding: 10px 10px 10px 60px;
+  position: relative;
+}
+
+.recent-activity .item:first-child {
+  border-top: none;
+}
+
+.recent-activity .item .item-image {
+  height: 40px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 40px;
+}
+
+.recent-activity .item .activity {
+  margin: -2px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-activity .item.with-message .message {
+  font-size: 14px;
+  margin: 0 0 5px;
+}
+
+.recent-activity .item.with-message .message::before {
+  content: '\201C';
+}
+
+.recent-activity .item.with-message .message::after {
+  content: '\201D';
+}
+
+.recent-activity .item time {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.recent-activity strong,
+.recent-activity a {
+  color: #222222;
+  font-weight: bold;
+}
+
+.recent-activity a {
+  text-decoration: none;
+}
+
+.recent-activity a:hover {
+  text-decoration: underline;
+}
+
+.recent-activity .empty-message,
+.recent-activity .loader {
+  padding: 12px;
+}
+
+.recent-activity .additional-info {
+  display:table-cell;
+  height: 100px;
+  padding-left: 110px;
+  position: relative;
+  vertical-align:middle;
+}
+
+.recent-activity .additional-info {
+  font-size: 14px;
+}
+
+.recent-activity .additional-info .sp-image {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/*
+ * TOP PLAYLISTS
+ * =============================================================================
+ */
+.top-playlists {
+  max-height: 190px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.top-playlists .playlist {
+  display: inline-block;
+  margin: 0 7px 20px;
+  position: relative;
+  text-align: center;
+  vertical-align: top;
+  width: 138px;
+}
+
+.top-playlists .playlist .playlist-name {
+  color: #343434;
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+.top-playlists .playlist .playlist-name:hover {
+  text-decoration: underline;
+}
+
+.top-playlists .playlist p {
+  color: #757574;
+}
+
+/*
+ * FOLLOWERS/FOLLOWING
+ * =============================================================================
+ */
+
+#following-container.section-content,
+#followers-container.section-content {
+  padding: 0;
+}
+
+.relation-wrapper {
+  border-bottom: 1px solid #bdbcba;
+  height: 70px;
+  width: 100%;
+}
+
+.follower-container {
+  margin: 0 auto;
+  max-width: 780px;
+  position: relative;
+  width: 100%
+}
+
+.follower-container .image-container {
+  position: absolute;
+  height: 50px;
+  margin: 10px;
+  width: 50px;
+}
+
+.follower-info {
+  margin-left: 70px;
+  padding-right: 140px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.follower-info a {
+  color: #3B3B3B;
+  text-decoration: none;
+}
+
+.follower-info .friend-name {
+  color: #3B3B3B;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  text-decoration: none;
+  text-shadow: 0 1px 1px white;
+}
+
+.follower-info .follower-badge {
+  background-color: #e0dfdc;
+  border: none;
+  border-radius: 4px;
+  color: #343434;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 6px;
+  padding: 3px 4px;
+}
+
+.follower-info .follower-badge.verified-artist {
+  background-image: url(../img/followlist-artist-badge.png);
+  background-repeat: no-repeat;
+  background-position: 3px 1px;
+  padding-left: 20px;
+}
+
+.follower-info p {
+  line-height: 1.2;
+  text-shadow: 0 1px 1px white;
+}
+
+.follow-button-container {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  margin-top: 23px;
+}
+
+.people-loader {
+  position: relative;
+  background: #ffffff;
+  display: none;
+  height: 80px;
+  line-height: 70px;
+  text-align: center;
+  width: 100%;
+}
+
+.people-loader.show {
+  display: block;
+}
+
+.follower-info a.friend-name:hover,
+.follower-info a.friend-num:hover,
+.follower-info a.playlist-num:hover {
+  text-decoration: underline;
+}
+
+/* LAYOUT CLASSES
+   ================================================== */
+.fluid {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* =========================================================================
+ * SHARE WINDOW
+ * ==========================================================================
+ */
+.share-content {
+  width: 350px;
+  height: 140px;
+}
+
+.share-content .throbber {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.share-content.sending .throbber {
+  display: block;
+}
+
+.share-content.sent {
+  width: 73px;
+  height: 15px;
+  padding: 5px 0;
+}
+
+.share-content input, .share-content textarea {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.5) inset;
+  outline: 0;
+}
+
+.share-content .music-input {
+  display: block;
+  padding: 0 1em 0 2em;
+  line-height: 2em;
+  border-radius: 2px;
+  background: #fff url('../img/magnifier.png') 5px center no-repeat;
+}
+
+.share-content .music-input::-webkit-input-placeholder {
+  color: #333;
+}
+
+.share-content .message-input {
+  height: 70px;
+  overflow: auto;
+  padding: 5px;
+}
+
+.share-content .sent-message {
+  display: none;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 0 20px;
+  color: #666;
+}
+
+.share-content.sent .button-section, .share-content.sent .form-section {
+  display: none;
+}
+
+.share-content .button-section .sp-button {
+  float: right;
+  margin-left: 10px;
+}
+
+.form-section .search-close {
+  display: none;
+  opacity: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 19px;
+  height: 19px;
+  background: url('../img/sprites.png') no-repeat 0px -213px;
+}
+
+.form-section .search-close.show {
+  display: block;
+  opacity: 1;
+}
+
+.form-section .search-close:active {
+  background-position-y:-232px;
+}
+
+.share-content.sent .sent-message {
+  display: block;
+}
+
+.share-content .selected-search {
+  display: none;
+  background: #A9D9FD;
+  border-radius: 10px;
+  padding: 0 10px;
+  left: 33px;
+  max-width: 260px;
+  position: absolute;
+  text-shadow: none;
+  top: 14px;
+}
+
+.share-content .selected-search .song {
+  font-weight: bold;
+}
+
+.share-content .selected-search.show {
+  display: block;
+}
+
+.share-content .music-search {
+  position: relative;
+}
+
+.share-content .music-search > div {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  background: rgba(255,255,255,.9);
+  border: solid 1px #ccc;
+  padding: 5px;
+  z-index: 2;
+}
+
+.share-content .music-search ul {
+  list-style-type: none;
+  margin: 0 0 3px 0;
+  padding: 0 0 3px 25px;
+  border-bottom: solid 1px #ddd;
+  position: relative;
+}
+
+.share-content .music-search ul::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 2px;
+  width: 19px;
+  height: 19px;
+  background: url('../img/sprites.png') no-repeat;
+}
+
+.share-content .music-search ul.tracks::before {
+  background-position: left -22px;
+}
+
+.share-content .music-search ul.artists::before {
+  background-position: left -48px;
+}
+
+.share-content .music-search ul.albums:before {
+  background-position: left -99px;
+}
+
+.share-content .music-search ul:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.share-content .music-search li {
+  padding: 1px 0;
+  line-height: 25px;
+  clear: both;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.share-content .music-search li.selected {
+  background: #A9D9FD;
+}
+
+.share-content .music-search li .item-name {
+  display: inline-block;
+  max-width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.share-content .music-search li .artist-name {
+  pointer-events: none;
+}
+
+.share-content .music-search .sp-image {
+  float: left;
+  margin-right: 5px;
+  pointer-events: none;
+}
+
+/** ANIMATION RULES **/
+
+.share-content.closed, .share-content.closing {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -o-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+}
+
+.share-content.open, .share-content.opening {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.share-content.opening {
+  -webkit-animation: grow .3s ease-out;
+  -moz-animation: grow .3s ease-out;
+  -o-animation: grow .3s ease-out;
+  -ms-animation: grow .3s ease-out;
+  animation: grow .3s ease-out;
+}
+
+.share-content.closing {
+  -webkit-animation: shrink .3s ease-out;
+  -moz-animation: shrink .3s ease-out;
+  -o-animation: shrink .3s ease-out;
+  -ms-animation: shrink .3s ease-out;
+  animation: shrink .3s ease-out;
+}
+
+.share-content.closing.sent {
+  -webkit-animation: shrink-sent .3s ease-out;
+  -moz-animation: shrink-sent .3s ease-out;
+  -o-animation: shrink-sent .3s ease-out;
+  -ms-animation: shrink-sent .3s ease-out;
+  animation: shrink-sent .3s ease-out;
+}
+
+@-webkit-keyframes grow {
+  from {
+    -webkit-transform: scale(0);
+    margin-top: -80px;
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-transform: scale(1.05);
+    margin-top: 0;
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(1.0);
+  }
+}
+
+@-moz-keyframes grow {
+  from {
+    -moz-transform: scale(0);
+    margin-top: -80px;
+    opacity: 0;
+  }
+
+  80% {
+    -moz-transform: scale(1.05);
+    margin-top: 0;
+    opacity: 1;
+  }
+
+  to {
+    -moz-transform: scale(1.0);
+  }
+}
+
+@-o-keyframes grow {
+  from {
+    -o-transform: scale(0);
+    margin-top: -80px;
+    opacity: 0;
+  }
+
+  80% {
+    -o-transform: scale(1.05);
+    margin-top: 0;
+    opacity: 1;
+  }
+
+  to {
+    -o-transform: scale(1.0);
+  }
+}
+
+@-ms-keyframes grow {
+  from {
+    -ms-transform: scale(0);
+    margin-top: -80px;
+    opacity: 0;
+  }
+
+  80% {
+    -ms-transform: scale(1.05);
+    margin-top: 0;
+    opacity: 1;
+  }
+
+  to {
+    -ms-transform: scale(1.0);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+    margin-top: -80px;
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.05);
+    margin-top: 0;
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.0);
+  }
+}
+
+
+/* How to reverse the animation n the first iteration? */
+@-webkit-keyframes shrink {
+  from {
+    -webkit-transform: scale(1.0);
+    opacity: 1;
+  }
+
+  20% {
+    -webkit-transform: scale(1.05);
+    margin-top: 0;
+  }
+
+  to {
+    -webkit-transform: scale(0);
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+/* How to reverse the animation n the first iteration? */
+@-webkit-keyframes shrink-sent {
+  from {
+    -webkit-transform: scale(1.0);
+    opacity: 1;
+  }
+
+  20% {
+    -webkit-transform: scale(1.05);
+    margin-top: 0;
+  }
+
+  to {
+    -webkit-transform: scale(0);
+    margin-top: -30px;
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes shrink-sent {
+  from {
+    -moz-transform: scale(1.0);
+    opacity: 1;
+  }
+
+  20% {
+    -moz-transform: scale(1.05);
+    margin-top: 0;
+  }
+
+  to {
+    -moz-transform: scale(0);
+    margin-top: -30px;
+    opacity: 0;
+  }
+}
+
+@-o-keyframes shrink-sent {
+  from {
+    -o-transform: scale(1.0);
+    opacity: 1;
+  }
+
+  20% {
+    -o-transform: scale(1.05);
+    margin-top: 0;
+  }
+
+  to {
+    -o-transform: scale(0);
+    margin-top: -30px;
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes shrink-sent {
+  from {
+    -ms-transform: scale(1.0);
+    opacity: 1;
+  }
+
+  20% {
+    -ms-transform: scale(1.05);
+    margin-top: 0;
+  }
+
+  to {
+    -ms-transform: scale(0);
+    margin-top: -30px;
+    opacity: 0;
+  }
+}
+
+@keyframes shrink-sent {
+  from {
+    transform: scale(1.0);
+    opacity: 1;
+  }
+
+  20% {
+    transform: scale(1.05);
+    margin-top: 0;
+  }
+
+  to {
+    transform: scale(0);
+    margin-top: -30px;
+    opacity: 0;
+  }
+}
+
+/* CONTEXT MENU
+   ================================================== */
+.context-menu {
+  background-color: #fff;
+  padding: 0;
+}
+
+.context-menu.sp-popup-above .sp-arrow-solid {
+  border-top-color: #fff;
+}
+
+.context-menu.sp-popup-below .sp-arrow-solid {
+  border-bottom-color: #fff;
+}
+
+.context-menu .context-menu-item {
+  border-radius: 3px;
+  color: #434343;
+  cursor: default;
+  display: block;
+  font-size: 11px;
+  padding: 5px 15px 5px 0;
+  text-decoration: none;
+}
+
+.context-menu .context-menu-item.active {
+  background: url('../img/icons.png') no-repeat 95% -77px;
+  border-radius: 0;
+}
+
+.context-menu div:focus {
+  outline: none;
+}
+
+.context-menu .context-menu-item:hover {
+  background-color: #e1e1e0;
+  border-radius: 0;
+  color: #4d4d4d;
+}
+
+.context-menu .context-menu-item.success {
+  background-color:#7ab800;
+  color: white;
+  -webkit-transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+  -moz-transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+  -o-transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+  -ms-transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+.context-menu .context-menu-item .public-icon {
+  background: url('../img/icons.png') 0 3px transparent no-repeat;
+  float: left;
+  height: 20px;
+  padding: 0 0 0 5px;
+  width: 18px;
+}
+
+.context-menu .context-menu-item.menu-item-public::before {
+  content: " ";
+  background: url('../img/icons.png') 0 -40px transparent no-repeat;
+  float: left;
+  height: 16px;
+  margin-right: 5px;
+  width: 18px;
+}
+
+.context-menu .context-menu-item.menu-item-secret::before {
+  content: " ";
+  background: url('../img/icons.png') 0 -21px transparent no-repeat;
+  float: left;
+  height: 16px;
+  margin-right: 5px;
+  width: 18px;
+}
+

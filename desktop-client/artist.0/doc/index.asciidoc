@@ -1,0 +1,42 @@
+The Link Artist Page's Book
+=========================
+Christian Schweitz <schweitz@spotify.com>
+
+
+Overview
+--------
+
+This is the page which shows artist related data in the web-client "Link". 
+Albums, related artists, top tracks, singles, compilations, biography are
+different data available.
+
+Metadata is provided from the corejs/stitch API 
+link:https://git.spotify.net/cgit.cgi/link/corejs.git[corejs] project.
+
+This project is designed as a single sub-page within the the web-site-player project as a sub-module. 
+Running it within web-site-player is a requirement.
+
+Convention
+----------
+
+css/javascript follows the general css/js spotify coding conventions and 
+needs to be cross-browser functional with IE9+, Chrome, Safari, Opera and Firefox.
+
+Notes
+-----
+
+application.js holds some main objects:
+
+ArtistScope - deals with loading the artist app in general
+
+ArtistPage - deals with rendering data for a specific artist
+
+Additional information
+----------------------
+
+- link:deployment[Deployment book]: How to run and deploy the system; mainly
+  for use by ops.
+- link:dev[Development book]: Information mostly of use for developers about
+  how to send queries to the search service and the format of responses.
+- link:setup[Setup book]: How to get a development environment for search set
+  up.

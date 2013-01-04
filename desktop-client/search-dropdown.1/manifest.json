@@ -29,11 +29,12 @@
     },
     "BundleIdentifier": "search-dropdown",
     "BundleType": "Application",
-    "BundleVersion": "1.0.6",
+    "BundleVersion": "1.1.1",
     "Dependencies": {
         "resources": "0.1.0",
         "unstable": "0.1.0",
-        "util": "0.1.0"
+        "util": "0.1.0",
+        "bridge-desktop": "0.10.0"
     },
     "PlaybackOwner": false,
     "RequiredPermissions": [

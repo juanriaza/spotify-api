@@ -1,0 +1,21 @@
+{
+  "loadingActivities": "Aktivitäten werden geladen&hellip;",
+  "recentActivity": "Neueste Aktivitäten",
+  "userNoActivities": "{0} hat keine neuen Aktivitäten",
+  "youNoActivities": "Du hast keine neuen Aktivitäten",
+
+  "by": "{0} von {1}",
+
+  "addedTheApp": "{0} hat die App {1} hinzugefügt",
+  "addedTrackToPlaylist": "{0} hat den Titel {1} zur Playlist {2} hinzugefügt",
+  "follows": "{0} folgt {1}",
+  "listenedToBy": "{0} hat sich {1} von {2} angehört",
+  "nowFollowsThePlaylist": "{0} folgt jetzt der Playlist",
+  "nowFollowsYourPlaylist": "{0} folgt jetzt deiner Playlist",
+  "publishedThePlaylist": "{0} hat eine Playlist erstellt:",
+  "sharedAnAlbumBy": "{0} hat das Album geteilt",
+  "sharedAnArtist": "{0} hat den Künstler geteilt",
+  "sharedAPlaylist": "{0} hat die Playlist geteilt",
+  "sharedATrackBy": "{0} hat den Titel geteilt",
+  "starredATrackBy": "{0} hat den Titel {1} von {2} zur Starred-Liste hinzugefügt"
+}

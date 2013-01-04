@@ -1,0 +1,37 @@
+{
+  "BundleType": "Application",
+  "RequiredPermissions": [
+    "http://*.cloudfront.net"
+  ],
+  "BundleVersion": "0.3.1",
+  "UserInstallable": false,
+  "ApiPermissions" : {
+    "installer" : ["private"],
+    "core" : ["private"]
+  },
+  "SupportedLanguages": [
+    "en", "de", "nl", "es", "fr"
+  ],
+  "AppName": {
+    "en": "Artist",
+    "de": "Artist",
+    "nl": "Artist",
+    "es": "Artist",
+    "fr": "Artist"
+  },
+  "AppDescription": {
+    "en": "Artist",
+    "de": "Artist",
+    "nl": "Artist",
+    "es": "Artist",
+    "fr": "Artist"
+  },
+  "BundleIdentifier" : "artist",
+  "VendorIdentifier" : "com.spotify",
+  "Dependencies": {
+    "api": "1.20.0",
+    "shared": "0.1.0",
+    "views": "1.24.1",
+    "social-artist-shared": "0.0.2"
+  }
+}

@@ -3,5 +3,9 @@
     "ButtonSubscribed": "Following",
     "ButtonUnsubscribe": "Unfollow",
     "ButtonShare": "Share…",
-    "ButtonStartRadio": "Start radio"
+    "ButtonStartRadio": "Start Radio",
+    "PopupPlaylistSubscribeCancel": "No",
+    "PopupPlaylistSubscribeConfirm": "Okay",
+    "PopupPlaylistSubscribeLine1": "You're now also following {0} because you followed this playlist.",
+    "PopupPlaylistSubscribeLine2": "Continue to follow this user?"
 }

@@ -1,0 +1,37 @@
+{
+  "AppName": {
+    "en": "profile",
+    "fr": "profile",
+    "es": "profile",
+    "de": "profile",
+    "nl": "profile"
+  },
+  "AppDescription": {
+    "en": "profile",
+    "fr": "profile",
+    "es": "profile",
+    "de": "profile",
+    "nl": "profile"
+  },
+  "BundleIdentifier": "profile",
+  "BundleType": "Application",
+  "BundleVersion": "1.4.1",
+  "Dependencies": {
+    "api": "1.20.0",
+    "views": "1.24.0",
+    "shared": "0.0.2",
+    "social-artist-shared": "0.0.9"
+  },
+  "RequiredPermissions": [
+    "https://fbcdn-profile-*.akamaihd.net",
+    "http://*.fbcdn.net"
+  ],
+  "SupportedLanguages": [
+    "en",
+    "fr",
+    "es",
+    "de",
+    "nl"
+  ],
+  "UserInstallable": false
+}

@@ -88,11 +88,11 @@
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "unter Freunden",
-          "en" : "among friends",
-          "es" : "entre tus amigos",
-          "fr" : "parmi vos amis",
-          "nl" : "onder je vrienden"
+          "de" : "in deinem Netzwerk",
+          "en" : "in your network",
+          "es" : "en tu red musical",
+          "fr" : "dans votre réseau",
+          "nl" : "in je netwerk"
         }
       },
       "sFriendsTracksA" : {
@@ -110,11 +110,11 @@
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "unter Freunden",
-          "en" : "among friends",
-          "es" : "entre tus amigos",
-          "fr" : "parmi vos amis",
-          "nl" : "onder je vrienden"
+          "de" : "in deinem Netzwerk",
+          "en" : "in your network",
+          "es" : "en tu red musical",
+          "fr" : "dans votre réseau",
+          "nl" : "in je netwerk"
         }
       },
       "sNewFriendsA" : {
@@ -452,6 +452,6 @@
         }
       }
 		}
-	
+
   }
 }

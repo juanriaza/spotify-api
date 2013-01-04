@@ -1,0 +1,1 @@
+var sp=getSpotifyApi(1),$logger=sp.require("$util/logger"),loggingHelper=function(){var c,a;return{init:function(a){c=a},setTestGroup:function(b){a=b},getTestGroup:function(){void 0===a&&(a="base");return a},logClientEvent:function(b,d,e){$logger.logClientEvent(b,d,c,a,e)}}};exports.loggingHelper=loggingHelper;

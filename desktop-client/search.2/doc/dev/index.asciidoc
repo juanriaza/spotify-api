@@ -1,0 +1,66 @@
+The Stitch Application: Search's Development Book
+================================================
+Martin Jönsson <mart@spotify.com>
+
+[NOTE]
+The search project uses link:http.//semver.org[semantic versioning]. Please
+update +manifest.json+ when making changes that warrant a version number bump.
+
+Coding conventions
+------------------
+This project aims to conform to our
+link:https://wiki.spotify.net/wiki/Coding_conventions#JavaScript[coding conventions
+for JavaScript]. Please note that we currently use two spaces instead of four for
+indentation and that we allow lines with chars up to 150 as opposed to 80.
+
+
+Architecture
+------------
+*search.js*
+    A lot of the functionality for the actual searches lies within search.js
+
+*datasource.js*
+    This holds the current datasource, that is either an array of elements or a collection which will expand as the user scrolls. It is basically a datasource for finished elements.
+
+*grid.js*
+    The Grid class keeps tracks of when the user is in the loner view and scrolls. This will detect when to load in new content and when to prune elements from the top.
+
+*list.js*
+    Basically a wrapper for the views/list
+
+*logger.js*
+    A more managable logger (stolen from rafiki)
+
+*main.js*
+    Initialize the app
+
+*pod.js*
+    This holds each pod (artists, albums, playlists). This will build the DOM element.
+
+*ui.js*
+    This is responsible for the Cover-elements for artists, albums or playlists.
+
+*utils.js*
+    Basic utility-functions.
+
+
+Response format
+---------------
+
+Search responses are Search collections which need to be turned into a snapshot.
+
+Example requests
+----------------
+
+Look up tracks, albums, or artists that match the term "robyn".
+
+----
+http://play.spotify.com/search/robyn
+----
+
+Get randomized tracks with genre "techno" from the 90s that are playable in the
+UK.
+
+----
+http://play.spotify.com/search/genre%3Atechno+year%3A1990-2000
+----

@@ -193,8 +193,11 @@ require([
         }
       }
       var headerHeight = (this.nodes.headerWrapper ? this.nodes.headerWrapper.offsetHeight : 0);
+      var borderTop = parseInt(css.getStyle(this.nodes.wrapper, 'border-top-width'), 10) || 0;
+      var borderBottom = parseInt(css.getStyle(this.nodes.wrapper, 'border-bottom-width'), 10) || 0;
+      var borderHeight = (this.nodes.wrapper ? borderTop + borderBottom : 0);
       var totalItemsHeight = this.itemHeight * numItems;
-      var totalHeight = headerHeight + totalItemsHeight;
+      var totalHeight = headerHeight + totalItemsHeight + borderHeight;
       this.node.style.height = totalHeight + 'px';
     }
   };
@@ -527,6 +530,7 @@ require([
       // If the item called the fail callback when loaded
       if (data.error) {
         itemData.hidden = true;
+        css.addClass(row, 'sp-list-item-hidden');
 
         if (self.numLoadedItems === model.totalLength && !self.hasFoundPlayableTrack) {
           list.dispatchEvent({ type: 'visually-empty' });
@@ -609,12 +613,12 @@ require([
       css.addClass(row, 'sp-list-item-unplayable');
 
       if (this.list.options.unplayable === 'hidden') {
-        css.addClass(row, 'sp-list-item-unplayable-hidden');
+        css.addClass(row, 'sp-list-item-hidden');
         itemData.hidden = true;
       }
     } else {
       css.removeClass(row, 'sp-list-item-unplayable');
-      css.removeClass(row, 'sp-list-item-unplayable-hidden');
+      css.removeClass(row, 'sp-list-item-hidden');
       itemData.hidden = false;
     }
   };
@@ -1636,7 +1640,10 @@ require([
       this.list.playTrack(this.selection.getIndex(0, this.list.listIndex), this.list.discNumber - 1);
     }
 
-    if (isUp || isDown) {
+    // Only move the selection if the up or down key was pressed.
+    // And only do it if the cmd/ctrl key is not also pressed.
+    // The cmd/ctrl key will change the volume in the client.
+    if ((isUp || isDown) && !e.metaKey && !e.ctrlKey) {
       this.moveSelection(isDown, e);
     }
   };
@@ -1682,6 +1689,8 @@ require([
     if (isLink) {
       e.preventDefault();
       e.stopPropagation();
+      this.list.dispatchEvent({ type: 'list-click', uri: uri });
+      if (this.list.parentList) { this.list.parentList.dispatchEvent({ type: 'list-click', uri: uri }); }
       models.application.openURI(uri);
 
     } else if (isShare) {

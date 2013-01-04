@@ -15,8 +15,9 @@ var staticdata = sp.require('$unstable/staticdata');
 var _ = partial(lang.getString, lang.loadCatalog('$resources/cef_views'), 'Search Dropdown');
 
 var lastQuery = { str: null, startTime: 0, responseTime: 0 };
-var relations = sp.social.relations;
-var userCache = [];
+var social = sp.social;
+var relations = social.relations;
+var userCache = {};
 var paddedResults = [];
 var testVersion = 'A';
 var searchTime = 0;
@@ -141,7 +142,8 @@ function GlobalHoverIntent(callbacks) {
 function match(name, query) {
   if (name == query)
     return EXACT;
-  if (name && name.toLowerCase().indexOf(query.toLowerCase()) != -1)
+  // Prepend a space to make subsring search only hit beginnings of words
+  if (name && (' ' + name.toLowerCase()).indexOf(' ' + query.toLowerCase()) != -1)
     if (name.length - query.length < name.length / 2)
       return GOOD;
     else
@@ -161,9 +163,13 @@ function prepareResult(r, query) {
   }
 
   // Insert users into result
-  r['users'] = filter(function(user) {
-    return match(user.canonicalUsername, query) != NONE || match(user.name, query) != NONE;
-  }, userCache);
+  r['users'] = [];
+  for (var canonicalUsername in userCache) {
+    var user = userCache[canonicalUsername];
+    if (match(user.canonicalUsername, query) != NONE || match(user.name, query) != NONE) {
+      r['users'].push(user);
+    }
+  }
 
   // Aggregate different results into final result
   var count = 0;
@@ -613,11 +619,24 @@ function onBrowseToLink() {
 }
 
 function loadRelations() {
-  userCache = [];
+  userCache = {};
 
   for (var i = 0; i < relations.length; i++) {
-    userCache.push(relations.getUserInfo(i));
+    var user = relations.getUserInfo(i);
+    userCache[user.canonicalUsername] = user;
   }
+
+  social.getSubscriptionUsernames(sp.core.user.canonicalUsername, {
+    onSuccess: function(usernames) {
+      social.getUsersBatch(usernames, {
+        onSuccess: function(users) {
+          for (var i = 0; i < users.length; i++) {
+            userCache[users[i].canonicalUsername] = users[i];
+          }
+        }
+      });
+    }
+  });
 }
 
 exports.init = function() {
@@ -639,6 +658,8 @@ exports.init = function() {
 
   relations.addEventListener('load', loadRelations);
   relations.addEventListener('change', loadRelations);
+  social.addEventListener('socialSubscribe', loadRelations);
+  social.addEventListener('socialUnsubscribe', loadRelations);
 
   if (relations.loaded) {
     window.setTimeout(loadRelations, 0);

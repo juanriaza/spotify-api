@@ -9,6 +9,9 @@
         "playlist": [
             "private"
         ],
+        "playlistContainer": [
+            "private"
+        ],
         "social": [
             "private"
         ],
@@ -32,13 +35,14 @@
     },
     "BundleIdentifier": "feed",
     "BundleType": "Application",
-    "BundleVersion": "1.0.9",
+    "BundleVersion": "1.1.6",
     "InternalBundleVersion": 13,
     "Dependencies": {
         "api": "0.1.0",
         "resources": "0.1.0",
-        "unstable": "0.1.0",
-        "util": "0.1.0"
+        "unstable": "0.10.0",
+        "util": "0.1.0",
+        "bridge-desktop": "0.10.0"
     },
     "PlaybackOwner": false,
     "RequiredPermissions": [

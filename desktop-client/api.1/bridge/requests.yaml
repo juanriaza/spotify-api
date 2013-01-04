@@ -256,6 +256,20 @@
             this value.
       returns: none
 
+    - name: client_features
+      description: |
+        Queries for the set of feature flags that are enabled in the client.
+      arguments: none
+      returns:
+        - type: object
+          fields:
+            - name: features
+              type: object
+              description: |
+                Contains one or more fields, where the key is the name of the
+                feature and value is a boolean indicating whether the feature
+                is enabled.
+
 - group: Application
   requests:
     - name: application_client_event
@@ -302,6 +316,12 @@
               array of strings, made from the application URI. If the URI is
               "spotify:app:test:A:B:C", this field will be the array
               ["A", "B", "C"].
+          - name: identifier
+            type: string
+            description: The application identifier.
+          - name: name
+            type: string
+            description: The localized application name.
           - name: uri
             type: string
             description: |
@@ -336,6 +356,17 @@
             'bundle_id@version' or 'bundle_id' dependent on whether a particular
             compatible version is required or not.
       returns: none
+    - name: application_set_title
+      description: |
+        Tell the application to set a title (and optional subtitle).
+        arguments:
+          - type: string
+            description: |
+              The title to set.
+          - type: string
+            required: false
+            description: |
+              An optional subtitle.
     - name: application_set_preferred_size
       description: |
         Tell the application to change its size.
@@ -509,6 +540,106 @@
           required: true
           repeats: true
 
+- group: Facebook
+  requests:
+    - name: facebook_friends_snapshot
+      description: Takes a snapshot of the Facebook friends of a given user.
+      arguments:
+        - type: string
+          description: |
+            The URI of the user to get Facebook friends for. Currently, only
+            the current user is allowed.
+          required: true
+        - type: number
+          description: |
+            The offset into the collection. If not given the snapshot will
+            start at offset 0. If the offset is past the collection length,
+            the request will still succeed but will not return any items.
+          required: false
+        - type: number
+          description: |
+            The maximum number of items to return. If not given will be the
+            entire collection. If the length is greater than the collection
+            length the request will still succeed and will contain all items.
+          required: false
+      returns:
+        type: object
+        fields:
+          - name: length
+            type: number
+            description: |
+              The total number of Facebook friends available. Not the same as
+              the snapshot length.
+          - name: array
+            type: array
+            description: |
+              An array of Facebook ids of the Facebook friends.
+          - name: metadata
+            type: array
+            description: |
+              An optional array of metadata for each of the items in the array.
+              The metadata can be used to partially populate the fields of the
+              objects created from the ids in the array. If this field exists
+              it must contain the same number of items as the field "array".
+
+    - name: facebook_message
+      description: |
+        Sends a Facebook message from the current user's Facebook account
+        directly to one or more Facebook users' inbox.
+      arguments:
+        - type: array
+          description: |
+            A list of Facebook ids of the users to send the message to.
+        - type: string
+          description: The message text.
+        - type: string
+          description: The URI of a Spotify resource to attach to the message.
+      returns: none
+
+    - name: facebook_post
+      description: Posts a message to the current user's Facebook timeline.
+      arguments:
+        - type: string
+          description: The post text.
+        - type: string
+          description: The URI of a Spotify resource to attach to the post.
+      returns: none
+
+    - name: facebook_session_query
+      description: Asks for the current user's Facebook data.
+      arguments: none
+      returns:
+        type: object
+        fields:
+          - name: facebookUser
+            type: string
+            description: Facebook user id for the current user, or null.
+
+    - name: facebook_show_connect_ui
+      description: |
+        Requests that the client show the UI for connecting to Facebook.
+      arguments: none
+      returns: none
+
+    - name: facebook_user_metadata
+      description: Asks for a Facebook user's metadata.
+      arguments: none
+      returns:
+        type: object
+        fields:
+          - name: user
+            type: string
+            description: |
+              The URI of the Spotify user that's connected to the Facebook user
+              Can be null if the Facebook user is not connected to Spotify.
+          - name: image
+            type: string
+            description: |
+              An image URL for the profile picture of the Facebook user.
+          - name: name
+            type: string
+            description: The full name of the Facebook user.
+
 - group: Feed
   requests:
     - name: feed_activities_snapshot
@@ -533,7 +664,7 @@
           description: |
             The maximum number of items to return. If not given will be the
             entire collection. If the length is greater than the collection
-            length the request will still succedd and will contain all items.
+            length the request will still succeed and will contain all items.
           required: false
       returns:
         type: object
@@ -1238,6 +1369,14 @@
           description: Whether to enable it.
       returns: none
 
+    - name: player_map_track_identifiers
+      description: Sends a map of track URIs to file identifiers used to resolve tracks for playback.
+      arguments:
+        - type: object
+          description: |
+            An object with keys corresponding to track URIs and values corresponding to file identifiers.
+      returns: none
+
     - name: player_set_volume
       description: On supported platforms, sets the audio output volume.
       arguments:
@@ -1258,6 +1397,13 @@
 
     - name: player_skip_to_prev
       description: Skips to the previous track in context, if possible.
+      arguments:
+        - type: number
+          description: The player ID.
+      returns: none
+
+    - name: player_stop
+      description: If the player is playing a track, stops playback.
       arguments:
         - type: number
           description: The player ID.

@@ -51,6 +51,12 @@ var SPOTIFY_APPSTORE_PROTO_SCHEMA = [
     fields: [
       {id: 1, type: '*string', name: 'identifiers'}
     ]
+  },
+  {
+    name: 'BannerConfig',
+    fields: [
+      {id: 1, type: '*string', name: 'json'}
+    ]
   }
 ];
 

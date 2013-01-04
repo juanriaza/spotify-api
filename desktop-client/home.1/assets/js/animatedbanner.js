@@ -19,8 +19,7 @@ var storeCom = sp.require('/assets/js/appstore-hermes');
  */
 var showCategories = true,
     cdnHost = 'http://d1hza3lyffsoht.cloudfront.net',
-    bannerconf,
-    bannerconffile = cdnHost + '/banners/config/bannerconf-home.json';
+    bannerconf;
 
 /**
  * Class for a array of top-banners
@@ -31,10 +30,8 @@ var AnimatedBanner = {
   init: function(testVersion) {
     var self = AnimatedBanner;
     var banners = [];
-
-    // load banners
-    request.request(bannerconffile, 'null', 'GET').then(function(result) {
-      bannerconf = JSON.parse(result.response);
+    storeCom.getBannerConfig(function(bc, isCached) {
+      bannerconf = bc;
       self.pickBanners();
     });
   },

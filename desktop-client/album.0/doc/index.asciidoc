@@ -1,0 +1,5 @@
+Project book for Album Stitch Application
+=========================================
+Erik Johansson <tozz@spotify.com>
+
+link:dev[Development Book]

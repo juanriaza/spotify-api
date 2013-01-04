@@ -1,0 +1,8 @@
+{
+    "ListTwo": "{0} und {1}",
+    "ListStart": "{0}, {1}",
+    "ListMiddle": "{0}, {1}",
+    "ListEnd": "{0} und {1}",
+    "NumberDecimalSeparator": ",",
+    "NumberThousandsSeparator": "."
+}

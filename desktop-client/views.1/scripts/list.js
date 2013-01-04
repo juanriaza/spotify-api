@@ -2,11 +2,12 @@
 
 require([
   '$api/models',
+  '$views/utils/css',
   '$views/utils/dom',
   '$views/list/model#ListModel',
   '$views/list/view#ListView',
   '$views/throbber#Throbber'
-], function(models, dom, ListModel, ListView, Throbber) {
+], function(models, css, dom, ListModel, ListView, Throbber) {
 
   exports.List = List;
 
@@ -23,6 +24,7 @@ require([
    * You can subscribe to some events that the list will broadcast:
    * - initialized            (when list.init() has been completed)
    * - play                   (when a track starts playing by the list)
+   * - list-click             (when a link is clicked in the list)
    * - set-collection         (when a new collection is set)
    * - set-context            (when a new context is set)
    * - refresh                (when the list has been refreshed, but before the
@@ -845,6 +847,7 @@ require([
       discs[i].tracks.className = 'Disc';
       lists[i] = new List(discs[i].tracks, options);
       wrapperNode.appendChild(lists[i].node);
+      css.addClass(lists[i].node, 'sp-list-album-disc');
 
       if (lists[i - 1]) {
         lists[i - 1].connect(lists[i]);

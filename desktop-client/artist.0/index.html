@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="google" value="notranslate">
+		<link rel="stylesheet" href="/css/normalize.css">
+		<link rel="stylesheet" href="$shared/css/default.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="$views/css/list.css">
+		<link rel="stylesheet" href="$views/css/image.css">
+		<link rel="stylesheet" href="$views/css/buttons.css">
+        <link rel="stylesheet" href="$views/css/throbber.css">
+	</head>
+	<body id="the-body">
+		<div id="page-throbber" class="throbber" style="visibility: hidden;"></div>
+		<div class="error">
+			<h1 class="localize" data-string="artist-not-found-heading"></h1>
+			<br>
+			<p class="localize" data-string="artist-not-found-content"></p>
+		</div>
+		<div id="artist-page" style="display: none;">
+			<div id="header">
+				<div class="fluid cf">
+					<div id="artist-followers"></div>
+					<div id="artist-image"></div>
+					<h1 id="artist-name"></h1>
+					<div id="view-profile-wrapper"></div>
+					<div id="artist-buttons"><div id="artist-buttons-follow"></div></div>
+				</div>
+			</div>
+			<div id="width-report"></div>
+			<div class="tabs-sticky-placeholder">
+				<div class="tabs">
+					<ul class="fluid">
+						<li class="active overview"><a href="" class="localize" data-string="overview" rel="overview"></a></li>
+						<li class="related"><a href="" class="localize" data-string="related-artists" rel="related"></a></li>
+						<li class="biography"><a href="" class="localize" data-string="biography" rel="biography"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="tab-containers">
+				<div id="overview" style="display: block;">
+					<div class="fluid cf relative mt">
+						<div id="top-tracks-outer-wrapper">
+							<div id="top-tracks-inner-wrapper" class="relative">
+								<div class="throbber"><div></div></div>
+								<div id="top-tracks">
+									<h2 class="heading mb10 localize" data-string="top-tracks" style="display: none;"></h2>
+									<div id="top-tracks-content" class="content2 cf">
+                                        <div class="l"></div>
+                                        <div class="r"></div>
+                                    </div>
+									<div id="no-top-tracks">
+											<div>
+											<h3 class="localize" data-string="create-top-tracks-heading"></h3>
+											<p class="localize" data-string="create-top-tracks-content"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="related-artists-wrapper">
+							<div id="related-artists" class="ns cf">
+								<div class="cf">
+									<h2 class="heading l mb10"><a id="related-see-all" rel="related" href="#" class="localize" data-string="related-artists"></a></h2>
+								</div>
+								<div class="content">
+									<ul id="related-artists-list" class="cf ns">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="albums-container" class="hidden">
+                        <div class="section-header mb cf">
+                            <div class="fluid">
+                                <h2 class="heading localize" data-string="albums"></h2>
+                                <div class="viewtype albums">
+                                    <span class="list localize-attribute" data-attribute="title" data-string="list"></span>
+                                    <span class="covers localize-attribute" data-attribute="title" data-string="covers"></span>
+                                </div>
+                            </div>
+                        </div>
+						<div id="albums" class="fluid cf">
+							<ul id="albums-list" class="ns cf"></ul>
+						</div>
+					</div>
+					<div id="singles-container" class="hidden">
+                        <div class="section-header mb cf">
+                            <div class="fluid">
+                                <h2 class="heading localize" data-string="singles"></h2>
+                                <div class="viewtype singles">
+                                    <span class="list localize-attribute" data-attribute="title" data-string="list"></span>
+                                    <span class="covers localize-attribute" data-attribute="title" data-string="covers"></span>
+                                </div>
+                            </div>
+                        </div>
+						<div id="singles" class="fluid">
+							<ul id="singles-list" class="cf ns"></ul>
+						</div>
+					</div>
+					<div id="appearances-container" class="hidden">
+                        <div class="section-header mb cf">
+                            <div class="fluid">
+                                <h2 class="heading localize" data-string="appears-on"></h2>
+                            </div>
+                        </div>
+						<div id="appearances" class="fluid">
+							<ul id="appearances-list" class="cf ns"></ul>
+						</div>
+					</div>
+					<div id="content-loading" class="fluid relative" style="display: none;">
+						<div id="content-throbber" class="throbber"></div>
+					</div>
+				</div>
+				<div id="related" class="fluid">
+					<ul id="related-tab-list">
+					</ul>
+				</div>
+				<div id="biography" class="fluid">
+					<div id="biography-gallery"></div>
+					<div id="biography-text"></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="$shared/scripts/mootools-core-1.4.5.js"></script>
+		<script src="/scripts/main.js"></script>
+	</body>
+</html>

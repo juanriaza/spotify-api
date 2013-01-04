@@ -1,0 +1,17 @@
+{
+  "Track": "Titre",
+  "ImageTrack": "Titre",
+  "Artist": "Artiste",
+  "Album": "Album",
+  "Time": "Durée",
+  "TrackPopularity": "Popularité",
+  "ArtistPopularity": "Popularité",
+  "AlbumPopularity": "Popularité",
+  "NowPlaying": "",
+  "Star": "",
+  "TrackImage": "",
+  "AlbumImage": "",
+  "Number": "",
+  "Ordinal": "",
+  "Share": ""
+}

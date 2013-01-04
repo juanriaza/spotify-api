@@ -66,6 +66,9 @@ require([
     this._style = ~styles.indexOf(options.style) ? options.style : 'inset';
     this._getContextGroupData = options.getContextGroupData;
 
+    // Time for the image to load without showing the placeholder, to not cause flickering.
+    this._acceptedLoadTime = 200;
+
     this._width = options.width || options.height || 200;
     this._height = options.height || options.width || 200;
 
@@ -117,7 +120,9 @@ require([
       this.setLink(this._link);
     }
 
-    this._addDragHandler();
+    if (dnd.drag.hasDragSupport) {
+      this._addDragHandler();
+    }
 
     // Load the device info, to decide if we should enable the custom context menu.
     // Currently, this will only be done for desktop.
@@ -185,7 +190,7 @@ require([
    * @return {Image} An Image instance.
    */
 
-  ['Album', 'Artist', 'Playlist', 'Track', 'User'].forEach(function(type) {
+  ['Album', 'Artist', 'Playlist', 'Profile', 'Track', 'User'].forEach(function(type) {
 
     Image['for' + type] = function(item, opt_options) {
 
@@ -287,12 +292,6 @@ require([
     // Set up the context used when playing
     if (this._player && this.playerButton && !this._playerItem) {
       this._createContext();
-
-      // Hide play button if there are no tracks
-      var self = this;
-      this._checkForTracks(function(hasTracks) {
-        css[hasTracks ? 'removeClass' : 'addClass'](self.playerButton.node, 'sp-image-player-hidden');
-      });
     }
 
     return this;
@@ -418,6 +417,10 @@ require([
       node.appendChild(inset);
     }
 
+    // Hide the image view at first, show it after a short delay.
+    // This is so the placeholder won't show for a split second and look like flicker.
+    css.addClass(node, 'sp-image-hidden');
+
     this.isImageInitialized = true;
     return this;
   };
@@ -454,6 +457,11 @@ require([
     }
     this.node.appendChild(node);
     this.node.placeholder = node;
+
+    // Hide the placeholder at start.
+    // It will be displayed when the image has loaded, or when the the accepted
+    // load time has passed. This is to prevent flickering.
+    css.addClass(node, 'sp-image-placeholder-hidden');
   };
 
   /**
@@ -505,13 +513,6 @@ require([
 
     // Set up the context used when playing
     this._createContext();
-
-    // Hide play button if there are no tracks
-    this._checkForTracks(function(hasTracks) {
-      if (!hasTracks) {
-        css.addClass(button.node, 'sp-image-player-hidden');
-      }
-    });
   };
 
   /**
@@ -566,78 +567,9 @@ require([
    * @private
    */
   Image.prototype._createContext = function() {
-
-    // Remove the play button if it is in the DOM
-    if (this.playerButton.node.parentNode) {
-      this.node.removeChild(this.playerButton.node);
-    }
-
     var item = this._playerItem || this._item;
-
-    // Load top tracks for an artist object
-    if (item instanceof models.Artist) {
-      Toplist.forArtist(item).load('tracks').done(this, function(toplist) {
-        if (toplist.tracks) {
-          toplist.tracks.snapshot(0, 1).done(this, function(snap) {
-            if (snap.range.length > 0) {
-              this.context = toplist.tracks;
-              this.node.appendChild(this.playerButton.node);
-              this._playStateChanged();
-            }
-          });
-        }
-      });
-
-    } else {
-      this.context = item;
-      this.node.appendChild(this.playerButton.node);
-      this._playStateChanged();
-    }
-  };
-
-  /**
-   * Test the item that was passed in if it has any tracks.
-   * Used to test if the play button should be visible.
-   *
-   * @private
-   *
-   * @param {function} callback Callback function. First argument to this function
-   *    is a boolean for the result.
-   */
-  Image.prototype._checkForTracks = function(callback) {
-
-    // A custom image from a string will not have any tracks
-    if (this._isCustomImage && !this._playerItem) {
-      callback(false);
-      return;
-    }
-
-    var item = this._playerItem || this._item;
-
-    if (item instanceof models.Track) {
-      callback(true);
-      return;
-    }
-
-    // Handled by _createContext for artists
-    if (item instanceof models.Artist) {
-      callback(true);
-      return;
-    }
-
-    if (item instanceof models.Album || item instanceof models.Playlist) {
-      item.load('tracks').done(function() {
-        item.tracks.snapshot(0, 0).done(function(snapshot) {
-          callback(snapshot.length > 0);
-        }).fail(function() {
-          callback(false);
-        });
-      }).fail(function() {
-        callback(false);
-      });
-    } else {
-      callback(false);
-    }
+    this.context = item instanceof models.Artist ? Toplist.forArtist(item) : item;
+    this._playStateChanged();
   };
 
   /**
@@ -779,16 +711,22 @@ require([
     } else if (typeof this._getContextGroupData === 'function') {
       var contextGroupData = this._getContextGroupData();
       if (contextGroupData.group) {
-        apiPlayer.playContextGroup(contextGroupData.group, contextGroupData.index || 0, 0);
+        apiPlayer.playContextGroup(contextGroupData.group, contextGroupData.index || 0, 0).fail(this, function(a, e) {
+          this._playStateChanged(false);
+        });
       }
 
     // Play track
     } else if (isTrack) {
-      apiPlayer.playTrack(item);
+      apiPlayer.playTrack(item).fail(this, function(a, e) {
+        this._playStateChanged(false);
+      });
 
     // Play context (for anything other than track)
     } else if (this.context) {
-      apiPlayer.playContext(this.context);
+      apiPlayer.playContext(this.context).fail(this, function(a, e) {
+        this._playStateChanged(false);
+      });
     }
   };
 
@@ -810,6 +748,7 @@ require([
   Image.prototype._buildImage = function() {
     // Create a normal image from a path
     if (this._isCustomImage) {
+      this._loadingStarted();
       this._createImage(this._src);
 
     // Create a normal image from a Spotify catalog object
@@ -820,6 +759,7 @@ require([
       } else {
         props = ['image', 'name'];
       }
+      this._loadingStarted();
       this._item.load(props).done(this, function(item) {
         var size = Math.max(this._width, this._height);
         var image = item.imageForSize(size);
@@ -851,6 +791,31 @@ require([
   };
 
   /**
+   * Sets up a timer for showing the image view.
+   * To not make the placeholder image flicker if the image is loaded fast,
+   * the image is hidden at creation, and displayed after a short period of time.
+   *
+   * @private
+   *
+   * @since 1.23.1
+   */
+  Image.prototype._loadingStarted = function() {
+    var self = this;
+
+    // If the image doesn't load within the accepted load time, the image view
+    // will be shown and the placeholder will be visible.
+    setTimeout(function() {
+      if (!self.isLoaded) {
+        css.removeClass(self.node, 'sp-image-hidden');
+        css.removeClass(self.node.placeholder, 'sp-image-placeholder-hidden');
+      }
+    }, this._acceptedLoadTime);
+
+    // Save the time for when we start loading the image
+    this._startLoadTime = +new Date();
+  };
+
+  /**
    * Create the actual image element.
    * The element is only created, but not added to DOM. It will be added
    * to DOM when the image has loaded.
@@ -863,11 +828,47 @@ require([
     var self = this;
     var dummyImg = document.createElement('img');
     var img = document.createElement('div');
+
     css.addClass(img, 'sp-image-img');
     dummyImg.src = src;
     dummyImg.onload = function() { self._onLoad(img); };
     dummyImg.onerror = function() { self._resetImage(); };
     img.style.backgroundImage = 'url(' + src + ')';
+  };
+
+  /**
+   * Compare the current time with the time that the image
+   * started to load. If the difference is bigger than
+   * the accepted load time, and smaller than the acceped
+   * load time plus the artificial loading time, the showing
+   * of the image will be delayed for a short time.
+   * This is to prevent the placeholder to show for a split
+   * second and look like flicker. We rather wait a bit
+   * longer and show a nice transition.
+   *
+   * @param {HTMLImageElement} img The image element.
+   *
+   * @return {boolean} True if it will be delayed with an artificial loading time.
+   *
+   * @private
+   *
+   * @since 1.23.1
+   */
+  Image.prototype._artificialLoading = function(img) {
+    var timeDiff = +new Date() - this._startLoadTime;
+    var artificialLoadingTime = 500;
+    var low = this._acceptedLoadTime;
+    var high = low + artificialLoadingTime;
+
+    if (timeDiff >= low && timeDiff <= high) {
+      var self = this;
+      setTimeout(function() {
+        self._startLoadTime = +new Date();
+        self._onLoad(img);
+      }, artificialLoadingTime);
+      return true;
+    }
+    return false;
   };
 
   /**
@@ -880,6 +881,8 @@ require([
    * @param {HTMLImageElement} img The image element.
    */
   Image.prototype._onLoad = function(img) {
+    if (this._artificialLoading(img)) return;
+
     var killOld = false;
 
     // Change state of the current image wrapper
@@ -915,6 +918,7 @@ require([
     // Set flag that we actually have one wrapper in the DOM
     this.hasBuiltOnce = true;
     this.isLoaded = true;
+    css.removeClass(this.node, 'sp-image-hidden');
 
     // We need to defer setting the CSS class until the next runloop iteration
     // for the transition animation to work. Otherwise it will just set it
@@ -935,7 +939,12 @@ require([
           if (self._swap === 'wait') {
             css.removeClass(wrapper, 'sp-image-wrapper-waiting');
           }
-        }, this._animateLoaded ? 100 : 1);
+
+          // Show the placeholder after the animation has finished.
+          // If the accepted load time has passed, it is already displayed.
+          css.removeClass(self.node.placeholder, 'sp-image-placeholder-hidden');
+
+        }, this._animateLoaded ? 150 : 1);
       }
     });
   };
@@ -1044,6 +1053,8 @@ require([
           itemName = 'Artist';
         } else if (this._item instanceof models.Playlist) {
           itemName = 'Playlist';
+        } else if (this._item instanceof models.Profile) {
+          itemName = 'User';
         } else if (this._item instanceof models.Track) {
           itemName = 'Track';
         } else if (this._item instanceof models.User) {

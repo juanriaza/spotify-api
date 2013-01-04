@@ -1,0 +1,19 @@
+The Stitch Application: Search's Setup Book
+===========================================
+Martin Jönsson <mart@spotify.com>
+
+
+
+Dependencies
+------------
+
+This application is currently a part of link:https://techdoc.spotify.net/projbooks/web-site-player/[web-site-player]. Setting up the web-site-player is a requirement to run this application.
+
+
+
+How to set up
+-------------
+
+* Clone the web-site-player and make sure it is set up correctly.
+* Make sure submodules are updated and the server is started (all necessary info is in the web-site-player's README)
+* Navigate to ~src/web-site-player/src/app/search/ and edit code if needed.

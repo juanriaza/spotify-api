@@ -1,10 +1,10 @@
 {
     "BundleIdentifier": "unstable",
     "BundleType": "Framework",
-    "BundleVersion": "0.8.7",
+    "BundleVersion": "0.10.0",
     "Dependencies": {
         "api": "0.1.1",
-        "bridge-desktop": "0.1.0",
+        "bridge-desktop": "0.11.0",
         "resources": "0.2.0",
         "util": "0.2.0"
     },

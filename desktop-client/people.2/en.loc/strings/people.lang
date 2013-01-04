@@ -1,0 +1,17 @@
+{
+    "ViewProfile": "View your profile",
+    "SubscriptionsLabel": "Following:",
+    "SubscribersLabel": "Followers:",
+    "Refresh": "Refresh",
+    "FriendsLabel": "Facebook Friends on Spotify",
+    "FriendsEmpty": "There are no more people to show at this time",
+    "RecommendationsLabel": "Recommended For You",
+    "RecommendationsEmpty": "There are no more recommendations to show at this time",
+    "SubscriberCountSingle": "{0} follower",
+    "SubscriberCountPlural": "{0} followers",
+    "ListXOthers": "{0} others",
+    "InfoFollowedBy": "Followed by",
+    "InfoFollowsYou": "Follows you",
+    "InfoTopArtists": "Listening to",
+    "InfoPlaylists": "Playlists:"
+}

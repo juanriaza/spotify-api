@@ -1,0 +1,330 @@
+/* GENERIC
+   ================================================== */
+html {
+  height: 100%;
+  background-color: #373737;
+  color: #999;
+  font: normal 11px/1.4 "Lucida Grande", "Tahoma", sans-serif;
+  min-width: 600px;
+  overflow: auto;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+a {
+  -webkit-user-drag: element;
+  color: #999;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/**
+ * Throbber, Adam Theme / Dark Theme */
+@-webkit-keyframes throbber {
+  0%     { background-position-x: 0; }
+  8.33%  { background-position-x: -32px; }
+  16.66% { background-position-x: -64px; }
+  25%    { background-position-x: -96px; }
+  33.33% { background-position-x: -128px; }
+  41.66% { background-position-x: -160px; }
+  50%    { background-position-x: -192px; }
+  58.33% { background-position-x: -224px; }
+  66.66% { background-position-x: -256px; }
+  75%    { background-position-x: -288px; }
+  83.33% { background-position-x: -320px; }
+  91.66% { background-position-x: -352px; }
+}
+.throbber, .throbber div, .throbber span {
+  position: absolute;
+}
+.throbber, .throbber span {
+  left: 0;
+  right: 0;
+}
+.throbber div, .throbber span {
+  top: 50%;
+}
+.throbber {
+  -webkit-transition: 400ms opacity;
+  background: #474747;
+  bottom: 0;
+  display: block;
+  top: 0;
+  z-index: 10;
+}
+  .throbber div {
+    -webkit-animation: throbber 1s infinite;
+    -webkit-animation-timing-function: step-start;
+    background: url(../img/throbber-big-white.png) 0 0 no-repeat;
+    height: 32px;
+    margin: -16px -16px 0 0;
+    right: 50%;
+    width: 32px;
+    z-index: 10;
+  }
+  .throbber span {
+    color: #DDD;
+    margin-top: 16px;
+    text-align: center;
+    text-shadow: initial;
+  }
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#main-throbber {
+  z-index: 1337;
+  background-color: #373737;
+}
+
+#wrapper {
+  margin: 10px;
+}
+
+#cover {
+  position: absolute;
+  margin-right: 10px;
+}
+
+#content {
+  height: 148px;
+  margin-left: 158px;
+  position: relative;
+}
+
+#meta-more-wrapper {
+  height: 115px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+#meta {
+  display: inline-block;
+  vertical-align: top;
+  width: 75%;
+}
+
+#more {
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+  min-width: 96px;
+}
+
+#title-owner-wrapper {
+  height: 50px;
+  margin-bottom: 4px;
+}
+
+#title {
+  font-size: 26px;
+  line-height: 32px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2px;
+}
+
+#title a {
+  color: inherit;
+  text-decoration: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#owner-name {
+  font-size: 11px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #9c9c9c;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#desc {
+  white-space: normal;
+  overflow: hidden;
+  font-size: 11px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  padding-right: 20px;
+}
+
+#owner-name a, #desc a {
+  color: #BFBFBF;
+}
+
+.including-artists a {
+  white-space: nowrap;
+}
+
+#followers-number {
+  font-size: 20px;
+  color: #EEE;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#followers-images {
+  display: inline-block;
+  float: right;
+  margin-top: 6px;
+  max-height: 42px;
+  white-space: normal;
+}
+
+#followers-images a {
+  float: right;
+  margin-left: 4px;
+  margin-bottom: 999px;
+}
+
+.follower-wrapper {
+  position: relative;
+}
+
+#followers-wrapper, #number-of-tracks {
+  text-align: right;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+}
+
+#number-of-tracks {
+  float: right;
+  margin-left: 6px;
+  margin-right: 6px;
+  line-height: 23px;
+}
+
+#buttons {
+  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 5px;
+  padding: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222222), color-stop(100%,#212121));
+  box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.6), 0px 1px 0px #424242;
+  margin-bottom: -1px;
+}
+
+#buttons .sp-button:first-child {
+  margin-left: 0;
+}
+
+#buttons .sp-button {
+  margin: 0 2px;
+}
+
+.offline-button {
+  color: #999;
+  border: none;
+  background: url(../img/switch.png) 100% 0 no-repeat transparent;
+  padding-right: 60px;
+  height: 23px;
+  margin-top: 1px;
+  line-height: 20px;
+  overflow: hidden;
+  float: right;
+}
+
+.offline-button:hover {
+  color: #fff;
+}
+
+.offline-button.turn-on {
+  background-position: 100% 100%;
+}
+
+.name-popover {
+  background: #eee;
+  border: solid 1px rgba(0,0,0,.3);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px #fff inset, 0 0 4px rgba(0,0,0,.3);
+  color: #333;
+  margin-top: 10px;
+  padding: 2px 8px;
+  position: absolute;
+  right: -10px;
+  text-shadow: 1px 1px 0 rgba(255,255,255,1);
+  white-space: nowrap;
+  width: auto;
+  z-index: 999;
+}
+
+.name-popover::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -12px;
+  right: 26px;
+  border: 5px solid transparent;
+  border-bottom-color: rgba(0,0,0,.3);
+}
+
+.name-popover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -11px;
+  right: 25px;
+  border: 6px solid transparent;
+  border-bottom-color: #eee;
+}
+
+.name-popover {
+  -webkit-transform: scale(0);
+  opacity: 0;
+}
+
+#followers-images a.sp-image:hover .name-popover {
+  -webkit-transform: scale(1.0);
+  opacity: 1;
+  -webkit-animation: grow-popover .3s ease-out;
+}
+
+@-webkit-keyframes grow-popover {
+  from {
+    -webkit-transform: translate3d(0, 0, 0) scale(0);
+    margin-top: -15px;
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1.05);
+    margin-top: 12px;
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0) scale(1.0);
+    margin-top: 10;
+  }
+}

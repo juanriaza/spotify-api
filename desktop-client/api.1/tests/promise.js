@@ -204,6 +204,21 @@ require(['$api/models#Promise', '$test-utils/assert'], function(Promise, assert)
 
         assert.equal(i, 0, '"each" callback added after promise was resolved was not called correct number of times');
       });
+
+      it('should call the "done" callback with an empty array for an empty list of sub-promises', function() {
+        var p = Promise.join([]);
+
+        var i = 0;
+        p.each(function() { i++; });
+
+        p.done(function(args) {
+          assert.deepEqual(args, []);
+          done = true;
+        });
+
+        assert.equal(i, 0, '"each" callback should not have been called');
+        assert.ok(done, 'Promise did not resolve');
+      });
     });
   });
 });

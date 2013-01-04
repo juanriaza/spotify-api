@@ -1,7 +1,11 @@
 {
     "ButtonSubscribe": "S'abonner",
-    "ButtonSubscribed": "Abonnements",
-    "ButtonUnsubscribe": "Se désabonner",
+    "ButtonSubscribed": "Abonné",
+    "ButtonUnsubscribe": "Se Désabonner",
     "ButtonShare": "Partager…",
-    "ButtonStartRadio": "Lancer la radio"
+    "ButtonStartRadio": "Lancer la Radio",
+    "PopupPlaylistSubscribeCancel": "Non",
+    "PopupPlaylistSubscribeConfirm": "Oui",
+    "PopupPlaylistSubscribeLine1": "Vous êtes maintenant abonné à {0} car vous vous êtes abonné à cette playlist.",
+    "PopupPlaylistSubscribeLine2": "Voulez-vous rester abonné à cet utilisateur ?"
 }

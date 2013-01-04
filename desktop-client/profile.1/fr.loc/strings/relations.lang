@@ -1,0 +1,13 @@
+{
+  "followerCountSingle": "{0} abonné",
+  "followerCountPlural": "{0} abonnés",
+  "followersHeading": "Abonnés",
+  "followingHeading": "Abonnements",
+  "playlistCountSingle": "{0} playlist",
+  "playlistCountPlural": "{0} playlists",
+  "noFollowersMessage": "{0} n'a encore aucun abonné.",
+  "noFollowingMessage": "{0} n'est encore abonné à personne.",
+  "currentUsernoFollowersMessage": "Vous n'avez encore aucun abonné.",
+  "currentUsernoFollowingMessage": "Vous n'êtes encore abonné à personne. <a href='spotify:app:people'>Découvrez à qui vous abonner</a>.",
+  "artist": "Artiste"
+}

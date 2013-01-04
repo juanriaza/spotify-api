@@ -1,0 +1,16 @@
+{
+  "by": "by",
+  "currentUserNoPlaylists": "You are not following any playlists",
+  "followers": "Followers",
+  "followerCountSingle": "{0} follower",
+  "followerCountPlural": "{0} followers",
+  "followedBy": "Followed by {0}",
+  "playlistsHeading": "Playlists",
+  "public": "Public",
+  "secret": "Secret",
+  "seeAllTracks": "See All Tracks",
+  "starredTracks": "Starred",
+  "topPlaylistsHeading": "Top Playlists",
+  "topTracks": "Top tracks",
+  "userNoPlaylists": "{0} is not following any playlists"
+}

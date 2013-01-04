@@ -1,0 +1,171 @@
+/* HEADER
+   ================================================== */
+
+.app-header {
+  background: #fbfbfb;
+  border-bottom: 1px solid #c9c8c6;
+  color: #757574;
+  min-height: 168px;
+  padding: 0;
+}
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.app-header .relations-info {
+  position: absolute;
+  right: 20px;
+  text-align: right;
+  top: 7px;
+  width: 124px;
+}
+
+.header-image-container {
+  height: 128px;
+  left: 20px;
+  position: absolute;
+  top: 20px;
+  width: 128px;
+}
+
+.app-header .header-content {
+  min-height: 128px;
+  overflow: hidden;
+  padding-top: 20px;
+  padding-left: 148px;
+  padding-right: 184px;
+  position: relative;
+}
+
+.app-header .h1 {
+  color: #343434;
+  cursor: default;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -4px;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-header .h1:hover {
+  text-decoration: none;
+}
+
+.app-header .h1.verified-badge {
+  background: url(../img/verified-badge.png) right 6px no-repeat;
+  padding-right: 28px;
+}
+
+.app-header .info {
+  display: block;
+}
+
+.app-header a {
+  color: #343434;
+  text-decoration: none;
+}
+
+.app-header a:hover {
+  text-decoration: underline;
+}
+
+.app-header .view-link {
+  background-color: #e0dfdc;
+  border-radius: 4px;
+  border: none;
+  color: #222;
+  font-size: 11px;
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px 0;
+  text-shadow: 0 1px 1px white;
+}
+
+.app-header .view-link:hover {
+  background-color: #e5e4e1;
+}
+
+.app-header .view-link:hover {
+  text-decoration: none;
+}
+
+.app-header .info:not(:empty) + .info::before {
+  content: "\00B7  ";
+  color: #999;
+}
+
+.app-header .listening-to-content {
+  margin-top: 2px;
+}
+
+.app-header .buttons-container {
+  margin-top: 9px;
+}
+
+.app-header .sp-button {
+  margin-right: 5px;
+}
+
+.app-header .relations-info h2 {
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.app-header .relations-info a {
+  cursor: default;
+}
+
+.app-header .relations-info a:hover h2 {
+  text-decoration: underline;
+}
+
+.app-header .relations-info .relations-counter {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0;
+  padding: 0 0 3px 0;
+}
+
+.app-header .relations-info hr {
+  background-color: #aaa;
+  border: none;
+  float: right;
+  height: 1px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.app-header .relations-info ul {
+  height: 36px;
+  overflow: hidden;
+  padding-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.app-header .relations-info ul > a {
+  float: right;
+  margin-left: 5px;
+}
+
+.app-header .truncate-text {
+  padding-right: 30px;
+}
+
+@media all and (max-width: 600px) {
+  .app-header .relations-info {
+    width: 80px;
+  }
+
+  .app-header .header-content {
+    padding-right: 110px;
+  }
+}

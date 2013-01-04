@@ -6,6 +6,13 @@
         "fr" : "Partager",
         "nl" : "Delen"
     },
+    "AppDescription": {
+        "de" : "Teilen",
+        "en" : "Share",
+        "es" : "Compartir",
+        "fr" : "Partager",
+        "nl" : "Delen"
+    },
     "ApiPermissions": {
         "core" : ["private"],
         "playlist" : ["private"],
@@ -13,11 +20,12 @@
     },
     "BundleIdentifier": "share",
     "BundleType": "Application",
-    "BundleVersion": "1.0.2",
+    "BundleVersion": "1.0.8",
     "Dependencies": {
-        "api": "0.1.0",
+        "api": "0.2.0",
         "resources": "0.1.0",
-        "unstable": "0.1.0"
+        "unstable": "0.6.0",
+        "bridge-desktop": "0.11.0"
     },
     "RequiredPermissions": [
         "https://fbcdn-profile-*.akamaihd.net",

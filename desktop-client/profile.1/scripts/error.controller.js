@@ -1,0 +1,1 @@
+require(["scripts/profile-utils","scripts/controller#Controller","$views/image#Image"],function(c,b){var a=function(){this.init()};SP.inherit(a,b);a.prototype.initialize=function(a,b){console.log("(ErrorController.initialize)");this.user=a;this.templates=b;this.container=document.querySelector(".app-toptracks");this.render()};a.prototype.render=function(){};exports.Error=a});

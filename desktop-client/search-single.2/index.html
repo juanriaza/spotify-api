@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Search</title>
+  <link rel="stylesheet" href="$shared/css/default.css">
+  <link rel="stylesheet" href="$views/css/list.css">
+  <link rel="stylesheet" href="$views/css/image.css">
+  <link rel="stylesheet" href="$views/css/throbber.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script>
+    /*
+     * Polyfill for console.time and console.timeEnd for IE.
+     * TEMPORARY!
+     */
+    window.console.times = [];
+
+    window.console.time = function(n) {
+      var name = (n || '');
+      window.console.times['$' + name] = new Date().getTime();
+    };
+
+    window.console.timeEnd = function(n) {
+      var name = (n || '');
+      if (('$' + name) in window.console.times) {
+        console.log('*** ' + name + ': ' + (new Date().getTime() - window.console.times['$' + name]) + 'ms');
+        delete window.console.times['$' + name];
+      }
+    };
+    console.time('TOTAL');
+    console.time('TOTAL TIME UNTIL RESIZE');
+    console.time('MOOTOOLS');
+  </script>
+  <script src="$shared/scripts/mootools-core-1.4.5.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

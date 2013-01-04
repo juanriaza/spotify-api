@@ -1,0 +1,10 @@
+{
+  "dayAgoSingle": "{0} dag geleden",
+  "dayAgoPlural": "{0} dagen geleden",
+  "hourAgoSingle": "{0} uur geleden",
+  "hourAgoPlural": "{0} uur geleden",
+  "minuteAgoSingle": "{0} minuut geleden",
+  "minuteAgoPlural": "{0} minuten geleden",
+  "momentAgo": "een ogenblik geleden",
+  "now": "nu"
+}

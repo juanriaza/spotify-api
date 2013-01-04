@@ -68,6 +68,7 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
     this.uris = [];
     this.tracksToAddToContext = [];
     this.snapshots = [];
+    this.numFailedItems = 0;
 
     // Until we have another way to use the context other than creating
     // a temporary playlist, we have to restrict the number of concurrent
@@ -151,7 +152,7 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
       // If fetch is set to greedy, get all items
       if (self.list.options.fetch === 'greedy') {
         if (self.offset < (self.totalLength || 1)) {
-          self.snapshot(snapshotDone);
+          self.snapshot(null, null, snapshotDone);
         } else {
           self.list.dispatchEvent('initial-snapshots');
           if (self.list.parentList) {
@@ -162,7 +163,7 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
       // otherwise fetch the specified number of buckets
       } else {
         if (numSnapshotsDone++ < numSnapshotsTotal && !self.noMoreData) {
-          self.snapshot(snapshotDone);
+          self.snapshot(null, null, snapshotDone);
         } else {
           self.list.dispatchEvent('initial-snapshots');
           if (self.list.parentList) {
@@ -197,10 +198,12 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
    * Make a snapshot of the collection for the current offset.
    * The items from the snapshot will be appended to the items array.
    *
+   * @param {?number=} opt_offset Offset for the snapshot. If null, default is used.
+   * @param {?number=} opt_length Length of the snapshot. If null, default is used.
    * @param {Function=} opt_callback Optional callback for when the snapshot is
    *     done.
    */
-  ListModel.prototype.snapshot = function(opt_callback) {
+  ListModel.prototype.snapshot = function(opt_offset, opt_length, opt_callback) {
     if (this.list.destroyed) { return; }
 
     if (this.numRunningSnapshots >= this.maxConcurrentSnapshots) {
@@ -209,7 +212,7 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
     this.numRunningSnapshots++;
 
     var numItems = this.list.options.numItems;
-    if (numItems && this.offset >= numItems) {
+    if (numItems && (this.offset - this.numFailedItems) >= numItems) {
       return;
     }
 
@@ -223,9 +226,10 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
     }
 
     var self = this;
-    var offset = this.offset;
-    this.offset += this.numItemsPerBucket;
-    this.collection.snapshot(offset, this.numItemsPerBucket).done(function(snap) {
+    var offset = opt_offset || this.offset;
+    var length = opt_length || this.numItemsPerBucket;
+    this.offset += length;
+    this.collection.snapshot(offset, length).done(function(snap) {
       if (self.list.destroyed) { return; }
 
       self.totalLength = snap.length;
@@ -605,6 +609,14 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
         callback(returnObject);
       }
     }).fail(function() {
+
+      // If there should be a specific amount of items in the list,
+      // and this item failed, we need to load one more item.
+      if (self.list.options.numItems) {
+        self.numFailedItems++;
+        self.snapshot(null, 1);
+      }
+
       callback({ error: true });
     });
   };
@@ -684,6 +696,7 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
 
     // Update the length of the list
     this.list.length += length;
+    this.totalLength += length;
 
     // Add the items to the data storage
     this.items.splice.apply(this.items, [index, 0].concat(addedUris));
@@ -692,6 +705,11 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
 
     // Reset the offset to match the list content
     this.offset += length;
+
+    // Reset height of the list view
+    if (this.list.options.numItems > 0) {
+      this.list.view.setNodeHeightFromNumItems();
+    }
 
     // Broadcast event to make the view update
     this.list.dispatchEvent({ type: 'insert', start: index, end: index + length });
@@ -741,9 +759,15 @@ require(['$api/models', '$views/list/fields'], function(models, fields) {
 
     // Update the length of the list
     this.list.length -= toBeRemoved.length;
+    this.totalLength -= toBeRemoved.length;
 
     // Reset the offset to match the list content
     this.offset -= toBeRemoved.length;
+
+    // Reset height of the list view
+    if (this.list.options.numItems > 0) {
+      this.list.view.setNodeHeightFromNumItems();
+    }
 
     // Update the ordinal field if it exists
     shownIndices = this.list.view.shownIndices;

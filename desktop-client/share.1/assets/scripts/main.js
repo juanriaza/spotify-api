@@ -25,7 +25,7 @@ var catalog = lang.loadCatalog('assets/share'),
  * @param {Object} data A JavaScript object containing the data to log.
  */
 function log(event, data) {
-  logger.logClientEvent('SharePopup', event, '2', '', data);
+  logger.logClientEvent('SharePopup', event, '3', '', data);
 }
 
 /*
@@ -34,17 +34,18 @@ function log(event, data) {
  */
 var link;
 
-// Link types to model classes map.
-var lookups = {
-  '1': models.Artist,
-  '2': models.Album,
-  '4': models.Track,
-  '5': models.Playlist,
-  '11': {fromURI: starredPlaylist}
-};
+// Map of link types => model factory functions.
+var factoriesByType = {};
+factoriesByType[models.Link.TYPE.ARTIST] = models.Artist.fromURI;
+factoriesByType[models.Link.TYPE.ALBUM] = models.Album.fromURI;
+factoriesByType[models.Link.TYPE.TRACK] = models.Track.fromURI;
+factoriesByType[models.Link.TYPE.PLAYLIST] = models.Playlist.fromURI;
+factoriesByType[models.Link.TYPE.STARRED] = models.Playlist.fromURI;
+factoriesByType[models.Link.TYPE.TOPLIST] = models.Playlist.fromURI;
 
-// Load preferred networks from local storage.
-// Set default to all networks. The ones that aren't connected get deselected later.
+// Used to be that preferred networks was fetched from local storage.
+// Default behaviour now is to select all networks to share to.
+// However, a network gets selected only if authenticated/connected.
 var preferredNetworks = ['facebook', 'twitter', 'tumblr'];
 
 // Run this after a share is terminated by clicking a button.
@@ -76,6 +77,7 @@ function main() {
   // Close the share popup when hitting Escape.
   document.addEventListener('keypress', function(evt) {
     if (evt.keyCode == 27) {
+      log('Escape', {uris: args});
       sp.social.hideSharePopup();
     }
   });
@@ -92,6 +94,7 @@ function main() {
   var buttons = document.querySelectorAll('.cancel');
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
+      log('Cancel', {uris: args});
       clearState();
       sp.social.hideSharePopup();
     });
@@ -110,6 +113,7 @@ function main() {
   // actually posting.
   var message = '', defaultView = 'share';
   if (link.toString() == localStorage.resource) {
+    log('Reopen', {uris: args});
     // Recover the message.
     message = localStorage.message || '';
     // Set the view.
@@ -139,8 +143,8 @@ function main() {
   var extraPrefix = document.getElementById('extra-prefix');
 
   // Look up the resource.
-  var resourceClass = lookups[link.type];
-  if (!resourceClass) {
+  var factory = factoriesByType[link.type];
+  if (!factory) {
     var key;
     if (link.type == 9) {
       key = 'errorLocalFile';
@@ -154,31 +158,36 @@ function main() {
     return;
   }
 
-  resourceClass.fromURI(link.uri, function(resource) {
+  factory(link.uri, function(resource) {
     // Create an image element (default to quavers if no image is available.)
     var img = new ui.SPImage(resource.image || 'sp://resources/img/missing-artwork-142.png');
     cover.appendChild(img.node);
 
-    urlTitle = title.textContent = resource.name.decodeForText();
+    var resourceName = resource.name.decodeForText();
+    title.textContent = resourceName;
+
+    urlTitle = resourceName;
 
     // Figure out a good reference resource to show below the title of the resource.
     var ref, subTitle;
     if (resource.artists) {
       ref = resource.artists[0];
-      subTitle = resource.artists.map(function(artist) { return artist.name; }).join(', ');
+      subTitle = resource.artists.map(function(artist) { return artist.name.decodeForText(); }).join(', ');
+      urlTitle += ' – ' + subTitle;
     } else if (resource.artist) {
       ref = resource.artist;
-      subTitle = ref.name;
+      subTitle = ref.name.decodeForText();
+      urlTitle += ' – ' + subTitle;
     } else if (resource.owner) {
       extraPrefix.textContent = _('playlistByPrefix').decodeForText() + ' ';
       ref = resource.owner;
-      subTitle = ref.displayName;
+      subTitle = ref.displayName.decodeForText();
     } else {
       // ... or fail trying.
       return;
     }
     extra.href = ref.uri;
-    extra.textContent = subTitle.decodeForText();
+    extra.textContent = subTitle;
   });
 
   // Show the default view (which is usually "Share", but can be "Send" depending on stored state).
@@ -236,14 +245,15 @@ var shareView = new view.View('share', {
           networks.querySelector('[data-network=' + network + ']').classList.remove('selected');
         }
       }
-      shareButton.disabled = !getSelectedNetworks().length;
     }
     this.refreshShareTo = refreshShareTo;
 
     // Unselect networks that have not been connected.
     updateNetworks(function(evt) {
+      var oldEnabledNetworks = enabledNetworks;
       enabledNetworks = evt.info;
       refreshShareTo();
+
       // Once all networks update, we should log state of all networks
       var allNetworksUpdated = true;
       var connectedAs = [];
@@ -256,6 +266,12 @@ var shareView = new view.View('share', {
           // false state is indicative of network not having connected/authenticated yet
           // So, if it's not undefined state or false state, the user is connected to network
           connectedAs.push(network + ':' + enabledNetworks[network]);
+
+          // If this is the first time the state of this network is known, we also select its
+          // button. But only do this if the network is in the list of preferred networks.
+          if (oldEnabledNetworks[network] === undefined && preferredNetworks.indexOf(network) >= 0) {
+            networks.querySelector('[data-network=' + network + ']').classList.add('selected');
+          }
         }
       }
       if (allNetworksUpdated) {
@@ -274,13 +290,6 @@ var shareView = new view.View('share', {
       return networks;
     }
 
-    // Pre-set the states of networks based on the user's preference.
-    Array.prototype.forEach.call(networkItems, function(item) {
-      if (preferredNetworks.indexOf(item.dataset.network) >= 0) {
-        item.classList.add('selected');
-      }
-    });
-
     // Toggle networks when they are clicked.
     networks.addEventListener('click', function(evt) {
       var item = evt.target;
@@ -296,9 +305,6 @@ var shareView = new view.View('share', {
       }
 
       item.classList.toggle('selected');
-
-      // Make the "Share" button disabled if no networks are selected.
-      shareButton.disabled = !getSelectedNetworks().length;
     });
 
     // Handle clicks on the options button.
@@ -315,13 +321,17 @@ var shareView = new view.View('share', {
 
       // Post the message.
       var networks = getSelectedNetworks();
-      share.post(message.value, urlTitle, link.toURL(), networks);
+      share.post(message.value, urlTitle, link, networks);
 
       // Remember preferences.
       localStorage.networks = networks.join(',');
 
       // Log the share.
-      log('Share', {uris: args, networks: networks, message: message.value});
+      var connected = [];
+      for (var network in enabledNetworks) {
+        if (enabledNetworks[network]) connected.push(network);
+      }
+      log('Share', {uris: args, connected: connected, networks: ['spotify'].concat(networks), message: message.value});
 
       // Forget stored message, etc.
       clearState();
@@ -333,6 +343,46 @@ var shareView = new view.View('share', {
     });
   }
 });
+
+// Register the schema necessary for socialgraph hermes call to get mutual followers
+sp.core.registerSchema([
+  {
+    name: 'User',
+    fields: [
+      {id: 1, type: 'string', name: 'username'},
+      {id: 2, type: 'int32', name: 'subscriber_count'},
+      {id: 3, type: 'int32', name: 'subscription_count'}
+    ]
+  },
+  {
+    name: 'UserListReply',
+    fields: [
+      {id: 1, type: '*User', name: 'users'},
+      {id: 2, type: 'int32', name: 'length'}
+    ]
+  }
+]);
+
+var mutualFollow = [];
+// Rationale for looking for mutual followers to autocomplete names:
+// Product constraint for sending a direct message is that the recipient is a follower of the sender
+// However, the sender would only want to search for users he/she knows (i.e follows or facebook friends).
+function getMutualFollows(onsuccess, onfailure) {
+  var hermesUri = 'hm://socialgraph/subscribers/user/' + escape(sp.core.user.username) + '/relevant';
+  sp.core.getHermes('GET', hermesUri, [], {
+    onSuccess: function(reply) {
+      var userListReply = sp.core.parseHermesReply('UserListReply', reply);
+      if (userListReply.users) {
+        mutualFollow = userListReply.users.map(function(user) { return user.username; });
+        onsuccess(mutualFollow);
+      }
+    },
+    onFailure: function(code) {
+      console.warn('Mutual followers query resulted in error', code);
+      if (onfailure) onfailure(code);
+    }
+  });
+}
 
 // Define the "Share to a friend" view.
 var sendView = new view.View('send', {
@@ -347,39 +397,66 @@ var sendView = new view.View('send', {
 
   onshow: function() {
     localStorage.view = 'send';
+
+    var input = this.input;
+    setTimeout(function() {
+      input.focus();
+    }, 100);
   },
 
   prepare: function(node) {
     var AUTOCOMPLETE_RESULTS = 4;
-
     var userIndex = sp.social.relations.all();
-    var userData = [];
+    var userMap = {};
 
+    // Make a map of user URIs to index in userIndex.
+    for (var i = 0; i < userIndex.length; i++) {
+      userMap[userIndex[i]] = true;
+    }
+
+    var userData = [];
     var sendButton = node.querySelector('.send');
     var userList = document.getElementById('user-list');
     var input = userList.querySelector('input');
     var resultsList = document.getElementById('user-results');
     var resultsItems;
 
+    this.input = input;
+
     // Start decorating the index.
     var concurrent = 0;
-    function decorate(i) {
-      var uri = userIndex[i];
 
-      models.User.fromURI(uri, function(user) {
-        var username = (user.canonicalName || '').decodeForText(),
-            name = (user.displayName || '').decodeForText(),
-            uid = user.data.facebookUid || '';
+    function decorateBatch(startIndex) {
+      // Only care about users starting at passed index and verify spotify:user: prefix in URI
+      var users = userIndex.filter(function(uri, index) {
+        return (startIndex <= index) && (uri.indexOf('spotify:user:') === 0);
+      });
 
-        userData[i] = [i, username, uid, name || username, user.data.icon];
-        userIndex[i] = (username + ' ' + name).toLowerCase();
+      // Fetch the usernames and make a batch call to Social backend to decorate the users
+      var usernames = users.map(function(uri) { return uri.substr('spotify:user:'.length); });
+      sp.social.getUsersBatch(usernames, {
+        onSuccess: function(users) {
+          for (var i = 0; i < users.length; i++) {
+            var u = users[i];
+            userData[startIndex + i] = [startIndex + i, u.canonicalUsername, u.facebookUid, u.name || u.username, u.icon];
+            userIndex[startIndex + i] = (u.username + ' ' + u.name).toLowerCase();
+          }
+        }
       });
     }
+    decorateBatch(0);
 
-    for (var i = 0; i < userIndex.length; i++) {
-      // Call decorate with the current value of i scoped.
-      setTimeout(function(i) { decorate(i); }(i), i);
-    }
+    getMutualFollows(function(mutualFollow) {
+      var startIndex = userIndex.length;
+      for (var i = 0; i < mutualFollow.length; ++i) {
+        var mutualFollowerUri = 'spotify:user:' + mutualFollow[i];
+        if (!userMap.hasOwnProperty(mutualFollowerUri)) {
+          userMap[mutualFollowerUri] = true;
+          userIndex.push(mutualFollowerUri);
+        }
+      }
+      decorateBatch(startIndex);
+    });
 
     // Adds a user to the recipient list.
     function addUser(data) {
@@ -855,82 +932,3 @@ var errorView = new view.View('error', {
     this.node.querySelector('p').textContent = error;
   }
 });
-
-// Function for wrapping starred playlists since they're not currently supported by the API...
-function starredPlaylist(uri, opt_callback) {
-  var data;
-
-  if (uri.toString() == sp.core.user.uri + ':starred') {
-    // For the current user we can get all data for the starred playlist.
-    data = {};
-
-    // Copy the starred playlist into a pure JS object that can be manipulated.
-    var starred = sp.core.getStarredPlaylist();
-    for (var key in starred) {
-      data[key] = starred[key];
-    }
-
-    // Add the URI property, which is currently hidden by the JS bridge.
-    data.uri = uri;
-  } else {
-    // For other users we just have to mock most of the data.
-    var loadHandlers = [];
-    data = {
-      add: function() {},
-      addEventListener: function(type, handler) {
-        if (type != models.EVENT.LOAD || loadHandlers.indexOf(handler) >= 0) return;
-        loadHandlers.push(handler);
-      },
-      all: function() { return []; },
-      collaborative: false,
-      cover: '',
-      description: '',
-      get: function() { throw new Error('index is out of range'); },
-      getDescription: function() { return ''; },
-      getSubscribers: function() { return []; },
-      getTrack: function() { throw new Error('index is out of range'); },
-      length: 0,
-      loaded: false,
-      move: function() {},
-      name: _('starredPlaylist'),
-      owner: null,
-      remove: function() { throw new Error('index is out of range'); },
-      removeEventListener: function(type, handler) {
-        if (type != models.EVENT.LOAD) return;
-        if (handler) {
-          var idx = loadHandlers.indexOf(handler);
-          if (idx >= 0) loadHandlers.splice(idx, 1);
-        } else {
-          loadHandlers.length = 0;
-        }
-      },
-      rename: function() {},
-      subscriberCount: 0,
-      type: 'playlist',
-      uri: uri.toString()
-    };
-
-    sp.social.getUserByUsername(uri.split(':')[2], {
-      onSuccess: function(user) {
-        data.loaded = true;
-        data.owner = user;
-        loadHandlers.forEach(function(handler) { handler(); });
-      }
-    });
-  }
-
-  // Create a playlist object from the data and set up callbacks.
-  var playlist = new models.Playlist(data);
-  if (opt_callback) {
-    if (playlist.loaded) {
-      opt_callback(playlist);
-    } else {
-      playlist.observe(EVENT.LOAD, function observer() {
-        opt_callback(playlist);
-        playlist.ignore(EVENT.LOAD, observer);
-      });
-    }
-  }
-
-  return playlist;
-}

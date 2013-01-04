@@ -1,7 +1,11 @@
 {
     "ButtonSubscribe": "Seguir",
     "ButtonSubscribed": "Seguidos",
-    "ButtonUnsubscribe": "Dejar de seguir",
+    "ButtonUnsubscribe": "Dejar de Seguir",
     "ButtonShare": "Compartir…",
-    "ButtonStartRadio": "Iniciar Radio"
+    "ButtonStartRadio": "Iniciar Radio",
+    "PopupPlaylistSubscribeCancel": "No",
+    "PopupPlaylistSubscribeConfirm": "OK",
+    "PopupPlaylistSubscribeLine1": "Ahora también sigues a {user} porque le has dado a seguir esta playlist.",
+    "PopupPlaylistSubscribeLine2": "¿Quieres continuar siguiendo a este usuario?"
 }

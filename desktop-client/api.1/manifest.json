@@ -7,10 +7,11 @@
     },
     "BundleIdentifier": "api",
     "BundleType": "Framework",
-    "BundleVersion": "1.17.2",
+    "BundleVersion": "1.20.0",
     "Dependencies": {
         "bridge-desktop": "0.8.1"
     },
+    "LoadingScreenBackgroundColor": "#ECEBE8",
     "SupportedLanguages": [
         "de",
         "en",

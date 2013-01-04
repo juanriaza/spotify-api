@@ -14,6 +14,9 @@ exports.removeEventListener = removeEventListener;
 
 var sp = getSpotifyApi();
 
+// This is imported to register the Presence Hermes schema.
+var presence = sp.require('$unstable/scripts/presence');
+
 // Register the Hermes schemas.
 sp.core.registerSchema([
   {
@@ -186,6 +189,21 @@ var networks = {
   }
 };
 
+var spotify = {
+  post: function(message, uri, onsuccess, onerror) {
+    var timestamp = Math.round(new Date().getTime() / 1000);
+    var data = {
+      uri_shared: {
+        uri: uri,
+        message: message,
+        timestamp: timestamp
+      }
+    };
+    hermes('SET', 'presence', 'user/' + escape(sp.core.user.canonicalUsername),
+           [['PresenceState', data]], null, onsuccess, onerror);
+  }
+};
+
 function addEventListener(type, handler) {
   if (listeners[type]) {
     if (listeners[type].indexOf(handler) >= 0) return;
@@ -283,18 +301,16 @@ function hermes(method, service, path, data, replyType, onsuccess, onerror) {
  * Posts a message to one or more social networks.
  * @param {string} message The message to send.
  * @param {string} urlTitle A title to show for the URL (for networks that need one).
- * @param {string} url The URL (Spotify resource) to attach to the message.
+ * @param {string} link Link to the Spotify resource to attach to the message.
  * @param {Array.<string>} postTo A list of networks to post to.
  * @param {function(Object.<string, boolean>)} ondone A handler which will be called once all
  *     networks have been handled. It will be given an argument which is a map of the networks
  *     provided and a boolean indicating success.
  */
-function post(message, urlTitle, url, postTo, ondone) {
-  var results = {}, count = postTo.length;
-
-  if (!count) {
-    throw new Error('At least one social network must be selected.');
-  }
+function post(message, urlTitle, link, postTo, ondone) {
+  var results = {};
+  // +1 because we're always sharing to Spotify.
+  var count = postTo.length + 1;
 
   // An onsuccess/onerror handler generator.
   function handler(network, result) {
@@ -321,11 +337,14 @@ function post(message, urlTitle, url, postTo, ondone) {
     networks[network].post(
         message,
         urlTitle,
-        url,
+        link.toURL(),
         credentials[network],
         handler(network, true),
         fail);
   }
+
+  // Always post to Spotify.
+  spotify.post(message, link.uri, handler('spotify', true), handler('spotify', false));
 }
 
 function removeEventListener(type, handler) {

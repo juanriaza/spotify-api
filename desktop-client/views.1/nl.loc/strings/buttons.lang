@@ -1,7 +1,11 @@
 {
     "ButtonSubscribe": "Volgen",
     "ButtonSubscribed": "Volgend",
-    "ButtonUnsubscribe": "Niet meer volgen",
+    "ButtonUnsubscribe": "Niet Meer Volgen",
     "ButtonShare": "Delen…",
-    "ButtonStartRadio": "Radiozender beginnen"
+    "ButtonStartRadio": "Radiozender Beginnen",
+    "PopupPlaylistSubscribeCancel": "Nee",
+    "PopupPlaylistSubscribeConfirm": "OK",
+    "PopupPlaylistSubscribeLine1": "Je volgt nu ook {0} omdat je deze afspeellijst volgt.",
+    "PopupPlaylistSubscribeLine2": "Deze gebruiker blijven volgen?"
 }

@@ -88,11 +88,47 @@ var NewAlbums = {
    * @param {object} the data to be extended.
    */
   extend: function(data) {
-    var self = this, uris = [];
-    data.forEach(function(album) {
-      if (!self.blacklist[album.album_uri])
-        uris.push(album.album_uri);
-    });
+    var self = this, uris = [], recommendedUris = {};
+
+    var today = new Date();
+    var pushed_albums = [{
+      end: new Date(2013, 0, 27),
+      group: sp.core.getAbTestGroupForTest('push.test-3'),
+      id: 'spotify:album:3MZ5hMy89OUFVvonMKkXEV',
+      start: new Date(2012, 10, 13)
+    }, {
+      end: new Date(2012, 11, 27),
+      group: sp.core.getAbTestGroupForTest('push.test-2'),
+      id: 'spotify:album:5SVTRyWHWnM8d1VaJYLffG',
+      start: new Date(2012, 10, 13)
+    }, {
+      end: new Date(2012, 11, 12),
+      group: sp.core.getAbTestGroupForTest('push.test-1'),
+      id: 'spotify:album:5ZAKzV4ZIa5Gt7z29OYHv0',
+      start: new Date(2012, 10, 13)
+    }];
+
+    // Add pushed albums
+    for (var i = 0; i < pushed_albums.length; i++) {
+      if (pushed_albums[i]['start'] < today &&
+          pushed_albums[i]['end'] > today &&
+          pushed_albums[i]['group'] < 400) {
+        uris.unshift(pushed_albums[i]['id']);
+        recommendedUris[pushed_albums[i]['id']] = true;
+      }
+    }
+
+    for (var j = 0, l = data.length; j < l; j++) {
+      if (!self.blacklist[data[j]['album_uri']]) {
+        if (data.isRecommended !== false)
+          recommendedUris[data[j]['album_uri']] = true;
+        else
+          recommendedUris[data[j]['album_uri']] = false;
+
+        uris.push(data[j]['album_uri']);
+      }
+    }
+
     var count = 0;
     var recommendedCount = 0;
     var toplistCount = 0;
@@ -104,60 +140,55 @@ var NewAlbums = {
     }
 
     sp.core.getMetadata(uris, {
-      onSuccess: function(md)
-      {
+      onSuccess: function(md) {
         var filteredMetadata = [], artists = [];
+
         for (var i = 0; i < md.length; i++) {
           var d = md[i];
           if (d === null)
             continue;
 
-          //Make sure we only include unique and available albums
-          if (!array.contains(artists, d.artist.name) &&
-              d.artist.name !== 'Various Artists' && d.availableForPlayback) {
-            artists.push(d.artist.name);
-            //Set isRecommended or not
-            data.forEach(function(aData, index) {
-              if (aData.album_uri == d.uri) {
-                if (aData.isRecommended !== false) {
-                  d.isRecommended = true;
-                  recommendedCount++;
-                }
-                else {
-                  d.isRecommended = false;
-                  toplistCount++;
-                }
-              }
-            });
+          // Make sure we only include unique artists and available albums
+          if (d.artist.name !== 'Various Artists' &&
+              artists.indexOf(d.artist.name) === -1 &&
+              d.availableForPlayback) {
 
-            //Clone and delete album tracks array
+            // Why is availableForPlayback sometimes false, even though it's available?
+
+            // Unless push remove duplicate artists.
+            if (d.artist.name.toUpperCase() !== 'CAZZETTE')
+              artists.push(d.artist.name);
+
+            // Clone and delete album tracks array
             var clonedAlbum = clone(d);
             clonedAlbum.tracks = [];
             filteredMetadata.push(clonedAlbum);
+
             if (count == 4) {
               break;
             }
             count++;
           }
         }
-        //filteredMetadata = array.shuffle(filteredMetadata);
-        if (!filteredMetadata[2].isRecommended) {
-          for (var i = 0; i < filteredMetadata.length; i++) {
-            if (filteredMetadata[i].isRecommended) {
-              var tempI = filteredMetadata[i];
-              var tempJ = filteredMetadata[2];
-              filteredMetadata[2] = tempI;
-              filteredMetadata[i] = tempJ;
+
+        if (!recommendedUris[filteredMetadata[2].uri]) {
+          for (var k = 0; k < filteredMetadata.length; k++) {
+            if (recommendedUris[filteredMetadata[k].uri]) {
+
+              var tempK = filteredMetadata[k];
+              var temp = filteredMetadata[2];
+              filteredMetadata[2] = tempK;
+              filteredMetadata[k] = temp;
               break;
             }
           }
         }
+
         wnData.Data.set(self._key, filteredMetadata);
         self._loaded = true;
         self._loadEvent.dispatch(window);
       },
-      onFailure: function()
-      {
+      onFailure: function() {
         self._loaded = true;
         self._loadEvent.dispatch(window);
       }

@@ -1,0 +1,17 @@
+{
+    "ViewProfile": "Voir votre profil",
+    "SubscriptionsLabel": "Abonnements :",
+    "SubscribersLabel": "Abonnés :",
+    "Refresh": "Recharger",
+    "FriendsLabel": "Amis Facebook sur Spotify",
+    "FriendsEmpty": "Pas d'autres utilisateurs à afficher.",
+    "RecommendationsLabel": "Recommandés",
+    "RecommendationsEmpty" : "Pas d'autres recommandations à afficher.",
+    "SubscriberCountSingle": "{0} abonné",
+    "SubscriberCountPlural": "{0} abonnés",
+    "ListXOthers": "{0} autres",
+    "InfoFollowedBy": "Suivi par",
+    "InfoFollowsYou": "Vous suit",
+    "InfoTopArtists": "Écoute",
+    "InfoPlaylists": "Les playlists :"
+}

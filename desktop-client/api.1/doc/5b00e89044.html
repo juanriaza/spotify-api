@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Library</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Library</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="b35f9c3904.html">api/library</a>~</span>
+    
+    Library
+    </h2>
+    
+        <div class="class-description">Represent a user's library.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="Library"><span class="type-signature"></span>new Library</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Never construct a library object using the default constructor - use
+forCurrentUser() and forUser().
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>albums</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="b3b37c1e4e.html">module:api/models~Collection</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A collection of albums in
+    the user's library. Not available for other users than the currently
+    logged in user.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>artists</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="b3b37c1e4e.html">module:api/models~Collection</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A collection of artists in
+    the user's library. Not available for other users than the currently
+    logged in user.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>playlists</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="b3b37c1e4e.html">module:api/models~Collection</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A collection of playlists in
+    the the user's library. Not available for other users than the currently
+    logged in user. Use 'published' for those users instead.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>published</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="b3b37c1e4e.html">module:api/models~Collection</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A collection of playlists that
+    the user has published. This is the recommended way to interact with the
+    playlists from other users.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>starred</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="116792da1f.html">module:api/models~Playlist</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A playlist containing the user's
+    starred tracks. What is actually returned for this property for other users
+    than the currently logged in user is undefined, since the starred list
+    may or may not be published.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>toplist</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="116792da1f.html">module:api/models~Playlist</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A playlist containing the user's
+    top tracks. What is actually returned for this property for other users than
+    the currently logged in user is undefined, since the toplist may or may not
+    be published.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>owner</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="90c6856566.html">module:api/models~User</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The user who owns the library.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>tracks</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="b3b37c1e4e.html">module:api/models~Collection</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A collection of tracks in the
+    user's library. Not available for other users than the currently
+    logged in user.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>owner</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="90c6856566.html">module:api/models~User</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The user who owns the library.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 65</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li>module:api/library~Library#forCurrentUser</li>
+        
+            <li>module:api/library~Library#forUser</li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="2f49e4dd1a.html">module:api/models~BridgeLoadable</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="_observed"><span class="type-signature">&lt;protected> </span>_observed</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        This method is called when the first event listener is added to this
+Observable. Subclasses may override this method in order to lazily initialize
+resources related to event listening.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 229</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="addEventListener"><span class="type-signature"></span>addEventListener</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Same as the addEventListener in standard JavaScript. Call this method to add
+an observer to the receiver object, for a given named event.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>eventType</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the event to get notifications for.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>observer</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback function. To unregister the
+    callback, the exact same function must be passed to the
+    removeEventListener method.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 247</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="29dda503a6.html#removeEventListener">module:api/models~Observable#removeEventListener</a></li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.player.addEventListener('change', updateNowPlayingWidget);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="bridgeListen"><span class="type-signature"></span>bridgeListen</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Start listening for bridge events.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>requestName</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Request name to make to the bridge.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>requestArgs</code></td>
+            
+            
+            <td class="type">
+            
+                        Array
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Args for the bridge request.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1012</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="bridgeUnlisten"><span class="type-signature"></span>bridgeUnlisten</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Stop listening for bridge events.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1022</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="dispatchEvent"><span class="type-signature"></span>dispatchEvent</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Triggers an event for all observer callbacks. Any callback that explicitly
+returns false or calls preventDefault() will cause the return value of this
+function to be false.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>evt</code></td>
+            
+            
+            <td class="type">
+            
+                        {type: string}
+                         | 
+                    
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The event object to dispatch (must have a
+    type property), or simply the event type as a string.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 304</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    False if the event was prevented; otherwise, true.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">boolean</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="eventDone"><span class="type-signature"></span>eventDone</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handle an event.
+
+Default behavior: resolve the 'data' field from events into property updates
+on this object. By default, a bridge event is redispatched as a JavaScript
+event on this, unless a 'receiver' field is specified on the event. If
+given, the 'receiver' field causes 'this[event.receiver]' to be the event
+target instead of 'this'.
+
+Subclasses should override this method if they need custom functionality to
+run on every bridge event. This should be a rare case.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Raw event object from the bridge.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1065</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="eventFail"><span class="type-signature"></span>eventFail</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handle a failure.
+
+Subclasses should replace this method if they need custom
+functionality to run on an error.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Raw error object from the bridge.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1096</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="load"><span class="type-signature"></span>load</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Before any properties of an object can be read they must be loaded by calling
+this function with a list of properties that the caller is interested in. The
+only way to ensure that any properties are available on an object is to call
+this method. After specifying what properties to load the caller must wait
+for the returned promise to resolve before the properties can actually be
+read from the object. If the promise fails, the properties must not be read.
+Note that it is possible, and recommended, to call load multiple times with
+different property lists. The properties should be grouped by how they are
+used together. By specifiying a minimum set of properties for each call to
+load, the callback will happen as soon as possible, sometimes without even
+having to wait for additional metadata to be fetched remotely.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;string>
+                         | 
+                    
+                        ...string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An array of property names. The
+    property names that are available for loading can be found in the
+    documentation for each specific sub-class. Note that instead of passing
+    in an array, multiple arguments can be passed instead.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 930</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise to wait for before the
+    properties can be read.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.Track.fromURI('…').load('name', 'duration').done(function(track) {
+  console.log('The track ' + track.name + ' is ' + track.duration + ' ms long.');
+});</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="publish"><span class="type-signature"></span>publish</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Publishes one or more playlists for the current user.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>playlists</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="116792da1f.html">module:api/models~Playlist</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">One or more playlists to
+    publish.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.1.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 132</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise for the request.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="removeEventListener"><span class="type-signature"></span>removeEventListener</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Same as the removeEventListener in standard JavaScript. Call this method to
+remove an observer that was previously added.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>eventType</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the event you're getting notifications
+    for.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>observer</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback must be the exact same function
+    instance as was used in the registration, and not just an identical
+    anonymous function.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 280</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="29dda503a6.html#addEventListener">module:api/models~Observable#addEventListener</a></li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.player.removeEventListener('change', updateNowPlayingWidget);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolve"><span class="type-signature"></span>resolve</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Resolves a single property on an object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the property.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                        *
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The new value.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_silent</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Whether to skip dispatching change events for
+    any properties that change.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 813</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolveDone"><span class="type-signature">&lt;protected> </span>resolveDone</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Signal that all calls to resolve are done, at least for the moment.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 867</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolveFail"><span class="type-signature">&lt;protected> </span>resolveFail</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Signal that resolving failed.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 888</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolveMany"><span class="type-signature"></span>resolveMany</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Resolves many properties on an object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>propsMask</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A bitmask of properties to mark as done and unmark
+    as waiting.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A map of properties to update and their new values.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_silent</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Whether to skip dispatching change events for
+    any properties that change.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 853</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="star"><span class="type-signature"></span>star</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Stars one or more items for the current user.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Library.Item>
+                         | 
+                    
+                        ...Library.Item
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">One or more items to
+    star.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.5.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 145</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise for the request.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="subscribe"><span class="type-signature"></span>subscribe</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Subscribes the current user to a music item.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Library.Item>
+                         | 
+                    
+                        ...Library.Item
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">One or more items to
+    subscribe to.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 158</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise for the request.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="unpublish"><span class="type-signature"></span>unpublish</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Unpublishes a playlist for the current user.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>playlists</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="116792da1f.html">module:api/models~Playlist</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">One or more playlists to
+    unpublish.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.1.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 171</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise for the request.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="unstar"><span class="type-signature"></span>unstar</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Unstars one or more items for the current user.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Library.Item>
+                         | 
+                    
+                        ...Library.Item
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">One or more items to
+    unstar.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.5.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 184</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise for the request.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="unsubscribe"><span class="type-signature"></span>unsubscribe</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Unsubscribes the current user from a music item.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Library.Item>
+                         | 
+                    
+                        ...Library.Item
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">One or more items to
+    unsubscribe from.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 197</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise for the request.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forCurrentUser"><span class="type-signature">&lt;static> </span>forCurrentUser</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns the library for the current user.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 209</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The library for the currently logged
+    in user.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/library~Library</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forUser"><span class="type-signature">&lt;static> </span>forUser</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns the library for the specified user.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="90c6856566.html">module:api/models~User</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The user whose library object to
+    return.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>library.js, line 227</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The library for the given user.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/library~Library</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="b125cb4739.html">api/activity</a></li><li><a href="cab34e0f5f.html">api/core</a></li><li><a href="499567a1ea.html">api/devtools</a></li><li><a href="2e19439bbf.html">api/facebook</a></li><li><a href="735c6907eb.html">api/i18n</a></li><li><a href="b35f9c3904.html">api/library</a></li><li><a href="e823b05f04.html">api/location</a></li><li><a href="939370fe49.html">api/messaging</a></li><li><a href="812e62ea6e.html">api/models</a></li><li><a href="340744ca04.html">api/offline</a></li><li><a href="68bb093b6f.html">api/relations</a></li><li><a href="fae0dafcfe.html">api/runtime</a></li><li><a href="c00f27133b.html">api/search</a></li><li><a href="65e92e21c1.html">api/toplists</a></li></ul><h3>Classes</h3><ul><li><a href="4fa2689dfd.html">Activity</a></li><li><a href="07d8f55c24.html">Album</a></li><li><a href="3a2f31cc4e.html">AlbumGroup</a></li><li><a href="62e0f3e64f.html">AnalyticsContext</a></li><li><a href="c0c8801168.html">Application</a></li><li><a href="d2c9d24b31.html">Artist</a></li><li><a href="2f49e4dd1a.html">BridgeLoadable</a></li><li><a href="a75dc998a1.html">Cache</a></li><li><a href="6c58b55c44.html">CallStats</a></li><li><a href="7793419fd1.html">Callback</a></li><li><a href="1214aad9c1.html">Client</a></li><li><a href="b3b37c1e4e.html">Collection</a></li><li><a href="ae9f97e567.html">Context</a></li><li><a href="bcf818ce58.html">Conversation</a></li><li><a href="a9d135f937.html">CurrentUserRelations</a></li><li><a href="ae59c76eb8.html">Disc</a></li><li><a href="38e6292999.html">FacebookSession</a></li><li><a href="46b8a06b09.html">FacebookUser</a></li><li><a href="983bf4af36.html">Feed</a></li><li><a href="840393815b.html">Group</a></li><li><a href="7376d25dd8.html">LangModule</a></li><li><a href="5b00e89044.html">Library</a></li><li><a href="e3b03fa4b6.html">Loadable</a></li><li><a href="45059c3683.html">Location</a></li><li><a href="f5080255a5.html">Log</a></li><li><a href="db5594a3a4.html">LogEntry</a></li><li><a href="4ef712fa14.html">MdL</a></li><li><a href="b26cab02dc.html">Message</a></li><li><a href="29dda503a6.html">Observable</a></li><li><a href="29a50718ee.html">Offline</a></li><li><a href="5396da2973.html">Player</a></li><li><a href="116792da1f.html">Playlist</a></li><li><a href="6c715946cc.html">Profile</a></li><li><a href="ce3a0f5560.html">Promise</a></li><li><a href="34925cfa13.html">ProxyListener</a></li><li><a href="28c25f4e8c.html">Reference</a></li><li><a href="dcad188636.html">Relations</a></li><li><a href="85bdbe7d69.html">Search</a></li><li><a href="cd4b0bf6d5.html">Session</a></li><li><a href="ef5c946272.html">Snapshot</a></li><li><a href="8bd4b4acfb.html">SpotifyApi</a></li><li><a href="54a5f660ca.html">Stats</a></li><li><a href="String.html">String</a></li><li><a href="78a533eace.html">Toplist</a></li><li><a href="84319155be.html">Track</a></li><li><a href="90c6856566.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#require">require</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Wed Dec 12 2012 14:59:45 GMT-0000 (UTC)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

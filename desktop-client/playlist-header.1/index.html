@@ -2,16 +2,43 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="/assets/css/playlist.css">
+			<!-- <link rel="stylesheet" href="css/playlist.css"> -->
+		  <link rel="stylesheet" href="css/reset.css">
+		  <link rel="stylesheet" href="$views/css/list.css" />
+		  <link rel="stylesheet" href="$views/css/image.css" />
+		  <link rel="stylesheet" href="$views/css/buttons.css" />
+		  <link rel="stylesheet" href="$views/css/throbber.css">
+		  <link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
+		<div class="throbber" id="main-throbber"><div></div></div>
 		<div id="wrapper">
-		</div>
-		<script>
-			var sp = getSpotifyApi(1);
-			sp.requireAsync('assets/scripts/playlist-header', function (r) {
-				new r.PlaylistHeader();
-  		});
-		</script>
+	  	<div id="cover"></div>
+	  	<div id="content">
+	  		<div id="meta-more-wrapper">
+					<div id="meta">
+						<div id="title-owner-wrapper">
+						  <h1 id="title" class="text-truncate"><a href="#"></a></h1>
+						  <div id="owner-name" class="text-truncate"><a href="#"></a></div>
+						</div>
+
+						<div id="desc" class="sp-text-truncate"></div>
+					<!-- On the following line, the line break between the divs is intentionally
+					     left out to remove space between inline-block elements -->
+					</div><div id="more">
+						<div id="followers-wrapper">
+							<div id="followers-number"></div>
+							<div id="followers-number-label"></div>
+						</div>
+						<div id="followers-images"></div>
+					</div>
+				</div>
+
+				<div id="buttons">
+					<span id="number-of-tracks"></span>
+				</div>
+			</div>
+	  </div>
+		<script src="scripts/main.js"></script>
 	</body>
 </html>

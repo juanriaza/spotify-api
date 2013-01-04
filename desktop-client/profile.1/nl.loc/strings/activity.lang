@@ -1,0 +1,21 @@
+{
+  "loadingActivities": "Activiteiten laden&hellip;",
+  "recentActivity": "Recente activiteiten",
+  "userNoActivities": "{0} heeft geen recente activiteiten",
+  "youNoActivities": "Je hebt geen recente activiteiten",
+
+  "by": "{0} van {1}",
+
+  "addedTheApp": "{0} heeft de {1} app toegevoegd",
+  "addedTrackToPlaylist": "{0} heeft het nummer {1} toegevoegd aan de afspeellijst {2}",
+  "follows": "{0} volgt {1}",
+  "listenedToBy": "{0} luisterde naar {1} van {2}",
+  "nowFollowsThePlaylist": "{0} volgt nu de afspeellijst",
+  "nowFollowsYourPlaylist": "{0} volgt nu je afspeellijst",
+  "publishedThePlaylist": "{0} heeft een afspeellijst gemaakt:",
+  "sharedAnAlbumBy": "{0} heeft het album gedeeld",
+  "sharedAnArtist": "{0} heeft de artiest gedeeld",
+  "sharedAPlaylist": "{0} heeft de afspeellijst gedeeld",
+  "sharedATrackBy": "{0} heeft het nummer gedeeld",
+  "starredATrackBy": "{0} heeft het nummer {1} van {2} toegevoegd aan favorieten"
+}

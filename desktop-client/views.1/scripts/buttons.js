@@ -4,13 +4,14 @@
  */
 
 require([
-  '$views/utils/css',
-  '$views/utils/dom',
   '$api/library#Library',
   '$api/models',
   '$api/relations#Relations',
-  '$views/strings/buttons.lang'
-], function(css, dom, Library, models, Relations, buttonsStrings) {
+  '$views/popup#Popup',
+  '$views/strings/buttons.lang',
+  '$views/utils/css',
+  '$views/utils/dom'
+], function(Library, models, Relations, Popup, buttonsStrings, css, dom) {
   var _ = SP.bind(buttonsStrings.get, buttonsStrings);
 
   /**
@@ -885,24 +886,6 @@ require([
   };
 
   /**
-   * A subclass of SubscribeButton that knows how to subscribe to artists and to
-   * properly update itself in response to the user it is targeting being
-   * subscribed from somewhere else.
-   *
-   * @class SubscribeArtistButton
-   * @extends {SubscribeButton}
-   * @private
-   *
-   * @param {Artist} artist The artist to subscribe to when the button is
-   *     clicked.
-   */
-  function SubscribeArtistButton(artist) {
-    if (!(artist instanceof models.Artist)) throw new Error('not an Artist');
-    SubscribeButton.call(this, artist);
-  }
-  SP.inherit(SubscribeArtistButton, SubscribeButton);
-
-  /**
    * A subclass of SubscribeButton that knows how to subscribe to playlists and to
    * properly update itself in response to the user it is targeting being
    * subscribed from somewhere else.
@@ -921,42 +904,140 @@ require([
   SP.inherit(SubscribePlaylistButton, SubscribeButton);
 
   /**
+   * Display a popup that informs the user they are also following the owner of
+   * the playlist they just subscribed to. This popup also lets them unfollow
+   * that user if they did not want to follow them after all.
+   * @private
+   *
+   * @since 1.22.0
+   */
+  SubscribePlaylistButton.prototype._showPopup = function() {
+    if (this._popup) {
+      this._popup.dispose();
+    }
+
+    var fragment = document.createDocumentFragment();
+
+    // Popup text.
+    var paragraph = document.createElement('p');
+    paragraph.innerHTML =
+        _('PopupPlaylistSubscribeLine1',
+            '<strong>' + this.item.owner.name.decodeForHtml() + '</strong>') +
+        '<br><br>' +
+        _('PopupPlaylistSubscribeLine2');
+    fragment.appendChild(paragraph);
+
+    // Controls container.
+    var controls = document.createElement('p');
+    controls.className = 'sp-popup-buttons';
+    fragment.appendChild(controls);
+
+    // Buttons.
+    var unsubscribe = Button.withLabel(_('PopupPlaylistSubscribeCancel'));
+    controls.appendChild(unsubscribe.node);
+
+    var okay = Button.withLabel(_('PopupPlaylistSubscribeConfirm'));
+    okay.setAccentuated(true);
+    controls.appendChild(okay.node);
+
+    // Note: The height of the popup is set in the _updateSubscription method.
+    var popup = Popup.withContent(fragment, 250, 0, 'sp-playlist-subscribed');
+
+    // Close the popup when either button is clicked.
+    var user = this.item.owner;
+    unsubscribe.addEventListener('click', function() {
+      this.setDisabled(true);
+      Relations.forCurrentUser().unsubscribe(user);
+      popup.hide(100);
+    });
+    okay.addEventListener('click', function() { popup.hide(); });
+
+    // Display the popup.
+    popup.showFor(this.node);
+
+    // Adjust the size of the popup so that the text fits snugly.
+    var rect = paragraph.getBoundingClientRect();
+    popup.resize(popup.width, rect.height + 44);
+
+    this._popup = popup;
+  };
+
+  /**
    * Subscribe or unsubscribe to a playlist.
    * @param {boolean} subscribe True to subscribe, false to unsubscribe.
    * @private
    */
   SubscribePlaylistButton.prototype._updateSubscription = function(subscribe) {
-    this._call(Library.forCurrentUser(), subscribe ? 'subscribe' : 'unsubscribe');
+    if (!subscribe) {
+      // If this is an unsubscribe of the playlist, just do it and disregard
+      // the rest of this function.
+      this._call(Library.forCurrentUser(), 'unsubscribe');
+      return;
+    }
+
+    var self = this;
+    models.client.load('features').done(function(client) {
+      // If the client has the auto-follow playlist owners feature enabled, show a
+      // popup telling the user that they subscribed to the owner of the playlist
+      // and giving them the option to unsubscribe from the owner.
+      //
+      // We won't actually subscribe to the playlist until we know whether the
+      // user is subscribed to the owner or not, since subscribing to the
+      // playlist will change that state.
+      if (client.features['autoFollowPlaylistOwners']) {
+        self.item.load('owner').done(function(playlist) {
+          playlist.owner.load('name', 'subscribed').done(function(user) {
+            if (!user.subscribed) {
+              self._showPopup();
+            }
+
+            // Now that we've dealt with the popup, subscribe to the playlist.
+            self._call(Library.forCurrentUser(), 'subscribe');
+          });
+        });
+      } else {
+        // 'Auto-follow playlist owners' feature is not enabled - just subscribe to
+        // the playlist.
+        self._call(Library.forCurrentUser(), 'subscribe');
+      }
+    });
   };
 
   /**
-   * A subclass of SubscribeButton that knows how to subscribe to users and to
-   * properly update itself in response to the user it is targeting being
-   * subscribed from somewhere else.
+   * A subclass of SubscribeButton that knows how to subscribe to artists and
+   * users. It will properly update itself in response to the artist or user it
+   * is targeting being subscribed to/unsubscribed from somewhere else.
    *
-   * @class SubscribeUserButton
+   * @class SubscribeProfileButton
    * @extends {SubscribeButton}
-   * @private
    *
-   * @param {User} user The user to subscribe to when the button is clicked.
+   * @param {Artist|User} profile The artist or user to subscribe to when the
+   *     button is clicked.
+   *
+   * @since 1.24.0
    */
-  function SubscribeUserButton(user) {
-    if (!(user instanceof models.User)) throw new Error('not a User');
-    SubscribeButton.call(this, user);
+  function SubscribeProfileButton(profile) {
+    if (!((profile instanceof models.User) || (profile instanceof models.Artist)))
+      throw new Error(profile + ' not a User or Artist');
+    SubscribeButton.call(this, profile);
   }
-  SP.inherit(SubscribeUserButton, SubscribeButton);
+  SP.inherit(SubscribeProfileButton, SubscribeButton);
 
   /**
-   * Subscribe or unsubscribe to a user.
-   * @param {boolean} subscribe True to subscribe, false to unsubscribe.
+   * Subscribe to or unsubscribe from an artist or a user.
+   *
    * @private
+   *
+   * @param {boolean} subscribe True to subscribe, false to unsubscribe.
+   *
+   * @since 1.24.0
    */
-  SubscribeUserButton.prototype._updateSubscription = function(subscribe) {
+  SubscribeProfileButton.prototype._updateSubscription = function(subscribe) {
     this._call(Relations.forCurrentUser(), subscribe ? 'subscribe' : 'unsubscribe');
   };
 
   /**
-   * Creates a SubscribeButton with a given artist.
+   * Creates a SubscribeButton for a given artist.
    *
    * @since 1.0.0
    *
@@ -964,11 +1045,25 @@ require([
    * @return {SubscribeButton} A SubscribeButton instance.
    */
   SubscribeButton.forArtist = function(artist) {
-    return new SubscribeArtistButton(artist);
+    return new SubscribeProfileButton(artist);
   };
 
   /**
-   * Creates a SubscribeButton with a given playlist.
+   * Creates a SubscribeButton for a given profile. A profile can be either an
+   * artist or a user.
+   *
+   * @param {Artist|User} profile The artist or user to subscribe to when
+   *     clicking the button.
+   * @return {SubscribeButton} A SubscribeButton instance.
+   *
+   * @since 1.24.0
+   */
+  SubscribeButton.forProfile = function(profile) {
+    return new SubscribeProfileButton(profile);
+  }
+
+  /**
+   * Creates a SubscribeButton for a given playlist.
    *
    * @since 1.0.0
    *
@@ -981,7 +1076,7 @@ require([
   };
 
   /**
-   * Creates a SubscribeButton with a given user.
+   * Creates a SubscribeButton for a given user.
    *
    * @since 1.0.0
    *
@@ -989,7 +1084,7 @@ require([
    * @return {SubscribeButton} A SubscribeButton instance.
    */
   SubscribeButton.forUser = function(user) {
-    return new SubscribeUserButton(user);
+    return new SubscribeProfileButton(user);
   };
 
   exports.Button = Button;

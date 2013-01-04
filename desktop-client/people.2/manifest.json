@@ -1,0 +1,41 @@
+{
+    "AppIcon": {
+        "36x18": "img/people-18.png"
+    },
+    "AppName": {
+        "de": "Folgen",
+        "en": "Follow",
+        "es": "Seguir",
+        "fr": "S'abonner",
+        "nl": "Volgen"
+    },
+    "AppDescription": {
+        "de": "Folgen",
+        "en": "Follow",
+        "es": "Seguir",
+        "fr": "S'abonner",
+        "nl": "Volgen"
+    },
+    "BundleIdentifier": "people",
+    "BundleType": "Application",
+    "BundleVersion": "2.3.5",
+    "Dependencies": {
+        "api": "1.20.0",
+        "shared": "0.0.2",
+        "views": "1.24.0",
+        "bridge-desktop": "0.10.0"
+    },
+    "RequiredPermissions": [
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nl"
+    ],
+    "UserInstallable": false,
+    "VendorIndentifier": "com.spotify"
+}

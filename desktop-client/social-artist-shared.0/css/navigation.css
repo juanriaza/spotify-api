@@ -1,0 +1,81 @@
+/* NAV
+   ================================================== */
+.app-navigation-placeholder {
+  height: 33px;
+}
+
+.app-navigation {
+  background-image: -webkit-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: -moz-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: -o-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: -ms-linear-gradient(#f6f6f6, #e8e8e8);
+  background-image: linear-gradient(#f6f6f6, #e8e8e8);
+  border-bottom: 1px solid #c9c8c6;
+  box-shadow: 0 1px 0 #fafaf9, 0 1px 0 #fff inset;
+  height: 33px;
+  font: normal 11px/1.4 "Lucida Grande", "Tahoma", sans-serif;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 99;
+}
+
+.app-navigation.passed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.app-navigation ul {
+  list-style-type: none;
+  min-width: 460px;
+  padding: 5px 0;
+  white-space: nowrap;
+}
+
+.app-navigation li {
+  border: 1px solid rgba(0, 0, 0, 0);
+  display: inline-block;
+  height: 14px;
+  margin-right: 15px;
+  margin-left: 3px;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+.app-navigation li.active {
+  border: 1px solid #b0afaf;
+  border-radius: 3px;
+  box-shadow: inset 0px 3px 7px #cecece, inset 0px 0px 3px #e5e5e5, 0px 1px 1px #f0f0f0;
+  background-image: linear-gradient(bottom, rgb(229,229,229) 100%, rgb(224,224,224) 0%);
+  z-index: 9999;
+}
+
+.app-navigation a {
+  color: #222222;
+  font-size: 11px;
+  padding: 9px 2px 9px 2px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255, 0.4);
+}
+
+.app-navigation li.active a {
+  color: #3b3b3b;
+  text-shadow: 0px 1px 1px #fff;
+}
+
+.app-navigation a:hover {
+  color: #222;
+  cursor: default;
+}
+
+.nav-separator {
+  display: none;
+  height: 33px;
+  position: relative;
+  width: 100%;
+}
+
+.nav-separator.passed-top {
+  display: block;
+}

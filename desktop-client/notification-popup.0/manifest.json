@@ -13,7 +13,7 @@
       "fr": "Notification Popup",
       "nl": "Notification Popup"
   },
-  "BundleVersion": "0.0.30",
+  "BundleVersion": "0.1.1",
   "BundleIdentifier": "notification-popup",
   "BundleType": "Application",
   "UserInstallable": false,
@@ -26,25 +26,26 @@
       "http://*.amazonaws.com",
       "http://*.cloudfront.net"
   ],
-  "ApiPermissions" : {
-    "core" : ["private"],
-    "social" : ["private"],
-    "desktop" : ["private"],
-    "playlist" : ["private"]
+  "ApiPermissions": {
+      "core": ["private"],
+      "social": ["private"],
+      "desktop": ["private"],
+      "playlist": ["private"]
   },
   "Dependencies": {
-    "api": "0.1.0",
-    "resources": "0.1.0",
-    "unstable": "0.1.0",
-    "util": "0.1.0"
+      "api": "0.1.1",
+      "resources": "0.2.1",
+      "unstable": "0.8.0",
+      "util": "0.2.0",
+      "bridge-desktop": "0.10.0"
   },
-  "PreferredSize" : {"width":100, "height":100},
+  "PreferredSize": {"width": 100, "height": 100},
   "SupportedLanguages": [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "nl"
+      "de",
+      "en",
+      "es",
+      "fr",
+      "nl"
   ],
   "VendorIdentifier": "com.spotify"
 }

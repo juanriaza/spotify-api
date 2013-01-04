@@ -1,0 +1,65 @@
+.sp-tabbar {
+	height: 34px;
+}
+	.sp-tabbar-placeholder {
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 34px;
+	}
+
+	.sp-tabbar-content {
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+		        box-sizing: border-box;
+
+		height: 34px;
+		padding: 4px 0 0 0;
+
+		border-top: 1px solid #fff;
+		border-bottom: 1px solid #c9c8c6;
+		box-shadow: 0 1px 0 0 #fafaf9;
+
+		background: url(../img/tabbar-background.png);
+
+		text-align: center;
+	}
+	.sp-tabbar-sticky {
+		position: fixed;
+		top: 0;
+		z-index: 10000;
+	}
+
+		.sp-tabbar-tab {
+			padding: 0 8px 2px 8px;
+			height: 20px;
+
+			border: 1px solid transparent;
+			border-radius: 2px;
+
+			font: 11px/22px 'Lucida Grande', Tahoma, sans-serif;
+			text-shadow: 0 1px 0 rgba(255,255,255,0.62);
+			color: #3b3b3b;
+			background: transparent;
+			min-width: 30px;
+
+			-webkit-tap-highlight-color: transparent;
+
+			-webkit-box-sizing: content-box;
+			   -moz-box-sizing: content-box;
+			        box-sizing: content-box;
+
+			-webkit-user-select: none;
+			   -moz-user-select: none;
+			    -ms-user-select: none;
+			        user-select: none;
+		}
+		.sp-tabbar-tab:focus {
+			outline: none;
+		}
+		.sp-tabbar-tab-active {
+			background: url(../img/tabbar-tab.png);
+			border: 1px solid #9a9a9a;
+			box-shadow: inset 0 1px 3px -2px rgba(0,0,0, .6), 0 1px 0 0 #fcfcfc;
+			-webkit-box-shadow: inset 0 1px 5px -2px rgba(0,0,0, .6), 0 1px 0 0 #fcfcfc;
+		}

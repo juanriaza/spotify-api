@@ -1,0 +1,169 @@
+{slab header}
+  <div class="header apply-width">
+    <div class="header-image-container"></div>
+    <div class="header-content">
+      <a href="{profile.uri}" class="h1 truncate-text {profile.classname}">{profile.name}</a>
+      <span class="info"></span>
+
+      <p class="listening-to-content">
+      </p>
+
+      <div class="buttons-container">
+      </div>
+    </div>
+    <div class="relations-info">
+    </div>
+  </div>
+{endslab}
+
+{slab relationsInfo}
+  <a href="{userUriFollowers}" class="relations-link"">
+    <h2 id="followers-heading">{followersHeading}</h2>
+    <p id="followers-amount" class="relations-counter" data-followers-amount="{followersAmountUnformatted}">{followersAmount}</p>
+  </a>
+  <hr />
+  <a href="{userUriFollowing}" class="relations-link">
+    <h2 id="following-heading">{followingHeading}</h2>
+    <p id="following-amount" class="relations-counter" data-following-amount="{followingAmountUnformatted}">{followingAmount}</p>
+  </a>
+  <ul id="following-avatars"></ul>
+  <div id="relations-popover" class="item closed"></div>
+{endslab}
+
+{slab playlists}
+  <header class="section-header">
+    <h1 class="apply-width">{playlists.heading}</h1>
+  </header>
+  <div class="section-content">
+    <div class="playlists">
+
+    </div>
+  </div>
+{endslab}
+
+{slab playlist}
+  <div class="playlist-image"></div>
+  <div class="playlist-content">
+    <div class="flex-box">
+      <header class="playlist-header">
+        <h2><span class="playlist-icon"></span>{playlist.title}</h2>
+        <div class="playlist-buttonview flex-box"></div>
+      </header>
+      <div class="playlist-followers">
+
+      </div>
+    </div>
+    <div class="playlist-listview"></div>
+  </div>
+{endslab}
+
+{slab playlistfollowers}
+  <small>{playlist.followersText}</small>
+  <p class="popcount-value">{playlist.popcount}</p>
+{endslab}
+
+{slab subscribers}
+  <div id="followers-container" class="section-content">
+  </div>
+{endslab}
+
+{slab subscriptions}
+  <div id="following-container" class="section-content">
+  </div>
+{endslab}
+
+{slab subscribee}
+  <div class="follower-container">
+    <div class="image-container"></div>
+    <div class="follower-info">
+      <span class="friend-info"></span>
+      <p class="friend-num"></p>
+      <p class="playlist-num"></p>
+    </div>
+    <div class="follow-button-container"></div>
+  </div>
+{endslab}
+
+{slab toplists}
+  <header class="section-header">
+    <h1 class="apply-width">{toplists.heading}</h1>
+  </header>
+  <div class="section-content">
+    <div class="top-playlists apply-width">
+
+    </div>
+  </div>
+{endslab}
+
+{slab toplistplaylist}
+  <div class="playlist-image">
+
+  </div>
+  <a href="{playlist.uri}" class="playlist-name">{playlist.name}</a>
+  <p class="playlist-followers">{playlist.followers}</p>
+{endslab}
+
+{slab activity}
+  <header class="section-header">
+    <h1 class="apply-width">{activity.heading}</h1>
+  </header>
+  <div class="section-content apply-width">
+    <div class="recent-activity">
+
+    </div>
+  </div>
+{endslab}
+
+{slab activity_item}
+  <div class="item-image">
+  </div>
+  <p class="activity">{activity.text}</p>
+  <time>{activity.duration}</time>
+  <p class="message">{activity.message}</p>
+{endslab}
+
+{slab empty_message}
+<p class="empty-message">
+  {message}
+</p>
+{endslab}
+
+{slab send_popup}
+  <div class="share-anchor">
+    <div class="share-content">
+      {content}
+      <div class="throbber"></div>
+    </div>
+  </div>
+{endslab}
+
+{slab send_form}
+  <div class="form-section item">
+    <input placeholder="{inputPlaceholder}" class="music-input" type="text" name="music"></input>
+    <div class="selected-search truncate-text"></div>
+    <button class="search-close"></button>
+    <div class="music-search"></div>
+    <textarea placeholder="({textareaPlaceholder})" class="message-input"></textarea>
+  </div>
+  <div class="button-section item"></div>
+{endslab}
+
+{slab send_done}
+  <div class="item sent-message">{sentMessage}</div>
+{endslab}
+
+{slab selected_track}
+  <span class="song">{song}</span> - <span class="album">{album}</span> {by} <span class="artist">{artist}</span>
+{endslab}
+
+{slab selected_album}
+  <span class="album">{album}</span> {by} <span class="artist">{artist}</span>
+{endslab}
+
+{slab selected_artist}
+  <span class="artist">{artist}</span>
+{endslab}
+
+{slab offline}
+  {offlineMessage}
+{endslab}

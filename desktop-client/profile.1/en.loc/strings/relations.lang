@@ -1,0 +1,13 @@
+{
+  "followerCountSingle": "{0} follower",
+  "followerCountPlural": "{0} followers",
+  "followersHeading": "Followers",
+  "followingHeading": "Following",
+  "playlistCountSingle": "{0} playlist",
+  "playlistCountPlural": "{0} playlists",
+  "noFollowersMessage": "No one follows {0} yet.",
+  "noFollowingMessage": "{0} is not following anyone yet.",
+  "currentUsernoFollowersMessage": "Nobody follows you yet.",
+  "currentUsernoFollowingMessage": "You are not following anyone yet. <a href='spotify:app:people'>Discover who to follow</a>.",
+  "artist": "Artist"
+}

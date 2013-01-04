@@ -1,6 +1,7 @@
 'use strict';
 
-require(['$views/image#Image'], function(Image) {
+require(['$views/image#Image', '$views/strings/fields.lang'], function(Image, fieldsStrings) {
+  var _ = SP.bind(fieldsStrings.get, fieldsStrings);
 
   /**
    * Predefined fields for the list.
@@ -19,7 +20,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     track: {
-      title: 'Track',
+      title: _('Track'),
       className: 'sp-list-cell-track',
       widthWeight: 7,
       neededProperties: { track: ['name', 'explicit'] },
@@ -45,7 +46,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'image:track': {
-      title: 'Track',
+      title: _('ImageTrack'),
       className: 'sp-list-cell-track',
       widthWeight: 7,
       neededProperties: { track: ['name', 'image'], album: ['image'] },
@@ -62,7 +63,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     artist: {
-      title: 'Artist',
+      title: _('Artist'),
       className: 'sp-list-cell-artist',
       widthWeight: 3, // Will be 5 when 'trackartist' is used to get the field
       neededProperties: { artist: ['uri', 'name'], track: ['explicit'] },
@@ -100,7 +101,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     album: {
-      title: 'Album',
+      title: _('Album'),
       className: 'sp-list-cell-album',
       widthWeight: 4,
       neededProperties: { album: ['uri', 'name'] },
@@ -132,11 +133,14 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     time: {
-      title: 'Time',
+      title: _('Time'),
       className: 'sp-list-cell-time',
       fixedWidth: 58,
       neededProperties: { track: ['duration'] },
       get: function(data) {
+        if (data.track.duration < 0) {
+          return '';
+        }
         var duration = Math.round((data.track.duration || 0) / 1000);
         var minutes = Math.floor(duration / 60);
         var seconds = Math.round(duration % 60);
@@ -152,7 +156,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'track-popularity': {
-      title: 'Popularity',
+      title: _('TrackPopularity'),
       className: 'sp-list-cell-popularity',
       fixedWidth: 75,
       fixedWidthNoHeader: 51,
@@ -170,7 +174,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'artist-popularity': {
-      title: 'Popularity',
+      title: _('ArtistPopularity'),
       className: 'sp-list-cell-popularity',
       fixedWidth: 75,
       fixedWidthNoHeader: 51,
@@ -188,7 +192,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'album-popularity': {
-      title: 'Popularity',
+      title: _('AlbumPopularity'),
       className: 'sp-list-cell-popularity',
       fixedWidth: 75,
       fixedWidthNoHeader: 51,
@@ -206,7 +210,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     nowplaying: {
-      title: '',
+      title: _('NowPlaying'),
       className: 'sp-list-cell-nowplaying',
       fixedWidth: 30,
       neededProperties: {},
@@ -223,7 +227,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     star: {
-      title: '',
+      title: _('Star'),
       className: 'sp-list-cell-star',
       fixedWidth: 30,
       neededProperties: { track: ['starred'] },
@@ -243,7 +247,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'track-image': {
-      title: '',
+      title: _('TrackImage'),
       className: 'sp-list-cell-image',
       fixedWidth: 33,
       neededProperties: { track: ['image'], album: ['image'] },
@@ -265,7 +269,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'artist-image': {
-      title: '',
+      title: _('ArtistImage'),
       className: 'sp-list-cell-image',
       fixedWidth: 33,
       neededProperties: { artist: ['image'] },
@@ -286,7 +290,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     'album-image': {
-      title: '',
+      title: _('AlbumImage'),
       className: 'sp-list-cell-image',
       fixedWidth: 33,
       neededProperties: { album: ['image'] },
@@ -307,7 +311,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     number: {
-      title: '',
+      title: _('Number'),
       className: 'sp-list-cell-listnumber',
       fixedWidth: 32,
       neededProperties: { track: ['number'] },
@@ -327,7 +331,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     ordinal: {
-      title: '',
+      title: _('Ordinal'),
       className: 'sp-list-cell-listnumber',
       fixedWidth: 33,
       neededProperties: {},
@@ -359,7 +363,7 @@ require(['$views/image#Image'], function(Image) {
      * @type {Object}
      */
     share: {
-      title: '',
+      title: _('Share'),
       className: 'sp-list-cell-share',
       fixedWidth: 32,
       neededProperties: {},

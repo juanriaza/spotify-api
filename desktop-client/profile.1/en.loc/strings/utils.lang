@@ -1,0 +1,10 @@
+{
+  "dayAgoSingle": "{0} day ago",
+  "dayAgoPlural": "{0} days ago",
+  "hourAgoSingle": "{0} hour ago",
+  "hourAgoPlural": "{0} hours ago",
+  "minuteAgoSingle": "{0} minute ago",
+  "minuteAgoPlural": "{0} minutes ago",
+  "momentAgo": "a moment ago",
+  "now": "now"
+}

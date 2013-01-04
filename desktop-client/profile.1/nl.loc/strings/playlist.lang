@@ -1,0 +1,16 @@
+{
+  "by": "van",
+  "currentUserNoPlaylists": "Je volgt geen afspeellijsten",
+  "followers": "Volgers",
+  "followerCountSingle": "{0} volger",
+  "followerCountPlural": "{0} volgers",
+  "followedBy": "Gevolgd door {0}",
+  "playlistsHeading": "Afspeellijsten",
+  "public": "Openbaar",
+  "secret": "Geheim",
+  "seeAllTracks": "Alle Nummers Weergeven",
+  "starredTracks": "Favorieten",
+  "topPlaylistsHeading": "Topafspeellijsten",
+  "topTracks": "Topnummers",
+  "userNoPlaylists": "{0} volgt geen afspeellijsten"
+}

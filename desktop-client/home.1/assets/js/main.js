@@ -559,10 +559,34 @@ var Discovery = {
   }
 };
 
-function NewToplistPlaylistsDataSource(data, showFriends, context) {
+function NewToplistPlaylistsDataSource(data, showFriends, context, preCacheSize) {
   data = data;
   showFriends = showFriends || false;
   context = context || '';
+
+  this.preCache = function() {
+    var usernameSet = {};
+    for (var i = 0, l = Math.min(data.length, preCacheSize); i < l; i++) {
+      var d = data[i];
+      var creator = d.uri.split(':')[2];
+      creator = d.creator ? d.creator : decodeURIComponent(creator);
+      usernameSet[creator] = true;
+      if (showFriends && d.friends && d.friends.length) {
+        for (var j = 0; j < d.friends.length; j++) {
+          usernameSet[d.friends[j]] = true;
+        }
+      }
+    }
+    sp.social.getUsersBatch(Object.keys(usernameSet), {
+      onSuccess: function() {
+        console.log('precached users');
+      },
+      onFailure: function() {
+        console.log('failed to precache users');
+      }
+    });
+  };
+  this.preCache();
 
   this.count = function() {
     return data.length;
@@ -579,9 +603,7 @@ function NewToplistPlaylistsDataSource(data, showFriends, context) {
 
     var nameColumn = new dom.Element('div', {
       className: 'nameColumn',
-      html: '<div class="nameColumn"><a href="' + uri + '" class="name">' +
-          name + '</a> ' + _('sBy') + ' <a href="' + creatorUri +
-          '" class="creator">' + creator + '</a>'
+      html: '<a href="' + uri + '" class="name">' + name + '</a> '
     });
 
     dom.listen(dom.queryOne('.name', nameColumn), 'click', function(e) {
@@ -592,40 +614,53 @@ function NewToplistPlaylistsDataSource(data, showFriends, context) {
           {'uri': uri}
       );
     });
-    dom.listen(dom.queryOne('.creator', nameColumn), 'click', function(e) {
-      logger.logClientEvent(context,
-          'browsed to playlist creator',
-          loggingVersion,
-          testVersion,
-          {'uri': creatorUri}
-      );
+
+    sp.social.getUsersBatch([creator], {
+      onSuccess: function(users) {
+        nameColumn.innerHTML += _('sBy') +
+            ' <a href="' + creatorUri + '" class="creator">' + (users[0].name || creator) + '</a>';
+      },
+      onFailure: function() {
+        nameColumn.innerHTML += _('sBy') +
+            ' <a href="' + creatorUri + '" class="creator">' + creator + '</a>';
+      },
+      onComplete: function() {
+        dom.listen(dom.queryOne('.creator', nameColumn), 'click', function(e) {
+          logger.logClientEvent(context,
+              'browsed to playlist creator',
+              loggingVersion,
+              testVersion,
+              {'uri': creatorUri}
+          );
+        });
+      }
     });
 
     dom.adopt(li, nameColumn);
     if (showFriends) {
       var friendsColumn = new dom.Element('div', {className: 'friendsColumn'});
-      var fn = function(f) {
-        sp.social.getUserByUsername(f, {
-          onSuccess: function(fd) {
-            if (fd.facebookUid) {
-              var friendImage = new ui.SPImage('https://graph.facebook.com/' +
-                  fd.facebookUid + '/picture', 'spotify:user:' +
-                  fd.canonicalUsername, fd.name);
-              dom.adopt(friendsColumn, friendImage.node);
-              dom.listen(friendImage.node, 'click', function(e) {
-                logger.logClientEvent(context,
-                    'browsed to friend picture',
-                    loggingVersion,
-                    testVersion,
-                    {'uri': creatorUri}
-                );
-              });
+
+      if (d.friends && d.friends.length > 0) {
+        sp.social.getUsersBatch(d.friends, {
+          onSuccess: function(users) {
+            for (var i = 0; i < users.length; i++) {
+              var user = users[i];
+              if (user.picture) {
+                var friendImage = new ui.SPImage(user.picture,
+                    'spotify:user:' + user.canonicalUsername, user.name);
+                dom.adopt(friendsColumn, friendImage.node);
+                dom.listen(friendImage.node, 'click', function(e) {
+                  logger.logClientEvent(context,
+                      'browsed to friend picture',
+                      loggingVersion,
+                      testVersion,
+                      {'uri': creatorUri}
+                  );
+                });
+              }
             }
           }
         });
-      };
-      if (d.friends && d.friends.length > 0) {
-        d.friends.forEach(fn);
       }
       dom.adopt(li, friendsColumn);
     }
@@ -647,9 +682,10 @@ function buildPlaylistPager(key, data, wrapper, callback) {
 
   var showFriends = data[0].friends ? true : false;
 
-  var ds = new NewToplistPlaylistsDataSource(data, showFriends, key);
+  var perPage = 5;
+  var ds = new NewToplistPlaylistsDataSource(data, showFriends, key, perPage);
   var pager = new p.Pager(ds, {
-    perPage: 5 ,
+    perPage: perPage,
     hidePartials: true,
     orientation: 'vertical',
     pagingLocation: 'top',

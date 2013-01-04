@@ -1,0 +1,16 @@
+{
+  "by": "de",
+  "currentUserNoPlaylists": "No sigues ninguna playlist",
+  "followers": "Seguidores",
+  "followerCountSingle": "{0} seguidor",
+  "followerCountPlural": "{0} seguidores",
+  "followedBy": "Seguida por {0}",
+  "playlistsHeading": "Playlists",
+  "public": "Pública",
+  "secret": "Secreta",
+  "seeAllTracks": "Ver Todas las Canciones",
+  "starredTracks": "Canciones destacadas",
+  "topPlaylistsHeading": "Playlists más escuchadas",
+  "topTracks": "Canciones más escuchadas",
+  "userNoPlaylists": "{0} no sigue ninguna playlist"
+}

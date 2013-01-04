@@ -1,0 +1,1 @@
+var Config=function(){var a={};return{init:function(b){for(var c in b)a[c]={},function(){var d=c;a[c].value=function(){return b[d]};a[c].has=function(a){return-1<b[d].indexOf(a)};a[c].is=function(a){return b[d]===a}}()},get:function(b){return a[b]}}}();exports.Config=Config;

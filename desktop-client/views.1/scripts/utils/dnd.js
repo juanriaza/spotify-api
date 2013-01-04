@@ -10,10 +10,12 @@ function Drag() {
   this.hasDragSupport = !!SP.addDragHandler;
 
   // Add custom elements as a special drag type
-  var testCustom = this._testCustom.bind(this);
-  var getCustomText = this._getCustomText.bind(this);
-  var getCustomData = this._getCustomData.bind(this);
-  this.addHandler(testCustom, getCustomText, getCustomData);
+  if (this.hasDragSupport) {
+    var testCustom = SP.bind(this._testCustom, this);
+    var getCustomText = SP.bind(this._getCustomText, this);
+    var getCustomData = SP.bind(this._getCustomData, this);
+    this.addHandler(testCustom, getCustomText, getCustomData);
+  }
 }
 
 /**

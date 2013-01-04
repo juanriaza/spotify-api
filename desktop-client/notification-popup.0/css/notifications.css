@@ -1,6 +1,8 @@
 /**
- *  Main Structure 
+ *  Main Structure
  */
+
+@import url("sp://resources/css/api.css");
 
 body {
   word-wrap:break-word;
@@ -164,14 +166,6 @@ div.notification.unread {
   background-color: #eaf0f7;
 }
 
-div.notification.selected .actionDoneCover {
-  box-shadow: 0 0 3px 3px #A5D8FA;
-}
-
-div.notification.unread .actionDoneCover {
-  box-shadow: 0 0 3px 3px #eaf0f7;
-}
-
 
 
 
@@ -196,7 +190,8 @@ div.notification.unread .actionDoneCover {
   position: relative;
   height: 100%;
   float: right;
-  margin-top: 20px;
+  margin-top: 19px;
+  padding-right: 15px;
 }
 
 a.senderName, a.objectName {
@@ -270,111 +265,10 @@ div.notification.selected .closeButton, div.notification:hover .closeButton {
   box-shadow:0px 1px 1px rgba(0,0,0, .4) inset;
 }
 
-/* General Button Classes */
-/* TODO: these should be shared */
-
-.spotifyButtonGrey, .spotifyButtonBlue {
-  font-family:'Lucida Grande', Tahoma, sans-serif;  
-  font-size:11px;
-  font-weight:normal;
-  text-decoration:none;
-  border-radius: 3px;
-  line-height: 1em;
-  padding: 5px 10px 6px;
-  background-clip: padding-box;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-.spotifyButtonGrey {
-  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #FAFAFA), color-stop(100%, #E8E8E8));
-  border:1px solid rgba(0,0,0,.30);
-  box-shadow:0px 1px 0px #FFF inset;
-  color: #404040;
-  text-shadow:0px 1px 0px #F4F4F4;
-  opacity: 1;
-}
-
-.spotifyButtonGrey:active {
-  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #E8E8E8), color-stop(100%, #CECECE));
-  border:1px solid rgba(0,0,0,.35);
-  box-shadow:0px 1px 1px rgba(0,0,0, .4) inset;
-}
-
-.spotifyButtonBlue {
-  background-image: -webkit-gradient(linear, left top, left bottom,color-stop(1%, #449fdb), color-stop(100%, #2884C6), color-stop(50%, #256fb5), color-stop(50%, #1764ad));
-  border: 1px solid #1766b0;
-  box-shadow: 0px 1px 0px #77B9E6 inset;
-  color: white;
-  text-shadow: 0px -1px 0px rgb(35, 95, 144);
-  background-color: #449fdb;
-}
-
-.spotifyButtonBlue:active {
-  box-shadow:0px 1px 0px rgba(0,0,0,.2) inset;
-  background-image:-webkit-gradient(linear, left top, left bottom,color-stop(1%, #5B97C4), color-stop(100%, #1A63A4), color-stop(50%, #316B9f), color-stop(50%, #1E5B95));
-  border: 1px solid #084C8D;
-  background-color: #5B97C4;
-}
 
 
 
-
-/* Button Animations */
-
-.secondaryActionButton {
-  margin-top: -24px;
-  clear: both;
-  margin-bottom: 19px;
-}
-
-.mainActionButton, .secondaryActionButton, .actionDoneCover {
-  float: right;
-  position: relative;
-  -webkit-transition: opacity 140ms linear;
-  margin-right: 10px;
-  margin-left: 2px;
-  opacity: 0;
-}
-
-.actionDoneCover {
-  font-family:'Lucida Grande', Tahoma, sans-serif;  
-  font-size:11px;
-  font-weight:normal;
-  text-decoration:none;
-  border-radius: 3px;
-  line-height: 1em;
-  padding: 5px 10px 6px 22px;
-  border:1px solid rgba(0,0,0,.20);
-  color: #777;
-  display: block;
-  position: absolute;
-  top: 0;
-  background: #E6E6E6 url("../img/notifications-checkmark.png") 7px center no-repeat;
-  box-shadow: 0 0 3px 3px #f3f3f3;
-  right: 0;
-}
-
-.selected .actionDoneCover {
-  background-color: #9ACAEC
-}
-
-.uncompleted  .mainActionButton {
-  opacity: 1;
-  z-index: 99;
-}
-
-.completed   .secondaryActionButton { 
-  opacity: 1;
-  z-index: 99;
-}
-
-.completing .actionDoneCover {
-  opacity: 1;
-  z-index: 99;
-}
-
-
-/** 
+/**
  * Spinner
  */
 

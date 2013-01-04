@@ -26,6 +26,26 @@ var Ads = {
    * @this Ads
    * @constructor
    */
+
+  fetchAd: function(obj) {
+    sp.whatsnew.fetchAd({
+      onSuccess: function(ad) {
+        if (obj.userImpressions > 5) {
+          obj.ad = ad;
+        }
+      },
+      onFailure: function(errorCode) {
+        logger.logClientEvent('WhatsNew', 'sp.whatsnew.fetchAd failed', '1', 'base', {
+          'errCode': errorCode
+        });
+      },
+      onComplete: function() {
+        obj._loaded = true;
+        obj._loadEvent.dispatch(window);
+      }
+    });
+  },
+
   init: function() {
     var self = this;
     self._loadEvent = new dom.Event('ads.load', true);
@@ -41,22 +61,7 @@ var Ads = {
     self.userImpressions = storage.getWithDefault('user.impressions', 0);
 
     self.ad = undefined;
-
-    sp.whatsnew.fetchAd({
-      onSuccess: function(ad) {
-        if (self.userImpressions > 5)
-          self.ad = ad;
-      },
-      onFailure: function(errorCode) {
-        logger.logClientEvent('WhatsNew', 'sp.whatsnew.fetchAd failed', '1', 'base', {
-          'errCode': errorCode
-        });
-      },
-      onComplete: function() {
-        self._loaded = true;
-        self._loadEvent.dispatch(window);
-      }
-    });
+    self.fetchAd(self);
   },
 
   setTrackWrappers: function(trackWrappers) {
@@ -154,6 +159,16 @@ var Ads = {
     if (this.supportsHideHpto) {
       sp.whatsnew.setHideHpto(true);
     }
+  },
+
+  getHTPOAdContent: function() {
+    var adWrapper = document.getElementsByClassName('adWrapper')[0];
+    return adWrapper.innerHTML;
+  },
+
+  setHTPOAdContent: function(adContent) {
+    var adWrapper = document.getElementsByClassName('adWrapper')[0];
+    adWrapper.innerHTML = adContent;
   },
 
   /**
@@ -294,10 +309,19 @@ var Ads = {
 
         sp.core.addEventListener('activate', function() {
           sp.whatsnew.reportAdStarted();
+          if (Ads.unloadedAdContent !== undefined) {
+            Ads.setHTPOAdContent(Ads.unloadedAdContent);
+            delete(Ads.unloadedAdContent);
+          }
         });
 
         sp.core.addEventListener('deactivate', function() {
           sp.whatsnew.reportAdStopped();
+
+          if (Ads.unloadedAdContent === undefined) {
+            Ads.unloadedAdContent = Ads.getHTPOAdContent();
+            Ads.setHTPOAdContent('');
+          }
         });
       }
 

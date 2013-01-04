@@ -303,15 +303,15 @@
           "en"
         ]
       },
-      "shareTab" : {
+      "postTab" : {
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "Teilen",
-          "en" : "Share",
-          "es" : "Compartir",
-          "fr" : "Partager",
-          "nl" : "Delen"
+          "de" : "Im Feed posten",
+          "en" : "Post to feed",
+          "es" : "Publicar en feed",
+          "fr" : "Publier dans les news",
+          "nl" : "Posten op Spotify"
         }
       },
       "shareTo" : {
@@ -319,7 +319,7 @@
         "description" : "",
         "translations" : {
           "de" : "Teilen auf",
-          "en" : "Share to",
+          "en" : "Also share to",
           "es" : "Compartir en",
           "fr" : "Partager sur",
           "nl" : "Delen via"

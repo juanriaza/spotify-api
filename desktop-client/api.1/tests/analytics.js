@@ -11,15 +11,15 @@ require([
         SP.analyticsContext('first-context', function() {
           promise = new Promise();
           promise.done(function() {
-            assert.equal(SP._context_stack[0].name, 'first-context');
+            assert.equal(SP._contextStack[0].name, 'first-context');
           });
           promise.setDone();
         });
 
         SP.analyticsContext('second-context', function() {
           promise.done(function() {
-            assert.equal(SP._context_stack.length, 1);
-            assert.equal(SP._context_stack[0].name, 'second-context');
+            assert.equal(SP._contextStack.length, 1);
+            assert.equal(SP._contextStack[0].name, 'second-context');
             onDone();
           });
         });

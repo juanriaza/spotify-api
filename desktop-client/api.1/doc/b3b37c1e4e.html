@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Collection</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Collection</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="812e62ea6e.html">api/models</a>~</span>
+    
+    Collection
+    </h2>
+    
+        <div class="class-description">A collection represents a list of items. Each item in a given
+    collection is guaranteed to be of the same kind. The type of the item(s)
+    depends on what the collection represents - it could be tracks in a
+    playlist, albums in a toplist etc.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="Collection"><span class="type-signature"></span>new Collection</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>itemClass</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="e3b03fa4b6.html">module:api/models~Loadable</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A constructor for the items in
+    the resulting snapshots. All items must be of this type.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>uri</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The URI that identifies the collection.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>snapshot</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A function responsible for getting the items for
+    snapshots. It should return a promise which resolves to an object with
+    the properties "array", "length", and (optionally) "metadata".</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_args</code></td>
+            
+            
+            <td class="type">
+            
+                        Array=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A list of arguments to pass in to the snapshot
+    requests. If not specified, the URI will be used instead.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_itemFactory</code></td>
+            
+            
+            <td class="type">
+            
+                        Function=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A factory function responsible for
+    creating the items in the collection out of the data returned by the
+    snapshot request. The factory function will be called with two
+    arguments: the basic data and the corresponding metadata. The metadata
+    argument might not always be provided.
+    <p>
+    If a factory is not provided, the item type's static fromURI method will
+    be used.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The type of the items in the collection.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>uri</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The URI identifying the collection.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2125</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="e3b03fa4b6.html">module:api/models~Loadable</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="_observed"><span class="type-signature">&lt;protected> </span>_observed</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        This method is called when the first event listener is added to this
+Observable. Subclasses may override this method in order to lazily initialize
+resources related to event listening.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 229</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="add"><span class="type-signature"></span>add</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Adds one or more items to a collection. The item is added to the end of the
+collection. Note that it is better to call this method with multiple items
+than to call it multiple times with a single item, since the tracks are added
+asynchronously and could end up in the wrong order otherwise. This can happen
+when the second item to add is already cached by the client, while the first
+item must be fetched remotely. In this situation the second item would be
+added before the first. This can either be resolved by always waiting for the
+item to be added before moving on to the next item, but this is less efficient
+than simply passing in all items to be added right away.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Object>
+                         | 
+                    
+                        ...Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The items to add to the collection.
+    Can either be a single item, many items or an array of items.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2203</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>playlist1.tracks.add(models.Track.fromURI('spotify:track:2P2S1wxZYQYHRYDip79JiY'));
+playlist2.tracks.add(track1, track2, …, trackN).done(addedManyTracks);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="addEventListener"><span class="type-signature"></span>addEventListener</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Same as the addEventListener in standard JavaScript. Call this method to add
+an observer to the receiver object, for a given named event.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>eventType</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the event to get notifications for.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>observer</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback function. To unregister the
+    callback, the exact same function must be passed to the
+    removeEventListener method.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 247</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="29dda503a6.html#removeEventListener">module:api/models~Observable#removeEventListener</a></li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.player.addEventListener('change', updateNowPlayingWidget);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="clear"><span class="type-signature"></span>clear</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Removes all items in the collection.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2272</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="dispatchEvent"><span class="type-signature"></span>dispatchEvent</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Triggers an event for all observer callbacks. Any callback that explicitly
+returns false or calls preventDefault() will cause the return value of this
+function to be false.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>evt</code></td>
+            
+            
+            <td class="type">
+            
+                        {type: string}
+                         | 
+                    
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The event object to dispatch (must have a
+    type property), or simply the event type as a string.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 304</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    False if the event was prevented; otherwise, true.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">boolean</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="insert"><span class="type-signature"></span>insert</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Inserts one or more items into a collection. Note that it is better to call
+this method with multiple items than to call it multiple times with a single
+item, since the tracks are added asynchronously and could end up in the wrong
+order otherwise. This can happen when the second item to insert is already
+cached by the client, while the first item must be fetched remotely. In this
+situation the second item would be inserted before the first. This can either
+be resolved by always waiting for the item to be inserted before moving on to
+the next item, but this is less efficient than simply passing in all items to
+be inserted right away.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>ref</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="28c25f4e8c.html">module:api/models~Reference</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A reference to where the items
+    should be inserted into the collection.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Object>
+                         | 
+                    
+                        ...Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The items to insert into the
+    collection. Can either be a single item, many items or an array of
+    items.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2233</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>playlist.tracks.snapshot(function(snapshot) {
+  var index = …;
+  playlist.tracks.insert(snapshot.ref(index), track1, track2, track3);
+});</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="load"><span class="type-signature"></span>load</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Before any properties of an object can be read they must be loaded by calling
+this function with a list of properties that the caller is interested in. The
+only way to ensure that any properties are available on an object is to call
+this method. After specifying what properties to load the caller must wait
+for the returned promise to resolve before the properties can actually be
+read from the object. If the promise fails, the properties must not be read.
+Note that it is possible, and recommended, to call load multiple times with
+different property lists. The properties should be grouped by how they are
+used together. By specifiying a minimum set of properties for each call to
+load, the callback will happen as soon as possible, sometimes without even
+having to wait for additional metadata to be fetched remotely.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;string>
+                         | 
+                    
+                        ...string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An array of property names. The
+    property names that are available for loading can be found in the
+    documentation for each specific sub-class. Note that instead of passing
+    in an array, multiple arguments can be passed instead.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 930</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise to wait for before the
+    properties can be read.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.Track.fromURI('…').load('name', 'duration').done(function(track) {
+  console.log('The track ' + track.name + ' is ' + track.duration + ' ms long.');
+});</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="remove"><span class="type-signature"></span>remove</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Removes an item from the collection.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>ref</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="28c25f4e8c.html">module:api/models~Reference</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A reference to which item should be
+    removed from the collection.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2246</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="removeEventListener"><span class="type-signature"></span>removeEventListener</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Same as the removeEventListener in standard JavaScript. Call this method to
+remove an observer that was previously added.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>eventType</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the event you're getting notifications
+    for.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>observer</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The callback must be the exact same function
+    instance as was used in the registration, and not just an identical
+    anonymous function.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 280</li></ul></dd>
+	
+    
+    
+	
+	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="29dda503a6.html#addEventListener">module:api/models~Observable#addEventListener</a></li>
+        </ul>
+	</dd>
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>models.player.removeEventListener('change', updateNowPlayingWidget);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolve"><span class="type-signature"></span>resolve</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Resolves a single property on an object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the property.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                        *
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The new value.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_silent</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Whether to skip dispatching change events for
+    any properties that change.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 813</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolveDone"><span class="type-signature">&lt;protected> </span>resolveDone</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Signal that all calls to resolve are done, at least for the moment.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 867</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolveFail"><span class="type-signature">&lt;protected> </span>resolveFail</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Signal that resolving failed.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 888</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resolveMany"><span class="type-signature"></span>resolveMany</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Resolves many properties on an object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>propsMask</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A bitmask of properties to mark as done and unmark
+    as waiting.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A map of properties to update and their new values.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_silent</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Whether to skip dispatching change events for
+    any properties that change.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 853</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="snapshot"><span class="type-signature"></span>snapshot</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Makes a snapshot of the collection, optionally for a limited range. Making a
+snapshot is the only way to examine the items in the collection, by freezing
+it at a specific moment in time. The snapshot, once resolved, will never
+change and can be kept around for as long as required. The start offset and
+maximum length can, and should, be used to limit the size of the snapshot.
+When making a snapshot of a playlist, only ask for the tracks that are
+actually being displayed on screen at the moment, instead of asking for all
+tracks in the playlist, which could be thousands of tracks. Even if the items
+are not meant to be displayed it is a good idea to divide the colleciton into
+chunks of reasonable size, to keep memory usage down and avoid blocking the
+client. Ask for sequential snapshots of 500 items or so and ask for the next
+snapshot while working on the first one.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_start</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The offset of the first item to fetch in the
+    snapshot. This is a hint to the API, and items before the offset could
+    end up being fetched. It is however not allowed to read any items that
+    were not specifically specified.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_length</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The maximum length of the range to snapshot.
+    This is also a hint, and more items could end up being fetched. Note
+    that the caller must not ask for items outside of the specified range.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_raw</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional parameter specifying if the snapshot
+    should avoid pre-fetching metadata for the items in the snapshot. For
+    most use cases this parameter should be left out or set to false. Only
+    pass true if the only intended use for the snapshot is to get the URIs
+    of the items.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2177</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>playlist.tracks.snapshot(0, 50).done(function(snapshot) {
+  var len = Math.min(snapshot.length, 50);
+  for (var i = 0; i < len; i++) {
+    doSomethingWithTrack(snapshot.get(i));
+  }
+});</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="sorted"><span class="type-signature"></span>sorted</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns a sorted version of the collection. The current collections sorting
+will not be affected. Note that the sorting is completely specified by this
+method and will not be inherited from the current collection. To turn off
+sorting, call this method without arguments or with an empty array.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;string>
+                         | 
+                    
+                        ...string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An array of fields by which to sort
+    by, in order. Can also be passed as multiple arguments to the method.
+    Each element is a string that corresponds to a field name. The sorting
+    order, ascending or descending, can be append to the name of the field
+    as "field:a" or "field:d" respectively. If the sording order is not
+    specified, ascending order is used.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2298</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The sorted collection.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Collection</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>// Sort the playlist by duration of the tracks, longest first, and by name if
+// the tracks have the same duration. The sorted collection can further be
+// filtered if needed.
+var sorted = playlist.tracks.sorted('duration:d', 'name');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="trim"><span class="type-signature"></span>trim</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Trims items from the end of the collection so that the last item in the
+collection is the item referred to by the given reference. If the reference
+is not in the collection, no items will be removed.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>ref</code></td>
+            
+            
+            <td class="type">
+            
+                        <a href="28c25f4e8c.html">module:api/models~Reference</a>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The last item in the collection to
+    keep.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 2261</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A promise.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">module:api/models~Promise</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="b125cb4739.html">api/activity</a></li><li><a href="cab34e0f5f.html">api/core</a></li><li><a href="499567a1ea.html">api/devtools</a></li><li><a href="2e19439bbf.html">api/facebook</a></li><li><a href="735c6907eb.html">api/i18n</a></li><li><a href="b35f9c3904.html">api/library</a></li><li><a href="e823b05f04.html">api/location</a></li><li><a href="939370fe49.html">api/messaging</a></li><li><a href="812e62ea6e.html">api/models</a></li><li><a href="340744ca04.html">api/offline</a></li><li><a href="68bb093b6f.html">api/relations</a></li><li><a href="fae0dafcfe.html">api/runtime</a></li><li><a href="c00f27133b.html">api/search</a></li><li><a href="65e92e21c1.html">api/toplists</a></li></ul><h3>Classes</h3><ul><li><a href="4fa2689dfd.html">Activity</a></li><li><a href="07d8f55c24.html">Album</a></li><li><a href="3a2f31cc4e.html">AlbumGroup</a></li><li><a href="62e0f3e64f.html">AnalyticsContext</a></li><li><a href="c0c8801168.html">Application</a></li><li><a href="d2c9d24b31.html">Artist</a></li><li><a href="2f49e4dd1a.html">BridgeLoadable</a></li><li><a href="a75dc998a1.html">Cache</a></li><li><a href="6c58b55c44.html">CallStats</a></li><li><a href="7793419fd1.html">Callback</a></li><li><a href="1214aad9c1.html">Client</a></li><li><a href="b3b37c1e4e.html">Collection</a></li><li><a href="ae9f97e567.html">Context</a></li><li><a href="bcf818ce58.html">Conversation</a></li><li><a href="a9d135f937.html">CurrentUserRelations</a></li><li><a href="ae59c76eb8.html">Disc</a></li><li><a href="38e6292999.html">FacebookSession</a></li><li><a href="46b8a06b09.html">FacebookUser</a></li><li><a href="983bf4af36.html">Feed</a></li><li><a href="840393815b.html">Group</a></li><li><a href="7376d25dd8.html">LangModule</a></li><li><a href="5b00e89044.html">Library</a></li><li><a href="e3b03fa4b6.html">Loadable</a></li><li><a href="45059c3683.html">Location</a></li><li><a href="f5080255a5.html">Log</a></li><li><a href="db5594a3a4.html">LogEntry</a></li><li><a href="4ef712fa14.html">MdL</a></li><li><a href="b26cab02dc.html">Message</a></li><li><a href="29dda503a6.html">Observable</a></li><li><a href="29a50718ee.html">Offline</a></li><li><a href="5396da2973.html">Player</a></li><li><a href="116792da1f.html">Playlist</a></li><li><a href="6c715946cc.html">Profile</a></li><li><a href="ce3a0f5560.html">Promise</a></li><li><a href="34925cfa13.html">ProxyListener</a></li><li><a href="28c25f4e8c.html">Reference</a></li><li><a href="dcad188636.html">Relations</a></li><li><a href="85bdbe7d69.html">Search</a></li><li><a href="cd4b0bf6d5.html">Session</a></li><li><a href="ef5c946272.html">Snapshot</a></li><li><a href="8bd4b4acfb.html">SpotifyApi</a></li><li><a href="54a5f660ca.html">Stats</a></li><li><a href="String.html">String</a></li><li><a href="78a533eace.html">Toplist</a></li><li><a href="84319155be.html">Track</a></li><li><a href="90c6856566.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#require">require</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Wed Dec 12 2012 14:59:48 GMT-0000 (UTC)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

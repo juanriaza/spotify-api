@@ -1,0 +1,13 @@
+{
+  "followerCountSingle": "{0} volger",
+  "followerCountPlural": "{0} volgers",
+  "followersHeading": "Volgers",
+  "followingHeading": "Volgend",
+  "playlistCountSingle": "{0} afspeellijst",
+  "playlistCountPlural": "{0} afspeellijsten",
+  "noFollowersMessage": "{0} wordt nog door niemand gevolgd.",
+  "noFollowingMessage": "{0} volgt nog niemand.",
+  "currentUsernoFollowersMessage": "Je wordt nog door niemand gevolgd.",
+  "currentUsernoFollowingMessage": "Je volgt nu nog niemand. <a href='spotify:app:people'>Vind mensen om te volgen</a>.",
+  "artist": "Artiest"
+}

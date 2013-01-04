@@ -18,6 +18,7 @@
 	position: relative;
 	z-index: 10;
 }
+.sp-image-hidden { visibility: hidden; }
 .sp-image-style-rounded,
 .sp-image-inset,
 .sp-image-style-rounded .sp-image-img {
@@ -67,6 +68,9 @@
 		height: 100%;
 		position: absolute;
 		top: 0;
+	}
+	.sp-image-placeholder-hidden {
+		opacity: 0;
 	}
 	.sp-image-placeholder-visible {
 		background-image: url('../img/image-placeholders.png');
@@ -207,10 +211,10 @@
 		overflow: hidden;
 		text-decoration: none;
 		text-overflow: ellipsis;
-		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 		white-space: nowrap;
 
-		font: bold 11px/14px 'Helvetica Neue', Arial, sans-serif;
+		font: bold 10px/14px 'Lucida Grande', Tahoma, sans-serif;
 	}
 
 	.sp-image-overlay-line1 {

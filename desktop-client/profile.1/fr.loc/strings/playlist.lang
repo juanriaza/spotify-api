@@ -1,0 +1,16 @@
+{
+  "by": "par",
+  "currentUserNoPlaylists": "Vous n'êtes abonné à aucune playlist",
+  "followers": "Abonnés",
+  "followerCountSingle": "{0} abonné",
+  "followerCountPlural": "{0} abonnés",
+  "followedBy": "Abonnés {0}",
+  "playlistsHeading": "Playlists",
+  "public": "Publiée",
+  "secret": "Privée",
+  "seeAllTracks": "Voir Tous les Titres",
+  "starredTracks": "Sélection",
+  "topPlaylistsHeading": "Top playlists",
+  "topTracks": "Top titres",
+  "userNoPlaylists": "{0} n'est abonné à aucune playlist"
+}

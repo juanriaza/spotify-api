@@ -1,5 +1,5 @@
 html {
-	font: 12px/1.42 'Helvetica Neue', Arial, sans-serif;
+	font: 12px/1.42 'Lucida Grande', Tahoma, sans-serif;
 	background-color: #ecebe8;
 	color: #343434;
 }
@@ -24,4 +24,19 @@ a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+/**
+ * Used for the app header container shown at the top of an app.
+ *
+ * Example:
+ * <header class="sp-header">
+ * …
+ * </header>
+ */
+.sp-header {
+	background: #fbfbfb;
+	min-height: 168px;
+	border-bottom: 1px solid #C9C8C6;
+	box-shadow: 0 1px 0 0 #fff;
 }

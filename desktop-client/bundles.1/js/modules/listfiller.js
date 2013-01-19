@@ -16,7 +16,7 @@ var listFiller = {
    *
    * @param {boolean} fromResize True if the function is called from a resize event.
    */
-  update: function (fromResize) {
+  update: function(fromResize) {
     var viewHeight, currentNumFillerItems, newNumFillerItems, diff, numBundleItems, i;
 
     // Set list heights
@@ -59,9 +59,9 @@ var listFiller = {
   /**
    * Get the number of real bundle items in the list
    *
-   * @return {number} Number of items
+   * @return {number} Number of items.
    */
-  getNumItems: function () {
+  getNumItems: function() {
     var bundles = this.listsElem.querySelectorAll('.list.active .bundle');
     this.bundleItemCount = bundles.length;
 
@@ -73,7 +73,7 @@ var listFiller = {
    * Every other item in the list has a different appearance to differentiate
    * between items more easily.
    */
-  setOrderClass: function () {
+  setOrderClass: function() {
     var numBundleItems = this.getNumItems();
     this.bundlesFillerElem.classList.remove('odd');
     this.bundlesFillerElem.classList.remove('even');
@@ -85,7 +85,7 @@ var listFiller = {
    *
    * @return {number} Number of items.
    */
-  calcNumFillerItems: function (numBundleItems) {
+  calcNumFillerItems: function(numBundleItems) {
     var viewHeight, bundle, itemHeight, num;
 
     numBundleItems = numBundleItems || this.getNumItems();
@@ -100,7 +100,7 @@ var listFiller = {
   /**
    * Add the first items the first time we update the list.
    */
-  addStartItems: function () {
+  addStartItems: function() {
     for (var i = 0, l = this.calcNumFillerItems(); i < l; i++) {
       this.addItem();
     }
@@ -110,7 +110,7 @@ var listFiller = {
   /**
    * Add a new filler list item to the DOM.
    */
-  addItem: function () {
+  addItem: function() {
     this.bundlesFillerElem.insertAdjacentHTML('beforeend', '<li class="bundle"></li>');
     this.fillerItemCount++;
   },
@@ -118,7 +118,7 @@ var listFiller = {
   /**
    * Remove a filler list item from the DOM.
    */
-  removeItem: function () {
+  removeItem: function() {
     var child = this.bundlesFillerElem.lastElementChild;
     if (child) {
       this.bundlesFillerElem.removeChild(child);
@@ -132,14 +132,14 @@ var listFiller = {
  *
  * @param {Object} app Main app object.
  */
-exports.setup = function (app) {
+exports.setup = function(app) {
   listFiller.wrapperElem = app.wrapperElem;
   listFiller.listsElem = app.listsElem;
   listFiller.bundlesFillerElem = app.bundlesFillerElem;
   listFiller.footerElem = app.footerElem;
 
   // Always update the list filler items to fit the viewport when the window is resized
-  window.addEventListener('resize', function () {
+  window.addEventListener('resize', function() {
     listFiller.update(true);
   }, false);
 };

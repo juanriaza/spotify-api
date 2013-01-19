@@ -9,12 +9,11 @@
  * @property {BundleManagement} bundleManagement An instance of the API which you will use to access everything.
  */
 var sp = getSpotifyApi();
+var semver = sp.require('../vendor/semver');
 var models = sp.require('$api/models');
 var Observable = models.Observable;
 var Collection = models.Collection;
 var bundleManagement;
-
-
 
 // Constants to keep all bundle type names in one place
 var BUNDLE_TYPE_PUBLIC = {
@@ -47,7 +46,8 @@ BUNDLE_TO_LIST_TYPE[BUNDLE_TYPE.BRIDGE] = LIST_TYPE.FRAMEWORKS;
  * This object will trigger some events, that you can listen to by using `bundleManagement.observe('eventname', function (e) {});`.
  * The events that will be triggered are:
  * `getBundlesComplete`: When the get method has been called and results are fetched. Event object contains the new bundle list in property `list`.
- * `updateMultipleComplete`: When the update process is done for a batch call of multiple bundles. Event object contains the bundle ids in property `ids`.
+ * `updateMultipleComplete`: When the update process is done for a batch call of multiple bundles.
+ *                           Event object contains the bundle ids in property `ids`.
  * `updateComplete`: When one bundle has been updated. Event object contains the bundle id in property `id`.
  *
  * @constructor
@@ -56,7 +56,7 @@ BUNDLE_TO_LIST_TYPE[BUNDLE_TYPE.BRIDGE] = LIST_TYPE.FRAMEWORKS;
  *
  * @implements {Observable}
  */
-function BundleManagement () {
+function BundleManagement() {
   this.bundleLists = [];
   this.observers = {};
   this.cache = {
@@ -73,20 +73,21 @@ function BundleManagement () {
 /**
  * Get list of bundles that the client knows about.
  *
- * @param {Array|string=} ids      Optional. Specifies which bundles to get. Gets all bundles if this is not provided. If a string is passed in, it is interpreted as a bundle type.
- * @param {function=}     callback Optional. Function to call when the bundles have been fetched.
+ * @param {Array|string=} opt_ids      Optional. Specifies which bundles to get. Gets all bundles if this is not provided. If a string is passed in,
+ *                                     it is interpreted as a bundle type.
+ * @param {function=}     opt_callback Optional. Function to call when the bundles have been fetched.
  *
- * @return {BundleList}
+ * @return {BundleList}                A list of bundles.
  */
-BundleManagement.prototype.get = function (ids, callback) {
+BundleManagement.prototype.get = function(opt_ids, opt_callback) {
   var isTypeList, bundleList, allBundles, activeBundles,
       activeBundleIds, bundles, version, bundleVersion, i, l, n, len;
-  callback = typeof callback === 'function' ? callback : function () {};
+  var callback = typeof opt_callback === 'function' ? opt_callback : function() {};
 
   // Interpret the ids
   //   Array: It fetches the bundles specified in the array.
   //   Omitted: Either only a callback was passed in, or nothing. Either way, set ids to an empty array.
-  ids = (ids === undefined || typeof ids === 'function') ? [] : ids;
+  var ids = (opt_ids === undefined || typeof opt_ids === 'function') ? [] : opt_ids;
   //   String: A string will be interpreted as a bundle type. If not valid, an empty array will be used.
   if (typeof ids === 'string') {
     if (~LIST_TYPES.indexOf(ids)) {
@@ -182,10 +183,10 @@ BundleManagement.prototype.get = function (ids, callback) {
 /**
  * Update bundles that the client knows about.
  *
- * @param {Array}     ids      Specifies which bundles to update.
- * @param {function=} callback Optional. A callback function that will be called when the update is complete (for all specified bundles).
+ * @param {Array}     ids          Specifies which bundles to update.
+ * @param {function=} opt_callback Optional. A callback function that will be called when the update is complete (for all specified bundles).
  */
-BundleManagement.prototype.update = function (ids, callback) {
+BundleManagement.prototype.update = function(ids, opt_callback) {
   ids = (ids instanceof Array) ? ids : [];
 
   var self = this;
@@ -196,14 +197,14 @@ BundleManagement.prototype.update = function (ids, callback) {
 
     // We need to listen to when bundles are installed, and keep track of how many are left.
     //   When all bundles are installed, we want to trigger a callback and an event
-    sp.bundles.addEventListener('installComplete', function handler () {
+    sp.bundles.addEventListener('installComplete', function handler() {
       numUpdatesInProgress--;
 
       if (numUpdatesInProgress === 0) {
         sp.bundles.removeEventListener('installComplete', handler);
 
-        if (typeof callback === 'function') {
-          callback();
+        if (typeof opt_callback === 'function') {
+          opt_callback();
         }
         self.notify('updateMultipleComplete', { type: 'updateMultipleComplete', ids: ids });
       }
@@ -223,15 +224,15 @@ BundleManagement.prototype.update = function (ids, callback) {
  *
  * @param {string} id Specifies which bundle to remove.
  */
-BundleManagement.prototype.remove = function (id) {
+BundleManagement.prototype.remove = function(id) {
   if (typeof id === 'string') {
     sp.bundles.remove(id);
   }
 };
 
 BundleManagement.prototype.observe = Observable.prototype.observe;
-BundleManagement.prototype.ignore  = Observable.prototype.ignore;
-BundleManagement.prototype.notify  = Observable.prototype.notify;
+BundleManagement.prototype.ignore = Observable.prototype.ignore;
+BundleManagement.prototype.notify = Observable.prototype.notify;
 
 
 /**
@@ -247,13 +248,14 @@ BundleManagement.prototype.notify  = Observable.prototype.notify;
  *
  * @constructor
  *
- * @property {Array}  data      The actual data list with all bundle data. You should not access this directly, but only through the methods on the bundle.
+ * @property {Array}  data      The actual data list with all bundle data. You should not access this directly, but only through the methods
+ *                              on the bundle.
  * @property {Object} observers All added observers for this list. Should not be used directly, but only through the methods on the bundle.
  *
  * @implements {Collection}
  * @implements {Observable}
  */
-function BundleList () {
+function BundleList() {
   this.data = [];
   this.observers = {};
 }
@@ -264,7 +266,7 @@ function BundleList () {
  * If this is a type list or a full list, it will get all bundles again, update data
  * for existing ones, adding new ones and removing bundles that aren't present anymore.
  */
-BundleList.prototype.refresh = function () {
+BundleList.prototype.refresh = function() {
   var allBundles, activeBundles, bundles, i, l, n, len,
       existingBundle, activeVersion, bundleVersion, newIds, bundle, versions, version;
 
@@ -283,7 +285,8 @@ BundleList.prototype.refresh = function () {
     bundles = [];
     if (this.isTypeList) {
       for (i = 0, l = allBundles.length; i < l; i++) {
-        if ((this.listType === LIST_TYPE.RUNNING && activeBundles[allBundles[i].id]) || (BUNDLE_TO_LIST_TYPE[allBundles[i].versions[0].type] === this.listType)) {
+        if ((this.listType === LIST_TYPE.RUNNING && activeBundles[allBundles[i].id]) ||
+            (BUNDLE_TO_LIST_TYPE[allBundles[i].versions[0].type] === this.listType)) {
           bundles.push(allBundles[i]);
         }
       }
@@ -371,7 +374,7 @@ BundleList.prototype.refresh = function () {
  * array of lists, so it will not be looped through each time new data comes.
  * It will also reset the data and observers for the list.
  */
-BundleList.prototype.destroy = function () {
+BundleList.prototype.destroy = function() {
   var index = bundleManagement.bundleLists.indexOf(this);
   if (~index) {
     bundleManagement.bundleLists.splice(index, 1);
@@ -387,7 +390,7 @@ BundleList.prototype.destroy = function () {
  *
  * @return {Bundle} The bundle object. If none is found, undefined is returned.
  */
-BundleList.prototype.findById = function (id) {
+BundleList.prototype.findById = function(id) {
   var bundles, numBundles, i, bundle;
   bundles = this.data;
   numBundles = bundles.length;
@@ -404,10 +407,10 @@ BundleList.prototype.findById = function (id) {
  * Sort the list based on different orders and directions.
  * This also sends out events to notify about the change (`sort` and `refresh`).
  *
- * @param {string}    order     Order to use: 'type' | 'alphabetic' | 'raw' (Default: 'type')
- * @param {direction} direction Direction: 'asc' | 'desc' (Default: 'asc')
+ * @param {string}    order     Order to use: 'type' | 'alphabetic' | 'raw' (Default: 'type').
+ * @param {direction} direction Direction: 'asc' | 'desc' (Default: 'asc').
  */
-BundleList.prototype.sort = function (order, direction, onlyGroupDirection) {
+BundleList.prototype.sort = function(order, direction, onlyGroupDirection) {
   var orders, directions;
   orders = ['type', 'alphabetic', 'raw'];
   directions = ['asc', 'desc'];
@@ -438,18 +441,18 @@ BundleList.prototype.sort = function (order, direction, onlyGroupDirection) {
  * @ignore
  */
 BundleList.sortingFunctions = {
-  type: function (data, direction, onlyGroupDirection) {
+  type: function(data, direction, onlyGroupDirection) {
 
     var doReverse = direction === 'desc' && onlyGroupDirection;
 
     // Sort alphabetically by the name
-    data.sort(function (a, b) {
+    data.sort(function(a, b) {
       var aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
       return [aName, bName].sort()[0] === aName ? (doReverse ? 1 : -1) : (doReverse ? -1 : 1);
     });
 
     // Sort by the type of bundle
-    data.sort(function (a, b) {
+    data.sort(function(a, b) {
       var aApp = a.type === BUNDLE_TYPE_PUBLIC[BUNDLE_TYPE.APP],
           bApp = b.type === BUNDLE_TYPE_PUBLIC[BUNDLE_TYPE.APP],
           isDifferent = aApp && !bApp,
@@ -468,26 +471,26 @@ BundleList.sortingFunctions = {
 
     return data;
   },
-  alphabetic: function (data) {
+  alphabetic: function(data) {
 
-    data.sort(function (a, b) {
+    data.sort(function(a, b) {
       var aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
       return [aName, bName].sort()[0] === aName ? -1 : 1;
     });
 
     return data;
   },
-  raw: function (data) {
+  raw: function(data) {
     return data;
   }
 };
 
-BundleList.prototype.add      = Collection.prototype.add;
-BundleList.prototype.remove   = Collection.prototype.remove;
-BundleList.prototype.get      = Collection.prototype.get;
+BundleList.prototype.add = Collection.prototype.add;
+BundleList.prototype.remove = Collection.prototype.remove;
+BundleList.prototype.get = Collection.prototype.get;
 BundleList.prototype.getRange = Collection.prototype.getRange;
-BundleList.prototype.indexOf  = Collection.prototype.indexOf;
-BundleList.prototype.clear    = Collection.prototype.clear;
+BundleList.prototype.indexOf = Collection.prototype.indexOf;
+BundleList.prototype.clear = Collection.prototype.clear;
 
 Object.defineProperty(BundleList.prototype, 'length', {
   get: function() {
@@ -496,8 +499,8 @@ Object.defineProperty(BundleList.prototype, 'length', {
 });
 
 BundleList.prototype.observe = Observable.prototype.observe;
-BundleList.prototype.ignore  = Observable.prototype.ignore;
-BundleList.prototype.notify  = Observable.prototype.notify;
+BundleList.prototype.ignore = Observable.prototype.ignore;
+BundleList.prototype.notify = Observable.prototype.notify;
 
 
 /**
@@ -524,7 +527,7 @@ BundleList.prototype.notify  = Observable.prototype.notify;
  *
  * @implements {Observable}
  */
-function Bundle (data) {
+function Bundle(data) {
   this.observers = {};
 
   // Set up data
@@ -537,8 +540,11 @@ function Bundle (data) {
   this.versions = [];
   for (var i = 0, l = data.versions.length; i < l; i++) {
     this.versions.push(new BundleVersion(data.versions[i]));
-    this.versions.reverse();
   }
+
+  this.versions.sort(function(a, b) {
+    return semver.rcompare(a.data.version, b.data.version);
+  });
 }
 
 /**
@@ -548,9 +554,9 @@ function Bundle (data) {
  *
  * @return {BundleVersion} Bundle version object, or false if not found.
  */
-Bundle.prototype.getVersion = function (hash) {
+Bundle.prototype.getVersion = function(hash) {
   for (var i = 0, l = this.versions.length; i < l; i++) {
-    if (this.versions[i].hash == hash) {
+    if (this.versions[i].hash === hash) {
       return this.versions[i];
     }
   }
@@ -566,7 +572,7 @@ Bundle.prototype.getVersion = function (hash) {
  * with new data, and events will be sent out (`refresh` or `update`) to both this bundle and its
  * dependencies, and also its lists.
  */
-Bundle.prototype.update = function () {
+Bundle.prototype.update = function() {
 
   // Set the update status and broadcast the change
   var objects, i, l;
@@ -587,9 +593,9 @@ Bundle.prototype.update = function () {
  * Refresh the data for the bundle.
  * A `refresh` event is sent out when it's done.
  *
- * @param {Object=} data Data to refresh the object with. If not provided, it will get new from the client.
+ * @param {Object=} opt_data Data to refresh the object with. If not provided, it will get new from the client.
  */
-Bundle.prototype.refresh = function (data, allBundles, activeBundles) {
+Bundle.prototype.refresh = function(opt_data, allBundles, activeBundles) {
   var versionNumbers, allBundles, activeBundles, i, l, activeVersion, bundleVersion, version;
   versionNumbers = [];
 
@@ -602,6 +608,7 @@ Bundle.prototype.refresh = function (data, allBundles, activeBundles) {
   activeVersion = activeBundles[this.id];
 
   // Get new data for this bundle id
+  var data = opt_data;
   if (data === undefined) {
     for (i = 0, l = allBundles.length; i < l; i++) {
       if (allBundles[i].id === this.id) {
@@ -673,13 +680,13 @@ Bundle.prototype.refresh = function (data, allBundles, activeBundles) {
  *
  * @return {boolean} True if the bundle was actually removed.
  */
-Bundle.prototype.remove = function () {
+Bundle.prototype.remove = function() {
   var wasRemoved, lists, bundles, i, l, list, n, len, listsToRefresh, bundle;
 
   if (this.versions[0].origin === 'remote') {
 
     this.quit(true);
-    
+
     wasRemoved = sp.bundles.remove(this.id);
     wasRemoved = wasRemoved === undefined ? true : wasRemoved;
 
@@ -722,7 +729,7 @@ Bundle.prototype.remove = function () {
  * Launch the bundle.
  * This only works for apps. Frameworks can only be loaded when apps are loaded.
  */
-Bundle.prototype.launch = function () {
+Bundle.prototype.launch = function() {
   window.location = this.uri;
 };
 
@@ -732,9 +739,10 @@ Bundle.prototype.launch = function () {
  * If the app is set to soft quit (`doForce !== true`), the bundle property `inactive` will
  * be set to `true` until the app is closed for real. The event `deactivate` will also be sent.
  *
- * @param {boolean} doForce Force quit the app. If false, the app will stay in the background for a short time to let the app save state and such. Default is false.
+ * @param {boolean} doForce Force quit the app. If false, the app will stay in the background for a short time to let the app save state and such.
+ *                          Default is false.
  */
-Bundle.prototype.quit = function (doForce) {
+Bundle.prototype.quit = function(doForce) {
   var timeout, bundles, i, l, bundle;
   doForce = !!doForce;
 
@@ -751,7 +759,7 @@ Bundle.prototype.quit = function (doForce) {
       if (!doForce) {
         bundle.inactive = true;
         bundle.notify('deactivate', { type: 'deactivate', kind: 'deactivate', timeout: timeout });
-        setTimeout((function (bundleObj) { return function () {
+        setTimeout((function(bundleObj) { return function() {
           bundleObj.inactive = false;
           BundleManagement.quitBundleObject(bundleObj);
         }; }(bundle)), timeout);
@@ -765,27 +773,27 @@ Bundle.prototype.quit = function (doForce) {
 };
 
 Bundle.prototype.observe = Observable.prototype.observe;
-Bundle.prototype.ignore  = Observable.prototype.ignore;
-Bundle.prototype.notify  = Observable.prototype.notify;
+Bundle.prototype.ignore = Observable.prototype.ignore;
+Bundle.prototype.notify = Observable.prototype.notify;
 
 Object.defineProperties(Bundle.prototype, {
   id: {
-    get: function () {
+    get: function() {
       return this.data.id;
     }
   },
   name: {
-    get: function () {
+    get: function() {
       return this.versions[0].name;
     }
   },
   type: {
-    get: function () {
+    get: function() {
       return BUNDLE_TYPE_PUBLIC[this.data.type];
     }
   },
   inUse: {
-    get: function () {
+    get: function() {
       if (this.data.inUse === undefined) {
         this.data.inUse = false;
         for (var i = 0, l = this.versions.length; i < l; i++) {
@@ -796,7 +804,7 @@ Object.defineProperties(Bundle.prototype, {
       }
       return this.data.inUse;
     },
-    set: function (value) {
+    set: function(value) {
       value = !!value;
 
       if (this.data.type === BUNDLE_TYPE.APP) {
@@ -810,17 +818,17 @@ Object.defineProperties(Bundle.prototype, {
     }
   },
   updateStatus: {
-    get: function () {
+    get: function() {
       return this.data.updateStatus;
     }
   },
   latestVersion: {
-    get: function () {
+    get: function() {
       return this.versions[0];
     }
   },
   uri: {
-    get: function () {
+    get: function() {
       return 'spotify:app:' + this.data.id;
     }
   }
@@ -843,8 +851,10 @@ Object.defineProperties(Bundle.prototype, {
  * @property {string}  type         Type of the bundle. Can be either 'app' or 'framework'.
  * @property {boolean} inUse        Tells whether the bundle is in use at the moment.
  * @property {Array}   inUseBy      List of bundles that is using this bundle. Each item is an object with properties `id`, `name` and `version`.
- * @property {Array}   dependencies List of dependencies for this bundle. Each item is an object with properties `id` and `minimumVersion`. Running bundles will also have properties `name` and `currentVersion`.
- * @property {string}  origin       Origin of the bundle. 'local - /path/to/bundle' | 'bundled' | 'remote'. Bundles are fetched from three different places: Local Spotify folder, bundled with the Spotify application, or downloaded remotely from the app store.
+ * @property {Array}   dependencies List of dependencies for this bundle. Each item is an object with properties `id` and `minimumVersion`.
+ *                                  Running bundles will also have properties `name` and `currentVersion`.
+ * @property {string}  origin       Origin of the bundle. 'local - /path/to/bundle' | 'bundled' | 'remote'. Bundles are fetched from three different
+ *                                  places: Local Spotify folder, bundled with the Spotify application, or downloaded remotely from the app store.
  * @property {string}  version      Version number.
  * @property {string}  manifest     Manifest file, JSON data formatted with multiple lines and indentation of four spaces.
  * @property {number}  cacheTimeout Number of milliseconds until the cache is no longer valid.
@@ -852,7 +862,7 @@ Object.defineProperties(Bundle.prototype, {
  *
  * @implements {Observable}
  */
-function BundleVersion (data) {
+function BundleVersion(data) {
   this.observers = {};
 
   // Fix the manifest string to be pretty-printed
@@ -870,7 +880,7 @@ function BundleVersion (data) {
  *
  * @ignore
  */
-BundleVersion.prototype.updateData = function (data) {
+BundleVersion.prototype.updateData = function(data) {
 
   // Fix the manifest string to be pretty-printed
   var manifest = data.manifest || '{}';
@@ -888,87 +898,92 @@ BundleVersion.prototype.updateData = function (data) {
  * Launch the bundle.
  * This only works for apps. Frameworks can only be loaded when apps are loaded.
  */
-BundleVersion.prototype.launch = function () {
+BundleVersion.prototype.launch = function() {
   window.location = this.uri;
 };
 
 BundleVersion.prototype.observe = Observable.prototype.observe;
-BundleVersion.prototype.ignore  = Observable.prototype.ignore;
-BundleVersion.prototype.notify  = Observable.prototype.notify;
+BundleVersion.prototype.ignore = Observable.prototype.ignore;
+BundleVersion.prototype.notify = Observable.prototype.notify;
 
 Object.defineProperties(BundleVersion.prototype, {
   id: {
-    get: function () {
+    get: function() {
       return this.data.id;
     }
   },
   hash: {
-    get: function () {
+    get: function() {
       return this.data.hash;
     }
   },
   name: {
-    get: function () {
+    get: function() {
       return this.data.name;
     }
   },
   image: {
-    get: function () {
+    get: function() {
       return this.data.image;
     }
   },
   description: {
-    get: function () {
+    get: function() {
       return this.data.description;
     }
   },
   type: {
-    get: function () {
+    get: function() {
       return BUNDLE_TYPE_PUBLIC[this.data.type];
     }
   },
   inUse: {
-    get: function () {
+    get: function() {
       return this.data.inUse;
     }
   },
   inUseBy: {
-    get: function () {
+    get: function() {
       return this.data.inUseBy;
     }
   },
+  bridgeDependencies: {
+    get: function() {
+      return this.data.bridgeDependencies;
+    }
+  },
   dependencies: {
-    get: function () {
+    get: function() {
       return this.data.dependencies;
     }
   },
   origin: {
-    get: function () {
+    get: function() {
       return this.data.origin;
     }
   },
   version: {
-    get: function () {
+    get: function() {
       return this.data.version;
     }
   },
   manifest: {
-    get: function () {
+    get: function() {
       return this.data.manifest;
     }
   },
   cacheTimeout: {
-    get: function () {
+    get: function() {
       return this.data.cacheTimeout;
     }
   },
   tag: {
-    get: function () {
+    get: function() {
       return this.data.tag;
     }
   },
   uri: {
-    get: function () {
+    get: function() {
       return 'spotify:app:' + this.data.id + '@' + this.data.version;
     }
   }
@@ -988,6 +1003,16 @@ Object.defineProperties(BundleVersion.prototype, {
 
 
 
+
+/**
+ * Get the name of all dependency list properties on a BundleManagement object.
+ *
+ * @ignore
+ */
+BundleManagement._getDependencyListIds = function() {
+  return ['dependencies', 'bridgeDependencies'];
+};
+
 /**
  * Get new bundles data from the bridge layer.
  * Using a cache to not call the bridge to often.
@@ -998,7 +1023,7 @@ Object.defineProperties(BundleVersion.prototype, {
  *
  * @ignore
  */
-BundleManagement.getBundlesData = function (type, forceNew, instance) {
+BundleManagement.getBundlesData = function(type, forceNew, instance) {
   var time, cache;
 
   time = (new Date()).getTime();
@@ -1031,7 +1056,7 @@ BundleManagement.getBundlesData = function (type, forceNew, instance) {
  *
  * @ignore
  */
-BundleManagement.getBundleVersion = function (bundles, id, hash) {
+BundleManagement.getBundleVersion = function(bundles, id, hash) {
   var a, b, la, lb, bundle, bundleVersion;
   for (a = 0, la = bundles.length; a < la; a++) {
     bundle = bundles[a];
@@ -1049,67 +1074,92 @@ BundleManagement.getBundleVersion = function (bundles, id, hash) {
 };
 
 /**
- * Set up the connections between bundles.
- * Frameworks should have an inUseBy property to know which bundles are using the framework.
+ * Helper method to addInUseBy that runs the logic for the requested dependency list.
  *
  * @param {Array}  bundles Array of all installed bundles.
- * @param {Object} version Version object from sp.bundles.active
+ * @param {Object} version Version object from sp.bundles.active.
+ * @param {string} depPropertyName Name of dependency property to use as source.
  *
  * @ignore
  */
-BundleManagement.addInUseBy = function(bundles, version) {
-  var i, l, activeDep, dep, n, len, versionFound;
-  for (i = 0, l = version.dependencies.length; i < l; i++) {
-    activeDep = version.dependencies[i].bundle;
-    dep = BundleManagement.getBundleVersion(bundles, activeDep.id, activeDep.hash);
-    if (dep) {
-      if (dep.inUseBy === undefined) {
-        dep.inUseBy = [];
-      }
-      for (n = 0, len = dep.inUseBy.length; n < len; n++) {
-        if (dep.inUseBy[n].id === version.id && dep.inUseBy[n].version === version.version) {
-          versionFound = true;
-          break;
-        }
-      }
-      if (!versionFound) {
-        dep.inUseBy.push({
-          id: version.id,
-          name: version.name,
-          type: BUNDLE_TYPE_PUBLIC[version.type],
-          version: version.version
-        });
-        dep.inUse = true;
-      }
+BundleManagement._addInUseByHelper = function(bundles, version, depPropertyName) {
+  if (!version[depPropertyName]) {
+    return;
+  }
 
-      // Run it recursively for all sub-dependencies
-      if (activeDep.dependencies.length > 0) {
-        BundleManagement.addInUseBy(bundles, activeDep);
+  var i, l, activeDep, dep, n, len, versionFound;
+  for (i = 0, l = version[depPropertyName].length; i < l; i++) {
+    activeDep = version[depPropertyName][i].bundle;
+    if (activeDep) {
+      dep = BundleManagement.getBundleVersion(bundles, activeDep.id, activeDep.hash);
+      if (dep) {
+        if (!dep.inUseBy) {
+          dep.inUseBy = [];
+        }
+        for (n = 0, len = dep.inUseBy.length; n < len; n++) {
+          if (dep.inUseBy[n].id === version.id && dep.inUseBy[n].version === version.version) {
+            versionFound = true;
+            break;
+          }
+        }
+        if (!versionFound) {
+          dep.inUseBy.push({
+            id: version.id,
+            name: version.name,
+            type: BUNDLE_TYPE_PUBLIC[version.type],
+            version: version.version
+          });
+          dep.inUse = true;
+        }
+
+        // Run it recursively for all sub-dependencies
+        if (activeDep) {
+          BundleManagement.addInUseBy(bundles, activeDep);
+        }
       }
     }
   }
 };
 
 /**
- * Set up the connections between bundles, on created Bundle instances
+ * Set up the connections between bundles.
  * Frameworks should have an inUseBy property to know which bundles are using the framework.
  *
- * @param {Object} activeVersion Version object from sp.bundles.active
+ * @param {Array}  bundles Array of all installed bundles.
+ * @param {Object} version Version object from sp.bundles.active.
  *
  * @ignore
  */
-BundleManagement.addInUseByToInstances = function(activeVersion) {
+BundleManagement.addInUseBy = function(bundles, version) {
+  var depListNames = BundleManagement._getDependencyListIds();
+  for (var i in depListNames) {
+    BundleManagement._addInUseByHelper(bundles, version, depListNames[i]);
+  }
+};
+
+/**
+ * Helper method to addInUseByToInstances that runs the logic for the requested dependency list.
+ *
+ * @param {Object} activeVersion Version object from sp.bundles.active.
+ * @param {string} depPropertyName Name of dependency property to use as source.
+ *
+ * @ignore
+ */
+BundleManagement._addInUseByToInstancesHelper = function(activeVersion, depPropertyName) {
+  if (activeVersion.depPropertyName === undefined) {
+    return;
+  }
+
   var a, b, c, d, la, lb, lc, ld, dep, bundles, bundle, version, versionFound;
 
-  for (a = 0, la = activeVersion.dependencies.length; a < la; a++) {
-    dep = activeVersion.dependencies[a];
+  for (a = 0, la = activeVersion[depPropertyName].length; a < la; a++) {
+    dep = activeVersion[depPropertyName][a];
     bundles = BundleManagement.getBundleObjects(dep.id).bundles;
     for (b = 0, lb = bundles.length; b < lb; b++) {
       bundle = bundles[b];
       for (c = 0, lc = bundle.versions.length; c < lc; c++) {
         version = bundle.versions[c];
         if (version.version === dep.bundle.version) {
-
           if (version.inUseBy === undefined) {
             version.inUseBy = [];
           }
@@ -1135,25 +1185,44 @@ BundleManagement.addInUseByToInstances = function(activeVersion) {
 };
 
 /**
- * Fix dependency data.
- * We want more data about dependencies to be present, so this is added here.
+ * Set up the connections between bundles, on created Bundle instances
+ * Frameworks should have an inUseBy property to know which bundles are using the framework.
  *
- * @param {Array}  bundles Array of all installed bundles.
- * @param {Object} version Version object from either sp.bundles.active or sp.bundles.all.
+ * @param {Object} activeVersion Version object from sp.bundles.active.
  *
  * @ignore
  */
-BundleManagement.fixDependencies = function (bundles, version) {
+BundleManagement.addInUseByToInstances = function(activeVersion) {
+  var depListNames = BundleManagement._getDependencyListIds();
+  for (var i in depListNames) {
+    BundleManagement._addInUseByToInstancesHelper(activeVersion, depListNames[i]);
+  }
+};
+
+/**
+ * Helper method to fixDependencies that runs the logic for the requested dependency list.
+ *
+ * @param {Array}  bundles Array of all installed bundles.
+ * @param {Object} version Version object from either sp.bundles.active or sp.bundles.all.
+ * @param {string} depPropertyName Name of dependency property to use as source.
+ *
+ * @ignore
+ */
+BundleManagement._fixDependenciesHelper = function(bundles, version, depPropertyName) {
+  if (!version[depPropertyName]) {
+    return;
+  }
+
   var i, l, bundleVersion, dep, bundle;
   bundleVersion = BundleManagement.getBundleVersion(bundles, version.id, version.hash);
-  for (i = 0, l = version.dependencies.length; i < l; i++) {
-    dep = version.dependencies[i];
+  for (i = 0, l = version[depPropertyName].length; i < l; i++) {
+    dep = version[depPropertyName][i];
     bundle = dep.bundle;
 
     if (bundleVersion) {
 
-      if (!bundleVersion.dependencies[i].minimumVersion) {
-        bundleVersion.dependencies[i] = {
+      if (!bundleVersion[depPropertyName][i].minimumVersion) {
+        bundleVersion[depPropertyName][i] = {
           id: bundle ? bundle.id : dep.id,
           name: bundle ? bundle.name : undefined,
           minimumVersion: dep.version,
@@ -1162,9 +1231,25 @@ BundleManagement.fixDependencies = function (bundles, version) {
       }
     }
 
-    if (bundle && bundle.dependencies.length > 0) {
+    if (bundle) {
       BundleManagement.fixDependencies(bundles, bundle);
     }
+  }
+};
+
+/**
+ * Fix dependency data.
+ * We want more data about dependencies to be present, so this is added here.
+ *
+ * @param {Array}  bundles Array of all installed bundles.
+ * @param {Object} version Version object from either sp.bundles.active or sp.bundles.all.
+ *
+ * @ignore
+ */
+BundleManagement.fixDependencies = function(bundles, version) {
+  var depListNames = BundleManagement._getDependencyListIds();
+  for (var i in depListNames) {
+    BundleManagement._fixDependenciesHelper(bundles, version, depListNames[i]);
   }
 };
 
@@ -1174,12 +1259,12 @@ BundleManagement.fixDependencies = function (bundles, version) {
  * It will also find the dependencies and update those objects.
  * This method is only used internally, so it will not be available outside of this module.
  *
- * @param {Object} instance An instance of BundleManagement
+ * @param {Object} instance An instance of BundleManagement.
  * @param {Object} e        Event object passed in from the bridge.
  *
  * @ignore
  */
-BundleManagement.updateComplete = function (instance, e) {
+BundleManagement.updateComplete = function(instance, e) {
   var objects, bundles, lists, a, la, isUpdated, oldDeps, newDeps,
       oldDepVersions, newDepVersions, newCompleteDeps, newVersionDeps;
 
@@ -1188,58 +1273,63 @@ BundleManagement.updateComplete = function (instance, e) {
   bundles = objects.bundles;
   lists = objects.lists;
 
-  // Update bundle objects
-  for (a = 0, la = bundles.length; a < la; a++) {
-    isUpdated = bundles[a].latestVersion.version !== e.data.version;
+  var depListNames = BundleManagement._getDependencyListIds();
+  for (var depListName in depListNames) {
+    var depPropertyName = depListNames[depListName];
 
-    oldDeps = oldDeps || bundles[a].versions[0].dependencies;
-    bundles[a].data = e.data;
-    bundles[a].data.updateStatus = 'on-disk';
-    newDeps = newDeps || bundles[a].versions[0].dependencies;
+    // Update bundle objects
+    for (a = 0, la = bundles.length; a < la; a++) {
+      isUpdated = bundles[a].latestVersion.version !== e.data.version;
 
-    if (isUpdated) {
-      bundles[a].notify('update', { type: 'update', kind: 'update' });
-    } else {
-      bundles[a].notify('refresh', { type: 'refresh', kind: 'update' });
+      oldDeps = oldDeps || bundles[a].versions[0][depPropertyName];
+      bundles[a].data = e.data;
+      bundles[a].data.updateStatus = 'on-disk';
+      newDeps = newDeps || bundles[a].versions[0][depPropertyName];
+
+      if (isUpdated) {
+        bundles[a].notify('update', { type: 'update', kind: 'update' });
+      } else {
+        bundles[a].notify('refresh', { type: 'refresh', kind: 'update' });
+      }
     }
-  }
 
-  // Notify the lists about changed bundles
-  for (a = 0, la = lists.length; a < la; a++) {
-    if (isUpdated) {
-      lists[a].notify('update', { type: 'update', kind: 'update' });
-    } else {
-      lists[a].notify('refresh', { type: 'refresh', kind: 'update' });
+    // Notify the lists about changed bundles
+    for (a = 0, la = lists.length; a < la; a++) {
+      if (isUpdated) {
+        lists[a].notify('update', { type: 'update', kind: 'update' });
+      } else {
+        lists[a].notify('refresh', { type: 'refresh', kind: 'update' });
+      }
     }
-  }
 
-  // Notify the BundleManagement instance of the update
-  instance.notify('updateComplete', { type: 'updateComplete', id: e.data.id });
+    // Notify the BundleManagement instance of the update
+    instance.notify('updateComplete', { type: 'updateComplete', id: e.data.id });
 
-  // Collect dependency ids
-  oldDepVersions = {};
-  newDepVersions = {};
-  for (a = 0, la = oldDeps.length; a < la; a++) {
-    oldDepVersions[oldDeps[a].id] = oldDeps[a].currentVersion;
-  }
-  for (a = 0, la = newDeps.length; a < la; a++) {
-    newDepVersions[newDeps[a].id] = newDeps[a].currentVersion;
-  }
-
-  // Check dependency differences
-  newCompleteDeps = [];
-  newVersionDeps = [];
-  for (a = 0, la = newDeps.length; a < la; a++) {
-    if (!(newDeps[a].id in oldDepVersions)) {
-      newCompleteDeps.push(newDeps[a]);
-    } else if (newDeps[a].currentVersion !== oldDepVersions[newDeps[a].id]) {
-      newVersionDeps.push(newDeps[a]);
+    // Collect dependency ids
+    oldDepVersions = {};
+    newDepVersions = {};
+    for (a = 0, la = oldDeps.length; a < la; a++) {
+      oldDepVersions[oldDeps[a].id] = oldDeps[a].currentVersion;
     }
-  }
+    for (a = 0, la = newDeps.length; a < la; a++) {
+      newDepVersions[newDeps[a].id] = newDeps[a].currentVersion;
+    }
 
-  // Update dependency bundles
-  BundleManagement.updateDependencies(newCompleteDeps);
-  BundleManagement.updateDependencies(newVersionDeps);
+    // Check dependency differences
+    newCompleteDeps = [];
+    newVersionDeps = [];
+    for (a = 0, la = newDeps.length; a < la; a++) {
+      if (!(newDeps[a].id in oldDepVersions)) {
+        newCompleteDeps.push(newDeps[a]);
+      } else if (newDeps[a].currentVersion !== oldDepVersions[newDeps[a].id]) {
+        newVersionDeps.push(newDeps[a]);
+      }
+    }
+
+    // Update dependency bundles
+    BundleManagement.updateDependencies(newCompleteDeps);
+    BundleManagement.updateDependencies(newVersionDeps);
+  }
 };
 
 /**
@@ -1247,11 +1337,12 @@ BundleManagement.updateComplete = function (instance, e) {
  * Loops through the passed in dependency objects and updates/refreshes the right bundles,
  * and also adds them to lists that should contain the bundles, if missing.
  *
- * @param {Array} dependencies Array of all the dependency objects (found in bundle.versions[n].dependencies)
+ * @param {Array} dependencies Array of all the dependency objects (found in bundle.versions[n].dependencies
+ *                             or bundle.verions[n].bridgeDependencies).
  *
  * @ignore
  */
-BundleManagement.updateDependencies = function (dependencies) {
+BundleManagement.updateDependencies = function(dependencies) {
   var a, b, c, la, lb, lc, deps, data, dep, list, versionFound, version;
 
   for (a = 0, la = dependencies.length; a < la; a++) {
@@ -1298,12 +1389,12 @@ BundleManagement.updateDependencies = function (dependencies) {
  * but before dependencies are updated). For that reason, this function will try to execute
  * every 500 ms (if the bundle can't be found), but a maximum of 10 times.
  *
- * @param {string}  id       Bundle ID for the dependency.
- * @param {number=} numTries Number of times it has currently tried. Will not be passed the first time it's called.
+ * @param {string}  id           Bundle ID for the dependency.
+ * @param {number=} opt_numTries Number of times it has currently tried. Will not be passed the first time it's called.
  *
  * @ignore
  */
-BundleManagement.addDependencyToLists = function (id, numTries) {
+BundleManagement.addDependencyToLists = function(id, opt_numTries) {
   var maxTries, interval, bundles, i, l, data, dep, list;
 
   maxTries = 10;
@@ -1320,15 +1411,16 @@ BundleManagement.addDependencyToLists = function (id, numTries) {
 
   // If no data was found for this bundle id, try again
   if (data === undefined) {
+    var numTries = opt_numTries;
     numTries = numTries === undefined ? 0 : parseInt(numTries, 10);
     if (numTries < maxTries - 1) {
-      numTries = numTries +1;
-      setTimeout(function () {
+      numTries = numTries + 1;
+      setTimeout(function() {
         BundleManagement.addDependencyToLists(id, numTries);
       }, interval);
     }
     return;
-  };
+  }
 
   // Create bundle object and add it to the lists
   dep = new Bundle(data);
@@ -1361,7 +1453,7 @@ BundleManagement.addDependencyToLists = function (id, numTries) {
  *
  * @ignore
  */
-BundleManagement.getBundleObjects = function (id) {
+BundleManagement.getBundleObjects = function(id) {
   var lists, list, bundle,
       a, b, la, lb,
       response;
@@ -1397,7 +1489,7 @@ BundleManagement.getBundleObjects = function (id) {
  *
  * @ignore
  */
-BundleManagement.quitBundleObject = function (bundle) {
+BundleManagement.quitBundleObject = function(bundle) {
 
   var a, b, la, lb, version;
 
@@ -1409,9 +1501,14 @@ BundleManagement.quitBundleObject = function (bundle) {
     version = bundle.versions[a];
     if (version.data.inUse) {
       version.data.inUse = false;
-      for (b = 0, lb = version.dependencies.length; b < lb; b++) {
-        version.dependencies[b].name = undefined;
-        version.dependencies[b].currentVersion = undefined;
+
+      var depListNames = BundleManagement._getDependencyListIds();
+      for (var depListName in depListNames) {
+        var depPropertyName = depListNames[depListName];
+        for (b = 0, lb = version[depPropertyName].length; b < lb; b++) {
+          version[depPropertyName][b].name = undefined;
+          version[depPropertyName][b].currentVersion = undefined;
+        }
       }
     }
   }
@@ -1431,29 +1528,28 @@ BundleManagement.quitBundleObject = function (bundle) {
 };
 
 /**
- * Loops through all dependencies and updates inUseBy and status.
- * This method is called from BundleManagement.quitBundleObject, so the task
- * for this method is to remove the bundle from inUseBy of dependencies,
- * and also update the status of that version if it was the last item in inUseBy.
- *
- * It will notify both the bundle objects and the lists they are in, about the changes.
+ * Helper method to updateDependencyStatuses that runs the logic for the requested dependency list.
  *
  * @param {Object} version    Version object, instance of BundleVersion (bundle.versions[n]).
  * @param {Bundle} rootBundle Bundle object that was quit, or the dependency object when calling recursively.
+ * @param {string} depPropertyName Name of dependency property to use as source.
  *
  * @ignore
  */
-BundleManagement.updateDependencyStatuses = function (version, rootBundle) {
+BundleManagement._updateDependencyStatusesHelper = function(version, rootBundle, depPropertyName) {
+  if (!version[depPropertyName]) {
+    return;
+  }
 
   // Iterator vars
   var a, b, c, d, la, lb, lc, ld;
   var objects, dep, numDepInUseVersions, depVersion, bundle, list;
 
   // Only loop if there are dependencies
-  if (version.dependencies && version.dependencies.length > 0) {
+  if (version[depPropertyName] && version[depPropertyName].length > 0) {
 
-    for (a = 0, la = version.dependencies.length; a < la; a++) {
-      objects = BundleManagement.getBundleObjects(version.dependencies[a].id);
+    for (a = 0, la = version[depPropertyName].length; a < la; a++) {
+      objects = BundleManagement.getBundleObjects(version[depPropertyName][a].id);
 
       // Loop dependency objects for this dependency bundle id
       for (b = 0, lb = objects.bundles.length; b < lb; b++) {
@@ -1500,6 +1596,26 @@ BundleManagement.updateDependencyStatuses = function (version, rootBundle) {
       list.notify('bundleQuit', { type: 'bundleQuit', kind: 'bundleQuit' });
       list.notify('refresh', { type: 'refresh', kind: 'bundleQuit' });
     }
+  }
+};
+
+/**
+ * Loops through all dependencies and updates inUseBy and status.
+ * This method is called from BundleManagement.quitBundleObject, so the task
+ * for this method is to remove the bundle from inUseBy of dependencies,
+ * and also update the status of that version if it was the last item in inUseBy.
+ *
+ * It will notify both the bundle objects and the lists they are in, about the changes.
+ *
+ * @param {Object} version    Version object, instance of BundleVersion (bundle.versions[n]).
+ * @param {Bundle} rootBundle Bundle object that was quit, or the dependency object when calling recursively.
+ *
+ * @ignore
+ */
+BundleManagement.updateDependencyStatuses = function(version, rootBundle) {
+  var depListNames = BundleManagement._getDependencyListIds();
+  for (var i in depListNames) {
+    BundleManagement._updateDependencyStatusesHelper(version, rootBundle, depListNames[i]);
   }
 };
 

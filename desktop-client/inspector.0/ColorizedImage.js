@@ -143,16 +143,13 @@ WebInspector.ColorizedImage.utils = {
 	    };
 	},
 
-	generateNewColor: function(seedText)
+	generateNewColor: function(seedText, format)
 	{
-	    if (seedText) {
-			return this.getColorBasedOnSeed(seedText);
-	    } else {
-			return this.getRandomNewColor();
-	    }
+		var color = seedText ? this.getColorBasedOnSeed(seedText, format) : this.getRandomNewColor(format);
+	    return format === 'hex' ? this.getColorString(color) : color;
 	},
 
-	getRandomNewColor: function() {
+	getRandomNewColor: function(format) {
 		// Create (or get) containers for used colors
 	    // First level contains the 12 base colors in the following order:
 	    // red, orange, yellow, chartreuse green, green, spring green, cyan, azure, blue, violet, magenta, rose
@@ -179,19 +176,50 @@ WebInspector.ColorizedImage.utils = {
 	    var newColor = this.getBaseColor(baseColorIndex);
 	    baseColor.push(newColor);
 	    this.usedNumberOfBaseColors++;
-	    return newColor;
+
+	    return this.convertToFormat(format, {
+	    	format: 'rgb',
+	    	red: newColor.red,
+	    	green: newColor.green,
+	    	blue: newColor.blue
+	    });
 	},
 
-	getColorBasedOnSeed: function(seedText) {
+	getColorBasedOnSeed: function(seedText, format) {
 		var sum = this.getCharacterSum(seedText);
 		var hue = (sum * sum) % 360;
-		var saturation = 1;
+		var saturation = 0.8;
 		var lightness = .41;
 
-		return this.HSLToRGB(hue, saturation, lightness);
+		var rgb = this.convertToFormat('rgb', {
+			format: 'hsl',
+			hue: hue,
+			saturation: saturation,
+			lightness: lightness
+		});
+
+		return this.convertToFormat('hex', rgb);
 	},
 
-	HSLToRGB: function(h, s, l) {
+	getColorString: function(color) {
+		if (color.format === 'hex') {
+			return '#' + color.red + color.green + color.blue;
+		}
+		return '';
+	},
+
+	convertToFormat: function(format, color) {
+		var methodName = color.format + '_to_' + format;
+		if (this[methodName]) {
+			return this[methodName](color);
+		}
+		return color;
+	},
+
+	hsl_to_rgb: function(color) {
+		var h = color.hue;
+		var s = color.saturation;
+		var l = color.lightness;
 		var r, g, b;
 
 		if (s === 0) {
@@ -206,6 +234,7 @@ WebInspector.ColorizedImage.utils = {
 		}
 
 		return {
+			format: 'rgb',
 			red: Math.round(r * 255),
 			green: Math.round(g * 255),
 			blue: Math.round(b * 255),
@@ -220,6 +249,47 @@ WebInspector.ColorizedImage.utils = {
 		if(t < 1/2) return q;
 		if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
 		return p;
+	},
+
+	rgb_to_hex: function(color) {
+		var color = {
+			format: 'hex',
+			red: color.red.toString(16),
+			green: color.green.toString(16),
+			blue: color.blue.toString(16)
+		};
+		color.red = color.red === '0' ? '00' : color.red;
+		color.green = color.green === '0' ? '00' : color.green;
+		color.blue = color.blue === '0' ? '00' : color.blue;
+		return color;
+	},
+
+	hex_to_rgb: function(color) {
+		return {
+			format: 'rgb',
+			red: parseInt(color.red, 16),
+			green: parseInt(color.green, 16),
+			blue: parseInt(color.blue, 16)
+		};
+	},
+
+	adjustLightness: function(color, amount) {
+		if (typeof color !== 'string') return color;
+		if (color.charAt(0) !== '#') return color;
+
+		color = this.convertToFormat('rgb', {
+			format: 'hex',
+			red: color.substr(1, 2),
+			green: color.substr(3, 2),
+			blue: color.substr(5, 2)
+		});
+
+		color.red = Math.round(Math.min(Math.max(color.red + 255 * (amount / 100), 0), 255));
+		color.green = Math.round(Math.min(Math.max(color.green + 255 * (amount / 100), 0), 255));
+		color.blue = Math.round(Math.min(Math.max(color.blue + 255 * (amount / 100), 0), 255));
+
+		color = this.convertToFormat('hex', color);
+		return this.getColorString(color);
 	},
 
 	getBaseColor: function(index)

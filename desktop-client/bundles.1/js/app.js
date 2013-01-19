@@ -14,7 +14,7 @@ bundleManagement = bundleManagement.bundleManagement;
 /**
  * App includes
  */
-var slab = sp.require('js/external/slab').slab;
+var slab = sp.require('vendor/slab').slab;
 var toggler = sp.require('js/modules/toggler');
 var listFiller = sp.require('js/modules/listfiller');
 var sorter = sp.require('js/modules/sorter');
@@ -55,7 +55,7 @@ window.app = {
   activeTab: 'running',
 
   // Initialize the whole app
-  init: function () {
+  init: function() {
 
     // Compile the bundle template code
     this.tmpl = slab.compile(document.getElementById('tmpl-bundle').innerHTML);
@@ -87,7 +87,7 @@ window.app = {
       toggleClass: 'manifest-toggle',
       closedHeight: 0,
       animate: false,
-      onToggle: function (elem) {
+      onToggle: function(elem) {
         var parent = elem.parentNode;
         while (parent && !parent.classList.contains('bundle') && parent !== document) {
           parent = parent.parentNode;

@@ -53,6 +53,10 @@
     height: 24px;
 }
 
+#scripts-debug-toolbar img {
+    padding-top: 2px;
+}
+
 #scripts-debug-sidebar-contents {
     position: absolute;
     top: 22px;
@@ -82,14 +86,6 @@
 
 #scripts-status-bar .status-bar-item img {
     margin-top: 2px;
-}
-
-#scripts-back img {
-    content: url(Images/back.png);
-}
-
-#scripts-forward img {
-    content: url(Images/forward.png);
 }
 
 #scripts-pause img {
@@ -142,7 +138,7 @@
     z-index: 13;
 }
 
-#scripts-navigator-resizer-widget {
+.scripts-navigator-resizer-widget {
     position: absolute;
     top: 0;
     right: 0;
@@ -152,6 +148,36 @@
     background-image: url(Images/statusbarResizerHorizontal.png);
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.status-bar-item.scripts-navigator-show-hide-button > .glyph {
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-mask-position: 0 0;
+    -webkit-mask-image: url(Images/navigatorShowHideButton.png);
+}
+
+.status-bar-item.scripts-navigator-show-hide-button.toggled-pinned > .glyph {
+    -webkit-mask-position: -16px 0;
+}
+
+.status-bar-item.scripts-navigator-show-hide-button.toggled-overlay > .glyph {
+    -webkit-mask-position: -32px 0;
+}
+
+button.status-bar-item.scripts-navigator-show-hide-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: none;
+    height: 16px;
+    width: 16px;
+    margin: 3px 2px 2px 2px;
+}
+
+button.status-bar-item.scripts-navigator-show-hide-button.toggled-overlay
+{
+    left: auto;
+    right: 15px;
 }
 
 .scripts-views-container {
@@ -190,77 +216,54 @@
     top: 2px;
 }
 
-.scripts-navigator-domain-tree-item .icon {
-    content: url(Images/domain.png);
-}
-
-.scripts-navigator-folder-tree-item .icon {
-    opacity: 0.7;
-    content: url(Images/frame.png);
-}
-
-.scripts-navigator-script-tree-item .icon {
-    content: url(Images/resourceJSIcon.png);
-}
-
-.scripts.panel .navigator {
-    padding-left: 0;
-}
-
-#scripts-navigator-tabbed-pane .tabbed-pane-header {
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F5F5F5), to(#E5E5E5));
-}
-
-#scripts-navigator-tabbed-pane .tabbed-pane-header-contents {
-    margin-left: 1px;
-    margin-right: 16px;
-}
-
-#scripts-navigator-tabbed-pane .tabbed-pane-content {
-    margin-top: 1px;
-}
-
 #scripts-editor-container-tabbed-pane .tabbed-pane-header {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F5F5F5), to(#E5E5E5));
 }
 
 #scripts-editor-container-tabbed-pane .tabbed-pane-header-contents {
-    margin-left: 1px;
-    margin-right: 16px;
+    margin-left: 20px;
+    margin-right: 36px;
 }
 
-#scripts-editor-container-tabbed-pane .tabbed-pane-content {
-    margin-top: 1px;
+#scripts-editor-container-tabbed-pane .tabbed-pane-header-tab {
+    border-bottom: 1px solid #BBB;
 }
 
-.scripts.panel .navigator li {
-    height: 17px;
-    white-space: nowrap;
+.function-location-link {
+    float: right;
+    margin-left: 10px;
 }
 
-.scripts.panel .navigator :focus li.selected {
-    color: white;
+.function-popover-title {
+    border-bottom: 1px solid #AAA;
+    margin-bottom: 3px;
+    padding-bottom: 2px;
 }
 
-.scripts.panel .navigator li.selected .selection {
-    height: 17px;
-    background-color: rgb(180, 180, 180);
+.function-popover-title .function-name {
+    font-weight: bold;
 }
 
-.scripts.panel .navigator :focus li.selected .selection {
-    background-color: rgb(111, 140, 210);
-}
-
-.scripts.panel .navigator .icon {
-    width: 16px;
+button.status-bar-item.scripts-debugger-show-hide-button {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    background-image: none;
     height: 16px;
-    float: left;
+    width: 16px;
+    margin: 3px 2px 2px 2px;
 }
 
-.scripts.panel .base-navigator-tree-element-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: relative;
-    padding-left: 2px;
-    top: 1px;
+.status-bar-item.scripts-debugger-show-hide-button > .glyph {
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-mask-position: 0 0;
+    -webkit-mask-image: url(Images/navigatorShowHideButton.png);
+}
+
+.status-bar-item.scripts-debugger-show-hide-button.toggled-shown > .glyph {
+    -webkit-mask-position: 0 -16px;
+}
+
+.status-bar-item.scripts-debugger-show-hide-button.toggled-hidden > .glyph {
+    -webkit-mask-position: -16px -16px;
 }

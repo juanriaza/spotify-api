@@ -7,9 +7,9 @@
     },
     "BundleIdentifier": "views",
     "BundleType": "Framework",
-    "BundleVersion": "1.24.1",
+    "BundleVersion": "1.26.1",
     "Dependencies": {
-        "api": "1.20.0"
+        "api": "1.21.0"
     },
     "SupportedLanguages": [
         "de",

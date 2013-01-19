@@ -3,12 +3,12 @@
 /**
  * Initialize the app logic.
  */
-app.initMain = function () {
+app.initMain = function() {
   var application, EVENT;
 
   // Create list contents
-  this.runningList    = this.constructList('running');
-  this.appsList       = this.constructList('apps');
+  this.runningList = this.constructList('running');
+  this.appsList = this.constructList('apps');
   this.frameworksList = this.constructList('frameworks');
 
   // Get API stuff
@@ -28,10 +28,10 @@ app.initMain = function () {
   // Add countdown for global update check
   var timerElem = document.querySelector('#footer .update-timer');
   var childElems = timerElem.children;
-  var updateTimer = app.countdown.create(sp.bundles.timeToNextUpdateCheck, function (hours, minutes, seconds) {
+  var updateTimer = app.countdown.create(sp.bundles.timeToNextUpdateCheck, function(hours, minutes, seconds) {
     app.updateCountdown(timerElem, undefined, hours, minutes, seconds);
     if (hours === 0 && minutes === 0 && seconds === 0) {
-      setTimeout(function timerHandler () {
+      setTimeout(function timerHandler() {
         updateTimer.time = sp.bundles.timeToNextUpdateCheck;
         if (updateTimer.time === 0) {
           setTimeout(timerHandler, 500);
@@ -55,7 +55,7 @@ app.initMain = function () {
  * Switches content when the selected tab changes.
  * Handler for when the app arguments change (tab changes).
  */
-app.argumentsChange = function () {
+app.argumentsChange = function() {
   var tabs, tab, oldView, newView;
 
   // Get wrapper elements for the sections
@@ -80,7 +80,7 @@ app.argumentsChange = function () {
  * Updates the list contents when the filter input changes.
  * Handler for input changes in filter box.
  */
-app.filterChange = function () {
+app.filterChange = function() {
   app.filter.update();
   app.listFiller.update();
 };
@@ -89,9 +89,9 @@ app.filterChange = function () {
  * Refreshes the lists automatically when the app is reactivated.
  * Handler for when the app is activated/deactivated.
  *
- * @param {boolean} isActive The new value for the app state
+ * @param {boolean} isActive The new value for the app state.
  */
-app.activeChange = function (isActive) {
+app.activeChange = function(isActive) {
   this.isActive = isActive;
   if (isActive) {
     app.runningList.refresh();
@@ -109,10 +109,10 @@ app.activeChange = function (isActive) {
  *
  * @return {BundleList} Bundle list containing all the bundles.
  */
-app.constructList = function (type) {
-  
+app.constructList = function(type) {
+
   // Get bundles from the API
-  var list = this.api.bundles.get(type, function (bundles) {
+  var list = this.api.bundles.get(type, function(bundles) {
     var listElem, i, l, itemHeight;
 
     listElem = app[type + 'Elem'];
@@ -133,7 +133,7 @@ app.constructList = function (type) {
 
   list.type = type;
   list.observe('sort', app.updateDOM.bind(app, list, 'list'));
-  list.observe('refresh', function (e) {
+  list.observe('refresh', function(e) {
     if (e.kind === 'add') {
       app.listFiller.update();
       app.updateSummary();
@@ -158,7 +158,7 @@ app.constructList = function (type) {
  *
  * @return {HTMLLIElement} List item DOM element.
  */
-app.constructListItem = function (type, bundle, list, firstTime) {
+app.constructListItem = function(type, bundle, list, firstTime) {
   var listElem, itemElem, i, l, timeout, callback, timer, buttons, links, dataset;
 
   listElem = app[type + 'Elem'];
@@ -245,10 +245,10 @@ app.constructListItem = function (type, bundle, list, firstTime) {
  * button when done.
  *
  * @param {Bundle|BundleList} obj  Object with all the new data to be used.
- * @param {string}            type Type of object. Either `'bundle'` or `'list'`
+ * @param {string}            type Type of object. Either `'bundle'` or `'list'`.
  * @param {Object}            e    Event object. Used for seeing what kind of event the function was called for.
  */
-app.updateDOM = function (obj, type, e) {
+app.updateDOM = function(obj, type, e) {
   var listElem, itemElem, openStates, toggler, listType, isOpen, i, l;
 
   // Count down for number of updates left (used for the update all button)
@@ -279,7 +279,7 @@ app.updateDOM = function (obj, type, e) {
         toggler.openItem(itemElem, false);
       }
     }
-    
+
 
   } else if (type === 'list' && (!e || e && e.kind !== 'remove')) {
 
@@ -308,13 +308,13 @@ app.updateDOM = function (obj, type, e) {
 /**
  * Update cache timeout countdown output.
  *
- * @param {Bundle} bundle    Bundle object.
- * @param {string} version   Version string.
- * @param {number} hours     Number of hours left
- * @param {number} minutes   Number of minutes left
- * @param {number} seconds   Number of seconds left
+ * @param {Bundle} bundle         Bundle object.
+ * @param {string} versionIndex   Version string.
+ * @param {number} hours          Number of hours left.
+ * @param {number} minutes        Number of minutes left.
+ * @param {number} seconds        Number of seconds left.
  */
-app.updateCountdown = function (bundle, versionIndex, hours, minutes, seconds) {
+app.updateCountdown = function(bundle, versionIndex, hours, minutes, seconds) {
   var bundleElem, timeoutElem, numbers, labels, expiredLabel;
 
   // Get elements from the DOM
@@ -370,7 +370,7 @@ app.updateCountdown = function (bundle, versionIndex, hours, minutes, seconds) {
  * Updates the summary text in the footer.
  * When a bundle is added or removed from the lists, this will update the numbers.
  */
-app.updateSummary = function () {
+app.updateSummary = function() {
   var numAppsElem, numFrameworksElem, numAppsLabelElem, numFrameworksLabelElem, i, l, type;
 
   numAppsElem = this.summary.querySelector('.num-apps');
@@ -392,7 +392,7 @@ app.updateSummary = function () {
  *
  * @param {Object} e Event object for a mouse event.
  */
-app.hideRemoveConfirms = function (e) {
+app.hideRemoveConfirms = function(e) {
   var buttons, i, l;
   buttons = document.querySelectorAll('.confirm-remove.confirm, .remove.confirm');
   for (i = 0, l = buttons.length; i < l; i++) {
@@ -408,7 +408,7 @@ app.hideRemoveConfirms = function (e) {
  *
  * @param {Bundle} bundle Bundle object to update.
  */
-app.getUpdates = function (bundle) {
+app.getUpdates = function(bundle) {
   bundle.update();
 };
 
@@ -417,7 +417,7 @@ app.getUpdates = function (bundle) {
  * Frameworks are updated when apps need newer versions.
  * Events will be sent out and the handlers will then take care of updating the UI.
  */
-app.getUpdatesForAll = function () {
+app.getUpdatesForAll = function() {
   app.updateAllElem.disabled = true;
   app.numUpdatesInProgress = app.appsList.length;
   for (var i = 0, l = app.appsList.length; i < l; i++) {
@@ -430,7 +430,7 @@ app.getUpdatesForAll = function () {
  *
  * @param {Object} e Event object for a mouse event.
  */
-app.askToRemoveBundle = function (e) {
+app.askToRemoveBundle = function(e) {
   e.target.classList.toggle('confirm');
   e.target.parentNode.querySelector('.confirm-remove').classList.toggle('confirm');
 };
@@ -441,7 +441,7 @@ app.askToRemoveBundle = function (e) {
  *
  * @param {Bundle} bundle Bundle object to remove.
  */
-app.removeBundle = function (bundle) {
+app.removeBundle = function(bundle) {
   bundle.remove();
 };
 
@@ -451,7 +451,7 @@ app.removeBundle = function (bundle) {
  *
  * @param {Bundle} bundle Bundle object to quit.
  */
-app.quitBundle = function (bundle) {
+app.quitBundle = function(bundle) {
   bundle.quit(true);
 };
 
@@ -460,7 +460,7 @@ app.quitBundle = function (bundle) {
  *
  * @param {Bundle} bundle Bundle object to launch.
  */
-app.launchBundle = function (bundle) {
+app.launchBundle = function(bundle) {
   bundle.launch();
 };
 
@@ -471,7 +471,7 @@ app.launchBundle = function (bundle) {
  * @param {string} version Bundle version.
  * @param {string} type    Bundle type. 'app' or 'framework'.
  */
-app.gotoBundle = function (id, version, type) {
+app.gotoBundle = function(id, version, type) {
   var tabs, tab, afterTabSwitch;
 
   // Get new tab
@@ -479,7 +479,7 @@ app.gotoBundle = function (id, version, type) {
   tab = tabs[type];
 
   // Set up a callback function that will be run when the tab has been switched
-  afterTabSwitch = function () {
+  afterTabSwitch = function() {
 
     // Open item in the list
     app.openItem(id, tab);
@@ -502,17 +502,17 @@ app.gotoBundle = function (id, version, type) {
 /**
  * Open a specific app tab.
  *
- * @param {string}    tab      Tab id to switch to.
- * @param {function=} callback Function to be called when the tab has been switched.
+ * @param {string}    tab          Tab id to switch to.
+ * @param {function=} opt_callback Function to be called when the tab has been switched.
  */
-app.gotoTab = function (tab, callback) {
-  if (typeof callback === 'function') {
+app.gotoTab = function(tab, opt_callback) {
+  if (typeof opt_callback === 'function') {
     var application, EVENT;
-    application = this.api.models.application
+    application = this.api.models.application;
     EVENT = this.api.models.EVENT;
-    application.observe(EVENT.ARGUMENTSCHANGED, function handler () {
+    application.observe(EVENT.ARGUMENTSCHANGED, function handler() {
       application.ignore(EVENT.ARGUMENTSCHANGED, handler);
-      callback();
+      opt_callback();
     });
   }
   window.location = 'spotify:app:bundles:' + tab;
@@ -524,7 +524,7 @@ app.gotoTab = function (tab, callback) {
  * @param {string} id       Bundle identifier.
  * @param {string} listType The list id, same as tab name.
  */
-app.openItem = function (id, listType) {
+app.openItem = function(id, listType) {
   var toggler, itemElem;
 
   toggler = app[listType + 'Toggler'];
@@ -541,15 +541,17 @@ app.openItem = function (id, listType) {
  * @param {string} id       Bundle identifier.
  * @param {string} listType The list id, same as tab name.
  */
-app.scrollToItem = function (id, listType) {
+app.scrollToItem = function(id, listType) {
   var itemElem, listWrapper, headerHeight, offset;
 
   itemElem = document.getElementById(listType + '-bundle-' + id);
-  listWrapper = document.getElementById('lists');
-  headerHeight = listWrapper.querySelector('.active header').getBoundingClientRect().height;
-  offset = itemElem.offsetTop - headerHeight;
+  if (itemElem) {
+    listWrapper = document.getElementById('lists');
+    headerHeight = listWrapper.querySelector('.active header').getBoundingClientRect().height;
+    offset = itemElem.offsetTop - headerHeight;
 
-  listWrapper.scrollTop = offset;
+    listWrapper.scrollTop = offset;
+  }
 };
 
 /**
@@ -559,31 +561,33 @@ app.scrollToItem = function (id, listType) {
  * @param {string} version  Bundle version.
  * @param {string} listType The list id, same as tab name.
  */
-app.highlightBundleVersion = function (id, version, listType) {
+app.highlightBundleVersion = function(id, version, listType) {
   var itemElem, versionElems, i, l, inUse, versionElem;
 
   itemElem = document.getElementById(listType + '-bundle-' + id);
-  versionElems = itemElem.querySelectorAll('.version');
+  if (itemElem) {
+    versionElems = itemElem.querySelectorAll('.version');
 
-  if (version) {
-    for (i = 0, l = versionElems.length; i < l; i++) {
-      inUse = versionElems[i].classList.contains('version-in-use');
-      if (versionElems[i].dataset.version === version && inUse) {
-        versionElem = versionElems[i];
-        break;
+    if (version) {
+      for (i = 0, l = versionElems.length; i < l; i++) {
+        inUse = versionElems[i].classList.contains('version-in-use');
+        if (versionElems[i].dataset.version === version && inUse) {
+          versionElem = versionElems[i];
+          break;
+        }
       }
     }
-  }
 
-  if (versionElem) {
-    versionElem.classList.add('highlight');
-    setTimeout(function () {
-      versionElem.classList.remove('highlight');
-    }, 600);
-  } else {
-    itemElem.classList.add('highlight');
-    setTimeout(function () {
-      itemElem.classList.remove('highlight');
-    }, 600);
+    if (versionElem) {
+      versionElem.classList.add('highlight');
+      setTimeout(function() {
+        versionElem.classList.remove('highlight');
+      }, 600);
+    } else {
+      itemElem.classList.add('highlight');
+      setTimeout(function() {
+        itemElem.classList.remove('highlight');
+      }, 600);
+    }
   }
 };

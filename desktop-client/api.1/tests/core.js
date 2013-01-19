@@ -1,6 +1,7 @@
 require([
   '$test-utils/assert'
 ], function(assert) {
+
   mocha.setup('bdd');
 
   var langModule = new SpotifyApi.LangModule('strings/test.lang', {
@@ -54,6 +55,16 @@ require([
       assert.deepEqual(results, [object, 1, 2, 3, 4]);
     });
 
+    /*
+     * nullContext is variable: could be null or the global object, depending on browser and/or "use strict" directive.
+     * In internet explorer it will always be window
+     * In environments where the "use strict" directive is supported (and in use) it will always be null.
+    */
+
+    var nullContext = (function() {
+      return this;
+    }).call(null);
+
     it('should work when null is passed as context', function() {
       var bound1 = SP.bind(argsParse, null, 1, 2);
       var bound2 = SP.bind(argsParse, null);
@@ -61,8 +72,8 @@ require([
       var results1 = bound1(3, 4);
       var results2 = bound2(1, 2);
 
-      assert.deepEqual(results1, [null, 1, 2, 3, 4]);
-      assert.deepEqual(results2, [null, 1, 2]);
+      assert.deepEqual(results1, [nullContext, 1, 2, 3, 4]);
+      assert.deepEqual(results2, [nullContext, 1, 2]);
 
     });
 
@@ -256,38 +267,52 @@ require([
       header = {};
     });
 
-    it('should set a Spotify header on same-domain requests', function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', window.location.href, true);
-      assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
+    describe('same domain requests', function() {
+
+      it('should set a Spotify header on same-domain requests', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', window.location.href, true);
+        assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
+      });
+
+      it('should set a Spotify header on relative urls', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/home', true);
+        assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
+      });
+
     });
 
-    it('should not set a Spotify header on cross-domain request', function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'sp://oti.fy', true);
-      assert.equal(header['X-Spotify-Requested-With'], null);
-    });
+    /*
+      Skip cross domain tests for Internet Explorer
+    */
 
-    it('should set a Spotify header on relative urls', function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/home', true);
-      assert.equal(header['X-Spotify-Requested-With'], 'XMLHttpRequest');
-    });
+    var desc = (window.XDomainRequest) ? describe.skip : describe;
 
-    it('should not set a Spotify header on cross domain requests with implicit protocol', function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '//host.com', true);
-      assert.equal(header['X-Spotify-Requested-With'], null);
-    });
+    desc('cross domain requests', function() {
 
-    it('should not set a Spotify header on cross domain requests when a <base> is present', function() {
-      var base = document.createElement('base');
-      base.href = 'http://google.com';
-      document.documentElement.appendChild(base);
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/', true);
-      assert.equal(header['X-Spotify-Requested-With'], null);
-      document.documentElement.removeChild(base);
+      it('should not set a Spotify header on cross domain requests with implicit protocol', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '//host.com', true);
+        assert.equal(header['X-Spotify-Requested-With'], null);
+      });
+
+      it('should not set a Spotify header on cross domain requests when a <base> is present', function() {
+        var base = document.createElement('base');
+        base.href = 'http://google.com';
+        document.documentElement.appendChild(base);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/', true);
+        assert.equal(header['X-Spotify-Requested-With'], null);
+        document.documentElement.removeChild(base);
+      });
+
+      it('should not set a Spotify header on cross-domain request', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'sp://oti.fy', true);
+        assert.equal(header['X-Spotify-Requested-With'], null);
+      });
+
     });
 
   });

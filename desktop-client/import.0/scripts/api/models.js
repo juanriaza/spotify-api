@@ -1348,15 +1348,16 @@ Object.defineProperties(Track.prototype, {
     },
     starred: {
         get: function() {
-            return this.loaded ? this.data.starred : null;
+              this.data.starred = exports.library.starredPlaylist.indexOf(this) >= 0;
+              return this.data.starred;
         },
         set: function(starred) {
-            if (starred === this.starred) return this.starred;
+            if (starred === this.starred) return this.data.starred;
             if (starred)
                 this.data.starred = true, exports.library.starredPlaylist.add(this);
             else
                 this.data.starred = false, exports.library.starredPlaylist.remove(this);
-            return this.starred;
+            return this.data.starred;
         }
     },
     number: {

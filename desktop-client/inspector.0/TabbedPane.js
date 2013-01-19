@@ -44,6 +44,7 @@ WebInspector.TabbedPane = function()
     this._tabs = [];
     this._tabsHistory = [];
     this._tabsById = {};
+    this.element.addEventListener("click", this.focus.bind(this), false);
 
     this._dropDownButton = this._createDropDownButton();
 }
@@ -55,7 +56,7 @@ WebInspector.TabbedPane.EventTypes = {
 
 WebInspector.TabbedPane.prototype = {
     /**
-     * @type {WebInspector.View}
+     * @return {WebInspector.View}
      */
     get visibleView()
     {
@@ -63,7 +64,7 @@ WebInspector.TabbedPane.prototype = {
     },
 
     /**
-     * @type {string}
+     * @return {string}
      */
     get selectedTabId()
     {
@@ -86,18 +87,29 @@ WebInspector.TabbedPane.prototype = {
         this._closeableTabs = closeableTabs;
     },
 
+    defaultFocusedElement: function()
+    {
+        return this.visibleView ? this.visibleView.defaultFocusedElement() : null;
+    },
+
     /**
      * @param {string} id
      * @param {string} tabTitle
      * @param {WebInspector.View} view
+     * @param {string=} tabTooltip
+     * @param {boolean=} userGesture
      */
-    appendTab: function(id, tabTitle, view)
+    appendTab: function(id, tabTitle, view, tabTooltip, userGesture)
     {
-        var tab = new WebInspector.TabbedPaneTab(this, this._tabsElement, id, tabTitle, this._closeableTabs, view);
+        var tab = new WebInspector.TabbedPaneTab(this, this._tabsElement, id, tabTitle, this._closeableTabs, view, tabTooltip);
+        this._tabsById[id] = tab;
 
         this._tabs.push(tab);
-        this._tabsById[id] = tab;
         this._tabsHistory.push(tab);
+
+        if (this._tabsHistory[0] === tab)
+            this.selectTab(tab.id, userGesture);
+
         this._updateTabElements();
     },
 
@@ -107,6 +119,18 @@ WebInspector.TabbedPane.prototype = {
      */
     closeTab: function(id, userGesture)
     {
+        this._innerCloseTab(id, userGesture);
+        this._updateTabElements();
+        if (this._tabsHistory.length)
+            this.selectTab(this._tabsHistory[0].id, userGesture);
+    },
+
+    /**
+     * @param {string} id
+     * @param {boolean=} userGesture
+     */
+    _innerCloseTab: function(id, userGesture)
+    {
         if (this._currentTab && this._currentTab.id === id)
             this._hideCurrentTab();
 
@@ -115,23 +139,37 @@ WebInspector.TabbedPane.prototype = {
 
         this._tabsHistory.splice(this._tabsHistory.indexOf(tab), 1);
         this._tabs.splice(this._tabs.indexOf(tab), 1);
-        if (tab.shown)
+        if (tab._shown)
             this._hideTabElement(tab);
-
-        if (this._tabsHistory.length)
-            this.selectTab(this._tabsHistory[0].id);
-        else
-            this._updateTabElements();
 
         var eventData = { tabId: id, view: tab.view, isUserGesture: userGesture };
         this.dispatchEventToListeners(WebInspector.TabbedPane.EventTypes.TabClosed, eventData);
         return true;
     },
 
-    closeAllTabs: function()
+    /**
+     * @param {boolean=} userGesture
+     */
+    closeAllTabs: function(userGesture)
     {
-        for (var i = 0; i < this._tabs.length; ++i)
-            this.closeTab(this._tabs[i].id, false);
+        var tabs = this._tabs.slice();
+        for (var i = 0; i < tabs.length; ++i)
+            this._innerCloseTab(tabs[i].id, userGesture);
+        this._updateTabElements();
+    },
+
+    /**
+     * @param {string} id
+     */
+    closeOtherTabs: function(id)
+    {
+        var tabs = this._tabs.slice();
+        for (var i = 0; i < tabs.length; ++i) {
+            if (tabs[i].id !== id)
+                this._innerCloseTab(tabs[i].id, true);
+        }
+        this._updateTabElements();
+        this.selectTab(id, true);
     },
 
     /**
@@ -154,10 +192,23 @@ WebInspector.TabbedPane.prototype = {
         this._tabsHistory.splice(0, 0, tab);
         
         this._updateTabElements();
-        
+
         var eventData = { tabId: id, view: tab.view, isUserGesture: userGesture };
         this.dispatchEventToListeners(WebInspector.TabbedPane.EventTypes.TabSelected, eventData);
         return true;
+    },
+
+    /**
+     * @param {number} tabsCount
+     * @return {Array.<string>}
+     */
+    lastOpenedTabIds: function(tabsCount)
+    {
+        function tabToTabId(tab) {
+            return tab.id;
+        }
+
+        return this._tabsHistory.slice(0, tabsCount).map(tabToTabId);
     },
 
     /**
@@ -186,6 +237,16 @@ WebInspector.TabbedPane.prototype = {
             tab.view = view;
     },
 
+    /**
+     * @param {string} id
+     * @param {string=} tabTooltip
+     */
+    changeTabTooltip: function(id, tabTooltip)
+    {
+        var tab = this._tabsById[id];
+        tab.tooltip = tabTooltip;
+    },
+
     onResize: function()
     {
         this._updateTabElements();
@@ -196,6 +257,11 @@ WebInspector.TabbedPane.prototype = {
         if (!this.isShowing())
             return;
 
+        if (!this._tabs.length)
+            this._contentElement.addStyleClass("has-no-tabs");
+        else
+            this._contentElement.removeStyleClass("has-no-tabs");
+        
         if (!this._measuredDropDownButtonWidth)
             this._measureDropDownButton();
 
@@ -215,7 +281,7 @@ WebInspector.TabbedPane.prototype = {
             this._tabsElement.appendChild(tab.tabElement);
         else
             this._tabsElement.insertBefore(tab.tabElement, this._tabsElement.children[index]);
-        tab.shown = true;
+        tab._shown = true;
     },
 
     /**
@@ -224,7 +290,7 @@ WebInspector.TabbedPane.prototype = {
     _hideTabElement: function(tab)
     {
         this._tabsElement.removeChild(tab.tabElement);
-        tab.shown = false;
+        tab._shown = false;
     },
 
     _createDropDownButton: function()
@@ -243,12 +309,12 @@ WebInspector.TabbedPane.prototype = {
         var tabsToShowIndexes = this._tabsToShowIndexes(this._tabs, this._tabsHistory, this._headerContentsElement.offsetWidth, this._measuredDropDownButtonWidth);
 
         for (var i = 0; i < this._tabs.length; ++i) {
-            if (this._tabs[i].shown && tabsToShowIndexes.indexOf(i) === -1)
+            if (this._tabs[i]._shown && tabsToShowIndexes.indexOf(i) === -1)
                 this._hideTabElement(this._tabs[i]);
         }
         for (var i = 0; i < tabsToShowIndexes.length; ++i) {
             var tab = this._tabs[tabsToShowIndexes[i]];
-            if (!tab.shown)
+            if (!tab._shown)
                 this._showTabElement(i, tab);
         }
         
@@ -261,12 +327,22 @@ WebInspector.TabbedPane.prototype = {
             this._headerContentsElement.removeChild(this._dropDownButton);
 
         this._tabsSelect.removeChildren();
+        var tabsToShow = [];
         for (var i = 0; i < this._tabs.length; ++i) {
-            if (this._tabs[i].shown)
+            if (!this._tabs[i]._shown)
+                tabsToShow.push(this._tabs[i]);
                 continue;
-            
-            var option = new Option(this._tabs[i].title);
-            option.tab = this._tabs[i];
+        }
+
+        function compareFunction(tab1, tab2)
+        {
+            return tab1.title.localeCompare(tab2.title);
+        }
+        tabsToShow.sort(compareFunction);
+
+        for (var i = 0; i < tabsToShow.length; ++i) {
+            var option = new Option(tabsToShow[i].title);
+            option.tab = tabsToShow[i];
             this._tabsSelect.appendChild(option);
         }
         if (this._tabsSelect.options.length) {
@@ -279,7 +355,7 @@ WebInspector.TabbedPane.prototype = {
     {
         var options = this._tabsSelect.options;
         var selectedOption = options[this._tabsSelect.selectedIndex];
-        this.selectTab(selectedOption.tab.id);
+        this.selectTab(selectedOption.tab.id, true);
     },
 
     _measureDropDownButton: function()
@@ -297,7 +373,8 @@ WebInspector.TabbedPane.prototype = {
         for (var tabId in this._tabs)
             measuredWidths.push(this._tabs[tabId].measuredWidth);
         
-        var maxWidth = this._calculateMaxWidth(measuredWidths, this._headerContentsElement.offsetWidth);
+        const roundingError = 5;
+        var maxWidth = this._calculateMaxWidth(measuredWidths, this._headerContentsElement.offsetWidth - 5);
         
         for (var tabId in this._tabs) {
             var tab = this._tabs[tabId];
@@ -406,6 +483,20 @@ WebInspector.TabbedPane.prototype = {
     elementsToRestoreScrollPositionsFor: function()
     {
         return [ this._contentElement ];
+    },
+
+    /**
+     * @param {WebInspector.TabbedPaneTab} tab
+     * @param {number} index
+     */
+    _insertBefore: function(tab, index)
+    {
+        this._tabsElement.insertBefore(tab._tabElement, this._tabsElement.childNodes[index]);
+        var oldIndex = this._tabs.indexOf(tab);
+        this._tabs.splice(oldIndex, 1);
+        if (oldIndex < index)
+            --index;
+        this._tabs.splice(index, 0, tab);
     }
 }
 
@@ -420,21 +511,25 @@ WebInspector.TabbedPane.prototype.__proto__ = WebInspector.View.prototype;
  * @param {string} title
  * @param {boolean} closeable
  * @param {WebInspector.View} view
+ * @param {string=} tooltip
  */
-WebInspector.TabbedPaneTab = function(tabbedPane, measureElement, id, title, closeable, view)
+WebInspector.TabbedPaneTab = function(tabbedPane, measureElement, id, title, closeable, view, tooltip)
 {
     this._closeable = closeable;
     this._tabbedPane = tabbedPane;
     this._measureElement = measureElement;
     this._id = id;
     this._title = title;
+    this._tooltip = tooltip;
     this._view = view;
-    this.shown = false;
+    this._shown = false;
+    /** @type {number} */ this._measuredWidth;
+    /** @type {Element} */ this._tabElement;
 }
 
 WebInspector.TabbedPaneTab.prototype = {
     /**
-     * @type {string}
+     * @return {string}
      */
     get id()
     {
@@ -442,7 +537,7 @@ WebInspector.TabbedPaneTab.prototype = {
     },
 
     /**
-     * @type {string}
+     * @return {string}
      */
     get title()
     {
@@ -458,7 +553,7 @@ WebInspector.TabbedPaneTab.prototype = {
     },
 
     /**
-     * @type {WebInspector.View}
+     * @return {WebInspector.View}
      */
     get view()
     {
@@ -471,7 +566,22 @@ WebInspector.TabbedPaneTab.prototype = {
     },
 
     /**
-     * @type {Element}
+     * @return {string|undefined}
+     */
+    get tooltip()
+    {
+        return this._tooltip;
+    },
+
+    set tooltip(tooltip)
+    {
+        this._tooltip = tooltip;
+        if (this._titleElement)
+            this._titleElement.title = tooltip || "";
+    },
+
+    /**
+     * @return {Element}
      */
     get tabElement()
     {
@@ -483,7 +593,7 @@ WebInspector.TabbedPaneTab.prototype = {
     },
 
     /**
-     * @type {number}
+     * @return {number}
      */
     get measuredWidth()
     {
@@ -495,7 +605,7 @@ WebInspector.TabbedPaneTab.prototype = {
     },
 
     /**
-     * @type {number}
+     * @return {number}
      */
     get width()
     {
@@ -515,9 +625,11 @@ WebInspector.TabbedPaneTab.prototype = {
     {
         var tabElement = document.createElement("div");
         tabElement.addStyleClass("tabbed-pane-header-tab");
+        tabElement.tabIndex = -1;
         
         var titleElement = tabElement.createChild("span", "tabbed-pane-header-tab-title");
         titleElement.textContent = this.title;
+        titleElement.title = this.tooltip || "";
         if (!measuring)
             this._titleElement = titleElement;
 
@@ -530,9 +642,12 @@ WebInspector.TabbedPaneTab.prototype = {
             tabElement.addStyleClass("measuring");
         else {
             this._tabElement = tabElement;
-            tabElement.addEventListener("click", this._tabSelected.bind(this), false);
-            if (this._closeable)
-                closeButtonSpan.addEventListener("click", this._tabClosed.bind(this), false);
+            tabElement.addEventListener("click", this._tabClicked.bind(this), false);
+            tabElement.addEventListener("mousedown", this._tabMouseDown.bind(this), false);
+            if (this._closeable) {
+                tabElement.addEventListener("contextmenu", this._tabContextMenu.bind(this), false);
+                tabElement.addEventListener("mousemove", this._tabMouseMove.bind(this), false);
+            }
         }
         
         return tabElement;
@@ -546,13 +661,111 @@ WebInspector.TabbedPaneTab.prototype = {
         this._measureElement.removeChild(measuringTabElement);
     },
 
-    _tabSelected: function()
+    /**
+     * @param {Event} event
+     */
+    _tabClicked: function(event)
     {
-        this._tabbedPane.selectTab(this.id, true);        
+        if (this._closeable && (event.button === 1 || event.target.hasStyleClass("tabbed-pane-header-tab-close-button")))
+            this._tabbedPane.closeTab(this.id, true);
     },
 
-    _tabClosed: function()
+    /**
+     * @param {Event} event
+     */
+    _tabMouseDown: function(event)
     {
-        this._tabbedPane.closeTab(this.id, true);        
+        if (event.target.hasStyleClass("tabbed-pane-header-tab-close-button") || event.button === 1)
+            return;
+        this._tabbedPane.selectTab(this.id, true);
+        this._dragStartX = event.pageX;
+    },
+
+    _tabContextMenu: function(event)
+    {
+        function close()
+        {
+            this._tabbedPane.closeTab(this.id, true);
+        }
+  
+        function closeOthers()
+        {
+            this._tabbedPane.closeOtherTabs(this.id);
+        }
+  
+        function closeAll()
+        {
+            this._tabbedPane.closeAllTabs(true);
+        }
+  
+        var contextMenu = new WebInspector.ContextMenu();
+        contextMenu.appendItem(WebInspector.UIString("Close"), close.bind(this));
+        contextMenu.appendItem(WebInspector.UIString("Close Others"), closeOthers.bind(this));
+        contextMenu.appendItem(WebInspector.UIString("Close All"), closeAll.bind(this));
+        contextMenu.show(event);
+    },
+
+    _tabMouseMove: function(event)
+    {
+        if (isNaN(this._dragStartX))
+            return;
+        if (event.which !== 1)
+            return;
+        this._tabbedPane.selectTab(this.id, true);
+        WebInspector.elementDragStart(this._tabElement, this._tabDragging.bind(this), this._endTabDragging.bind(this), event, "pointer");
+    },
+
+    /**
+     * @param {Event} event
+     */
+    _tabDragging: function(event)
+    {
+        var tabElements = this._tabbedPane._tabsElement.childNodes;
+        for (var i = 0; i < tabElements.length; ++i) {
+            var tabElement = tabElements[i];
+            if (tabElement === this._tabElement)
+                continue;
+
+            var intersects = tabElement.offsetLeft + tabElement.clientWidth > this._tabElement.offsetLeft &&
+                this._tabElement.offsetLeft + this._tabElement.clientWidth > tabElement.offsetLeft;
+            if (!intersects)
+                continue;
+
+            if (Math.abs(event.pageX - this._dragStartX) < tabElement.clientWidth / 2 + 5)
+                break;
+
+            if (event.pageX - this._dragStartX > 0) {
+                tabElement = tabElement.nextSibling;
+                ++i;
+            }
+
+            var oldOffsetLeft = this._tabElement.offsetLeft;
+            this._tabbedPane._insertBefore(this, i);
+            this._dragStartX += this._tabElement.offsetLeft - oldOffsetLeft;
+            break;
+        }
+
+        if (!this._tabElement.previousSibling && event.pageX - this._dragStartX < 0) {
+            this._tabElement.style.setProperty("left", "0px");
+            return;
+        }
+        if (!this._tabElement.nextSibling && event.pageX - this._dragStartX > 0) {
+            this._tabElement.style.setProperty("left", "0px");
+            return;
+        }
+
+        this._tabElement.style.setProperty("position", "relative");
+        this._tabElement.style.setProperty("left", (event.pageX - this._dragStartX) + "px");
+    },
+
+    /**
+     * @param {Event} event
+     */
+    _endTabDragging: function(event)
+    {
+        this._tabElement.style.removeProperty("position");
+        this._tabElement.style.removeProperty("left");
+        delete this._dragStartX;
+        WebInspector.elementDragEnd(event);
     }
 }

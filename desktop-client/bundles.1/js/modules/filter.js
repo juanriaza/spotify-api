@@ -10,7 +10,7 @@ var filter = {
   /**
    * Update the DOM list content based on the current filter keywords.
    */
-  update: function () {
+  update: function() {
     var lists, i, l, list, tempList;
 
     lists = [this.app.runningList, this.app.appsList, this.app.frameworksList];
@@ -31,7 +31,7 @@ var filter = {
    *
    * @return {BundleList} A temporary bundle list with the matching bundles.
    */
-  getMatchingBundles: function (keywords, list) {
+  getMatchingBundles: function(keywords, list) {
     var tempList, i, l, bundle, regexp;
 
     // Fix keywords string
@@ -43,8 +43,8 @@ var filter = {
     // Go through the original list and match bundles inside
     for (i = 0, l = list.length; i < l; i++) {
       bundle = list.get(i);
-      regexp = new RegExp(keywords, "i");
-      if (regexp.test(bundle.name.decodeForText()) || regexp.test(bundle.id.decodeForText())) {
+      regexp = new RegExp(keywords, 'i');
+      if (regexp.test(bundle.name.decodeForText()) || regexp.test(bundle.id.decodeForText())) {
         tempList.add(bundle);
       }
     }
@@ -59,7 +59,7 @@ var filter = {
  *
  * @param {Object} app Main app object.
  */
-exports.setup = function (app) {
+exports.setup = function(app) {
   filter.app = app;
   filter.application = app.api.models.application;
   filter.BundleList = app.api.BundleList;

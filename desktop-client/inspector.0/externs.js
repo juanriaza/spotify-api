@@ -41,9 +41,13 @@ console.trace = function() {}
 var JSON = {}
 /** @param {string} str */
 JSON.parse = function(str) {}
-/** @param {Object} obj */
-/** @return {string} */
-JSON.stringify = function(str) {}
+/**
+ * @param {*} obj
+ * @param {Function=} replacer
+ * @param {number=} space
+ * @return {string}
+ */
+JSON.stringify = function(obj, replacer, space) {}
 
 /** @param {boolean=} param */
 Element.prototype.scrollIntoViewIfNeeded = function(param) {}
@@ -51,15 +55,46 @@ Element.prototype.scrollIntoViewIfNeeded = function(param) {}
 Event.prototype.isMetaOrCtrlForTest = false;
 /** @param {...*} vararg */
 Event.prototype.initWebKitWheelEvent = function(vararg) {}
+Event.prototype.stopImmediatePropagation = function() {}
+
 /** @param {Element} element */
 window.getComputedStyle = function(element) {}
+/** @param {*} message */
+function postMessage(message) {}
+
+/**
+ * @param {string} eventName
+ * @param {Function} listener
+ * @param {boolean=} capturing
+ */
+function addEventListener(eventName, listener, capturing) {}
 
 /** @param {boolean=} onlyFirst */
 Array.prototype.remove = function(obj, onlyFirst) {}
 Array.prototype.keySet = function() {}
 /** @return {number} */
 Array.prototype.upperBound = function(anchor) {}
+/** @return {number} */
+Array.prototype.binaryIndexOf = function(anchor) {}
+Array.prototype.sortRange = function(comparator, leftBound, rightBound, k) {}
 
+/**
+ * @this {Array.<number>}
+ * @param {function(number,number):boolean} comparator
+ * @param {number} left
+ * @param {number} right
+ * @param {number} pivotIndex
+ * @return {number}
+ */
+Array.prototype.partition = function(comparator, left, right, pivotIndex) {}
+
+/**
+ * @this {Array.<number>}
+ * @param {number} k
+ * @param {function(number,number):boolean=} comparator
+ * @return {number}
+ */
+Array.prototype.qselect = function(k, comparator) {}
 
 DOMApplicationCache.prototype.UNCACHED = 0;
 DOMApplicationCache.prototype.IDLE = 1;
@@ -80,12 +115,12 @@ var WebInspector = {}
 
 /**
  * @param {NetworkAgent.RequestId} requestId
- * @return {?WebInspector.Resource}
+ * @return {?WebInspector.NetworkRequest}
  */
-WebInspector.networkResourceById = function(requestId)
+WebInspector.networkRequestById = function(requestId)
 {
 }
-
+  
 WebInspector.panels = {};
 
 /**
@@ -94,10 +129,13 @@ WebInspector.panels = {};
 WebInspector.inspectorView;
 
 /**
+ * @param {Element} element
  * @param {WebInspector.View} view
+ * @param {function()=} onclose
  */
-WebInspector.showViewInDrawer = function(view) {}
+WebInspector.showViewInDrawer = function(element, view, onclose) {}
 
+WebInspector.closeViewInDrawer = function() {}
 
 /**
  * @param {string=} messageLevel
@@ -109,11 +147,11 @@ WebInspector.addMainEventListeners = function(doc) {}
 
 WebInspector.openResource = function(url, external) {}
 
-WebInspector.openRequestInNetworkPanel = function(request) {}
-
-WebInspector.populateResourceContextMenu = function(contextMenu, url, preferredLineNumber) {}
-
-WebInspector.evaluateInConsole = function(expression) {}
+/**
+ * @param {string} expression
+ * @param {boolean=} showResultOnly
+ */
+WebInspector.evaluateInConsole = function(expression, showResultOnly) {}
 
 var InjectedFakeWorker = function() {}
 
@@ -184,3 +222,17 @@ WebInspector.showPanel = function(panel)
  * @type {string} 
  */
 WebInspector.inspectedPageDomain;
+
+WebInspector.isCompactMode = function() { return false; }
+
+WebInspector.SourceJavaScriptTokenizer = {}
+WebInspector.SourceJavaScriptTokenizer.Keywords = {}
+
+var InspectorTest = {}
+
+/* jsdifflib API */
+var difflib = {};
+difflib.stringAsLines = function(text) { return []; }
+/** @constructor */
+difflib.SequenceMatcher = function(baseText, newText) { }
+difflib.SequenceMatcher.prototype.get_opcodes = function() { return []; }

@@ -6,7 +6,7 @@ var sp = window.sp;
 delete sp.bundles;
 
 sp.bundles = {
-  get: function (ids) {
+  get: function(ids) {
     var result, bundle, data;
     result = [];
 
@@ -15,7 +15,7 @@ sp.bundles = {
         bundle = mock.bundles[id];
         isApp = ids === 'apps' && bundle.versions[0].type === 'app';
         isFramework = ids === 'frameworks' && bundle.versions[0].type === 'framework';
-        if (isApp || isFramework) {
+        if (isApp || isFramework) {
           if (bundle) {
             result.push(JSON.parse(JSON.stringify(bundle)));
           }
@@ -29,7 +29,7 @@ sp.bundles = {
         }
       }
     } else {
-      ids.forEach(function (id) {
+      ids.forEach(function(id) {
         data = mock.bundles[id];
         if (data) {
           result.push(JSON.parse(JSON.stringify(data)));
@@ -39,10 +39,10 @@ sp.bundles = {
 
     return result;
   },
-  update: function (id, version) {
+  update: function(id, version) {
 
     // Set an artificial delay to emulate server load
-    setTimeout(function () {
+    setTimeout(function() {
 
       var bundle, version, parts, deps, i, l, depBundle, hasDummyNewDep;
 
@@ -107,11 +107,11 @@ sp.bundles = {
         depBundle.versions[0].description = 'This is a new framework.';
         mock.bundles['new-framework'] = depBundle;
       }
-      
+
     }, Math.floor(Math.random() * (3000 - 100 + 1)) + 100);
   },
 
-  remove: function (id) {
+  remove: function(id) {
     if (mock.bundles[id]) {
       delete mock.bundles[id];
       return true;
@@ -119,10 +119,10 @@ sp.bundles = {
       return false;
     }
   },
-  quit: function (id, doForce) {
+  quit: function(id, doForce) {
     var bundle, i, l, dep, n, len;
 
-    var quit = function (id) {
+    var quit = function(id) {
       bundle = mock.bundles[id];
       if (bundle) {
         bundle.inUse = false;
@@ -153,11 +153,11 @@ sp.bundles = {
     };
 
     if (doForce) {
-      
+
       quit(id);
 
     } else {
-      setTimeout(function () {
+      setTimeout(function() {
         quit(id);
       }, 60000);
     }
@@ -167,21 +167,21 @@ sp.bundles = {
 
   events: {},
 
-  addEventListener: function (event, handler) {
+  addEventListener: function(event, handler) {
     if (!this.events[event]) {
       this.events[event] = [];
     }
     this.events[event].push(handler);
   },
 
-  removeEventListener: function (event, handler) {
+  removeEventListener: function(event, handler) {
     var handlers = this.events[event];
     if (handlers) {
       handlers.splice(handlers.indexOf(handler), 1);
     }
   },
 
-  triggerEventListeners: function (event, data) {
+  triggerEventListeners: function(event, data) {
     var handlers = this.events[event];
 
     if (handlers) {

@@ -43,7 +43,9 @@ var Preferences = {
     exposeDisableCache: false,
     exposeWorkersInspection: false,
     applicationTitle: "Web Inspector - %s",
-    showHeapSnapshotObjectsHiddenProperties: false
+    showHeapSnapshotObjectsHiddenProperties: false,
+    showDockToRight: false,
+    exposeFileSystemInspection: false
 }
 
 var Capabilities = {
@@ -51,7 +53,9 @@ var Capabilities = {
     debuggerCausesRecompilation: true,
     profilerCausesRecompilation: true,
     nativeInstrumentationEnabled: false,
-    heapProfilerPresent: false
+    heapProfilerPresent: false,
+    canOverrideDeviceMetrics: false,
+    timelineSupportsFrameInstrumentation: false,
 }
 
 /**
@@ -85,12 +89,20 @@ WebInspector.Settings = function()
     this.cacheDisabled = this.createSetting("cacheDisabled", false);
     this.overrideUserAgent = this.createSetting("overrideUserAgent", "");
     this.userAgent = this.createSetting("userAgent", "");
+    this.deviceMetrics = this.createSetting("deviceMetrics", "");
+    this.deviceFitWindow = this.createSetting("deviceFitWindow", false);
     this.showScriptFolders = this.createSetting("showScriptFolders", true);
+    this.dockToRight = this.createSetting("dockToRight", false);
+    this.emulateTouchEvents = this.createSetting("emulateTouchEvents", false);
+    this.showPaintRects = this.createSetting("showPaintRects", false);
+    this.zoomLevel = this.createSetting("zoomLevel", 0);
+    this.savedURLs = this.createSetting("savedURLs", {});
+    this.javaScriptDisabled = this.createSetting("javaScriptDisabled", false);
 
     // If there are too many breakpoints in a storage, it is likely due to a recent bug that caused
     // periodical breakpoints duplication leading to inspector slowness.
-    if (window.localStorage.breakpoints && window.localStorage.breakpoints.length > 500000)
-        delete window.localStorage.breakpoints;
+    if (this.breakpoints.get().length > 500000)
+        this.breakpoints.set([]);
 }
 
 WebInspector.Settings.prototype = {
@@ -131,19 +143,23 @@ WebInspector.Setting.prototype = {
 
     get: function()
     {
-        var value = this._defaultValue;
+        if (typeof this._value !== "undefined")
+            return this._value;
+
+        this._value = this._defaultValue;
         if (window.localStorage != null && this._name in window.localStorage) {
             try {
-                value = JSON.parse(window.localStorage[this._name]);
+                this._value = JSON.parse(window.localStorage[this._name]);
             } catch(e) {
                 window.localStorage.removeItem(this._name);
             }
         }
-        return value;
+        return this._value;
     },
 
     set: function(value)
     {
+        this._value = value;
         if (window.localStorage != null) {
             try {
                 window.localStorage[this._name] = JSON.stringify(value);
@@ -162,17 +178,20 @@ WebInspector.ExperimentsSettings = function()
 {
     this._setting = WebInspector.settings.createSetting("experiments", {});
     this._experiments = [];
+    this._enabledForTest = {};
     
     // Add currently running experiments here.
-    // FIXME: Move out from experiments once navigator is production-ready.
-    this.useScriptsNavigator = this._createExperiment("useScriptsNavigator", "Use file navigator and tabbed editor container in scripts panel");
-    
+    this.showShadowDOM = this._createExperiment("showShadowDOM", "Show shadow DOM");
+    this.snippetsSupport = this._createExperiment("snippetsSupport", "Snippets support");
+    this.nativeMemorySnapshots = this._createExperiment("nativeMemorySnapshots", "Native memory profiling");
+    this.fileSystemInspection = this._createExperiment("fileSystemInspection", "FileSystem inspection");
+
     this._cleanUpSetting();
 }
 
 WebInspector.ExperimentsSettings.prototype = {
     /**
-     * @type {Array.<WebInspector.Experiment>}
+     * @return {Array.<WebInspector.Experiment>}
      */
     get experiments()
     {
@@ -180,7 +199,7 @@ WebInspector.ExperimentsSettings.prototype = {
     },
     
     /**
-     * @type {boolean}
+     * @return {boolean}
      */
     get experimentsEnabled()
     {
@@ -205,6 +224,9 @@ WebInspector.ExperimentsSettings.prototype = {
      */
     isEnabled: function(experimentName)
     {
+        if (this._enabledForTest[experimentName])
+            return true;
+
         if (!this.experimentsEnabled)
             return false;
         
@@ -222,7 +244,15 @@ WebInspector.ExperimentsSettings.prototype = {
         experimentsSetting[experimentName] = enabled;
         this._setting.set(experimentsSetting);
     },
-    
+
+    /**
+     * @param {string} experimentName
+     */
+    _enableForTest: function(experimentName)
+    {
+        this._enabledForTest[experimentName] = true;
+    },
+
     _cleanUpSetting: function()
     {
         var experimentsSetting = this._setting.get();
@@ -280,6 +310,11 @@ WebInspector.Experiment.prototype = {
     setEnabled: function(enabled)
     {
         return this._experimentsSettings.setEnabled(this._name, enabled);
+    },
+
+    enableForTest: function()
+    {
+        this._experimentsSettings._enableForTest(this._name);
     }
 }
 

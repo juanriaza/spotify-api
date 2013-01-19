@@ -1,7 +1,1 @@
-(function() {
-	var isGlobalInspector = /^sp:/.test(document.location);
-
-	if (isGlobalInspector) {
-		document.body.className += ' globalinspector';
-	}
-}());
+(function(){/^sp:/.test(document.location)&&(document.body.className+=" globalinspector")})();

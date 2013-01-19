@@ -113,7 +113,7 @@
 		position: absolute;
 		bottom: 7px;
 		right: 7px;
-		z-index: 100;
+		z-index: 111;
 
 		background: url('../img/image-player.png');
 		opacity: 0;

@@ -331,10 +331,21 @@
 			background: #7ab800;
 		}
 		.sp-list-layout-toplist .sp-list-cell-star {
-			width: 30px;
+			width: 34px;
+			position: relative;
+			z-index: 100;
 		}
+			.sp-list-layout-toplist .sp-icon-star-hitarea {
+				width: 34px;
+				height: 34px;
+				line-height: 34px;
+				margin-left: 0;
+			}
+				.sp-list-layout-toplist .sp-icon-star {
+					top: 10px;
+				}
 		.sp-list-layout-toplist .sp-list-cell-image {
-			width: 40px;
+			width: 34px;
 		}
 		.sp-list-layout-toplist .sp-list-cell-track {
 			position: absolute;
@@ -471,7 +482,7 @@
 	display: none;
 }
 .sp-list-layout-toplist .sp-icon-nowplaying {
-	top: 0px;
+	top: 2px;
 }
 .sp-list-item-paused .sp-icon-nowplaying {
 	background-position: -24px 0;

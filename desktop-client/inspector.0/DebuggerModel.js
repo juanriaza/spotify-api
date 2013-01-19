@@ -39,46 +39,42 @@ WebInspector.DebuggerModel = function()
      * @type {Object.<string, WebInspector.Script>}
      */
     this._scripts = {};
+    this._scriptsBySourceURL = {};
 
     this._canSetScriptSource = false;
+    this._breakpointsActive = true;
 
     InspectorBackend.registerDebuggerDispatcher(new WebInspector.DebuggerDispatcher(this));
 }
 
 /**
  * @constructor
- * @param {Array.<DebuggerAgent.CallFrame>} callFrames
- * @param {string} reason
- * @param {*} auxData
- */
-WebInspector.DebuggerPausedDetails = function(callFrames, reason, auxData)
-{
-    this.callFrames = callFrames;
-    this.reason = reason;
-    this.auxData = auxData;
-}
-
-/**
- * @constructor
+ * @implements {WebInspector.RawLocation}
  * @extends {DebuggerAgent.Location}
+ * @param {string} scriptId
  * @param {number} lineNumber
  * @param {number} columnNumber
  */
-WebInspector.DebuggerModel.Location = function(lineNumber, columnNumber)
+WebInspector.DebuggerModel.Location = function(scriptId, lineNumber, columnNumber)
 {
+    this.scriptId = scriptId;
     this.lineNumber = lineNumber;
     this.columnNumber = columnNumber;
 }
 
 WebInspector.DebuggerModel.Events = {
-    DebuggerWasEnabled: "debugger-was-enabled",
-    DebuggerWasDisabled: "debugger-was-disabled",
-    DebuggerPaused: "debugger-paused",
-    DebuggerResumed: "debugger-resumed",
-    ParsedScriptSource: "parsed-script-source",
-    FailedToParseScriptSource: "failed-to-parse-script-source",
-    BreakpointResolved: "breakpoint-resolved",
-    GlobalObjectCleared: "global-object-cleared"
+    DebuggerWasEnabled: "DebuggerWasEnabled",
+    DebuggerWasDisabled: "DebuggerWasDisabled",
+    DebuggerPaused: "DebuggerPaused",
+    DebuggerResumed: "DebuggerResumed",
+    ParsedScriptSource: "ParsedScriptSource",
+    FailedToParseScriptSource: "FailedToParseScriptSource",
+    BreakpointResolved: "BreakpointResolved",
+    GlobalObjectCleared: "GlobalObjectCleared",
+    CallFrameSelected: "CallFrameSelected",
+    ExecutionLineChanged: "ExecutionLineChanged",
+    ConsoleCommandEvaluatedInSelectedCallFrame: "ConsoleCommandEvaluatedInSelectedCallFrame",
+    BreakpointsActiveStateChanged: "BreakpointsActiveStateChanged"
 }
 
 WebInspector.DebuggerModel.BreakReason = {
@@ -123,25 +119,25 @@ WebInspector.DebuggerModel.prototype = {
     },
 
     /**
-     * @param {DebuggerAgent.Location} location
+     * @param {WebInspector.DebuggerModel.Location} rawLocation
      */
-    continueToLocation: function(location)
+    continueToLocation: function(rawLocation)
     {
-        DebuggerAgent.continueToLocation(location);
+        DebuggerAgent.continueToLocation(rawLocation);
     },
 
     /**
-     * @param {DebuggerAgent.Location} location
+     * @param {WebInspector.DebuggerModel.Location} rawLocation
      * @param {string} condition
-     * @param {function()} callback
+     * @param {function(?DebuggerAgent.BreakpointId, Array.<WebInspector.DebuggerModel.Location>):void=} callback
      */
-    setBreakpointByScriptLocation: function(location, condition, callback)
+    setBreakpointByScriptLocation: function(rawLocation, condition, callback)
     {
-        var script = this.scriptForSourceID(location.scriptId);
+        var script = this.scriptForId(rawLocation.scriptId);
         if (script.sourceURL)
-            this.setBreakpoint(script.sourceURL, location.lineNumber, location.columnNumber, condition, callback);
+            this.setBreakpointByURL(script.sourceURL, rawLocation.lineNumber, rawLocation.columnNumber, condition, callback);
         else
-            this.setBreakpointBySourceId(location, condition, callback);
+            this.setBreakpointBySourceId(rawLocation, condition, callback);
     },
 
     /**
@@ -149,15 +145,16 @@ WebInspector.DebuggerModel.prototype = {
      * @param {number} lineNumber
      * @param {number=} columnNumber
      * @param {string=} condition
-     * @param {function(?DebuggerAgent.BreakpointId, Array.<DebuggerAgent.Location>=)=} callback
+     * @param {function(?DebuggerAgent.BreakpointId, Array.<WebInspector.DebuggerModel.Location>)=} callback
      */
-    setBreakpoint: function(url, lineNumber, columnNumber, condition, callback)
+    setBreakpointByURL: function(url, lineNumber, columnNumber, condition, callback)
     {
         // Adjust column if needed.
         var minColumnNumber = 0;
-        for (var id in this._scripts) {
-            var script = this._scripts[id];
-            if (url === script.sourceURL && lineNumber === script.lineOffset)
+        var scripts = this._scriptsBySourceURL[url] || [];
+        for (var i = 0, l = scripts.length; i < l; ++i) {
+            var script = scripts[i];
+            if (lineNumber === script.lineOffset)
                 minColumnNumber = minColumnNumber ? Math.min(minColumnNumber, script.columnOffset) : script.columnOffset;
         }
         columnNumber = Math.max(columnNumber, minColumnNumber);
@@ -166,23 +163,25 @@ WebInspector.DebuggerModel.prototype = {
          * @this {WebInspector.DebuggerModel}
          * @param {?Protocol.Error} error
          * @param {DebuggerAgent.BreakpointId} breakpointId
-         * @param {Array.<DebuggerAgent.Location>=} locations
+         * @param {Array.<DebuggerAgent.Location>} locations
          */
         function didSetBreakpoint(error, breakpointId, locations)
         {
-            if (callback)
-                callback(error ? null : breakpointId, locations);
+            if (callback) {
+                var rawLocations = /** @type {Array.<WebInspector.DebuggerModel.Location>} */ locations;
+                callback(error ? null : breakpointId, rawLocations);
+            }
         }
         DebuggerAgent.setBreakpointByUrl(lineNumber, url, undefined, columnNumber, condition, didSetBreakpoint.bind(this));
         WebInspector.userMetrics.ScriptsBreakpointSet.record();
     },
 
     /**
-     * @param {DebuggerAgent.Location} location
+     * @param {WebInspector.DebuggerModel.Location} rawLocation
      * @param {string} condition
-     * @param {function(?DebuggerAgent.BreakpointId, Array.<DebuggerAgent.Location>)=} callback
+     * @param {function(?DebuggerAgent.BreakpointId, Array.<WebInspector.DebuggerModel.Location>)=} callback
      */
-    setBreakpointBySourceId: function(location, condition, callback)
+    setBreakpointBySourceId: function(rawLocation, condition, callback)
     {
         /**
          * @this {WebInspector.DebuggerModel}
@@ -192,10 +191,12 @@ WebInspector.DebuggerModel.prototype = {
          */
         function didSetBreakpoint(error, breakpointId, actualLocation)
         {
-            if (callback)
-                callback(error ? null : breakpointId, [actualLocation]);
+            if (callback) {
+                var rawLocation = /** @type {WebInspector.DebuggerModel.Location} */ actualLocation;
+                callback(error ? null : breakpointId, [rawLocation]);
+            }
         }
-        DebuggerAgent.setBreakpoint(location, condition, didSetBreakpoint.bind(this));
+        DebuggerAgent.setBreakpoint(rawLocation, condition, didSetBreakpoint.bind(this));
         WebInspector.userMetrics.ScriptsBreakpointSet.record();
     },
 
@@ -219,9 +220,15 @@ WebInspector.DebuggerModel.prototype = {
 
     _globalObjectCleared: function()
     {
-        this._debuggerPausedDetails = null;
-        this._scripts = {};
+        this._setDebuggerPausedDetails(null);
+        this._reset();
         this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.GlobalObjectCleared);
+    },
+
+    _reset: function()
+    {
+        this._scripts = {};
+        this._scriptsBySourceURL = {};
     },
 
     /**
@@ -234,33 +241,11 @@ WebInspector.DebuggerModel.prototype = {
 
     /**
      * @param {DebuggerAgent.ScriptId} scriptId
-     * @return {WebInspector.Script|undefined}
+     * @return {WebInspector.Script}
      */
-    scriptForSourceID: function(scriptId)
+    scriptForId: function(scriptId)
     {
-        return this._scripts[scriptId];
-    },
-
-    /**
-     * @param {string} url
-     */
-    scriptsForURL: function(url)
-    {
-        return this.queryScripts(function(s) { return s.sourceURL === url; });
-    },
-
-    /**
-     * @param {function(WebInspector.Script):boolean} filter
-     */
-    queryScripts: function(filter)
-    {
-        var scripts = [];
-        for (var scriptId in this._scripts) {
-            var script = this._scripts[scriptId];
-            if (filter(script))
-                scripts.push(script);
-        }
-        return scripts;
+        return this._scripts[scriptId] || null;
     },
 
     /**
@@ -282,13 +267,13 @@ WebInspector.DebuggerModel.prototype = {
      */
     _didEditScriptSource: function(scriptId, newSource, callback, error, callFrames)
     {
-        if (!error && callFrames && callFrames.length)
-            this._debuggerPausedDetails.callFrames = callFrames;
         callback(error);
+        if (!error && callFrames && callFrames.length)
+            this._pausedScript(callFrames, this._debuggerPausedDetails.reason, this._debuggerPausedDetails.auxData);
     },
 
     /**
-     * @return {Array.<DebuggerAgent.CallFrame>} 
+     * @return {Array.<DebuggerAgent.CallFrame>}
      */
     get callFrames()
     {
@@ -296,11 +281,27 @@ WebInspector.DebuggerModel.prototype = {
     },
 
     /**
-     * @return {?WebInspector.DebuggerPausedDetails} 
+     * @return {?WebInspector.DebuggerPausedDetails}
      */
-    get debuggerPausedDetails()
+    debuggerPausedDetails: function()
     {
         return this._debuggerPausedDetails;
+    },
+
+    /**
+     * @param {?WebInspector.DebuggerPausedDetails} debuggerPausedDetails
+     */
+    _setDebuggerPausedDetails: function(debuggerPausedDetails)
+    {
+        if (this._debuggerPausedDetails)
+            this._debuggerPausedDetails.dispose();
+        this._debuggerPausedDetails = debuggerPausedDetails;
+        if (this._debuggerPausedDetails)
+            this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.DebuggerPaused, this._debuggerPausedDetails);
+        if (debuggerPausedDetails)
+            this.setSelectedCallFrame(debuggerPausedDetails.callFrames[0]);
+        else
+            this.setSelectedCallFrame(null);
     },
 
     /**
@@ -310,13 +311,15 @@ WebInspector.DebuggerModel.prototype = {
      */
     _pausedScript: function(callFrames, reason, auxData)
     {
-        this._debuggerPausedDetails = new WebInspector.DebuggerPausedDetails(callFrames, reason, auxData);
-        this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.DebuggerPaused, this._debuggerPausedDetails);
+        this._setDebuggerPausedDetails(new WebInspector.DebuggerPausedDetails(this, callFrames, reason, auxData));
     },
 
     _resumedScript: function()
     {
-        this._debuggerPausedDetails = null;
+        this._setDebuggerPausedDetails(null);
+        if (this._executionLineLiveLocation)
+            this._executionLineLiveLocation.dispose();
+        this._executionLineLiveLocation = null;
         this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.DebuggerResumed);
     },
 
@@ -332,8 +335,24 @@ WebInspector.DebuggerModel.prototype = {
     _parsedScriptSource: function(scriptId, sourceURL, startLine, startColumn, endLine, endColumn, isContentScript, sourceMapURL)
     {
         var script = new WebInspector.Script(scriptId, sourceURL, startLine, startColumn, endLine, endColumn, isContentScript, sourceMapURL);
-        this._scripts[scriptId] = script;
+        this._registerScript(script);
         this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.ParsedScriptSource, script);
+    },
+
+    /**
+     * @param {WebInspector.Script} script
+     */
+    _registerScript: function(script)
+    {
+        this._scripts[script.scriptId] = script;
+        if (script.sourceURL) {
+            var scripts = this._scriptsBySourceURL[script.sourceURL];
+            if (!scripts) {
+                scripts = [];
+                this._scriptsBySourceURL[script.sourceURL] = scripts;
+            }
+            scripts.push(script);
+        }
     },
 
     /**
@@ -347,6 +366,181 @@ WebInspector.DebuggerModel.prototype = {
     {
         var script = new WebInspector.Script("", sourceURL, startingLine, 0, 0, 0, false);
         this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.FailedToParseScriptSource, script);
+    },
+
+    /**
+     * @param {WebInspector.Script} script
+     * @param {number} lineNumber
+     * @param {number} columnNumber
+     * @return {WebInspector.DebuggerModel.Location}
+     */
+    createRawLocation: function(script, lineNumber, columnNumber)
+    {
+        if (script.sourceURL)
+            return this.createRawLocationByURL(script.sourceURL, lineNumber, columnNumber)
+        return new WebInspector.DebuggerModel.Location(script.scriptId, lineNumber, columnNumber);
+    },
+
+    /**
+     * @param {string} sourceURL
+     * @param {number} lineNumber
+     * @param {number} columnNumber
+     * @return {WebInspector.DebuggerModel.Location}
+     */
+    createRawLocationByURL: function(sourceURL, lineNumber, columnNumber)
+    {
+        var closestScript = null;
+        var scripts = this._scriptsBySourceURL[sourceURL] || [];
+        for (var i = 0, l = scripts.length; i < l; ++i) {
+            var script = scripts[i];
+            if (!closestScript)
+                closestScript = script;
+            if (script.lineOffset > lineNumber || (script.lineOffset === lineNumber && script.columnOffset > columnNumber))
+                continue;
+            if (script.endLine < lineNumber || (script.endLine === lineNumber && script.endColumn <= columnNumber))
+                continue;
+            closestScript = script;
+            break;
+        }
+        return closestScript ? new WebInspector.DebuggerModel.Location(closestScript.scriptId, lineNumber, columnNumber) : null;
+    },
+
+    /**
+     * @return {boolean}
+     */
+    isPaused: function()
+    {
+        return !!this.debuggerPausedDetails();
+    },
+
+    /**
+     * @param {?WebInspector.DebuggerModel.CallFrame} callFrame
+     */
+    setSelectedCallFrame: function(callFrame)
+    {
+        if (this._executionLineLiveLocation)
+            this._executionLineLiveLocation.dispose();
+        delete this._executionLineLiveLocation;
+
+        this._selectedCallFrame = callFrame;
+        if (!this._selectedCallFrame)
+            return;
+
+        this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.CallFrameSelected, callFrame);
+
+        function updateExecutionLine(uiLocation)
+        {
+            this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.ExecutionLineChanged, uiLocation);
+        }
+        this._executionLineLiveLocation = callFrame.script.createLiveLocation(callFrame.location, updateExecutionLine.bind(this));
+    },
+
+    /**
+     * @return {?WebInspector.DebuggerModel.CallFrame}
+     */
+    selectedCallFrame: function()
+    {
+        return this._selectedCallFrame;
+    },
+
+    /**
+     * @param {string} code
+     * @param {string} objectGroup
+     * @param {boolean} includeCommandLineAPI
+     * @param {boolean} doNotPauseOnExceptionsAndMuteConsole
+     * @param {boolean} returnByValue
+     * @param {function(?WebInspector.RemoteObject, boolean, RuntimeAgent.RemoteObject=)} callback
+     */
+    evaluateOnSelectedCallFrame: function(code, objectGroup, includeCommandLineAPI, doNotPauseOnExceptionsAndMuteConsole, returnByValue, callback)
+    {
+        /**
+         * @param {?RuntimeAgent.RemoteObject} result
+         * @param {boolean=} wasThrown
+         */
+        function didEvaluate(result, wasThrown)
+        {
+            if (returnByValue)
+                callback(null, !!wasThrown, wasThrown ? null : result);
+            else
+                callback(WebInspector.RemoteObject.fromPayload(result), !!wasThrown);
+
+            if (objectGroup === "console")
+                this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.ConsoleCommandEvaluatedInSelectedCallFrame);
+        }
+
+        this.selectedCallFrame().evaluate(code, objectGroup, includeCommandLineAPI, doNotPauseOnExceptionsAndMuteConsole, returnByValue, didEvaluate.bind(this));
+    },
+
+    /**
+     * @param {function(Object)} callback
+     */
+    getSelectedCallFrameVariables: function(callback)
+    {
+        var result = { this: true };
+
+        var selectedCallFrame = this._selectedCallFrame;
+        if (!selectedCallFrame)
+            callback(result);
+
+        var pendingRequests = 0;
+
+        function propertiesCollected(properties)
+        {
+            for (var i = 0; properties && i < properties.length; ++i)
+                result[properties[i].name] = true;
+            if (--pendingRequests == 0)
+                callback(result);
+        }
+
+        for (var i = 0; i < selectedCallFrame.scopeChain.length; ++i) {
+            var scope = selectedCallFrame.scopeChain[i];
+            var object = WebInspector.RemoteObject.fromPayload(scope.object);
+            pendingRequests++;
+            object.getAllProperties(propertiesCollected);
+        }
+    },
+
+    /**
+     * @param {boolean} active
+     */
+    setBreakpointsActive: function(active)
+    {
+        if (this._breakpointsActive === active)
+            return;
+        this._breakpointsActive = active;
+        DebuggerAgent.setBreakpointsActive(active);
+        this.dispatchEventToListeners(WebInspector.DebuggerModel.Events.BreakpointsActiveStateChanged, active);
+    },
+
+    /**
+     * @return {boolean}
+     */
+    breakpointsActive: function()
+    {
+        return this._breakpointsActive;
+    },
+
+    /**
+     * @param {WebInspector.DebuggerModel.Location} rawLocation
+     * @param {function(WebInspector.UILocation):(boolean|undefined)} updateDelegate
+     * @return {WebInspector.Script.Location}
+     */
+    createLiveLocation: function(rawLocation, updateDelegate)
+    {
+        var script = this._scripts[rawLocation.scriptId];
+        return script.createLiveLocation(rawLocation, updateDelegate);
+    },
+
+    /**
+     * @param {WebInspector.DebuggerModel.Location} rawLocation
+     * @return {?WebInspector.UILocation}
+     */
+    rawLocationToUILocation: function(rawLocation)
+    {
+        var script = this._scripts[rawLocation.scriptId];
+        if (!script)
+            return null;
+        return script.rawLocationToUILocation(rawLocation.lineNumber, rawLocation.columnNumber);
     }
 }
 
@@ -372,7 +566,7 @@ WebInspector.DebuggerDispatcher.prototype = {
     /**
      * @param {Array.<DebuggerAgent.CallFrame>} callFrames
      * @param {string} reason
-     * @param {*} auxData
+     * @param {Object=} auxData
      */
     paused: function(callFrames, reason, auxData)
     {
@@ -422,6 +616,144 @@ WebInspector.DebuggerDispatcher.prototype = {
     breakpointResolved: function(breakpointId, location)
     {
         this._debuggerModel._breakpointResolved(breakpointId, location);
+    }
+}
+
+/**
+ * @constructor
+ * @param {WebInspector.Script} script
+ * @param {DebuggerAgent.CallFrame} payload
+ */
+WebInspector.DebuggerModel.CallFrame = function(script, payload)
+{
+    this._script = script;
+    this._payload = payload;
+    this._locations = [];
+}
+
+WebInspector.DebuggerModel.CallFrame.prototype = {
+    /**
+     * @return {WebInspector.Script}
+     */
+    get script()
+    {
+        return this._script;
+    },
+
+    /**
+     * @return {string}
+     */
+    get type()
+    {
+        return this._payload.type;
+    },
+
+    /**
+     * @return {Array.<DebuggerAgent.Scope>}
+     */
+    get scopeChain()
+    {
+        return this._payload.scopeChain;
+    },
+
+    /**
+     * @return {RuntimeAgent.RemoteObject}
+     */
+    get this()
+    {
+        return this._payload.this;
+    },
+
+    /**
+     * @return {string}
+     */
+    get functionName()
+    {
+        return this._payload.functionName;
+    },
+
+    /**
+     * @return {WebInspector.DebuggerModel.Location}
+     */
+    get location()
+    {
+        var rawLocation = /** @type {WebInspector.DebuggerModel.Location} */ this._payload.location;
+        return rawLocation;
+    },
+
+    /**
+     * @param {string} code
+     * @param {string} objectGroup
+     * @param {boolean} includeCommandLineAPI
+     * @param {boolean} doNotPauseOnExceptionsAndMuteConsole
+     * @param {boolean} returnByValue
+     * @param {function(?RuntimeAgent.RemoteObject, boolean=)=} callback
+     */
+    evaluate: function(code, objectGroup, includeCommandLineAPI, doNotPauseOnExceptionsAndMuteConsole, returnByValue, callback)
+    {
+        /**
+         * @this {WebInspector.DebuggerModel.CallFrame}
+         * @param {?Protocol.Error} error
+         * @param {RuntimeAgent.RemoteObject} result
+         * @param {boolean=} wasThrown
+         */
+        function didEvaluateOnCallFrame(error, result, wasThrown)
+        {
+            if (error) {
+                console.error(error);
+                callback(null, false);
+                return;
+            }
+            callback(result, wasThrown);
+        }
+        DebuggerAgent.evaluateOnCallFrame(this._payload.callFrameId, code, objectGroup, includeCommandLineAPI, doNotPauseOnExceptionsAndMuteConsole, returnByValue, didEvaluateOnCallFrame.bind(this));
+    },
+
+    /**
+     * @param {function(WebInspector.UILocation):(boolean|undefined)} updateDelegate
+     */
+    createLiveLocation: function(updateDelegate)
+    {
+        var location = this._script.createLiveLocation(this.location, updateDelegate);
+        this._locations.push(location);
+        return location;
+    },
+
+    dispose: function(updateDelegate)
+    {
+        for (var i = 0; i < this._locations.length; ++i)
+            this._locations[i].dispose();
+        this._locations = [];
+    }
+}
+
+/**
+ * @constructor
+ * @param {WebInspector.DebuggerModel} model
+ * @param {Array.<DebuggerAgent.CallFrame>} callFrames
+ * @param {string} reason
+ * @param {*} auxData
+ */
+WebInspector.DebuggerPausedDetails = function(model, callFrames, reason, auxData)
+{
+    this.callFrames = [];
+    for (var i = 0; i < callFrames.length; ++i) {
+        var callFrame = callFrames[i];
+        var script = model.scriptForId(callFrame.location.scriptId);
+        if (script)
+            this.callFrames.push(new WebInspector.DebuggerModel.CallFrame(script, callFrame));
+    }
+    this.reason = reason;
+    this.auxData = auxData;
+}
+
+WebInspector.DebuggerPausedDetails.prototype = {
+    dispose: function()
+    {
+        for (var i = 0; i < this.callFrames.length; ++i) {
+            var callFrame = this.callFrames[i];
+            callFrame.dispose();
+        }
     }
 }
 

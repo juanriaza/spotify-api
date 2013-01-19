@@ -1,6 +1,6 @@
 {
   "BundleType": "Application",
-  "BundleVersion": "0.1.0",
+  "BundleVersion": "0.2.0",
   "BundleIdentifier" : "inspector",
   "VendorIdentifier" : "com.spotify",
   "Dependencies": {

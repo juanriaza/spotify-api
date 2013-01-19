@@ -11,13 +11,13 @@
  * It will keep sort data for a list.
  *
  * @constructor
- * @param {string}     wrapper CSS selector for a wrapper element containing the the sortable columns
+ * @param {string}     wrapper CSS selector for a wrapper element containing the the sortable columns.
  * @param {BundleList} list    Bundle list to sort.
  *
  * @property {HTMLElement} wrapper DOM element for the passed in CSS selector.
  * @property {BundleList} list Bundle list to sort.
  */
-function Sorter (wrapper, list) {
+function Sorter(wrapper, list) {
   var cols, i, l;
 
   // Set the objects
@@ -37,11 +37,11 @@ function Sorter (wrapper, list) {
  *
  * @param {HTMLElement} elem DOM element that triggers the sorting.
  */
-Sorter.prototype.sort = function (elem) {
+Sorter.prototype.sort = function(elem) {
   var conversion, order, direction;
 
   // Get the sort config
-  order = elem.dataset.sortOrder || 'type';
+  order = elem.dataset.sortOrder || 'type';
   direction = elem.dataset.sortDirection || 'asc';
 
   // Add class to set specific style for the column when the list is actually sorted
@@ -61,16 +61,16 @@ Sorter.prototype.sort = function (elem) {
     elem.classList.remove('sorted-desc');
     elem.classList.add('sorted-asc');
   }
-}
+};
 
 /**
  * Create a new sorter.
  *
- * @param {string}     wrapper CSS selector for a wrapper element containing the the sortable columns
+ * @param {string}     wrapper CSS selector for a wrapper element containing the the sortable columns.
  * @param {BundleList} list    Bundle list to sort.
  *
  * @return {Sorter} Instance of a sorter.
  */
-exports.create = function (wrapper, list) {
+exports.create = function(wrapper, list) {
   return new Sorter(wrapper, list);
 };

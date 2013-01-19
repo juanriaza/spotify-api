@@ -17,6 +17,10 @@
     -webkit-user-select: text;
 }
 
+.popover .content.fixed-height {
+    overflow: hidden;
+} 
+
 .popover .arrow {
     position: absolute;
     background-image: url(Images/popoverArrows.png);
@@ -87,9 +91,4 @@
     margin-bottom: 15px;
     margin-right: -25px;
     background-position: 0 -57px;
-}
-
-
-table {
-    font-size: 10px;
 }

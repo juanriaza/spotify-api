@@ -23,11 +23,11 @@ var transitionEndEvent = 'webkitTransitionEnd';
  *                         `toggleClass`: CSS class for an element inside the wrapper that should trigger a toggle
  *                         `animate`: True if the toggle should animate
  *                         `onToggle`: Function that gets called when the item is toggled through a click.
- *                         `itemSelector`: CSS selector for an item
+ *                         `itemSelector`: CSS selector for an item.
  *
  * @property {string} allState The state of the toggle all feature. `'open'` or `'closed'`.
  */
-function Toggler (options) {
+function Toggler(options) {
 
   // Get elements
   this.wrapper = document.querySelector(options.wrapper);
@@ -37,7 +37,7 @@ function Toggler (options) {
   this.closedHeight = options.closedHeight;
   this.toggleClass = options.toggleClass;
   this.animate = options.animate === false ? false : true;
-  this.onToggle = options.onToggle || function () {};
+  this.onToggle = options.onToggle || function() {};
   this.itemSelector = options.itemSelector;
 
   // Set state for the 'toggle all'
@@ -54,7 +54,7 @@ function Toggler (options) {
  * Handler for click events inside the wrapper
  * It catches all clicks, and only performs stuff when a toggle was clicked.
  */
-Toggler.prototype.clickHandler = function (e) {
+Toggler.prototype.clickHandler = function(e) {
   var id, item, toggles, i, l;
 
   // We are only interested in clicks on toggles
@@ -85,11 +85,11 @@ Toggler.prototype.clickHandler = function (e) {
  *
  * @return {Object} Object containing the closed item height and full open height, with properties `item` and `full`.
  */
-Toggler.prototype.getHeights = function (item) {
+Toggler.prototype.getHeights = function(item) {
   var itemHeight, fullHeight;
 
   // Get heights for the collapsed and expanded state
-  itemHeight = this.closedHeight || 0;
+  itemHeight = this.closedHeight || 0;
   fullHeight = item.children[0].offsetHeight;
 
   return {
@@ -105,7 +105,7 @@ Toggler.prototype.getHeights = function (item) {
  *
  * @return {boolean} True if open, false otherwise.
  */
-Toggler.prototype.isItemOpen = function (itemElem) {
+Toggler.prototype.isItemOpen = function(itemElem) {
   return itemElem ? itemElem.classList.contains('open') : false;
 };
 
@@ -115,7 +115,7 @@ Toggler.prototype.isItemOpen = function (itemElem) {
  * @param {HTMLElement} item    DOM element for an item.
  * @param {boolean}     animate True if the toggling should animate.
  */
-Toggler.prototype.toggleItem = function (item, animate) {
+Toggler.prototype.toggleItem = function(item, animate) {
   animate = animate === false ? false : true;
 
   var heights = this.getHeights(item);
@@ -132,7 +132,7 @@ Toggler.prototype.toggleItem = function (item, animate) {
  * @param {HTMLElement} item    DOM element for an item.
  * @param {boolean}     animate True if the toggling should animate.
  */
-Toggler.prototype.openItem = function (item, animate) {
+Toggler.prototype.openItem = function(item, animate) {
   animate = animate === false ? false : true;
 
   var heights = this.getHeights(item);
@@ -150,7 +150,7 @@ Toggler.prototype.openItem = function (item, animate) {
  * @param {HTMLElement} item    DOM element for an item.
  * @param {boolean}     animate True if the toggling should animate.
  */
-Toggler.prototype.closeItem = function (item, animate) {
+Toggler.prototype.closeItem = function(item, animate) {
   animate = animate === false ? false : true;
 
   var heights = this.getHeights(item);
@@ -167,9 +167,9 @@ Toggler.prototype.closeItem = function (item, animate) {
  * Wrapper methods exist for this, so you probably want to call them instead.
  *
  * @param {HTMLElement} item    DOM element for an item.
- * @param {Object}      options Object with options for the toggling. `minHeight`, `fullHeight`, `forceState`, `animate`
+ * @param {Object}      options Object with options for the toggling. `minHeight`, `fullHeight`, `forceState`, `animate`.
  */
-Toggler.prototype.toggle = function (item, options) {
+Toggler.prototype.toggle = function(item, options) {
 
   // Default settings
   var settings = {
@@ -209,7 +209,7 @@ Toggler.prototype.toggle = function (item, options) {
  * Toggles all items.
  * This is called when the allButton is clicked, if specified when the toggler was created.
  */
-Toggler.prototype.toggleAll = function () {
+Toggler.prototype.toggleAll = function() {
   var items, heights;
 
   this.allState = this.allState === 'closed' ? 'open' : 'closed';
@@ -233,6 +233,6 @@ Toggler.prototype.toggleAll = function () {
  *
  * @return {Toggler} Instance of a toggler.
  */
-exports.create = function (options) {
+exports.create = function(options) {
   return new Toggler(options);
 };

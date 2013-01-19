@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Copyright (c) 2012 Spotify AB
+
+import logging
+import optparse
+
+from gevent import pywsgi
+
+from spotify.appsdk.collection import AppCollection
+from spotify.appsdk.service import Service
+
+log = logging.getLogger(__name__)
+
+
+if __name__ == '__main__':
+    parser = optparse.OptionParser(usage='usage: %prog [options] approot...')
+    parser.add_option('-b', '--bind', default='localhost', metavar='HOST',
+        help='hostname to bind server socket to')
+    parser.add_option('-p', '--port', default='7768', metavar='PORT', type=int,
+        help='server port to use')
+    options, args = parser.parse_args()
+    if not args:
+        parser.error('You must specify at least one app root path')
+
+    format = '%(asctime)s %(name)s %(levelname)s: %(message)s'
+    logging.basicConfig(format=format, level=logging.DEBUG)
+
+    collection = AppCollection(args)
+    apps = collection.apps()
+    log.info('Found %d apps' % len(apps))
+    for identifier, path in apps:
+        log.info(' %s: %s' % (identifier, path))
+
+    log.info('Starting up SDK service on %s:%s ...' % (options.bind, options.port))
+    srv = pywsgi.WSGIServer((options.bind, options.port), Service(collection))
+    try:
+        srv.serve_forever()
+    except KeyboardInterrupt, SystemExit:
+        pass

@@ -1289,12 +1289,9 @@ Temporarily added this here, should really be changed in eve.css
 	overflow: hidden;
 	position: relative;
 }
-	#appsBanner .banner-images.start {
-		-webkit-transition: none;
-	}
 
 	#appsBanner .banner-images.focus {
-		opacity:1;
+		opacity: 1;
 		z-index: 10;
 	}
 	#previousimage {
@@ -1329,65 +1326,6 @@ Temporarily added this here, should really be changed in eve.css
 
 /* BANNER */
 
-#CustomBanner {
-	width: 100%;
-	height: 244px;
-	background: transparent;
-	cursor: pointer;
-}
-.mfr-bg {
-	position: absolute;
-	display: block;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 244px;
-	cursor: pointer;
-	background: #141519 url('http://download.spotify.s3.amazonaws.com/mfr.jpg') no-repeat center center;
-}
-.has-ad-bg .mfr-bg {
-	top: 578px;
-}
-.survey-body .mfr-bg {
-	display: none;
-}
-.survey-body.has-ad-bg .mfr-bg {
-	display: block;
-}
-.survey-body #CustomBanner {
-	background: #141519 url('http://download.spotify.s3.amazonaws.com/mfr.jpg') no-repeat 48% center;
-}
-.survey-body.has-ad-bg #CustomBanner {
-	background-position: center center;
-}
-
-.survey-body.has-ad-bg #CustomBanner a.gplay,
-.survey-body.has-ad-bg #CustomBanner a.astore,
-#CustomBanner a.gplay,
-#CustomBanner a.astore {
-	position: absolute;
-	width: 145px;
-	height: 50px;
-	top: 110px;
-	left: 50%;
-	margin-left: -316px;
-	border-radius: 10px;
-	cursor: pointer;
-	display: block;
-	z-index: 2;
-}
-.survey-body.has-ad-bg #CustomBanner a.astore,
-#CustomBanner a.astore {
-	margin-left: -160px;
-}
-
-.survey-body #CustomBanner a.gplay {
-	margin-left: -303px;
-}
-.survey-body #CustomBanner a.astore {
-	margin-left: -147px;
-}
-
 #appsBanner {
 	max-width: 800px;
 	min-width: 342px;
@@ -1409,11 +1347,6 @@ Temporarily added this here, should really be changed in eve.css
 		}
 
 	#appsBanner .banner-images.focus {
-		-webkit-animation-name: fade-in;
-		-webkit-animation-duration: 0.5s;
-		-webkit-animation-timing-function: ease-out;
-		-webkit-animation-direction: normal;
-		-webkit-animation-fill-mode: forwards;
 		z-index: 10;
 	}
 	#appsBanner #previousimage {
@@ -1517,13 +1450,3 @@ Temporarily added this here, should really be changed in eve.css
 #wrapper.test-a #NewAlbums h2:first-child {
 	display: none;
 }
-/* ANIMATIONS */
-@-webkit-keyframes fade-in {
-	from { opacity: 0; }
-	to   { opacity: 1; }
-}
-@-webkit-keyframes fade-out {
-	from { opacity: 1; }
-	to   { opacity: 0; }
-}
-

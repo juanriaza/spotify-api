@@ -1,0 +1,17 @@
+{
+  "metadataFailed" : {
+    "unknownError" : "Spiacente, impossibile scaricare questa app. Riprova più tardi.",
+    "clientOffline" : "Vai online per lanciare questa app.",
+    "connectionFailed" : "Spiacente, impossibile scaricare questa app. Riprova più tardi.",
+    "appNotFound" : "Spiacente, impossibile trovare questa app."
+  },
+  "downloadFailed" : {
+    "unknownError" : "Spiacente, impossibile scaricare questa app. Riprova più tardi.",
+    "clientOffline" : "Vai online per lanciare questa app.",
+    "connectionFailed" : "Spiacente, impossibile scaricare questa app. Riprova più tardi.",
+    "urlNotFound" : "Spiacente, impossibile scaricare questa app. Riprova più tardi."
+  },
+  "installFailed" : {
+    "incorrectChecksum" : "Spiacente, impossibile scaricare questa app. Riprova."
+  }
+}

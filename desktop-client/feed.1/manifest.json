@@ -24,25 +24,31 @@
         "en": "Friend Feed",
         "es": "Friend Feed",
         "fr": "Friend Feed",
-        "nl": "Friend Feed"
+        "it": "Friend Feed",
+        "nl": "Friend Feed",
+        "pl": "Friend Feed"
     },
     "AppName": {
         "de": "Feed",
         "en": "Feed",
         "es": "Feed",
         "fr": "Feed",
-        "nl": "Feed"
+        "it": "Feed",
+        "nl": "Feed",
+        "pl": "Feed"
     },
     "BundleIdentifier": "feed",
     "BundleType": "Application",
-    "BundleVersion": "1.1.6",
+    "BundleVersion": "1.4.3",
+    "BridgeDependencies": {
+        "bridge-desktop": "0.10.0"
+    },
     "InternalBundleVersion": 13,
     "Dependencies": {
         "api": "0.1.0",
-        "resources": "0.1.0",
+        "resources": "0.2.6",
         "unstable": "0.10.0",
-        "util": "0.1.0",
-        "bridge-desktop": "0.10.0"
+        "util": "0.1.0"
     },
     "PlaybackOwner": false,
     "RequiredPermissions": [
@@ -52,12 +58,17 @@
         "http://*.cloudfront.net",
         "https://*.spotify.com"
     ],
+    "SupportedDeviceClasses": [
+        "Desktop"
+    ],
     "SupportedLanguages": [
         "en",
         "fr",
         "es",
         "de",
-        "nl"
+        "it",
+        "nl",
+        "pl"
     ],
     "UserInstallable": false,
     "VendorIdentifier": "com.spotify"

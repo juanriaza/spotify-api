@@ -76,6 +76,7 @@ function Player() {
 
   player.node.addEventListener('DOMNodeInsertedIntoDocument', function(e) {
     m.player.observe(m.EVENT.CHANGE, onPlayerStateChanged);
+    playerStateChanged.call(player);
   });
 
   player.node.addEventListener('DOMNodeRemovedFromDocument', function(e) {
@@ -319,7 +320,9 @@ function listOnKeypress(list, event) {
     case 38:
     case 40:
       event.preventDefault();
-      null === list.selection ? 0 : list.selection += keyCode === 40 ? 1 : -1;
+      if (list.selection !== null) {
+        list.selection += keyCode === 40 ? 1 : -1;
+      }
       break;
     default:
       break;

@@ -1,0 +1,50 @@
+{
+    "AppIcon": {
+        "36x18": "img/follow-18.png"
+    },
+    "AppName": {
+        "de": "Folgen",
+        "en": "Follow",
+        "es": "Seguir",
+        "fr": "S'abonner",
+        "it": "Segui",
+        "nl": "Volgen",
+        "pl": "Obserwuj"
+    },
+    "AppDescription": {
+        "de": "Folgen",
+        "en": "Follow",
+        "es": "Seguir",
+        "fr": "S'abonner",
+        "it": "Segui",
+        "nl": "Volgen",
+        "pl": "Obserwuj"
+    },
+    "BundleIdentifier": "follow",
+    "BundleType": "Application",
+    "BundleVersion": "1.0.6",
+    "Dependencies": {
+        "api": "1.21.0",
+        "shared": "0.0.2",
+        "views": "1.24.0"
+    },
+    "RequiredPermissions": [
+        "https://fbcdn-profile-*.akamaihd.net",
+        "http://*.fbcdn.net"
+    ],
+    "SupportedDeviceClasses": [
+        "Desktop",
+        "Web"
+    ],
+    "SupportedLanguages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl"
+    ],
+    "UserInstallable": false,
+    "VendorIndentifier": "com.spotify"
+}

@@ -1062,6 +1062,113 @@
               The metadata can be used to partially populate the fields of the
               objects created from the URIs in the array. If this field exists
               it must contain the same number of items as the field "array".
+    - name: library_artists_event_wait
+      description: Fired when the list of artists in a users collection changes.
+      arguments:
+        type: string
+        description: |
+          The user URI of the user of whose collection we want to observe.
+      returns:
+        type: object
+        fields:
+          - name: type
+            type: string
+            description: |
+              Values 'changed' to signal that the collection changed.
+    - name: library_albums_event_wait
+      description: Fired when the list of albums in a users collection changes.
+      arguments:
+        type: string
+        description: |
+          The user URI of the user of whose collection we want to observe.
+      returns:
+        type: object
+        fields:
+          - name: type
+            type: string
+            description: |
+              Values 'changed' to signal that the collection changed.
+    - name: library_tracks_event_wait
+      description: Fired when the list of tracks in a users collection changes.
+      arguments:
+        type: string
+        description: |
+          The user URI of the user of whose collection we want to observe.
+      returns:
+        type: object
+        fields:
+          - name: type
+            type: string
+            description: |
+              Values 'changed' to signal that the collection changed.
+    - name: library_albums_append
+      description: Add albums to a user's collection.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: string
+          description: The album URI.
+          repeats: true
+      returns: none
+    - name: library_tracks_append
+      description: Add tracks to a user's collection.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: string
+          description: The track URI.
+          repeats: true
+      returns: none
+    - name: library_albums_remove
+      description: Removes an album from the specified user's collection.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: Index of the row to remove. Not used.
+        - type: string
+          description: Uri of the album to remove.
+      returns: none
+    - name: library_tracks_remove
+      description: Removes a track from the specified user's collection.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: number
+          description: Index of the row to remove. Not used.
+        - type: string
+          description: Uri of the track to remove.
+      returns: none
+    - name: library_albums_contains
+      description: Checks if a list of albums exists in a user's collection.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: string
+          description: Uri of the album.
+          repeats: true
+      returns:
+        - type: array
+          description: |
+            An array of boolean values, one for each item provided in the call.
+    - name: library_tracks_contains
+      description: Checks if a list of tracks exists in a user's collection.
+      arguments:
+        - type: string
+          description: User URI.
+        - type: string
+          description: Uri of the track.
+          repeats: true
+      returns:
+        - type: array
+          description: |
+            An array of boolean values, one for each item provided in the call.
+    - name: library_tracks_clear
+      description: Removes all tracks from the specified users collection.
+      arguments:
+        - type: string
+          description: User URI.
+      returns: none
 
 - group: Messaging
   requests:

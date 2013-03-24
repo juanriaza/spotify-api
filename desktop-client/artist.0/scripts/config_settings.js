@@ -1,1 +1,5 @@
-var settings={release:["client","web"]};exports.ConfigSettings=settings;
+var settings = {
+  release: ['client', 'web']
+};
+
+exports.ConfigSettings = settings;

@@ -5,6 +5,9 @@
         ],
         "installer": [
             "private"
+        ],
+        "bundles": [
+            "private"
         ]
     },
     "AppDescription": {
@@ -12,7 +15,9 @@
         "en": "",
         "es": "",
         "fr": "",
-        "nl": ""
+        "nl": "",
+        "it": "",
+        "pl": ""
     },
     "AppIcon": {
         "128x128": "assets/img/app-finder-128.png",
@@ -24,11 +29,13 @@
         "en": "App Finder",
         "es": "Buscador de apps",
         "fr": "Recherche d'applis",
-        "nl": "App Finder"
+        "nl": "App Finder",
+        "it": "Cerca App",
+        "pl": "Wyszukiwarka aplikacji"
     },
     "BundleIdentifier": "finder",
     "BundleType": "Application",
-    "BundleVersion": "1.1.0",
+    "BundleVersion": "1.1.7",
     "Dependencies": {
         "api": "0.1.0",
         "resources": "0.1.0",
@@ -45,7 +52,9 @@
         "fr",
         "es",
         "de",
-        "nl"
+        "nl",
+        "it",
+        "pl"
     ],
     "UserInstallable": false,
     "VendorIdentifier": "com.spotify"

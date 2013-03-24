@@ -7,5 +7,8 @@
     "PopupPlaylistSubscribeCancel": "No",
     "PopupPlaylistSubscribeConfirm": "Okay",
     "PopupPlaylistSubscribeLine1": "You're now also following {0} because you followed this playlist.",
-    "PopupPlaylistSubscribeLine2": "Continue to follow this user?"
+    "PopupPlaylistSubscribeLine2": "Continue to follow this user?",
+    "AddToCollection": "Add to Collection",
+    "RemoveFromCollection": "Remove from Collection",
+    "InYourCollection": "In your Collection"
 }

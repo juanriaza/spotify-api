@@ -130,11 +130,6 @@ section {
 		}
 
 	#feature-banner .banner-images.focus {
-		-webkit-animation-name: fade-in;
-		-webkit-animation-duration: 0.5s;
-		-webkit-animation-timing-function: ease-out;
-		-webkit-animation-direction: normal;
-		-webkit-animation-fill-mode: forwards;
 		z-index: 10;
 	}
 	#feature-banner #previousimage {

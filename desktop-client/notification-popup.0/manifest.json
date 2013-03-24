@@ -4,16 +4,20 @@
       "en": "Notification Popup",
       "es": "Notification Popup",
       "fr": "Notification Popup",
-      "nl": "Notification Popup"
+      "it": "Notification Popup",
+      "nl": "Notification Popup",
+      "pl": "Notification Popup"
   },
   "AppName": {
       "de": "Notification Popup",
       "en": "Notification Popup",
       "es": "Notification Popup",
       "fr": "Notification Popup",
-      "nl": "Notification Popup"
+      "it": "Notification Popup",
+      "nl": "Notification Popup",
+      "pl": "Notification Popup"
   },
-  "BundleVersion": "0.1.1",
+  "BundleVersion": "0.1.5",
   "BundleIdentifier": "notification-popup",
   "BundleType": "Application",
   "UserInstallable": false,
@@ -45,7 +49,9 @@
       "en",
       "es",
       "fr",
-      "nl"
+      "it",
+      "nl",
+      "pl"
   ],
   "VendorIdentifier": "com.spotify"
 }

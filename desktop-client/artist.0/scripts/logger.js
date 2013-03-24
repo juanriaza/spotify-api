@@ -1,2 +1,37 @@
-require(["$api/models","/scripts/env#Environment"],function(c,d){function a(){this.context="artist";this.testGroup=!1;this.eventVersion=1;this.testVersion="base"}a.prototype.setTestGroup=function(a){this.testGroup=a};a.prototype.setTestVersion=function(a){this.testVersion=a};a.prototype.getTestVersion=function(){return this.testVersion};a.prototype.isBaseVersion=function(){return"base"===this.getTestVersion()};a.prototype.clientEvent=function(a,b){"undefined"===typeof b&&(b={});b.environment=d.desktop?
-"desktop":"web";c.application.clientEvent(this.context,a,this.eventVersion,this.testVersion,b)};exports.Logger=a});
+require([
+  '$api/models',
+  '/scripts/env#Environment'
+], function(Models, Environment) {
+  function Logger() {
+    this.context = 'artist';
+    this.testGroup = false;
+    this.eventVersion = 1;
+    this.testVersion = 'base';
+  }
+
+  Logger.prototype.setTestGroup = function(testGroupID) {
+    this.testGroup = testGroupID;
+  };
+
+  Logger.prototype.setTestVersion = function(version) {
+    this.testVersion = version;
+  };
+
+  Logger.prototype.getTestVersion = function() {
+    return this.testVersion;
+  };
+
+  Logger.prototype.isBaseVersion = function() {
+    return this.getTestVersion() === 'base';
+  }
+
+  Logger.prototype.clientEvent = function(event, data) {
+    if (typeof(data) === 'undefined') {
+      var data = {};
+    }
+    data.environment = (Environment.desktop ? 'desktop' : 'web');
+    Models.application.clientEvent(this.context, event, this.eventVersion, this.testVersion, data);
+  };
+
+  exports.Logger = Logger;
+});

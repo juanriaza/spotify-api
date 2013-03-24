@@ -92,27 +92,19 @@ var NewAlbums = {
 
     var today = new Date();
     var pushed_albums = [{
-      end: new Date(2013, 0, 27),
-      group: sp.core.getAbTestGroupForTest('push.test-3'),
-      id: 'spotify:album:3MZ5hMy89OUFVvonMKkXEV',
-      start: new Date(2012, 10, 13)
-    }, {
-      end: new Date(2012, 11, 27),
-      group: sp.core.getAbTestGroupForTest('push.test-2'),
-      id: 'spotify:album:5SVTRyWHWnM8d1VaJYLffG',
-      start: new Date(2012, 10, 13)
-    }, {
-      end: new Date(2012, 11, 12),
+      start: new Date(2013, 1, 25),
+      end: new Date(2013, 2, 4),
       group: sp.core.getAbTestGroupForTest('push.test-1'),
       id: 'spotify:album:5ZAKzV4ZIa5Gt7z29OYHv0',
-      start: new Date(2012, 10, 13)
+      country: 'US'
     }];
 
     // Add pushed albums
     for (var i = 0; i < pushed_albums.length; i++) {
-      if (pushed_albums[i]['start'] < today &&
+      if (pushed_albums[i]['country'] == sp.core.country &&
+          pushed_albums[i]['start'] < today &&
           pushed_albums[i]['end'] > today &&
-          pushed_albums[i]['group'] < 400) {
+          pushed_albums[i]['group'] < 500) {
         uris.unshift(pushed_albums[i]['id']);
         recommendedUris[pushed_albums[i]['id']] = true;
       }
@@ -120,11 +112,11 @@ var NewAlbums = {
 
     for (var j = 0, l = data.length; j < l; j++) {
       if (!self.blacklist[data[j]['album_uri']]) {
-        if (data.isRecommended !== false)
+        if (data[j].isRecommended !== false) {
           recommendedUris[data[j]['album_uri']] = true;
-        else
+        } else {
           recommendedUris[data[j]['album_uri']] = false;
-
+        }
         uris.push(data[j]['album_uri']);
       }
     }
@@ -156,12 +148,16 @@ var NewAlbums = {
             // Why is availableForPlayback sometimes false, even though it's available?
 
             // Unless push remove duplicate artists.
-            if (d.artist.name.toUpperCase() !== 'CAZZETTE')
+            if (d.artist.name.toUpperCase() !== 'CAZZETTE') {
               artists.push(d.artist.name);
+            }
 
             // Clone and delete album tracks array
             var clonedAlbum = clone(d);
             clonedAlbum.tracks = [];
+            if (recommendedUris[clonedAlbum.uri]) {
+              clonedAlbum.isRecommended = true;
+            }
             filteredMetadata.push(clonedAlbum);
 
             if (count == 4) {
@@ -174,7 +170,6 @@ var NewAlbums = {
         if (!recommendedUris[filteredMetadata[2].uri]) {
           for (var k = 0; k < filteredMetadata.length; k++) {
             if (recommendedUris[filteredMetadata[k].uri]) {
-
               var tempK = filteredMetadata[k];
               var temp = filteredMetadata[2];
               filteredMetadata[2] = tempK;
@@ -251,8 +246,10 @@ var NewAlbums = {
    * @return {element} The node.
    */
   makeNode: function(index) {
-    var data = wnData.Data.get(this._key)[index],
-        li = new dom.Element('li'),
+    var d = wnData.Data.get(this._key),
+        data = d[index % d.length];
+
+    var li = new dom.Element('li'),
         badge = new dom.Element('div', {
           className: 'badge',
           textContent: (data.isRecommended ? this.labels.sRecommended : this.labels.sTopList)
@@ -270,7 +267,6 @@ var NewAlbums = {
           href: data.artist.uri,
           html: data.artist.name
         });
-
 
     dom.listen(album, 'click', function(e) {
       logger.logClientEvent('newAlbums',
@@ -346,7 +342,6 @@ function clone(obj) {
     return copy;
   }
   else {
-    console.log('Unable to clone object of type', typeof obj);
     return obj;
   }
 }

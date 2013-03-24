@@ -2,7 +2,7 @@
     "BundleIdentifier": "bridge-desktop",
     "BundleType": "Bridge",
     "BundleUpdatable": false,
-    "BundleVersion": "0.12.0",
+    "BundleVersion": "0.12.2",
     "UserInstallable": false,
     "VendorIdentifier": "com.spotify"
 }

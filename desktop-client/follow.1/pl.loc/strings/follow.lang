@@ -1,0 +1,21 @@
+{
+  "ViewProfile" : "Pokaż mój profil",
+  "SubscriptionsLabel" : "Obserwuje:",
+  "SubscribersLabel" : "Obserwujący:",
+  "Refresh" : "Odśwież",
+  "FriendsLabel" : "Znajomi z Facebooka w serwisie Spotify",
+  "FriendsEmpty" : "Brak więcej użytkowników do pokazania w tej chwili",
+  "CelebritiesLabel" : "Wybrane",
+  "CelebritiesEmpty" : "Brak wybranych kont do wyświetlenia w tej chwili",
+  "NetworkLabel" : "Polecane z Twojej sieci",
+  "NetworkEmpty" : "Obserwuj więcej osób, aby otrzymywać więcej sugestii",
+  "RecommendationsLabel" : "Polecone dla Ciebie",
+  "RecommendationsEmpty" : "Brak innych rekomendacji do pokazania w tej chwili",
+  "SubscriberCountSingle" : "{0} obserwujący",
+  "SubscriberCountPlural" : "{0} obserwujących",
+  "ListXOthers" : "{0} innych",
+  "InfoFollowedBy" : "Obserwowany przez",
+  "InfoFollowsYou" : "Obserwuje Cię",
+  "InfoTopArtists" : "Słucha",
+  "InfoPlaylists" : "Playlisty:"
+}

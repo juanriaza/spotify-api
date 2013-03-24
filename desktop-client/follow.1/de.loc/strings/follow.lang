@@ -1,0 +1,21 @@
+{
+    "ViewProfile": "Profil anzeigen",
+    "SubscriptionsLabel": "Folge ich:",
+    "SubscribersLabel": "Followers:",
+    "Refresh": "Neu laden",
+    "FriendsLabel": "Facebook-Freunde auf Spotify",
+    "FriendsEmpty": "Es können keine weiteren Benutzer angezeigt werden",
+    "CelebritiesLabel": "Exklusiv",
+    "CelebritiesEmpty": "Zur Zeit können keine weiteren exklusiven Accounts angezeigt werden",
+    "NetworkLabel": "Empfohlen aus deinem Netzwerk",
+    "NetworkEmpty": "Folge mehr Leuten um mehr Empfehlungen zu erhalten",
+    "RecommendationsLabel": "Für dich empfohlen",
+    "RecommendationsEmpty": "Es können keine weiteren empfohlenen Profile angezeigt werden",
+    "SubscriberCountSingle": "{0} Follower",
+    "SubscriberCountPlural": "{0} Followers",
+    "ListXOthers": "{0} anderen",
+    "InfoFollowedBy": "Followers",
+    "InfoFollowsYou": "Folgt dir",
+    "InfoTopArtists": "Hört",
+    "InfoPlaylists": "Playlists:"
+}

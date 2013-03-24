@@ -4,7 +4,9 @@
     "en",
     "es",
     "fr",
-    "nl"
+    "it",
+    "nl",
+    "pl"
   ],
   "strings" : {
     "Share widget" : {
@@ -16,7 +18,9 @@
           "en" : "Back to sharing",
           "es" : "Vuelta a compartir",
           "fr" : "Retour",
-          "nl" : "Terug naar delen"
+          "nl" : "Terug naar delen",
+          "it" : "Torna alla condivisione",
+          "pl" : "Wróć do udostępniania"
         }
       },
       "actionCancel" : {
@@ -27,24 +31,23 @@
           "en" : "Cancel",
           "es" : "Cancelar",
           "fr" : "Annuler",
-          "nl" : "Annuleren"
+          "nl" : "Annuleren",
+          "it" : "Annulla",
+          "pl" : "Anuluj"
         }
       },
       "actionClose" : {
         "approved" : false,
         "description" : "",
-        "outOfDateTranslations" : [
-          "de",
-          "es",
-          "fr",
-          "nl"
-        ],
         "translations" : {
-          "en" : "Close"
-        },
-        "translationsNeedingReview" : [
-          "en"
-        ]
+          "de": "Schließen",
+          "en" : "Close",
+          "es": "Cerrar",
+          "fr": "Fermer",
+          "nl": "Sluiten",
+          "it": "Chiudi",
+          "pl": "Zamknij"
+        }
       },
       "actionConnect" : {
         "approved" : false,
@@ -54,7 +57,9 @@
           "en" : "Connect",
           "es" : "Conectar",
           "fr" : "Connexion",
-          "nl" : "Verbinden"
+          "nl" : "Verbinden",
+          "it" : "Connettiti",
+          "pl" : "Połącz"
         }
       },
       "actionDisconnect" : {
@@ -65,7 +70,9 @@
           "en" : "Disconnect",
           "es" : "Desconectar",
           "fr" : "Déconnexion",
-          "nl" : "Verbinding verbreken"
+          "nl" : "Verbinding verbreken",
+          "it" : "Disconnetti",
+          "pl" : "Rozłącz"
         }
       },
       "actionSend" : {
@@ -76,7 +83,9 @@
           "en" : "Send",
           "es" : "Enviar",
           "fr" : "Envoyer",
-          "nl" : "Versturen"
+          "nl" : "Versturen",
+          "it" : "Invia",
+          "pl" : "Wyślij"
         }
       },
       "actionShare" : {
@@ -87,40 +96,36 @@
           "en" : "Share",
           "es" : "Compartir",
           "fr" : "Partager",
-          "nl" : "Delen"
+          "nl" : "Delen",
+          "it" : "Condividi",
+          "pl" : "Udostępnij"
         }
       },
       "errorLocalFile" : {
         "approved" : false,
         "description" : "",
-        "outOfDateTranslations" : [
-          "de",
-          "es",
-          "fr",
-          "nl"
-        ],
         "translations" : {
-          "en" : "Sorry, local files cannot be shared."
-        },
-        "translationsNeedingReview" : [
-          "en"
-        ]
+          "en" : "Sorry, local files cannot be shared.",
+          "de" : "Lokalen Dateien können nicht mit anderen geteilt werden.",
+          "es" : "Lo sentimos, pero no es posible compartir archivos locales.",
+          "fr" : "Vous ne pouvez pas partager vos fichiers locaux.",
+          "nl" : "Lokale bestanden kan je helaas niet delen.",
+          "pl" : "Niestety nie można udostępniać lokalnych plików.",
+          "it" : "Spiacenti! Impossibile condividere i file locali."
+        }
       },
       "errorUnsupportedType" : {
         "approved" : false,
         "description" : "",
-        "outOfDateTranslations" : [
-          "de",
-          "es",
-          "fr",
-          "nl"
-        ],
         "translations" : {
-          "en" : "Sorry, you cannot share that."
-        },
-        "translationsNeedingReview" : [
-          "en"
-        ]
+          "en" : "Sorry, you cannot share that.",
+          "de" : "Dies kann leider nicht geteilt werd.",
+          "es" : "Lo sentimos, pero no es posible compartir eso.",
+          "fr" : "Ceci ne peut pas être partagé.",
+          "nl" : "Dit kan je helaas niet delen.",
+          "it" : "Spiacenti! Impossibile condividere questo elemento.",
+          "pl" : "Niestety nie możesz udostępnić."
+        }
       },
       "fieldEmail" : {
         "approved" : false,
@@ -130,7 +135,9 @@
           "en" : "E-mail",
           "es" : "E-mail",
           "fr" : "E-mail",
-          "nl" : "E-mail"
+          "nl" : "E-mail",
+          "it" : "E-mail",
+          "pl" : "E-mail"
         }
       },
       "fieldMessage" : {
@@ -141,7 +148,9 @@
           "en" : "Message (Optional)",
           "es" : "Mensaje (opcional)",
           "fr" : "Message (en option)",
-          "nl" : "Bericht (optioneel)"
+          "nl" : "Bericht (optioneel)",
+          "it" : "Messaggio (opzionale)",
+          "pl" : "Wiadomość (opcjonalnie)"
         }
       },
       "fieldPassword" : {
@@ -152,7 +161,9 @@
           "en" : "Password",
           "es" : "Contraseña",
           "fr" : "Mot de passe",
-          "nl" : "Wachtwoord"
+          "nl" : "Wachtwoord",
+          "it" : "Password",
+          "pl" : "Hasło"
         }
       },
       "fieldTo" : {
@@ -163,7 +174,9 @@
           "en" : "Enter a friend's name",
           "es" : "Escribe el nombre de un amigo",
           "fr" : "Entrez le nom d'un ami",
-          "nl" : "Voer de naam van een vriend in"
+          "nl" : "Voer de naam van een vriend in",
+          "it" : "Inserisci il nome di un amico",
+          "pl" : "Wpisz imię i nazwisko znajomego"
         }
       },
       "fieldUsername" : {
@@ -174,8 +187,10 @@
           "en" : "Username",
           "es" : "Nombre de usuario",
           "fr" : "Nom d'utilisateur",
-          "nl" : "Gebruikersnaam"
-        }
+          "nl" : "Gebruikersnaam",
+          "it" : "Username",
+          "pl" : "Nazwa użytkownika"
+       }
       },
       "optionsConnectError" : {
         "approved" : false,
@@ -185,29 +200,35 @@
           "en" : "Failed to connect.",
           "es" : "Error al conectar.",
           "fr" : "Echec de la connexion.",
-          "nl" : "Verbinding mislukt."
+          "nl" : "Verbinding mislukt.",
+          "it" : "Connessione non riuscita.",
+          "pl" : "Połączenie nie udało się."
         }
       },
       "optionsConnectFailed" : {
         "approved" : false,
         "description" : "Shown if connecting to a service resulted in an error from the backend.",
         "translations" : {
-          "de" : "Falscher Benutzername oder Passwort. Bitte überprüfe die Angaben und versuche es erneut. ",
+          "de" : "Falscher Benutzername oder Passwort. Bitte überprüfe die Angaben und versuche es erneut.",
           "en" : "Incorrect username or password. Please double check and try again.",
           "es" : "Nombre de usuario o contraseña incorrectos. Por favor, comprueba de nuevo y vuelve a intentarlo.",
           "fr" : "Nom d'utilisateur ou mot de passe incorrect. Merci de réessayer.",
-          "nl" : "Onjuiste gebruikersnaam of wachtwoord. Controleer nogmaals en probeer het opnieuw."
+          "nl" : "Onjuiste gebruikersnaam of wachtwoord. Controleer nogmaals en probeer het opnieuw.",
+          "it" : "Username o password errati. Ricontrollali e riprova.",
+          "pl" : "Nieprawidłowa nazwa użytkownika lub hasło. Sprawdź dobrze i spróbuj ponownie."
         }
       },
       "optionsDisclaimer" : {
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "Dein Passwort wird von uns nicht gespeichert. ",
+          "de" : "Dein Passwort wird von uns nicht gespeichert.",
           "en" : "We will never store your password.",
           "es" : "Tu contraseña nunca será almacenada.",
           "fr" : "Nous n'enregistrerons pas votre mot de passe.",
-          "nl" : "We zullen je wachtwoord nooit opslaan."
+          "nl" : "We zullen je wachtwoord nooit opslaan.",
+          "it" : "Non memorizzeremo mai la tua password.",
+          "pl" : "Nigdy nie zapisujemy Twojego hasła."
         }
       },
       "optionsStateConnectedAs" : {
@@ -218,7 +239,9 @@
           "en" : "Connected as {0}.",
           "es" : "Conectado como {0}. ",
           "fr" : "Connecté en tant que {0}.",
-          "nl" : "Verbonden als {0}."
+          "nl" : "Verbonden als {0}.",
+          "it" : "Connesso come {0}.",
+          "pl" : "Połączony jako {0}."
         }
       },
       "optionsStateNotConnected" : {
@@ -229,7 +252,9 @@
           "en" : "Not connected.",
           "es" : "No conectado.",
           "fr" : "Pas connecté.",
-          "nl" : "Niet verbonden."
+          "nl" : "Niet verbonden.",
+          "it" : "Non connesso.",
+          "pl" : "Niepołączony."
         }
       },
       "optionsStateTumblrPostingTo" : {
@@ -240,7 +265,9 @@
           "en" : "Posting to {0}.",
           "es" : "Publicando en {0}.",
           "fr" : "Envoi sur {0}.",
-          "nl" : "Posten op {0}."
+          "nl" : "Posten op {0}.",
+          "it" : "Post su {0}.",
+          "pl" : "Publikowanie w {0}."
         }
       },
       "optionsStateUnknown" : {
@@ -251,7 +278,9 @@
           "en" : "Temporarily unavailable.",
           "es" : "No disponible temporalmente.",
           "fr" : "Temporairement indisponible.",
-          "nl" : "Tijdelijk niet beschikbaar."
+          "nl" : "Tijdelijk niet beschikbaar.",
+          "it" : "Temporaneamente non disponibile.",
+          "pl" : "Tymczasowo niedostępny."
         }
       },
       "optionsTitle" : {
@@ -262,7 +291,9 @@
           "en" : "Sharing options",
           "es" : "Opciones para compartir",
           "fr" : "Options de partage",
-          "nl" : "Opties voor delen"
+          "nl" : "Opties voor delen",
+          "it" : "Opzioni di condivisione",
+          "pl" : "Opcje udostępniania"
         }
       },
       "playlistByPrefix" : {
@@ -273,45 +304,35 @@
           "en" : "by",
           "es" : "de",
           "fr" : "par",
-          "nl" : "van"
+          "nl" : "van",
+          "it" : "di",
+          "pl" : "wg"
         }
       },
       "sendTab" : {
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "An einen Freund senden",
+          "de" : "Senden",
           "en" : "Send to friend",
           "es" : "Enviar a un amigo",
           "fr" : "Envoyer à un ami",
-          "nl" : "Versturen naar een vriend"
+          "nl" : "Versturen",
+          "it" : "Invia a un amico",
+          "pl" : "Wyślij do znajomego"
         }
-      },
-      "shareNoUserFound" : {
-        "approved" : false,
-        "description" : "Shown in the autocomplete field if no user could be found.",
-        "outOfDateTranslations" : [
-          "de",
-          "es",
-          "fr",
-          "nl"
-        ],
-        "translations" : {
-          "en" : "No user could be found."
-        },
-        "translationsNeedingReview" : [
-          "en"
-        ]
       },
       "postTab" : {
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "Im Feed posten",
+          "de" : "Posten",
           "en" : "Post to feed",
           "es" : "Publicar en feed",
-          "fr" : "Publier dans les news",
-          "nl" : "Posten op Spotify"
+          "fr" : "Publier",
+          "nl" : "Posten",
+          "it" : "Posta sul feed",
+          "pl" : "Publikuj w przekazie"
         }
       },
       "shareTo" : {
@@ -322,7 +343,9 @@
           "en" : "Also share to",
           "es" : "Compartir en",
           "fr" : "Partager sur",
-          "nl" : "Delen via"
+          "nl" : "Delen via",
+          "it" : "Condividi anche con",
+          "pl" : "Udostępnij również dla"
         }
       },
       "starredPlaylist" : {
@@ -333,7 +356,9 @@
           "en" : "Starred",
           "es" : "Favoritos",
           "fr" : "Sélection",
-          "nl" : "Favorieten"
+          "nl" : "Favorieten",
+          "it" : "Preferito",
+          "pl" : "Oznaczone gwiazdką"
         }
       }
     }

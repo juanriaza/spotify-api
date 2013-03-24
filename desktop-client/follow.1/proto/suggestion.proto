@@ -1,0 +1,81 @@
+message SuggestionRequest {
+    optional int32 count = 1; // number of relations to return
+
+    // do not return anything if probe is true, used to warm up cache when
+    // client logs in
+    optional bool probe = 2;
+
+    // reasons filter
+    repeated ReasonType reasons = 3;
+
+    // Force-refresh data in cache
+    optional bool refresh = 4;
+}
+
+// People suggestions
+
+enum ReasonType {
+    // people I subscribe to also subsribe
+    // applies to: people, playlist
+    SUBSCRIPTION_OF_SUBSCRIPTION = 1;
+
+    // people who subscribe to me who I don't subscribe to yet
+    // applies to: people
+    MY_SUBSCRIBER = 2;
+
+    // people with similar taste
+    // applies to: people
+    SIMILAR_TASTE = 3;
+
+    // Facebook friends
+    // applies to: people
+    FACEBOOK = 4;
+
+    // Suggestioned by Spotify staff
+    // applies to: people, playlist
+    EDITORIAL = 5;
+
+    // Popular in the region
+    // applies to: people, playlist
+    REGIONAL = 6;
+}
+
+message Reason {
+    optional ReasonType why = 1;
+
+    // list of URIs to support the reason, e.g. common friends, artists
+    repeated string uris = 2;
+}
+
+message UserSuggestion {
+    optional string username = 1;
+    repeated Reason reasons = 2;
+    optional int32 subscriber_count = 3;
+}
+
+message UserSuggestionReply {
+    repeated UserSuggestion suggestions = 1;
+}
+
+// Playlist suggestions
+
+message PlaylistSuggestion {
+    optional string uri = 1;
+    repeated Reason reasons = 2;
+}
+
+message PlaylistSuggestionReply {
+    repeated PlaylistSuggestion suggestions = 1;
+}
+
+// Top (owned & published) playlists of a user, ranked by number of
+// subscribers.
+
+message TopPlaylistsRequest {
+    optional string username = 1;
+    optional int32 count = 2; // number of playlists to return
+}
+
+message TopPlaylistsReply {
+    repeated string uris = 1;
+}

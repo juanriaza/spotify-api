@@ -1,0 +1,21 @@
+{
+    "ViewProfile": "Bekijk je profiel",
+    "SubscriptionsLabel": "Volgend",
+    "SubscribersLabel": "Volgers",
+    "Refresh": "Vernieuwen",
+    "FriendsLabel": "Facebook-vrienden op Spotify",
+    "FriendsEmpty": "Momenteel kunnen er geen mensen worden getoond.",
+    "CelebritiesLabel": "Uitgelicht",
+    "CelebritiesEmpty": "Momenteel kunnen er niet meer uitgelichte accounts worden getoond",
+    "NetworkLabel": "Aanbevolen uit je netwerk",
+    "NetworkEmpty": "Volg meer mensen om meer suggesties te zien",
+    "RecommendationsLabel": "Aanbevolen voor jou",
+    "RecommendationsEmpty" : "Momenteel kunnen er geen aanbevelingen worden getoond.",
+    "SubscriberCountSingle": "{0} volger",
+    "SubscriberCountPlural": "{0} volgers",
+    "ListXOthers": "{0} anderen",
+    "InfoFollowedBy": "Gevolgd door",
+    "InfoFollowsYou": "Volgt jou",
+    "InfoTopArtists": "Luistert naar",
+    "InfoPlaylists": "Afspeellijsten:"
+}

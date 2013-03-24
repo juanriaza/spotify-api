@@ -194,16 +194,16 @@ div.notification.unread {
   padding-right: 15px;
 }
 
-a.senderName, a.objectName {
+a.contentLink {
   font-weight: bold;
   color: #444;
 }
 
-div.notification.selected a.senderName, div.notification.selected a.objectName {
+div.notification.selected a.contentLink {
   color: #33424b;
 }
 
-a.senderName:hover, a.objectName:hover {
+a.contentLink:hover {
   text-decoration: underline;
 }
 

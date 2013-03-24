@@ -152,6 +152,7 @@ section { box-sizing: border-box; }
 }
 
 #recommended .recommended-item.close {
+  opacity: 0;
   width: 100%;
   -webkit-animation-duration: .5s;
   -webkit-animation-name: fadeOut;

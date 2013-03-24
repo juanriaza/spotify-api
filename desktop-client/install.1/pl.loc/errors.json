@@ -1,0 +1,17 @@
+{
+  "metadataFailed" : {
+    "unknownError" : "Niestety, nie mogę pobrać tej aplikacji. Spróbuj ponownie później.",
+    "clientOffline" : "Przejdź do trybu online, aby uruchomić tę aplikację.",
+    "connectionFailed" : "Niestety, nie mogę pobrać tej aplikacji. Spróbuj ponownie później.",
+    "appNotFound" : "Niestety, nie mogę znaleźć tej aplikacji."
+  },
+  "downloadFailed" : {
+    "unknownError" : "Niestety, nie mogę pobrać tej aplikacji. Spróbuj ponownie później.",
+    "clientOffline" : "Przejdź do trybu online, aby uruchomić tę aplikację.",
+    "connectionFailed" : "Niestety, nie mogę pobrać tej aplikacji. Spróbuj ponownie później.",
+    "urlNotFound" : "Niestety, nie mogę pobrać tej aplikacji. Spróbuj ponownie później."
+  },
+  "installFailed" : {
+    "incorrectChecksum" : "Niestety, nie mogę pobrać tej aplikacji. Spróbuj ponownie."
+  }
+}

@@ -47,6 +47,8 @@
     <h4 class="name" id="UI"><span class="type-signature"></span>new UI</h4>
     
     
+    <p class="summary">Use a factory method to instantiate.</p>
+    
 </dt>
 <dd>
     
@@ -146,7 +148,7 @@
             
             
             
-            <td class="description last">Currently active view id.</td>
+            <td class="description last">Currently active view ID.</td>
         </tr>
 	
 	
@@ -216,7 +218,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>ui.js, line 63</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>ui.js, line 50</li></ul></dd>
 	
     
     
@@ -265,7 +267,7 @@
     
     
     <div class="description">
-        Set which view that should be active.
+        Set which view should be active.
     </div>
     
     
@@ -311,7 +313,7 @@
             
             
             
-            <td class="description last">The id of the view that should be activated.</td>
+            <td class="description last">The ID of the view that should be activated.</td>
         </tr>
 	
 	
@@ -342,7 +344,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>ui.js, line 126</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>ui.js, line 143</li></ul></dd>
 	
     
     
@@ -360,6 +362,11 @@
     
     
     
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>ui.setActiveView('view-identifier');</code></pre>
+
+    
 </dd>
 
         
@@ -367,6 +374,8 @@
 <dt>
     <h4 class="name" id="init"><span class="type-signature">&lt;static> </span>init</h4>
     
+    
+    <p class="summary">Factory method.</p>
     
 </dt>
 <dd>
@@ -421,21 +430,22 @@ This can only be created once.
             
             
             <td class="description last">An object with options.
-    header {boolean=} Whether to create an app header. Default: false.
-    views {?Array.<Object>=} An array of the view definitions. Each view
-      definition should have two properties: id and element. The property id
-      is an id of your choosing, and element is an element that will be shown
-      when the view is activated. Default: null.
-    tabs {?Array.<Object>=} An array of tab definitions. Each tab
-      definition should have two properties: viewId and name. The viewId
-      connects the tab with the view with that id. The name will be displayed
-      on the tab. Default: null.
-    tabArgumentIndex {number=} The position in the application argument list
-      where the tab is defined. Default: 0.
-    activeTab {?string=} Id of the tab that should be active at start.
-      Default: Taken from the arguments if it exists, otherwise the first tab.
-    container {HTMLElement=} The app container element. The header will be
-      placed as the first child in this element. Default: document.body.</td>
+    <ul>
+      <li><b>header</b> <i>(boolean=)</i>: Whether to create an app header. Default: false.</li>
+      <li><b>views</b> <i>(?Array.&lt;Object&gt;=)</i>: An array of view definitions. Each view
+          definition should have two properties: id and element. The property id
+          is an ID of your choosing, and element is an element that will be shown
+          when the view is activated. Default: null.</li>
+      <li><b>tabs</b> <i>(?Array.&lt;Object&gt;=)</i>: An array of tab definitions. Each tab
+          definition should have two properties: viewId and name. The viewId
+          connects the tab with the view with that ID. The name will be displayed
+          on the tab. Default: null.</li>
+      <li><b>tabArgumentIndex</b> <i>(number=)</i>: The position in the application argument list
+          where the tab is defined. Default: 0.</li>
+      <li><b>activeTab</b> <i>(?string=)</i>: ID of the tab that should be active at start.
+          Default: Taken from the arguments if it exists, otherwise the first tab.</li>
+      <li><b>container</b> <i>(HTMLElement=)</i>: The app container element. The header will be
+          placed as the first child in this element. Default: document.body.</li></td>
         </tr>
 	
 	
@@ -466,7 +476,7 @@ This can only be created once.
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>ui.js, line 111</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>ui.js, line 125</li></ul></dd>
 	
     
     
@@ -498,13 +508,39 @@ This can only be created once.
 	</dt>
 	<dd>
 		
-		<span class="param-type">module:views/ui~UI</span> 
+		<span class="param-type">UI</span> 
 		
 	</dd>
 </dl>
 
         
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>require(['$views/ui#UI'], function(UI) {
+
+  var ui = UI.init({
+    header: true,
+    views: [
+      {id: 'overview', element: document.getElementById('view-overview')},
+      {id: 'related', element: document.getElementById('view-related')},
+      {id: 'biography', element: document.getElementById('view-biography')}
+    ],
+    tabs: [
+      {viewId: 'overview', name: 'Overview'},
+      {viewId: 'related', name: 'Related Artists'},
+      {viewId: 'biography', name: 'Biography'}
+    ]
+  });
+
+  // Listen for when the view changes
+  ui.addEventListener('viewchange', function(e) {
+    e.id; // ID for the view/tab that it changed to
+    e.previousId; // ID for the view/tab that was active before
+  });
+});</code></pre>
+
     
 </dd>
 
@@ -524,13 +560,13 @@ This can only be created once.
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="Button.html">Button</a></li><li><a href="CustomButton.html">CustomButton</a></li><li><a href="List.html">List</a></li><li><a href="ShareButton.html">ShareButton</a></li><li><a href="StartRadioButton.html">StartRadioButton</a></li><li><a href="SubscribeButton.html">SubscribeButton</a></li><li><a href="SubscribeProfileButton.html">SubscribeProfileButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="Throbber.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="b09bdc3b3d.html">views/image</a></li><li><a href="c1fec7a0c7.html">views/list</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="53bb083269.html">views/scroll-agent</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="3d2ab2c4df.html">AddToCollectionButton</a></li><li><a href="5d1cf3fdd7.html">BaseButton</a></li><li><a href="ac91ff4491.html">Button</a></li><li><a href="824c77c1ee.html">CustomButton</a></li><li><a href="e039471c99.html">Image</a></li><li><a href="b6d6983f46.html">List</a></li><li><a href="f5a366df08.html">Popup</a></li><li><a href="2d9c4cfac6.html">QuickActionButtons</a></li><li><a href="0f496624db.html">ScrollAgent</a></li><li><a href="cc06f20d53.html">ShareButton</a></li><li><a href="b55f4a2324.html">StartRadioButton</a></li><li><a href="7baffe74b6.html">SubscribeButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="b4bbfdb1f5.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Jan 07 2013 14:19:57 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Mar 11 2013 15:04:54 GMT+0100 (CET)
 </footer>
 
 <script> sh_highlightDocument(); </script>

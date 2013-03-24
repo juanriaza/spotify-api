@@ -12,7 +12,7 @@ var dom = sp.require('$util/dom');
 var lang = sp.require('$util/language');
 var models = sp.require('$api/models');
 var staticdata = sp.require('$unstable/staticdata');
-var _ = partial(lang.getString, lang.loadCatalog('$resources/cef_views'), 'Search Dropdown');
+var _ = partial(lang.getString, lang.loadCatalog('main'), 'Search Dropdown');
 
 var lastQuery = { str: null, startTime: 0, responseTime: 0 };
 var social = sp.social;

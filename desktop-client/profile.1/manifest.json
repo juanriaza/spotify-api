@@ -4,18 +4,22 @@
     "fr": "profile",
     "es": "profile",
     "de": "profile",
-    "nl": "profile"
+    "it": "profile",
+    "nl": "profile",
+    "pl": "profile"
   },
   "AppDescription": {
     "en": "profile",
     "fr": "profile",
     "es": "profile",
     "de": "profile",
-    "nl": "profile"
+    "it": "profile",
+    "nl": "profile",
+    "pl": "profile"
   },
   "BundleIdentifier": "profile",
   "BundleType": "Application",
-  "BundleVersion": "1.4.1",
+  "BundleVersion": "1.5.8",
   "Dependencies": {
     "api": "1.20.0",
     "views": "1.24.0",
@@ -31,7 +35,9 @@
     "fr",
     "es",
     "de",
-    "nl"
+    "it",
+    "nl",
+    "pl"
   ],
   "UserInstallable": false
 }

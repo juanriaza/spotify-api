@@ -317,4 +317,15 @@ require([
 
   });
 
+  describe('SP._createRequest', function(done) {
+
+    it('should work with or without a native readFile implementation', function(done) {
+      SP._createRequest('$api/manifest.json', function(json) {
+        assert.equal(JSON.parse(json).BundleIdentifier, 'api');
+        done();
+      });
+    });
+
+  });
+
 });

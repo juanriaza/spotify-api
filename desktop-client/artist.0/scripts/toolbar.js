@@ -1,3 +1,143 @@
-require(["$api/models","/scripts/logger","/scripts/env#Environment","/scripts/utils"],function(m,i,n,d){exports.createToolbar=function(j,b,g){var e=!1,k=new i.Logger,c=0,h=function(a){f("overview")&&(c=d.scrollPosition().y);f(a)?(a=$$(g).getHeight()[0],d.scrollPosition().y>a&&window.scrollTo(0,a)):($$(j+" > div").setStyle("display","none"),$(a).setStyle("display","block"),$$(b+" li").removeClass("active"),$$(b+" li").removeClass("active"),$$(b+' a[rel="'+a+'"]').getParent("li").addClass("active"),
-a=$$(g).getHeight()[0],d.scrollPosition().y>=a&&(f("overview")?c>a&&window.scrollTo(0,c):window.scrollTo(0,a)))},f=function(a){return $$(b+' a[rel="'+a+'"]').getParent("li").hasClass("active")[0]},l=function(a){if("A"==a.target.nodeName.toUpperCase()){var b=$(a.target).getProperty("rel");a.preventDefault();h(b);k.clientEvent("click-tab",{id:b})}return!1};return{init:function(){var a=0,c=$$(""+b);$$(b+" > ul").addEvent("click",l);$(window).addEventListener("scroll",function(){0===a&&(a=$$(g).getHeight());
-var b=d.scrollPosition().y;b>a&&!e?(e=!0,c.addClass("sticky")):b<=a&&e&&(c.removeClass("sticky"),e=!1)})},show:function(a){h(a)},isActiveTab:function(a){return f(a)},heightOnPage:function(){return e?0:d.elementPosition($$(b)[0]).height},resetOverviewPosition:function(){c=0}}}});
+require([
+  '$api/models',
+  '/scripts/logger',
+  '/scripts/env#Environment',
+  '/scripts/utils'
+], function(Model, Logger, Environment, utils) {
+
+  /**
+   * Toolbar implements a floating toolbar with tabs.
+   *
+   * paneSelector: The selector for the toolbar
+   * tabsSelector: The tab container selector
+   * foldSelector: A selector for anything "above the fold" or above the menu
+   *               that should be used to calculate the point at where the toolbar
+   *               starts scrolling.
+   *
+   */
+  var createToolbar = function(paneSelector,
+      tabsSelector,
+      foldSelector)
+      {
+
+    var isToolbarSticky = false,
+        logger = new Logger.Logger(),
+        overviewTabPosition = 0,
+        callbacks = {};
+
+    var showTab = function(id) {
+      if (isActiveTab('overview')) {
+        overviewTabPosition = utils.scrollPosition().y;
+      }
+      if (isActiveTab(id)) {
+        var tabPos = $$(foldSelector).getHeight()[0];
+        if (utils.scrollPosition().y > tabPos) {
+          window.scrollTo(0, tabPos);
+        }
+        return;
+      }
+      $$(paneSelector + ' > div').setStyle('display', 'none');
+      $(id).setStyle('display', 'block');
+      $$(tabsSelector + ' li').removeClass('active');
+      deactivateTabs();
+      activateTab(id);
+
+      var headerHeight = $$(foldSelector).getHeight()[0];
+      if (utils.scrollPosition().y >= headerHeight) {
+        if (isActiveTab('overview')) {
+          if (overviewTabPosition > headerHeight) {
+            window.scrollTo(0, overviewTabPosition);
+          }
+        } else {
+          window.scrollTo(0, headerHeight);
+        }
+      }
+    }
+
+    var isActiveTab = function(id) {
+      return $$(tabsSelector + ' a[rel="' + id + '"]').getParent('li').hasClass('active')[0];
+    }
+
+    var deactivateTab = function(id) {
+      $$(tabsSelector + ' a[rel="' + id + '"]').getParent('li').removeClass('active');
+    }
+
+    var deactivateTabs = function() {
+      $$(tabsSelector + ' li').removeClass('active');
+    }
+
+    var activateTab = function(id) {
+      $$(tabsSelector + ' a[rel="' + id + '"]').getParent('li').addClass('active');
+    }
+
+    var clickTab = function(e) {
+      if ('A' == e.target.nodeName.toUpperCase()) {
+        var page = $(e.target).getProperty('rel');
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (callbacks[page] && !isActiveTab(page)) {
+          callbacks[page]();
+        }
+        e.preventDefault();
+        showTab(page);
+        logger.clientEvent('click-tab', {'id': page});
+      }
+      return false;
+    };
+
+    var makeToolbarSticky = function(foldSelector) {
+      var headerHeight = 0;
+
+      var stickies = [tabsSelector];
+
+      var $stickySelector = $$(stickies.join(', '));
+
+      return function() {
+        if (0 === headerHeight) {
+          headerHeight = $$(foldSelector).getHeight();
+        }
+
+        var MAX_OPACITY_AT = 200.0;
+
+        var scrollY = utils.scrollPosition().y;
+        if (scrollY > headerHeight && !isToolbarSticky) {
+          isToolbarSticky = true;
+          $stickySelector.addClass('sticky');
+        } else if (scrollY <= headerHeight && isToolbarSticky) {
+          $stickySelector.removeClass('sticky');
+          isToolbarSticky = false;
+        }
+      }
+    };
+
+    var addPageCallback = function(page, callback) {
+      callbacks[page] = callback;
+    };
+
+    return {
+      init: function() {
+        var stickyListener = makeToolbarSticky(foldSelector);
+        $$(tabsSelector + ' > ul').addEvent('click', clickTab.bind(this));
+        $(window).addEventListener('scroll', stickyListener);
+      },
+      show: function(tabname) {
+        showTab(tabname);
+      },
+      isActiveTab: function(tabname) {
+        return isActiveTab(tabname);
+      },
+      heightOnPage: function() {
+        return isToolbarSticky ? 0 : utils.elementPosition($$(tabsSelector)[0]).height;
+      },
+      resetOverviewPosition: function() {
+        overviewTabPosition = 0;
+      },
+      addPageCallback: addPageCallback
+    };
+
+  }
+
+  exports.createToolbar = createToolbar;
+
+});

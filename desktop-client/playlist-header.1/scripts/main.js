@@ -1,14 +1,620 @@
-require("$api/models $api/models#Promise $views/image#Image $views/buttons $api/hermes $api/relations#Relations $api/library#Library scripts/utils#$ $views/throbber#Throbber $api/i18n strings/header.lang $api/offline#Offline".split(" "),function(i,s,w,t,R,E,S,g,T,x,y,F){function z(a,b){var d=new w(a,{animate:!0,width:42,height:42,style:"embossed",link:a&&a.uri||"spotify:",placeholder:"user"}),c=document.createElement("div");c.className="name-popover";c.textContent=b||a.name||"";d.node.appendChild(c);
-return d.node}var k=y.get.bind(y),j,b,m,A,u=new z(i.session.user,k("You")),v=0,n,h,B=function(){updatename(j)},s=function(){var a=i.application.arguments.join(":");if(j){var e=j;e.addEventListener("change:name",B);e.removeEventListener("change:subscribed",C)}j=i.Playlist.fromURI(a);m._resetImage();b.title.textContent="";b.title.removeAttribute("href");b.desc.textContent="";b.followersImages.innerHTML="";b.ownerName.textContent="";b.ownerName.removeAttribute("href");r(0);b.numberOfTracks.textContent=
-"";for(var d in h)a=h[d],(a.node||a).style.display="none";var c=j;if(!h){d=document.createElement("button");d.className="offline-button";d.textContent=k("AvailableOffline");d.addEventListener("click",G,!1);d={subscribeButton:t.SubscribeButton.forPlaylist(c),startRadioButton:t.StartRadioButton.forPlaylist(c),shareButton:t.ShareButton.forPlaylist(c),offlineButton:d};for(var q in d)a=d[q],a=a.node||a,a.style.display="none",b.buttons.appendChild(a);b.buttons.insertBefore(b.numberOfTracks,d.offlineButton);
-h=d}c.load("image").done(f(H));c.load("name").done(f(I));c.load("description").done(f(function(){c.description?c.load("description").done(f(J)):D(c)})).fail(function(){D(c)});c.load("owner").done(f(function(){c.owner.load("currentUser").done(f(function(a){!0!==a.currentUser&&(h.subscribeButton.setItem(c),h.subscribeButton.node.style.display="");p()}))}));h.startRadioButton.item=c;h.startRadioButton.node.style.display="";h.shareButton.item=c;h.shareButton.node.style.display="";var g=new i.Promise;
-q=i.session.load("capabilities");d=c.load("allows");i.Promise.join([q,d]).done(f(function(){g.object=i.session.capabilities.offlineSync&&c.allows.offlineSync;g.setDone()})).fail(function(a,c){g.setFail(c)});g.done(f(function(a){a?n.getSyncState(c).done(function(a){l(a.enabled);h.offlineButton.style.display="";p()}):(h.offlineButton.style.display="none",p())}));p();c.load("tracks").done(f(K));c.load("owner").done(f(L));setTimeout(f(M),0,c);A||(b.throbber.style.display="none",A=!0);q=j;q.addEventListener("change:name",
-B);q.addEventListener("change:subscribed",C)},D=function(a){var e=new i.Promise,d=function(a,b){e.setFail(b||a)};a.load("tracks").done(f(function(){a.tracks.snapshot(0,24).done(f(function(a){a.length?a.loadAll("artists").done(f(function(a){a=a.map(function(a){return a.artists[0].load("name","uri")});i.Promise.join(a).done(f(function(a){var c=[],b=[];a.forEach(function(a){var e=a.uri&&a.name,d=~b.indexOf(a&&a.uri);e&&!d&&(b.push(a.uri),c.push(a))});a=c.slice(0,8);e.object=a;e.setDone()})).fail(d)})).fail(d):
-d("No tracks available")})).fail(d)})).fail(d);e.done(f(function(a){a=a.map(function(a){return'<a href="'+a.uri+'">'+a.name+"</a>"});b.desc.innerHTML=['<div class="including-artists">',k("IncludingArtists"),": ",a.join(", "),"</div>"].join("")})).fail(function(a,b){console.error(b&&b.message,b)})},H=function(a){a.image?m.setImage(a.image):m._resetImage()},M=function(a){a.load("subscribers","owner").done(f(N))},N=function(a){a.subscribers.snapshot(0,0).done(f(function(a){r(a.length)}));var b=E.forCurrentUser();
-i.Promise.join([a.subscribers.snapshot(0,100),b.subscribers.snapshot(0,100),b.subscriptions.snapshot(0,100),i.session.user.load("username","uri"),a.load("subscribed"),a.owner.load("currentUser")]).done(f(O))},r=function(a){v=a;b.followersLabel.textContent=1===a?k("Follower"):k("Followers");b.followersNumber.textContent=x.number(a)},O=function(a){var e=a[1],d=a[2],c=a[3],g=a[4],h=a[5],a=a[0].toURIs(),j=e.toURIs(),k=d.toURIs(),l;!1===h.currentUser&&(e=a.indexOf("spotify:user:"+(c&&c.username||"")),
--1!==e?l=a.splice(e,1)[0]:g.subscribed&&(l=c.uri));c=a.reverse().map(function(a){var b=-1===j.indexOf(a)?0:1,c=-1===k.indexOf(a)?0:2;return[b+c,a]}).sort().map(function(a){return a[1]});l&&c.unshift(l);var c=c.slice(0,30),m=0,n=0,p=f(function(a){n++;a.image&&!/.*fbcdn.*\.gif$/.test(a.image)&&3>m&&(m++,a.uri===l?(a=u,b.followersImages.appendChild(a)):(a=new z(a,void 0),b.followersImages.insertBefore(a,b.followersImages.firstChild)))});c.forEach(function(a){i.User.fromURI(a).load("name","image","username",
-"uri").done(p)})},I=function(a){var e="";a.name?e=a.name:/:starred$/.test(a.uri)?e=k("Starred"):/:toplist$/.test(a.uri)&&(e=k("TopTracks"));b.title.setAttribute("href",a.uri);b.title.textContent=e},J=function(a){b.desc.innerHTML=a.description},K=function(a){a.tracks.snapshot(0,0).done(f(P))},P=function(a){var e=x.number(a.length),a=1===a.length?k("Track"):k("Tracks");b.numberOfTracks.textContent=e+" "+a;p()},L=function(a){a.owner.load("name","currentUser","image").done(f(Q))},Q=function(a){var e=
-"",d;if(a.currentUser)e=k("ByYou");else if(d=a.name||a.username)e=k("By")+" "+d;b.ownerName.textContent=e;b.ownerName.href=a.uri},p=function(){var a=b.buttons.style.right||0;b.buttons.style.right="auto";var e=b.buttons.offsetWidth;b.buttons.style.right=a;b.content.style.minWidth=e+"px"},G=function(){n.getSyncState(j).done(f(function(a){h.offlineButton.classList.contains("turn-on")!==a.enabled?l(a.enabled):(a.enabled?(l(!1),n.disableSync(j).fail(function(){l(!0)})):(l(!0),n.enableSync(j).fail(function(){l(!1)})),
-h.offlineButton.style.display="")})).fail(function(){console.error("failed to get sync state for: ",j)})},l=function(a){a?h.offlineButton.classList.add("turn-on"):h.offlineButton.classList.remove("turn-on")},f=function(a){var b=j;return function(){b.uri===j.uri&&a.apply(this,arguments)}},C=function(a){a.target.subscribed?(3<=b.followersImages.childNodes.length&&b.followersImages.removeChild(b.followersImages.firstChild),b.followersImages.appendChild(u),r(v+1)):(b.followersImages.removeChild(u),r(Math.max(0,
-v-1)))};n=F.forCurrentUser();b={content:g("#content"),throbber:g("#main-throbber"),cover:g("#cover"),metaMoreWrapper:g("#meta-more-wrapper"),titleOwnerWrapper:g("#title-owner-wrapper"),title:g("#title a"),owner:g("#owner a"),ownerName:g("#owner-name a"),desc:g("#desc"),more:g("#more"),buttons:g("#buttons"),followersNumber:g("#followers-number"),followersImages:g("#followers-images"),followersLabel:g("#followers-number-label"),numberOfTracks:g("#number-of-tracks")};m=new w(null,{animate:!1,height:148,
-width:148,style:"embossed",placeholder:"playlist"});b.cover.appendChild(m.node);i.application.addEventListener("arguments",s);i.application.load("arguments").done(s).fail(function(){console.error("fail")})});
+'use strict';
+
+require([
+  '$api/models',
+  '$api/models#Promise',
+  '$views/image#Image',
+  '$views/buttons',
+  '$api/hermes',
+  '$api/relations#Relations',
+  '$api/library#Library',
+  'scripts/utils#$',
+  '$views/throbber#Throbber',
+  '$api/i18n',
+  'strings/header.lang',
+  '$api/offline#Offline',
+  'scripts/sanitize-description#sanitizeDescription'
+], function(models, Promise, Image, buttons, hermes, Relations, Library, $, Throbber, i18n, headerStrings, Offline, sanitizeDescription) {
+
+  var L = headerStrings.get.bind(headerStrings);
+
+  var activePlaylist;
+  var coverImageEl;
+  var buttonsWrapperEl;
+  var loading;
+
+  var els;
+  var image;
+  var throbberHidden;
+
+  var meFollowerEl = new Follower(models.session.user, L('You'));
+  var numberOfFollowers = 0;
+
+  var offline;
+
+  var init = function() {
+    offline = Offline.forCurrentUser();
+    initElements();
+    initImages();
+    initEvents();
+    checkArguments();
+  };
+
+  var initElements = function() {
+    els = {
+      content: $('#content'),
+      throbber: $('#main-throbber'),
+      cover: $('#cover'),
+      metaMoreWrapper: $('#meta-more-wrapper'),
+      titleOwnerWrapper: $('#title-owner-wrapper'),
+      title: $('#title a'),
+      owner: $('#owner a'),
+      ownerName: $('#owner-name a'),
+      desc: $('#desc'),
+      more: $('#more'),
+      buttons: $('#buttons'),
+      followersNumber: $('#followers-number'),
+      followersImages: $('#followers-images'),
+      followersLabel: $('#followers-number-label'),
+      numberOfTracks: $('#number-of-tracks')
+    };
+  };
+
+  var drawerComponents;
+
+  var initImages = function() {
+    image = new Image('', {
+      animate: false,
+      height: 148,
+      width: 148,
+      style: 'embossed',
+      placeholder: 'playlist'
+    });
+    els.cover.appendChild(image.node);
+  }
+
+  var initEvents = function() {
+    models.application.addEventListener('arguments', onArgumentsLoad);
+  };
+
+  var addPlaylistEventListeners = function(playlist) {
+    playlist.addEventListener('change:name', ifStillActive(onChangeName));
+    playlist.addEventListener('change:subscribed', ifStillActive(onChangeSubscribed));
+  };
+
+  var removePlaylistEventListeners = function(playlist) {
+    playlist.removeEventListener('change:name', ifStillActive(onChangeName));
+    playlist.removeEventListener('change:subscribed', ifStillActive(onChangeSubscribed));
+  };
+
+  var onChangeName = function(e) {
+    updateName(activePlaylist);
+  };
+
+  var checkArguments = function() {
+    models.application.load('arguments').done(onArgumentsLoad).fail(onArgumentsLoadFail);
+  };
+
+
+  var onArgumentsLoad = function() {
+    var playlistURI = models.application.arguments.join(':');
+
+    if (activePlaylist) {
+      removePlaylistEventListeners(activePlaylist);
+    }
+
+    activePlaylist = models.Playlist.fromURI(playlistURI);
+    reset();
+
+    loadPlaylist(activePlaylist);
+    addPlaylistEventListeners(activePlaylist);
+  };
+
+  var onArgumentsLoadFail = function() {
+    console.error('fail');
+  };
+
+  var reset = function() {
+    image._resetImage();
+
+    els.title.textContent = '';
+    els.title.removeAttribute('href');
+    els.desc.textContent = '';
+
+    els.followersImages.innerHTML = '';
+
+    els.ownerName.textContent = '';
+    els.ownerName.removeAttribute('href');
+
+    setNumberOfFollowers(0);
+    els.numberOfTracks.textContent = '';
+
+    for (var componentName in drawerComponents) {
+      var component = drawerComponents[componentName];
+      var node = component.node || component;
+
+      node.style.display = 'none';
+    }
+
+  };
+
+  function createUserImage(user) {
+    return new Image(user, {
+      animate: true,
+      width: 42,
+      height: 42,
+      style: 'embossed',
+      link: user && user.uri || 'spotify:',
+      placeholder: 'user'
+    });
+  };
+
+  function Follower(user, overrideName) {
+
+    var image = createUserImage(user);
+
+    var popover = document.createElement('div');
+    popover.className = 'name-popover';
+    popover.textContent = overrideName || user.name || '';
+    image.node.appendChild(popover);
+
+    return image.node;
+
+  }
+
+  var updateButtons = function(playlist) {
+
+
+    playlist.load('owner').done(ifStillActive(function() {
+      var currentuserPromise = playlist.owner.load('currentUser');
+      currentuserPromise.done(ifStillActive(function(owner) {
+        if (owner.currentUser !== true) {
+          drawerComponents.subscribeButton.setItem(playlist);
+          drawerComponents.subscribeButton.node.style.display = '';
+        }
+        recalculateMinWidth();
+      }));
+    }));
+
+    drawerComponents.startRadioButton.item = playlist;
+    drawerComponents.startRadioButton.node.style.display = '';
+
+    drawerComponents.shareButton.item = playlist;
+    drawerComponents.shareButton.node.style.display = '';
+
+    checkPlaylistOfflineCapability(playlist).done(ifStillActive(function(offlineCapable) {
+      if (offlineCapable) {
+        offline.getSyncState(playlist).done(function(syncState) {
+          toggleOfflineButton(syncState.enabled);
+
+          drawerComponents.offlineButton.style.display = '';
+          recalculateMinWidth();
+        });
+      } else {
+        drawerComponents.offlineButton.style.display = 'none';
+        recalculateMinWidth();
+      }
+    }));
+
+    recalculateMinWidth();
+  };
+
+  var checkPlaylistOfflineCapability = function(playlist) {
+    var promise = new models.Promise();
+    var sessionCapabilitiesPromise = models.session.load('capabilities');
+    var playlistAllowsPromise = playlist.load('allows', 'subscribed');
+
+    models.Promise.join([
+      sessionCapabilitiesPromise,
+      playlistAllowsPromise
+    ]).done(ifStillActive(function(promises) {
+      // We shouldn't have to check playlist.subscribed here, but as there's a bug in
+      // playlist.allows.offlineSync on the native side, we'll have to resort to this
+      // quick fix until a fixed client can be pushed.
+      var canOffline = playlist.subscribed && models.session.capabilities.offlineSync && playlist.allows.offlineSync;
+      promise.object = canOffline;
+      promise.setDone();
+    })).fail(function(res, err) {
+      promise.setFail(err);
+    });
+
+    return promise;
+  };
+
+  var updateIncludedArtists = function(playlist) {
+    getIncludedArtists(playlist).done(ifStillActive(function(artists) {
+      var artistLinks = artists.map(function(artist) {
+        return '<a href="' + artist.uri + '">' + artist.name.decodeForHtml() + '</a>';
+      });
+
+      els.desc.innerHTML = [
+        '<div class="including-artists">',
+        L('IncludingArtists'),
+        ': ',
+        artistLinks.join(', '),
+        '</div>'
+      ].join('');
+
+    })).fail(function(res, err) {
+      console.error(err && err.message, err);
+    });
+  };
+
+  var getIncludedArtists = function(playlist) {
+    var promise = new models.Promise();
+    var onFail = function(res, message) {
+      promise.setFail(message || res);
+    };
+
+    playlist.load('tracks').done(ifStillActive(function() {
+      var tracksSnapshotPromise = playlist.tracks.snapshot(0, 24);
+      tracksSnapshotPromise.done(ifStillActive(function(snapshot) {
+        if (snapshot.length) {
+          snapshot.loadAll('artists').done(ifStillActive(function(arr) {
+            var artistPromises = arr.map(function(track) {
+              return track.artists[0].load('name', 'uri');
+            });
+
+            var artistsPromise = models.Promise.join(artistPromises);
+            artistsPromise.done(ifStillActive(function(artists) {
+              var filteredArtists = [];
+              var usedArtistURIs = [];
+              artists.forEach(function(artist) {
+                var hasUriAndName = artist.uri && artist.name;
+                var isUsed = ~usedArtistURIs.indexOf(artist && artist.uri);
+                if (hasUriAndName && !isUsed) {
+                  usedArtistURIs.push(artist.uri);
+                  filteredArtists.push(artist);
+                }
+              });
+
+              var slicedArtists = filteredArtists.slice(0, 8);
+              promise.object = slicedArtists;
+              promise.setDone();
+            })).fail(onFail);
+          })).fail(onFail);
+        } else {
+          onFail('No tracks available');
+        }
+      })).fail(onFail);
+    })).fail(onFail);
+
+    return promise;
+  };
+
+  var updateImage = function(playlist) {
+    playlist.load('image').done(ifStillActive(setImage));
+  };
+
+  var setImage = function(playlist) {
+    if (playlist.image) {
+      image.setImage(playlist.image);
+    } else {
+      image._resetImage();
+    }
+  }
+
+  var updateFollowers = function(playlist) {
+    playlist.load('subscribers', 'owner').done(ifStillActive(onSubscribersLoad));
+  };
+
+  var onSubscribersLoad = function(playlist) {
+    playlist.subscribers.snapshot(0, 0).done(ifStillActive(function(snapshot) {
+      setNumberOfFollowers(snapshot.length);
+    }));
+
+    var MAX_SUBSCRIBERS = 100;
+    var relations = Relations.forCurrentUser();
+
+    models.Promise.join([
+      playlist.subscribers.snapshot(0, MAX_SUBSCRIBERS),
+      relations.subscribers.snapshot(0, MAX_SUBSCRIBERS),
+      relations.subscriptions.snapshot(0, MAX_SUBSCRIBERS),
+      models.session.user.load('username', 'uri'),
+      playlist.load('subscribed'),
+      playlist.owner.load('currentUser')
+    ]).done(ifStillActive(onFollowersData));
+  }
+
+  var setNumberOfFollowers = function(n) {
+    numberOfFollowers = n;
+    els.followersLabel.textContent = n === 1 ? L('Follower') : L('Followers');
+    els.followersNumber.textContent = i18n.number(n);
+  };
+
+  var onFollowersData = function(res) {
+
+    var playlistSubscribersSnapshot = res[0];
+    var relationsSubscribersSnapshot = res[1];
+    var relationsSubscriptionsSnapshot = res[2];
+    var sessionUser = res[3];
+    var playlist = res[4];
+    var owner = res[5];
+
+    var playlistSubscribers = playlistSubscribersSnapshot.toURIs();
+    var relationSubscribers = relationsSubscribersSnapshot.toURIs();
+    var relationSubscriptions = relationsSubscriptionsSnapshot.toURIs();
+
+    var me;
+    if (owner.currentUser === false) {
+      var meURI = 'spotify:user:' + (sessionUser && sessionUser.username || '');
+      var meIndex = playlistSubscribers.indexOf(meURI);
+      if (meIndex !== -1) {
+        me = playlistSubscribers.splice(meIndex, 1)[0];
+      } else if (playlist.subscribed) {
+        me = sessionUser.uri;
+      }
+    }
+
+
+    var scoredSubscribers = playlistSubscribers.reverse().map(function(URI) {
+      var relationSubscriberScore = relationSubscribers.indexOf(URI) === -1 ? 0 : 1;
+      var relationSubscriptionScore = relationSubscriptions.indexOf(URI) === -1 ? 0 : 2;
+      return [relationSubscriberScore + relationSubscriptionScore, URI];
+    });
+
+    var sortedSubscribers = scoredSubscribers.sort().map(function(arr) {
+      return arr[1];
+    });
+
+    if (me) {
+      sortedSubscribers.unshift(me);
+    }
+
+    var limitedSubscribers = sortedSubscribers.slice(0, 30);
+
+    var hasImages = 0;
+    var loaded = 0;
+
+    var onSubscriberLoad = ifStillActive(function(user) {
+      loaded++;
+      if (checkImage(user.image) && hasImages < 3) {
+        hasImages++;
+        var overrideName;
+        var userEl;
+        if (user.uri === me) {
+          userEl = meFollowerEl;
+          els.followersImages.appendChild(userEl);
+        } else {
+          userEl = new Follower(user, overrideName);
+          els.followersImages.insertBefore(userEl, els.followersImages.firstChild);
+        }
+      }
+    });
+
+    limitedSubscribers.forEach(function(subscriberURI) {
+      var user = models.User.fromURI(subscriberURI);
+      var userPromise = user.load('name', 'image', 'username', 'uri');
+      userPromise.done(onSubscriberLoad);
+    });
+  };
+
+
+  var checkImage = function(image) {
+    return image && !(/.*fbcdn.*\.gif$/.test(image));
+  };
+
+  var updateName = function(playlist) {
+    playlist.load('name').done(ifStillActive(setName));
+  };
+
+  var setName = function(playlist) {
+    var name = '';
+    if (playlist.name) {
+      name = playlist.name;
+    } else if (/:starred$/.test(playlist.uri)) {
+      name = L('Starred');
+    } else if (/:toplist$/.test(playlist.uri)) {
+      name = L('TopTracks');
+    }
+
+    els.title.setAttribute('href', playlist.uri);
+    els.title.textContent = name;
+  };
+
+  var updateDescription = function(playlist) {
+    playlist.load('description').done(ifStillActive(setDescription));
+  };
+
+  var setDescription = function(playlist) {
+    els.desc.innerHTML = sanitizeDescription(playlist.description);
+  };
+
+  var updateNumberOfTracks = function(playlist) {
+    playlist.load('tracks').done(ifStillActive(onTracksLoad));
+  };
+
+  var onTracksLoad = function(playlist) {
+    playlist.tracks.snapshot(0, 0).done(ifStillActive(onTracksSnapshot));
+  }
+
+  var onTracksSnapshot = function(snapshot) {
+    var numberOfTracksFormatted = i18n.number(snapshot.length);
+    var trackStr = snapshot.length === 1 ? L('Track') : L('Tracks');
+    els.numberOfTracks.textContent = numberOfTracksFormatted + ' ' + trackStr;
+    recalculateMinWidth();
+  };
+
+  var updateOwner = function(playlist) {
+    playlist.load('owner').done(ifStillActive(onOwnerLoad));
+  };
+
+  var onOwnerLoad = function(playlist) {
+    playlist.owner.load('name', 'currentUser', 'image').done(ifStillActive(setOwner));
+  };
+
+  var setOwner = function(user) {
+    var byText = '';
+    var name;
+    if (user.currentUser) {
+      byText = L('ByYou');
+    } else if ((name = user.name || user.username)) {
+      byText = L('By') + ' ' + name;
+    }
+    els.ownerName.textContent = byText;
+    els.ownerName.href = user.uri;
+  };
+
+  var hideThrobber = function() {
+    if (!throbberHidden) {
+      els.throbber.style.display = 'none';
+      throbberHidden = true;
+    }
+  };
+
+  var recalculateMinWidth = function() {
+    var before = els.buttons.style.right || 0;
+    els.buttons.style.right = 'auto';
+    var buttonDrawerWidth = els.buttons.offsetWidth;
+    els.buttons.style.right = before;
+    els.content.style.minWidth = buttonDrawerWidth + 'px';
+  };
+
+  var updateDescriptionOrIncludedArtists = function(playlist) {
+    playlist.load('description').done(ifStillActive(function() {
+      if (playlist.description) {
+        updateDescription(playlist);
+      } else {
+        updateIncludedArtists(playlist);
+      }
+    })).fail(function() {
+      updateIncludedArtists(playlist);
+    });
+  }
+
+  var loadPlaylist = function(playlist) {
+
+    if (!drawerComponents) {
+      drawerComponents = initDrawerComponents(playlist);
+    }
+
+    updateImage(playlist);
+    updateName(playlist);
+    updateDescriptionOrIncludedArtists(playlist);
+
+    updateButtons(playlist);
+    updateNumberOfTracks(playlist);
+    updateOwner(playlist);
+
+
+    setTimeout(ifStillActive(updateFollowers), 0, playlist);
+
+    hideThrobber();
+
+  };
+
+  var initDrawerComponents = function(playlist) {
+    var offlineButton = document.createElement('button');
+    offlineButton.className = 'offline-button';
+    offlineButton.textContent = L('AvailableOffline');
+    offlineButton.addEventListener('click', onOfflineButtonClick, false);
+
+    var components = {
+      subscribeButton: buttons.SubscribeButton.forPlaylist(playlist),
+      startRadioButton: buttons.StartRadioButton.forPlaylist(playlist),
+      shareButton: buttons.ShareButton.forPlaylist(playlist),
+      offlineButton: offlineButton
+    };
+
+    for (var componentName in components) {
+      var component = components[componentName];
+      var node = component.node || component;
+
+      node.style.display = 'none';
+      els.buttons.appendChild(node);
+    }
+
+    els.buttons.insertBefore(els.numberOfTracks, components.offlineButton);
+    return components;
+  };
+
+  var onOfflineButtonClick = function() {
+    offline.getSyncState(activePlaylist).done(ifStillActive(function(syncState) {
+      var believedSyncStateEnabled = drawerComponents.offlineButton.classList.contains('turn-on');
+
+      // If the state of the button doens't reflect the real state, update the
+      // button without doing anything.
+      if (believedSyncStateEnabled !== syncState.enabled) {
+        toggleOfflineButton(syncState.enabled);
+        return;
+      }
+
+      var newSyncStateEnabled = !syncState.enabled;
+
+      if (newSyncStateEnabled) {
+        toggleOfflineButton(true);
+        offline.enableSync(activePlaylist).fail(function() {
+          toggleOfflineButton(false);
+        });
+      } else {
+        toggleOfflineButton(false);
+        offline.disableSync(activePlaylist).fail(function() {
+          toggleOfflineButton(true);
+        });
+      }
+
+      drawerComponents.offlineButton.style.display = '';
+    })).fail(function(res, err) {
+      console.error('failed to get sync state for: ', activePlaylist);
+    });
+  };
+
+  var toggleOfflineButton = function(shouldBeOn) {
+    if (shouldBeOn) {
+      drawerComponents.offlineButton.classList.add('turn-on');
+    } else {
+      drawerComponents.offlineButton.classList.remove('turn-on');
+    }
+  };
+
+  var isPlaylistActive = function(candidatePlaylist) {
+    return candidatePlaylist.uri === activePlaylist.uri;
+  };
+
+  /**
+   * Wrap a function in a checking function to see whether the same playlist is
+   * still active when the check runs as when the original function was passed,
+   * and only run the original function if true.
+   *
+   * @param  {Function} fn The function to run if same playlist still active.
+   * @return {Function}    The check function which will only run the original
+   *                       function if the same playlist is still active.
+   */
+  var ifStillActive = function(fn) {
+    var candidatePlaylist = activePlaylist;
+    return function() {
+      if (isPlaylistActive(candidatePlaylist)) {
+        fn.apply(this, arguments);
+      }
+    };
+  };
+
+  var onChangeSubscribed = function(e) {
+    if (e.target.subscribed) {
+      if (els.followersImages.childNodes.length >= 3) {
+        // Note that followersImages are now floated right so they're inversed.
+        els.followersImages.removeChild(els.followersImages.firstChild);
+      }
+      els.followersImages.appendChild(meFollowerEl);
+      setNumberOfFollowers(numberOfFollowers + 1);
+
+      // This is a quick fix for showing the "Available Offline" button when
+      // the user subscribes to a playlist. This will be handled through
+      // playlist.allows.offlineSync events when these are available in an
+      // upcoming client.
+      updateButtons(activePlaylist);
+    } else {
+      els.followersImages.removeChild(meFollowerEl);
+      setNumberOfFollowers(Math.max(0, numberOfFollowers - 1));
+
+      // This is a quick fix for hiding the "Available Offline" button when
+      // the user unsubscribes from a playlist. This will be handled through
+      // playlist.allows.offlineSync events when these are available in an
+      // upcoming client.
+      updateButtons(activePlaylist);
+    }
+  };
+
+  init();
+
+});

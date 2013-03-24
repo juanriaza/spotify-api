@@ -1,0 +1,83 @@
+@import url(image-base.css);
+
+
+/* Base for player button. Retina further down */
+.sp-image .sp-image-player {
+	background: url('../img/image-player-mobile.png');
+	background-size: 48px 96px;
+	opacity: 0;
+}
+
+/* Increase the hit area on touch devices */
+.sp-image-player.sp-button-touch .sp-button-hitarea {
+	top: -15px;
+	right: -10px;
+	bottom: -15px;
+	left: -10px;
+}
+
+/* Only medium size is supported on mobile */
+.sp-image-player-medium {
+	width: 48px;
+	height: 48px;
+}
+
+/* Play button, normal state, plus reset for hover */
+.sp-image-player-medium.sp-image-player-play,
+.sp-image-player-medium.sp-image-player-play:hover {
+	background-position: 0 0;
+}
+
+/* Play button, pressed state */
+.sp-image-player-medium.sp-image-player-play.sp-button-active {
+	background-position: 0 -48px;
+}
+
+/* Pause button, should still show the play icon until faded out */
+.sp-image-player-medium.sp-image-player-pause:hover { background-position: 0 0; }
+
+/* Centering of the play button */
+.sp-image-player-medium.sp-image-player-centered { margin-top: -24px; margin-left: -24px; }
+
+/* Override hover style from base, and always hide pause button */
+.sp-image .sp-image-player-pause,
+.sp-image:hover .sp-image-player-pause {
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Make the play button always visible, not only on hover */
+.sp-image .sp-image-player-play {
+	opacity: 1;
+}
+
+/* Animate the play button only when the animation class is set */
+.sp-image .sp-image-player-animation {
+	-webkit-transition: opacity 300ms, -webkit-transform 300ms;
+	   -moz-transition: opacity 300ms,    -moz-transform 300ms;
+	    -ms-transition: opacity 300ms,     -ms-transform 300ms;
+	        transition: opacity 300ms,         transform 300ms;
+}
+.sp-image .sp-image-player-play-animation {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	   -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	        transform: scale(1);
+}
+/* When playing, the button should be hidden to only show one pause button in the UI (now playing bar) */
+.sp-image .sp-image-player-pause-animation {
+	opacity: 0;
+	-webkit-transform: scale(1.5);
+	   -moz-transform: scale(1.5);
+	    -ms-transform: scale(1.5);
+	        transform: scale(1.5);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+
+	.sp-image .sp-image-player {
+		background: url('../img/image-player-mobile@2x.png');
+	}
+
+}

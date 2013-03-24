@@ -319,7 +319,7 @@
         <h3 class="subsection-title">Extends</h3>
         
         <ul>
-            <li><a href="e3b03fa4b6.html">module:api/models~Loadable</a></li>
+            <li><a href="2f49e4dd1a.html">module:api/models~BridgeLoadable</a></li>
         </ul>
     
     
@@ -695,6 +695,191 @@ an observer to the receiver object, for a given named event.
         
             
 <dt>
+    <h4 class="name" id="bridgeListen"><span class="type-signature"></span>bridgeListen</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Start listening for bridge events.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>requestName</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Request name to make to the bridge.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>requestArgs</code></td>
+            
+            
+            <td class="type">
+            
+                        Array
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Args for the bridge request.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1012</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="bridgeUnlisten"><span class="type-signature"></span>bridgeUnlisten</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Stop listening for bridge events.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1022</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="clear"><span class="type-signature"></span>clear</h4>
     
     
@@ -908,6 +1093,228 @@ function to be false.
 </dl>
 
         
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="eventDone"><span class="type-signature"></span>eventDone</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handle an event.
+
+Default behavior: resolve the 'data' field from events into property updates
+on this object. By default, a bridge event is redispatched as a JavaScript
+event on this, unless a 'receiver' field is specified on the event. If
+given, the 'receiver' field causes 'this[event.receiver]' to be the event
+target instead of 'this'.
+
+Subclasses should override this method if they need custom functionality to
+run on every bridge event. This should be a rare case.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Raw event object from the bridge.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1065</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="eventFail"><span class="type-signature"></span>eventFail</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handle a failure.
+
+Subclasses should replace this method if they need custom
+functionality to run on an error.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Raw error object from the bridge.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>models.js, line 1096</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
     
     
 </dd>
@@ -2448,7 +2855,7 @@ is not in the collection, no items will be removed.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Thu Jan 03 2013 17:39:45 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Wed Feb 20 2013 12:14:11 GMT-0500 (EST)
 </footer>
 
 <script> sh_highlightDocument(); </script>

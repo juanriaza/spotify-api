@@ -1,0 +1,16 @@
+{
+  "by" : "od",
+  "currentUserNoPlaylists" : "Nie obserwujesz żadnych playlist",
+  "followers" : "Obserwatorzy",
+  "followerCountSingle" : "{0} obserwujący",
+  "followerCountPlural" : "{0} obserwujących",
+  "followedBy" : "Obserwowany przez {0}",
+  "playlistsHeading" : "Playlisty",
+  "public" : "Publiczne",
+  "secret" : "Tajne",
+  "seeAllTracks" : "Pokaż wszystkie utwory",
+  "starredTracks" : "Oznaczone gwiazdką",
+  "topPlaylistsHeading" : "Najlepsze playlisty",
+  "topTracks" : "Top tracks",
+  "userNoPlaylists" : "Użytkownik {0} nie obserwuje żadnych playlist"
+}

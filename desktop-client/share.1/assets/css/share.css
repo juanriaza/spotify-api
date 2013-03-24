@@ -347,9 +347,7 @@ body.sending .actions::before {
 #user-results .no-results {
 	color: #888;
 	padding-left: 6px;
-	/* TODO(blixt): Remove lines below once "No user could be found" has been translated */
-	height: 10px;
-	text-indent: 1000px;
+	height: 12px;
 }
 
 #user-results .selected {

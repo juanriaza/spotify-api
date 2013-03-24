@@ -1,1 +1,3 @@
-exports.$=function(a,b){return(b||document).querySelector(a)};
+exports.$ = function(selector, ctx) {
+  return (ctx || document).querySelector(selector);
+};

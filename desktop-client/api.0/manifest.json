@@ -1,9 +1,9 @@
 {
     "BundleIdentifier": "api",
     "BundleType": "Framework",
-    "BundleVersion": "0.2.2",
+    "BundleVersion": "0.2.8",
     "Dependencies": {
-        "bridge-desktop": "0.7.0",
+        "bridge-desktop": "0.12.1",
         "resources": "0.1.0",
         "util": "0.1.0"
     },

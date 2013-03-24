@@ -6,34 +6,44 @@
         "en": "Search",
         "fr": "Search",
         "es": "Search",
+        "it": "Search",
         "de": "Search",
-        "nl": "Search"
+        "nl": "Search",
+        "pl": "Search"
     },
     "AppName": {
         "en": "Search",
         "fr": "Search",
         "es": "Search",
+        "it": "Search",
         "de": "Search",
-        "nl": "Search"
+        "nl": "Search",
+        "pl": "Search"
     },
     "BundleIdentifier": "search",
     "BundleType": "Application",
-    "BundleVersion": "2.0.0",
+    "BundleVersion": "2.2.2",
     "Dependencies": {
-        "api": "1.6.0",
-        "views": "1.0.0",
-        "shared": "0.0.2"
+        "api": "1.19.0",
+        "views": "1.22.0",
+        "shared": "0.1.0"
     },
     "RequiredPermissions": [
         "https://*",
         "http://*"
     ],
+    "SupportedDeviceClasses": [
+        "Desktop",
+        "Web"
+    ],
     "SupportedLanguages": [
         "en",
         "fr",
         "es",
+        "it",
         "de",
-        "nl"
+        "nl",
+        "pl"
     ],
     "UserInstallable": false,
     "VendorIdentifier": "com.spotify"

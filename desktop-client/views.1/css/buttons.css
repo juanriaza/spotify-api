@@ -12,6 +12,7 @@
 	text-shadow: 0 1px 0 rgba(255,255,255,0.62);
 	min-width: 45px;
 	height: 23px;
+	cursor: default !important;
 
 	-webkit-tap-highlight-color: transparent;
 
@@ -22,6 +23,20 @@
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
+}
+
+.sp-button-hitarea {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.sp-button.sp-button-touch .sp-button-hitarea {
+	top: -15px;
+	right: -10px;
+	bottom: -15px;
+	left: -10px;
 }
 
 .sp-button[disabled] {
@@ -161,6 +176,7 @@
 }
 
 .sp-button-empty {
+	position: relative;
 	appearance: none;
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -168,21 +184,6 @@
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
-}
-
-.sp-button-small {
-	/* TODO(blixt): We should use a special background for small buttons. */
-	font-size: 10px;
-	height: 18px;
-	line-height: 19px;
-	padding: 0 5px;
-}
-.sp-button-small .sp-button-background {
-	height: 16px;
-}
-
-.sp-button-small .sp-button-border {
-	height: 18px;
 }
 
 .sp-button-text {
@@ -195,4 +196,240 @@
 
 .sp-popup.sp-playlist-subscribed strong {
 	color: #222;
+}
+
+
+/* Large Size */
+
+.sp-button-large {
+	background-position: 0 -258px;
+	font-size: 13px;
+	height: 34px;
+	line-height: 34px;
+	padding: 0 18px 2px;
+}
+
+.sp-button-large .sp-button-background {
+	height: 34px;
+	background-position: 0 -259px;
+}
+.sp-button-large.sp-button-accentuated-positive .sp-button-background,
+.sp-button-large.sp-button-accentuated-positive[disabled]:hover .sp-button-background {
+	background-position: 0 -295px;
+}
+.sp-button-large.sp-button-accentuated-negative .sp-button-background,
+.sp-button-large.sp-button-accentuated-negative[disabled]:hover .sp-button-background {
+	background-position: 0 -331px;
+}
+.sp-button-large:hover .sp-button-background {
+	background-position: 0 -367px;
+}
+.sp-button-large.sp-button-accentuated-positive:hover .sp-button-background {
+	background-position: 0 -403px;
+}
+.sp-button-large.sp-button-accentuated-negative:hover .sp-button-background {
+	background-position: 0 -439px;
+}
+
+.sp-button-large[disabled]:hover {
+	background-position: 0 -258px;
+}
+.sp-button-large.sp-button-accentuated-positive {
+	background-position: 0 -294px;
+}
+.sp-button-large.sp-button-accentuated-positive[disabled]:hover {
+	background-position: 0 -294px;
+}
+.sp-button-large.sp-button-accentuated-negative {
+	background-position: 0 -330px;
+}
+.sp-button-large.sp-button-accentuated-negative[disabled]:hover {
+	background-position: 0 -330px;
+}
+.sp-button-large:hover {
+	background-position: 0 -366px;
+}
+.sp-button-large.sp-button-accentuated-positive:hover {
+	background-position: 0 -402px;
+}
+.sp-button-large.sp-button-accentuated-negative:hover {
+	background-position: 0 -438px;
+}
+
+
+/* Small Size */
+
+.sp-button-small {
+	background-position: 0 -150px;
+	font-size: 10px;
+	height: 18px;
+	line-height: 19px;
+	padding: 0 5px;
+}
+
+.sp-button-small .sp-button-background {
+	background-position: 0 -151px;
+	height: 16px;
+}
+.sp-button-small .sp-button-background {
+	height: 16px;
+	background-position: 0 -151px;
+}
+.sp-button-small.sp-button-accentuated-positive .sp-button-background,
+.sp-button-small.sp-button-accentuated-positive[disabled]:hover .sp-button-background {
+	background-position: 0 -169px;
+}
+.sp-button-small.sp-button-accentuated-negative .sp-button-background,
+.sp-button-small.sp-button-accentuated-negative[disabled]:hover .sp-button-background {
+	background-position: 0 -187px;
+}
+.sp-button-small:hover .sp-button-background {
+	background-position: 0 -205px;
+}
+.sp-button-small.sp-button-accentuated-positive:hover .sp-button-background {
+	background-position: 0 -223px;
+}
+.sp-button-small.sp-button-accentuated-negative:hover .sp-button-background {
+	background-position: 0 -241px;
+}
+
+.sp-button-small[disabled]:hover {
+	background-position: 0 -150px;
+}
+.sp-button-small.sp-button-accentuated-positive {
+	background-position: 0 -168px;
+}
+.sp-button-small.sp-button-accentuated-positive[disabled]:hover {
+	background-position: 0 -168px;
+}
+.sp-button-small.sp-button-accentuated-negative {
+	background-position: 0 -186px;
+}
+.sp-button-small.sp-button-accentuated-negative[disabled]:hover {
+	background-position: 0 -186px;
+}
+.sp-button-small:hover {
+	background-position: 0 -204px;
+}
+.sp-button-small.sp-button-accentuated-positive:hover {
+	background-position: 0 -222px;
+}
+.sp-button-small.sp-button-accentuated-negative:hover {
+	background-position: 0 -240px;
+}
+
+.sp-quickactionbuttons {
+	display: inline-block;
+	padding: 0;
+	margin: 4px 0 0 5px;
+	width: 18px;
+	height: 18px;
+}
+.sp-quickactionbuttons.sp-with-collection.sp-with-contextbutton {
+	width: 37px;
+}
+.sp-quickactionbuttons .sp-contextmenu, .sp-quickactionbuttons .sp-add-to-collection-button {
+	background: url(../img/quick-action-buttons.png) 0 -54px;
+	border: 0;
+	border-radius: 0;
+	color: transparent;
+	line-height: 0;
+	width: 18px;
+	height: 18px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	min-width: 0px;
+	margin: 0px;
+	padding: 0px;
+	vertical-align: top;
+
+	-webkit-transition: opacity 150ms ease-in-out;
+  -moz-transition: opacity 150ms ease-in-out;
+  ms-transition: opacity 150ms ease-in-out;
+  o-transition: opacity 150ms ease-in-out;
+  transition: opacity 150ms ease-in-out;
+}
+
+.sp-quickactionbuttons .sp-contextmenu {
+	background-position: 0px -54px;
+}
+.sp-quickactionbuttons .sp-contextmenu:hover {
+	background-position: -18px -54px;
+}
+.sp-quickactionbuttons .sp-contextmenu:active {
+	background-position: -36px -54px;
+}
+
+.sp-quickactionbuttons.sp-with-collection .sp-contextmenu {
+	background-position: 0px -36px;
+}
+.sp-quickactionbuttons.sp-with-collection .sp-contextmenu:hover {
+	background-position: -18px -36px;
+}
+.sp-quickactionbuttons.sp-with-collection .sp-contextmenu:active {
+	background-position: -36px -36px;
+}
+.sp-quickactionbuttons.sp-with-collection .sp-add-to-collection-button.sp-in-collection + .sp-contextmenu {
+	background-position: 0px -54px;
+}
+.sp-quickactionbuttons.sp-with-collection .sp-add-to-collection-button.sp-in-collection + .sp-contextmenu:hover {
+	background-position: -18px -54px;
+}
+.sp-quickactionbuttons.sp-with-collection .sp-add-to-collection-button.sp-in-collection + .sp-contextmenu:active {
+	background-position: -36px -54px;
+}
+
+.sp-quickactionbuttons .sp-add-to-collection-button {
+	background-position: 0px -18px;
+	margin-right: 1px;
+}
+.sp-quickactionbuttons .sp-add-to-collection-button:hover {
+	background-position: -18px -18px;
+}
+.sp-quickactionbuttons .sp-add-to-collection-button:active {
+	background-position: -36px -18px;
+}
+
+.sp-quickactionbuttons.sp-with-contextbutton .sp-add-to-collection-button {
+	background-position: 0px 0px;
+	margin-right: 1px;
+}
+.sp-quickactionbuttons.sp-with-contextbutton .sp-add-to-collection-button:hover {
+	background-position: -18px 0px;
+}
+.sp-quickactionbuttons.sp-with-contextbutton .sp-add-to-collection-button:active {
+	background-position: -36px 0px;
+}
+
+.sp-quickactionbuttons .sp-add-to-collection-button.sp-in-collection {
+	opacity: 0;
+	background-position: 0px -90px;
+}
+.sp-quickactionbuttons .sp-add-to-collection-button.sp-in-collection:hover {
+	background-position: -18px -90px;
+}
+.sp-quickactionbuttons .sp-add-to-collection-button.sp-in-collection:active {
+	background-position: -36px -90px;
+}
+
+.sp-quickactionbuttons.sp-with-contextbutton .sp-add-to-collection-button.sp-in-collection {
+	background-position: 0px -72px;
+}
+.sp-quickactionbuttons.sp-with-contextbutton .sp-add-to-collection-button.sp-in-collection:hover {
+	background-position: -18px -72px;
+}
+.sp-quickactionbuttons.sp-with-contextbutton .sp-add-to-collection-button.sp-in-collection:active {
+	background-position: -36px -72px;
+}
+
+.sp-quickactionbuttons .sp-add-to-collection-button span {
+	display: none;
+}
+.sp-quickactionbuttons .sp-add-to-collection-button .sp-button-hitarea {
+	display: block;
+}
+
+.sp-add-to-collection-button {
+	width: 150px;
 }

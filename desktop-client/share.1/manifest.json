@@ -4,14 +4,18 @@
         "en" : "Share",
         "es" : "Compartir",
         "fr" : "Partager",
-        "nl" : "Delen"
+        "nl" : "Delen",
+        "it" : "Condividi",
+        "pl" : "Udostępnij"
     },
     "AppDescription": {
         "de" : "Teilen",
         "en" : "Share",
         "es" : "Compartir",
         "fr" : "Partager",
-        "nl" : "Delen"
+        "nl" : "Delen",
+        "it" : "Condividi",
+        "pl" : "Udostępnij"
     },
     "ApiPermissions": {
         "core" : ["private"],
@@ -20,7 +24,7 @@
     },
     "BundleIdentifier": "share",
     "BundleType": "Application",
-    "BundleVersion": "1.0.8",
+    "BundleVersion": "1.2.1",
     "Dependencies": {
         "api": "0.2.0",
         "resources": "0.1.0",
@@ -36,7 +40,9 @@
         "fr",
         "es",
         "de",
-        "nl"
+        "nl",
+        "pl",
+        "it"
     ],
     "PreferredSize": {
         "width": 300,

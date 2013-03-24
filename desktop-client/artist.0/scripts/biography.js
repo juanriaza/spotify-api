@@ -1,6 +1,172 @@
-require(["/scripts/env#Environment","/strings/main.lang"],function(n,e){function d(){this.view=new d.view;this.noBio=this.imagesLoaded=this.loaded=!1;this.specialCases={"spotify:artist:0du5cEVh5yTK9QJze8zA0C":200}}function c(){}var g=e.get.bind(e);d.view=c;d.prototype.init=function(a){this.artist=a;this.view.init();a=this.artist?this.artist.biography:"";return(this.noBio=void 0===a||0===a.length)?(this.view.hide(),!1):!0};d.prototype.destroy=function(){this.noBio=this.imagesLoaded=this.loaded=!1;
-this.view.destroy()};d.prototype.render=function(){this.loaded=!0;if(!this.noBio){var a=this.artist.biography;this.view.show();var b;this.specialCases[this.artist.uri]?b=a.substring(0,this.specialCases[this.artist.uri]):(b=this.artist.name.split("."),0===b.length?b=a.match(/((?:.*?)\.\s[A-Z])/)[0]:(b=b.slice(1,b.length).join("."),b=b.replace(".","\\."),b=b.replace(" ","\\s"),b=a.match(RegExp("((?:.*?)(?:"+b+")(?:.*?)\\.\\s[A-Z])"))[0]),b=b.substr(0,b.length-2));a=a.replace(b,this.view.makeIntro(b));
-a.split("\n").forEach(this.view.addParagraph.bind(this.view));this.view.renderText(this.artist)}};d.prototype.renderImages=function(){this.imagesLoaded=!0;this.view.renderImages(this.artist)};c.IMAGE_HEIGHT=138;c.IMAGE_PADDING=22;c.PAGE_WIDTH=600;c.CONTENT_CONTAINER=$("biography-text");c.GALLERY_CONTAINER=$("biography-gallery");c.prototype.init=function(){this._bio="";this._imagesInjected=!1};c.prototype.destroy=function(){this._bio="";$("biography-gallery").empty();$("biography-text").empty();this._imagesInjected=
-!1};c.prototype.show=function(){$$("li.biography").setStyle("display","inline-block")};c.prototype.hide=function(){$$("li.biography").setStyle("display","none")};c.prototype.makeIntro=function(a){return'<p class="intro">'+a+"</p>"};c.prototype.addParagraph=function(a){this._bio+="<p>"+a+"</p>"};c.prototype.renderText=function(){c.CONTENT_CONTAINER.innerHTML=this._bio;this._highlightLinks()};c.prototype.renderImages=function(a){if(1<a.portraits.length)for(var b=new Element("ul",{id:"biography-images",
-"class":"cf"}),d=new Element("li"),e=new Element("img",{"class":"biography-image"}),f=0,h=0,i=this,g=function(){h+=1;f+=Math.floor(c.IMAGE_HEIGHT/this.height*this.width)+c.IMAGE_PADDING;if(!1===i._imagesInjected&&(f>c.PAGE_WIDTH||h===a.portraits.length-1))i._imagesInjected=!0,i.injectImages(c.GALLERY_CONTAINER,b,f)},j=1,p=a.portraits.length;j<p;j++){var k=e.clone(),m=d.clone(),l=a.portraits[j];n.web&&(l=l.replace("300","artist_image"));k.setProperty("src",l);k.inject(m);m.inject(b);k.addEvent("load",
-g)}};c.prototype.injectImages=function(a,b,d){b.inject(a,"top");d>c.PAGE_WIDTH&&(a=new Element("p",{id:"biography-toggle",html:g("see-more")}),a.addEvent("click",function(){b.removeClass("closed");b.addClass("open");b.addClass("animation");this.dispose()}),b.addClass("closed"),a.inject(b,"after"))};c.prototype._highlightLinks=function(){c.CONTENT_CONTAINER.getElements("a").forEach(function(a){a.href.match(/spotify:/)&&(a.href=a.href.toSpotifyURL())})};exports.Biography=d});
+require([
+  '/scripts/env#Environment',
+  '/strings/main.lang'
+], function(Environment, localeStrings) {
+
+  var _ = localeStrings.get.bind(localeStrings);
+
+  function Biography() {
+    this.view = new Biography.view;
+    this.loaded = false;
+    this.imagesLoaded = false;
+    this.noBio = false;
+    this.specialCases = {
+      'spotify:artist:0du5cEVh5yTK9QJze8zA0C': 200
+    };
+  }
+
+  Biography.view = BiographyView;
+
+  /**
+  * Initialises biography
+  * @param  {Object} artist The artist object.
+  * @return {Bool}        Returns true if a biography texts is available, otherwise false.
+  */
+  Biography.prototype.init = function(artist) {
+    this.artist = artist;
+    this.view.init();
+    var bio = this.artist ? this.artist.biography : '';
+    this.noBio = bio === undefined || bio.length === 0;
+    if (this.noBio) {
+      this.view.hide();
+      return false;
+    }
+    return true;
+  };
+
+  Biography.prototype.destroy = function() {
+    this.loaded = false;
+    this.imagesLoaded = false;
+    this.noBio = false;
+    this.view.destroy();
+  };
+
+  Biography.prototype.render = function() {
+    this.loaded = true;
+    if (this.noBio) return;
+    var bio = this.artist.biography;
+
+    this.view.show();
+    var sentences,
+        firstSentence;
+    if (this.specialCases[this.artist.uri]) {
+      firstSentence = bio.substring(0, this.specialCases[this.artist.uri]);
+    } else {
+      var nameTest = this.artist.name.split('.'),
+          pattern;
+      if (nameTest.length === 1) {
+        sentences = bio.match(/((?:.*?)\.\s[A-Z])/);
+        firstSentence = (sentences) ? sentences[0] : bio;
+      } else {
+        var nameIgnore = nameTest.slice(1, nameTest.length).join('.');
+        nameIgnore = nameIgnore.replace('.', '\\.');
+        nameIgnore = nameIgnore.replace(' ', '\\s');
+        var re = new RegExp('((?:.*?)(?:' + nameIgnore + ')(?:.*?)\\.\\s[A-Z])');
+        sentences = bio.match(re);
+        firstSentence = (sentences) ? sentences[0] : bio;
+      }
+      if (sentences) {
+        firstSentence = firstSentence.substr(0, firstSentence.length - 2);
+      }
+    }
+    bio = bio.replace(firstSentence, this.view.makeIntro(firstSentence));
+    var paragraphs = bio.split('\n').forEach(this.view.addParagraph.bind(this.view));
+    this.view.renderText(this.artist);
+  };
+
+  Biography.prototype.renderImages = function() {
+    this.imagesLoaded = true;
+    this.view.renderImages(this.artist);
+  };
+
+  function BiographyView() {}
+
+  BiographyView.IMAGE_HEIGHT = 138;
+  BiographyView.IMAGE_PADDING = 22; // This isn't the same as CSS padding, it's the full extra spacing.
+  BiographyView.PAGE_WIDTH = 600;
+  BiographyView.CONTENT_CONTAINER = $('biography-text');
+  BiographyView.GALLERY_CONTAINER = $('biography-gallery');
+
+  BiographyView.prototype.init = function() { this._bio = ''; this._imagesInjected = false; };
+  BiographyView.prototype.destroy = function() {
+    this._bio = '';
+    $('biography-gallery').empty();
+    $('biography-text').empty();
+    this._imagesInjected = false;
+  };
+  BiographyView.prototype.show = function() { $$('li.biography').setStyle('display', 'inline-block'); };
+  BiographyView.prototype.hide = function() { $$('li.biography').setStyle('display', 'none'); };
+  BiographyView.prototype.makeIntro = function(sentence) { return '<p class="intro">' + sentence + '</p>'; };
+  BiographyView.prototype.addParagraph = function(paragraph) { this._bio += ('<p>' + paragraph + '</p>'); };
+
+  BiographyView.prototype.renderText = function(artist) {
+    BiographyView.CONTENT_CONTAINER.innerHTML = this._bio;
+    this._highlightLinks();
+  };
+
+  BiographyView.prototype.renderImages = function(artist) {
+    // first image is the portrait
+    if (artist.portraits.length > 1) {
+      var listNode = new Element('ul', {id: 'biography-images', 'class': 'cf'}),
+          liNode = new Element('li'),
+          img = new Element('img', {'class': 'biography-image'});
+
+      var currentWidth = 0,
+          loadedImages = 0,
+          self = this;
+      var updateWidth = function() {
+        loadedImages += 1;
+
+        var imageWidth = Math.floor((BiographyView.IMAGE_HEIGHT / this.height) * this.width);
+        currentWidth += (imageWidth + BiographyView.IMAGE_PADDING);
+
+        // The -1 on the length is due to the skipping of the first image (that's the main portrait)
+        if (self._imagesInjected === false && (currentWidth > BiographyView.PAGE_WIDTH || loadedImages === artist.portraits.length - 1)) {
+          self._imagesInjected = true;
+          self.injectImages(BiographyView.GALLERY_CONTAINER, listNode, currentWidth);
+        }
+      };
+
+      for (var i = 1, j = artist.portraits.length; i < j; i++) {
+        var image = img.clone(),
+            li = liNode.clone(),
+            imageSource = artist.portraits[i];
+
+        if (Environment.web) {
+          imageSource = imageSource.replace('300', 'artist_image');
+        }
+        image.setProperty('src', imageSource);
+        image.inject(li);
+        li.inject(listNode);
+
+        image.addEvent('load', updateWidth);
+      }
+    }
+  };
+
+  BiographyView.prototype.injectImages = function(biographyNode, listNode, currentWidth) {
+    listNode.inject(biographyNode, 'top');
+
+    if (currentWidth > BiographyView.PAGE_WIDTH) {
+      var toggleNode = new Element('p', {id: 'biography-toggle', html: _('see-more')});
+      toggleNode.addEvent('click', function() {
+        listNode.removeClass('closed');
+        listNode.addClass('open');
+        listNode.addClass('animation');
+        this.dispose();
+      });
+      listNode.addClass('closed');
+      toggleNode.inject(listNode, 'after');
+    }
+  };
+
+  BiographyView.prototype._highlightLinks = function() {
+    BiographyView.CONTENT_CONTAINER.getElements('a').forEach(function(element) {
+      if (element.href.match(/spotify:/)) {
+        element.href = element.href.toSpotifyURL();
+      }
+    });
+  };
+
+  exports.Biography = Biography;
+});

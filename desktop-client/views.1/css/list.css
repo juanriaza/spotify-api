@@ -1,5 +1,6 @@
 @import url(throbber.css);
 @import url(image.css);
+@import url(buttons.css);
 
 /**
  * Styles for the List view.
@@ -47,7 +48,7 @@
 	overflow: hidden;
 }
 .sp-list-wrapper-fixed-header.sp-list-style-rounded {
-	overflow: visible;
+	padding-bottom: 1px;
 }
 .sp-list-wrapper-header-fixed .sp-list-body {
 	margin-top: 24px;
@@ -165,13 +166,14 @@
 	}
 		.sp-list-item {
 			overflow: hidden;
+			height: 25px;
 			line-height: 25px;
 			-webkit-box-sizing: border-box;
 			   -moz-box-sizing: border-box;
 			        box-sizing: border-box;
 		}
 		.sp-list-item-hidden {
-			display: none;
+			height: 25px;
 		}
 		.sp-list-item-selected > .sp-list-cell {
 			background: #aaaaaa;
@@ -527,35 +529,21 @@
 	text-overflow: ellipsis;
 	display: block;
 }
-.sp-list-contextbutton {
-	border: 0;
-	background: url(../img/list-track-contextbutton.png) 0 0;
-	color: transparent;
-	line-height: 0;
-	width: 18px;
-	height: 18px;
-	padding: 0;
-	margin: 4px 0 0 5px;
-
+.sp-list .sp-quickactionbuttons {
 	float: right;
 	opacity: 0;
 	outline: none;
 	cursor: default;
 }
-.sp-list-layout-toplist .sp-list-contextbutton {
+.sp-list.sp-list-layout-toplist .sp-quickactionbuttons {
 	margin: 9px 0 0 0;
 }
-.sp-list-contextbutton:hover {
-	background-position: -18px 0;
-}
-.sp-list-contextbutton:active {
-	background-position: -36px 0;
-}
-.sp-list-item:hover .sp-list-contextbutton {
+
+.sp-list .sp-list-item:hover .sp-quickactionbuttons {
 	opacity: 1;
 }
 
-.sp-list-item .sp-list-contextbutton-popup {
+.sp-list .sp-list-item .sp-quickactionbuttons-popup {
 	opacity: 1;
 }
 
@@ -579,6 +567,7 @@
 	width: 13px;
 	height: 11px;
 	margin: 0;
+	cursor: default !important;
 
 	background: url(../img/list-share.png) 0 0;
 }

@@ -1,13 +1,397 @@
-require(["$api/search#Search","$api/models","$views/image#Image","$views/utils/dom","$views/utils/css"],function(l,f,m,h,e){function b(a,g,c){this.results=[];this.selected=null;this.hasSelected=!1;this.prev=null;this.templates=g;this.resetSearchButton=a.querySelector(".search-close");this.setEscapeClose=this.setEscapeClose.bind(this);this.selectUp=this.selectUp.bind(this);this.selectDown=this.selectDown.bind(this);this.deselect=this.deselect.bind(this);this.inputField=a.querySelector(".music-input");
-this.messageContainer=a.querySelector(".message-input");this.resultContainer=a.querySelector(".music-search");this.selectedDisplay=a.querySelector(".selected-search");this.sendButton=c;h.addEventListener(this.inputField,"keyup",this.sendQuery.bind(this));h.addEventListener(this.resetSearchButton,"click",this.resetSearch.bind(this))}var n=["name","image","popularity"],p=["name","image","popularity","artists"],q=["name","image","popularity","artists"],r=document.createElement("ul"),s=document.createElement("li"),
-k=document.createElement("span"),t=document.createElement("div");b.prototype.sendQuery=function(a,g){var c=(a.target||g).value;switch(a.keyCode){case 13:this.select();a.stopImmediatePropagation();a.preventDefault();break;case 27:this.escapeClose();break;case 38:this.selectUp();a.stopImmediatePropagation();a.preventDefault();break;case 40:this.selectDown();a.stopImmediatePropagation();a.preventDefault();break;default:0<c.length?(this.search(c),e.addClass(this.resetSearchButton,"show")):(this.hideSearchResults(),
-e.removeClass(this.resetSearchButton,"show"))}};b.prototype.selectUp=function(){this.selected=null===this.selected||0>=this.selected?this.results.length-1:this.selected-1;this.setSelected(this.results[this.selected])};b.prototype.selectDown=function(){this.selected=null===this.selected||this.selected===this.results.length-1?0:this.selected+1;this.setSelected(this.results[this.selected])};b.prototype.setSelected=function(a){void 0!==a&&(this.prev&&e.removeClass(this.prev,"selected"),e.addClass(a,"selected"),
-this.prev=a)};b.prototype.select=function(a){var g=this.results[this.selected],c=function(){this.hasSelected=!0;this.selectedDisplay.innerHTML=b(j);e.addClass(this.selectedDisplay,"show");e.addClass(this.inputField,"hide");this.hideSearchResults();this.selected=-1;this.messageContainer.focus();h.addEventListener(this.inputField,"focus",this.deselect);this.sendButton.setDisabled(!1)}.bind(this);if(null!==g||a){var d=g?this.dataObjects[g.getAttribute("data-uri")]:this.dataObjects[a],b,j;switch(d?d.uri.split(":")[1]:
-a){case "track":this.selectedItem=f.Track.fromURI(d.uri);b=this.templates.selected_track;d.album.load("name").done(this,function(a){j={song:d.name,album:a.name,by:"by",artist:d.artists[0].name};c()});break;case "album":this.selectedItem=f.Album.fromURI(d.uri);b=this.templates.selected_album;j={album:d.name,by:"by",artist:d.artists[0].name};c();break;case "artist":this.selectedItem=f.Artist.fromURI(d.uri),b=this.templates.selected_artist,j={artist:d.name},c()}}};b.prototype.deselect=function(){this.hasSelected=
-!1;h.removeEventListener(this.inputField,"focus",this.deselect);this.inputField.value="";this.selectedDisplay.innerHTML="";e.removeClass(this.selectedDisplay,"show");e.removeClass(this.inputField,"hide");this.sendButton.setDisabled(!0)};b.prototype.search=function(a){a=l.suggest(a);f.Promise.join(a.artists.snapshot(0,3),a.albums.snapshot(0,3),a.tracks.snapshot(0,3)).done(this.onSnapshotDone.bind(this)).fail(this.onSuggestError)};b.prototype.onSnapshotDone=function(a){f.Promise.join(this.loadItems(a[0].toArray(),
-n),this.loadItems(a[1].toArray(),p),this.loadItems(a[2].toArray(),q)).done(this.onSearchMore.bind(this)).fail(this.onSuggestError.bind(this))};b.prototype.loadItems=function(a,b){for(var c=[],d=0,i=a.length;d<i;d+=1)c.push(a[d].load(b));return f.Promise.join(c)};b.prototype.onSearchMore=function(a){var b=this.dataObjects||{};this.dataObjects={};var c=!1;a.forEach(function(a){!1!==a instanceof Object&&Object.keys(a).forEach(function(b){this.dataObjects[a[b].uri]=a[b];a.hasOwnProperty(b)&&(c=!0)}.bind(this))}.bind(this));
-!1===c&&(this.dataObjects=b);this.onMetadataDone(a)};b.prototype.onMetadataDone=function(a){document.createDocumentFragment();if("function"===typeof this.onSearchResult)this.onSearchResult(a)};b.prototype.onSuggestError=function(){console.error("error",arguments)};b.prototype.onSearchResult=function(a){var b=t.cloneNode(!1),c=[];this.results=[];var d=function(a){for(var b=0;b<a.childNodes.length;b++)this.results.push(a.childNodes[b])}.bind(this);void 0!==a[0]&&c.push(this.buildSection("artists",a[0]));
-void 0!==a[1]&&c.push(this.buildSection("albums",a[1]));void 0!==a[2]&&c.push(this.buildSection("tracks",a[2]));void 0!==a[2]&&d(c[2]);void 0!==a[1]&&d(c[1]);void 0!==a[0]&&d(c[0]);for(d=c.length;d;)c[d-1]&&0!==a[d-1].length&&b.appendChild(c[d-1]),d--;this.resultContainer.innerHTML="";this.resultContainer.appendChild(b)};b.prototype.hideSearchResults=function(){this.resultContainer.innerHTML=""};b.prototype.buildSection=function(a,b){if(!b)return"";var c=r.cloneNode(!1),d;e.addClass(c,"search-section");
-e.addClass(c,a);for(var i=0,f=b.length;i<f;i++)(d=this.buildItem(b[i]))&&c.appendChild(d);return c};b.prototype.buildItem=function(a){var b=new m(a,{width:25,style:"plain"}),c=s.cloneNode(!1);e.addClass(c,"search-item");c.setAttribute("data-uri",a.uri);var d=k.cloneNode(!1);e.addClass(d,"item-name");d.innerHTML=a.name.decodeForText();c.appendChild(b.node);c.appendChild(d);a.artists&&0<a.artists.length&&(b=k.cloneNode(!1),e.addClass(b,"artist-name"),b.appendChild(document.createTextNode(" by "+a.artists[0].name.decodeForText())),
-c.appendChild(b));h.addEventListener(c,"click",function(a){this.select(a.target.getAttribute("data-uri"));a.preventDefault();a.stopImmediatePropagation()}.bind(this));return c};b.prototype.resetSearch=function(){!0===this.hasSelected?(this.deselect(),this.inputField.focus()):(this.inputField.value="",this.hideSearchResults(),e.removeClass(this.resetSearchButton,"show"))};b.prototype.reset=function(){this.results=[];this.selected=null;this.hasSelected=!1;this.selectedItem=this.prev=null;this.inputField.value=
-"";this.messageContainer.value="";this.hideSearchResults();e.removeClass(this.resetSearchButton,"show")};b.prototype.setEscapeClose=function(a){this.escapeClose=a};b.prototype.getMessage=function(){return this.messageContainer.value};b.prototype.getSelection=function(){return this.selectedItem};exports.Search=b});
+require([
+  '$api/search#Search',
+  '$api/models',
+  '$views/image#Image',
+  '$views/utils/dom',
+  '$views/utils/css'
+], function(Search, models, Image, dom, css) {
+
+  'use strict';
+
+  var MAX_ITEMS = 3;
+
+  var ARTIST_PROPERTIES = ['name', 'image', 'popularity'];
+  var ALBUM_PROPERTIES = ['name', 'image', 'popularity', 'artists'];
+  var TRACK_PROPERTIES = ['name', 'image', 'popularity', 'artists'];
+
+  var NODE_UL = document.createElement('ul');
+  var NODE_LI = document.createElement('li');
+  var NODE_SPAN = document.createElement('span');
+  var NODE_DIV = document.createElement('div');
+
+  function ShareSearch(element, templates, sendButton) {
+    this.results = [];
+    this.selected = null;
+    this.hasSelected = false;
+    this.prev = null;
+    this.templates = templates;
+    this.resetSearchButton = element.querySelector('.search-close');
+
+    this.setEscapeClose = this.setEscapeClose.bind(this);
+    this.selectUp = this.selectUp.bind(this);
+    this.selectDown = this.selectDown.bind(this);
+    this.deselect = this.deselect.bind(this);
+
+    this.inputField = element.querySelector('.music-input');
+    this.messageContainer = element.querySelector('.message-input');
+    this.resultContainer = element.querySelector('.music-search');
+    this.selectedDisplay = element.querySelector('.selected-search');
+    this.sendButton = sendButton;
+
+    dom.addEventListener(this.inputField, 'keyup', this.sendQuery.bind(this));
+
+    dom.addEventListener(this.resetSearchButton, 'click',
+        this.resetSearch.bind(this));
+  }
+
+  ShareSearch.prototype.sendQuery = function(evt, val) {
+    var el = evt.target || val;
+    var value = el.value;
+    switch (evt.keyCode) {
+      case 13:
+        this.select();
+        evt.stopImmediatePropagation();
+        evt.preventDefault();
+        break;
+      case 27:
+        this.escapeClose();
+        break;
+      case 38:
+        this.selectUp();
+        evt.stopImmediatePropagation();
+        evt.preventDefault();
+        break;
+      case 40:
+        this.selectDown();
+        evt.stopImmediatePropagation();
+        evt.preventDefault();
+        break;
+      default:
+        if (value.length > 0) {
+          this.search(value);
+          css.addClass(this.resetSearchButton, 'show');
+        } else {
+          this.hideSearchResults();
+          css.removeClass(this.resetSearchButton, 'show');
+        }
+        break;
+    }
+  };
+
+  ShareSearch.prototype.selectUp = function() {
+    if (this.selected === null || this.selected <= 0) {
+      this.selected = this.results.length - 1;
+    } else {
+      this.selected -= 1;
+    }
+    this.setSelected(this.results[this.selected]);
+  };
+
+  ShareSearch.prototype.selectDown = function() {
+    if (this.selected === null || this.selected === this.results.length - 1) {
+      this.selected = 0;
+    } else {
+      this.selected += 1;
+    }
+    this.setSelected(this.results[this.selected]);
+  };
+
+  ShareSearch.prototype.setSelected = function(curr) {
+    if (curr === undefined) {
+      return;
+    }
+    if (this.prev) {
+      css.removeClass(this.prev, 'selected');
+    }
+    css.addClass(curr, 'selected');
+    this.prev = curr;
+  };
+
+  ShareSearch.prototype.select = function(uri) {
+    var curr = this.results[this.selected];
+
+    var contentLoaded = function() {
+      this.hasSelected = true;
+      this.selectedDisplay.innerHTML = template(content);
+      css.addClass(this.selectedDisplay, 'show');
+      css.addClass(this.inputField, 'hide');
+      this.hideSearchResults();
+      this.selected = -1;
+      this.messageContainer.focus();
+      dom.addEventListener(this.inputField, 'focus', this.deselect);
+      this.sendButton.setDisabled(false);
+
+      // TODO show search-results again on click and revert input field to last query.
+    }.bind(this);
+
+    if (curr !== null || uri) {
+      var data = curr ? this.dataObjects[curr.getAttribute('data-uri')] : this.dataObjects[uri],
+          type = data ? data.uri.split(':')[1] : uri,
+          template,
+          content;
+      switch (type) {
+        case 'track':
+          this.selectedItem = models.Track.fromURI(data.uri);
+          template = this.templates.selected_track;
+          data.album.load('name')
+            .done(this, function(a) {
+                content = {
+                  song: data.name,
+                  album: a.name,
+                  by: 'by',
+                  artist: data.artists[0].name
+                };
+                contentLoaded();
+              });
+          break;
+        case 'album':
+          this.selectedItem = models.Album.fromURI(data.uri);
+          template = this.templates.selected_album;
+          content = {
+            album: data.name,
+            by: 'by',
+            artist: data.artists[0].name
+          };
+          contentLoaded();
+          break;
+        case 'artist':
+          this.selectedItem = models.Artist.fromURI(data.uri);
+          template = this.templates.selected_artist;
+          content = {
+            artist: data.name
+          };
+          contentLoaded();
+          break;
+        default:
+          break;
+      }
+
+    }
+  };
+
+  ShareSearch.prototype.deselect = function() {
+    this.hasSelected = false;
+    dom.removeEventListener(this.inputField, 'focus', this.deselect);
+    this.inputField.value = '';
+    this.selectedDisplay.innerHTML = '';
+    css.removeClass(this.selectedDisplay, 'show');
+    css.removeClass(this.inputField, 'hide');
+    this.sendButton.setDisabled(true);
+  };
+
+  ShareSearch.prototype.search = function(query) {
+    var search = Search.suggest(query);
+    var doSuggest = models.Promise.join(
+        search.artists.snapshot(0, MAX_ITEMS),
+        search.albums.snapshot(0, MAX_ITEMS),
+        search.tracks.snapshot(0, MAX_ITEMS))
+    .done(this.onSnapshotDone.bind(this))
+    .fail(this.onSuggestError);
+  };
+
+  ShareSearch.prototype.onSnapshotDone = function(snapshots) {
+    models.Promise.join(
+        this.loadItems(snapshots[0].toArray(), ARTIST_PROPERTIES),
+        this.loadItems(snapshots[1].toArray(), ALBUM_PROPERTIES),
+        this.loadItems(snapshots[2].toArray(), TRACK_PROPERTIES))
+    .done(this.onSearchMore.bind(this))
+    .fail(this.onSuggestError.bind(this));
+  };
+
+  ShareSearch.prototype.loadItems = function(items, properties) {
+    var promises = [];
+
+    for (var i = 0, len = items.length; i < len; i += 1) {
+      promises.push(items[i].load(properties));
+    }
+
+    return models.Promise.join(promises);
+  };
+
+  ShareSearch.prototype.onSearchMore = function(data) {
+    var _artists = data[0] || [];
+    var _albums = data[1] || [];
+    var _tracks = data[2] || [];
+    var savedData = this.dataObjects || {};
+
+    this.dataObjects = {};
+    var newResults = false;
+    data.forEach(function(d) {
+      if (d instanceof Object === false) return;
+      Object.keys(d).forEach(function(k) {
+        this.dataObjects[d[k].uri] = d[k];
+        if (d.hasOwnProperty(k)) {
+          newResults = true;
+        }
+      }.bind(this));
+    }.bind(this));
+
+    if (newResults === false) {
+      this.dataObjects = savedData;
+    }
+
+    this.onMetadataDone(data);
+  };
+
+  ShareSearch.prototype.onMetadataDone = function(data) {
+    var fragment = document.createDocumentFragment();
+    var fragments = [];
+
+    var _artists = data[0] || [];
+    var _albums = data[1] || [];
+    var _tracks = data[2] || [];
+
+    if (typeof this.onSearchResult === 'function') {
+      this.onSearchResult(data);
+    }
+  };
+
+  ShareSearch.prototype.onSuggestError = function() {
+    console.error('error', arguments);
+  };
+
+  /** VIEW STUFF **/
+  ShareSearch.prototype.onSearchResult = function(result) {
+    var resultNode = NODE_DIV.cloneNode(false);
+    var results = [];
+    this.results = [];
+
+    var appendResultNodes = function(ul) {
+      for (var i = 0; i < ul.childNodes.length; i++) {
+        this.results.push(ul.childNodes[i]);
+      }
+    }.bind(this);
+
+    // I know this is _FAR_ from optimal, it's due to the fact that the gui
+    // logic was implemented before the backend logic.
+    // TODO tidy this up when finesse is priorotized higher than feature
+    //      complete :D
+    if (result[0] !== undefined) {
+      results.push(this.buildSection('artists', result[0]));
+    }
+    if (result[1] !== undefined) {
+      results.push(this.buildSection('albums', result[1]));
+    }
+    if (result[2] !== undefined) {
+      results.push(this.buildSection('tracks', result[2]));
+    }
+
+    if (result[2] !== undefined) {
+      appendResultNodes(results[2]);
+    }
+    if (result[1] !== undefined) {
+      appendResultNodes(results[1]);
+    }
+    if (result[0] !== undefined) {
+      appendResultNodes(results[0]);
+    }
+
+    var i = results.length;
+    while (i) {
+      if (results[i - 1] && result[i - 1].length !== 0) {
+        resultNode.appendChild(results[i - 1]);
+      }
+      i--;
+    }
+
+    this.resultContainer.innerHTML = '';
+    this.resultContainer.appendChild(resultNode);
+  };
+
+  ShareSearch.prototype.hideSearchResults = function() {
+    this.resultContainer.innerHTML = '';
+  };
+
+  ShareSearch.prototype.buildSection = function(type, sectionData) {
+    if (!sectionData) {
+      return '';
+    }
+
+    var section = NODE_UL.cloneNode(false);
+    var item;
+
+    css.addClass(section, 'search-section');
+    css.addClass(section, type);
+
+    for (var i = 0, l = sectionData.length; i < l; i++) {
+      item = this.buildItem(sectionData[i]);
+
+      if (item) {
+        section.appendChild(item);
+      }
+    }
+    return section;
+  };
+
+  ShareSearch.prototype.buildItem = function(itemData) {
+    var image = new Image(itemData, {
+      width: 25,
+      style: 'plain'
+    });
+
+    var li = NODE_LI.cloneNode(false);
+    css.addClass(li, 'search-item');
+    li.setAttribute('data-uri', itemData.uri);
+
+    var name = NODE_SPAN.cloneNode(false);
+    css.addClass(name, 'item-name');
+    name.innerHTML = itemData.name.decodeForText();
+
+    li.appendChild(image.node);
+    li.appendChild(name);
+
+    if (itemData.artists && itemData.artists.length > 0) {
+      var artist = NODE_SPAN.cloneNode(false);
+      css.addClass(artist, 'artist-name');
+      // FIXME(fxb): This should use artist.oad('name')!!!
+      artist.appendChild(document.createTextNode(' by ' + itemData.artists[0].name.decodeForText()));
+      li.appendChild(artist);
+    }
+
+    dom.addEventListener(li, 'click', function(e) {
+      this.select(e.target.getAttribute('data-uri'));
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }.bind(this));
+    return li;
+  };
+
+  ShareSearch.prototype.resetSearch = function(e) {
+    if (this.hasSelected === true) {
+      this.deselect();
+      this.inputField.focus();
+    } else {
+      this.inputField.value = '';
+      this.hideSearchResults();
+      css.removeClass(this.resetSearchButton, 'show');
+    }
+  };
+
+  ShareSearch.prototype.reset = function() {
+    this.results = [];
+    this.selected = null;
+    this.hasSelected = false;
+    this.prev = null;
+    this.selectedItem = null;
+    this.selectedDisplay.innerHTML = '';
+    css.removeClass(this.selectedDisplay, 'show');
+    this.inputField.value = '';
+    this.messageContainer.value = '';
+    this.hideSearchResults();
+    css.removeClass(this.resetSearchButton, 'show');
+  };
+
+  ShareSearch.prototype.setEscapeClose = function(cb) {
+    this.escapeClose = cb;
+  };
+
+  ShareSearch.prototype.getMessage = function() {
+    return this.messageContainer.value;
+  };
+
+  ShareSearch.prototype.getSelection = function() {
+    return this.selectedItem;
+  };
+
+  exports.Search = ShareSearch;
+});

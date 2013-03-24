@@ -1,0 +1,14 @@
+{
+  "followerCountSingle" : "{0} follower",
+  "followerCountPlural" : "{0} follower",
+  "followersHeading" : "Follower",
+  "followingHeading" : "Seguito",
+  "playlistCountSingle" : "{0} playlist",
+  "playlistCountPlural" : "{0} playlist",
+  "noFollowersMessage" : "Nessuno segue {0} per adesso.",
+  "noFollowingMessage" : "{0} non sta ancora seguendo altre persone.",
+  "currentUsernoFollowersMessage" : "Nessuno ti segue, per adesso.",
+  "currentUsernoFollowingMessage" : "Non stai ancora seguendo altre persone.",
+  "currentUsernoFollowingLinkText" : "Scopri chi seguire.",
+  "artist" : "Artist"
+}

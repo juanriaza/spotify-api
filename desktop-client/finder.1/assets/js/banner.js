@@ -21,8 +21,7 @@ var storeCom = sp.require('/assets/js/appstore-hermes');
  */
 var showCategories = true,
     cdnHost = 'http://d1hza3lyffsoht.cloudfront.net',
-    bannerconf,
-    bannerconffile = cdnHost + '/banners/config/bannerconf-finder.json';
+    bannerconf;
 
 /**
  * Class for a array of top-banners
@@ -33,10 +32,8 @@ var AnimatedBanner = {
   init: function(testVersion) {
     var self = AnimatedBanner;
     var banners = [];
-
-    // load banners
-    request.request(bannerconffile, 'null', 'GET').then(function(result) {
-      bannerconf = JSON.parse(result.response);
+    storeCom.getBannerConfig(function(bc) {
+      bannerconf = bc;
       self.pickBanners();
     });
   },
@@ -314,10 +311,24 @@ var AnimatedBanner = {
       }
 
       var currentBanner = document.querySelectorAll('.banner-images')[0];
-      currentBanner.style.webkitAnimationName = 'fade-out';
-      currentBanner.addEventListener('webkitAnimationEnd', function() {
-        header.removeChild(currentBanner);
-      }, false);
+
+      // Javascript animation hack instead of using cpu intensive css animations
+      (function() {
+        var t = 0.0;
+        var duration = 0.30;
+        var fps = 30.0;
+        function tick() {
+          var opa = 1.0 - t / duration;
+          currentBanner.style.zIndex = 25;
+          currentBanner.style.opacity = opa;
+          t += 1.0 / fps;
+          if (t < duration)
+            setTimeout(tick, 1000.0 / fps);
+          else
+            header.removeChild(currentBanner);
+        }
+        tick();
+      })();
 
       //Fading only when there was some previous element
       newBanner.classList.add('focus');

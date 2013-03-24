@@ -1,0 +1,19 @@
+{
+  "loadingActivities" : "Ładowanie aktywności&hellip;",
+  "recentActivity" : "Ostatnia aktywność",
+  "userNoActivities" : "{0} nie ma ostatniej aktywności",
+  "youNoActivities" : "Nie masz żadnej ostatniej aktywności",
+  "by" : "{0} - {1}",
+  "addedTrackToPlaylist" : "Użytkownik {0} dodał utwór {1} do playlisty {2}",
+  "addedTheApp" : "Użytkownik {0} dodał aplikację {1}",
+  "follows" : "Użytkownik {0} obserwuje {1}",
+  "listenedToBy" : "Użytkownik {0} słuchał {1} - {2}",
+  "nowFollowsThePlaylist" : "Użytkownik {0} obserwuje teraz playlistę",
+  "nowFollowsYourPlaylist" : "Użytkownik {0} obserwuje teraz Twoją playlistę",
+  "publishedThePlaylist" : "Użytkownik {0} utworzył playlistę",
+  "sharedAnAlbumBy" : "Użytkownik {0} udostępnił album",
+  "sharedAnArtist" : "Użytkownik {0} udostępnił wykonawcę",
+  "sharedAPlaylist" : "Użytkownik {0} udostępnił playlistę",
+  "sharedATrackBy" : "Użytkownik {0} udostępnił utwór",
+  "starredATrackBy" : "Użytkownik {0} oznaczył gwiazdką utwór {1} wykonawcy {2}"
+}

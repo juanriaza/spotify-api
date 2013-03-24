@@ -6,11 +6,13 @@
 		"whatsnew" : ["private"]
 	},
 	"AppDescription" : {
-		"en": "What's New",
-		"fr": "Nouveautés",
-		"es": "Novedades",
 		"de": "Neuheiten",
-		"nl": "Nieuw"
+		"en": "What's New",
+		"es": "Novedades",
+		"fr": "Nouveautés",
+		"it": "Notizie",
+		"nl": "Nieuw",
+		"pl": "Aktualności"
 	},
 	"AppIcon": {
 		"36x18": "assets/img/home-18.png",
@@ -18,34 +20,40 @@
 		"128x128": "assets/img/home-128.png"
 	},
 	"AppName": {
-		"en": "What's New",
-		"fr": "Nouveautés",
-		"es": "Novedades",
 		"de": "Neuheiten",
-		"nl": "Nieuw"
+		"en": "What's New",
+		"es": "Novedades",
+		"fr": "Nouveautés",
+		"it": "Notizie",
+		"nl": "Nieuw",
+		"pl": "Aktualności"
+	},
+	"BridgeDependencies": {
+		"bridge-desktop": "0.11.0"
 	},
 	"BundleIdentifier": "home",
 	"BundleType": "Application",
-	"BundleVersion": "1.2.0",
+	"BundleVersion": "1.4.4",
 	"Dependencies": {
-        "api": "0.1.0",
-        "resources": "0.1.0",
-        "unstable": "0.1.0",
-        "util": "0.1.0",
-        "bridge-desktop": "0.11.0"
-    },
-    "InternalBundleVersion": 100,
+		"api": "0.1.0",
+		"resources": "0.1.0",
+		"unstable": "0.1.0",
+		"util": "0.1.0"
+	},
+	"InternalBundleVersion": 100,
 	"RequiredInterface": 1,
 	"RequiredPermissions": [
 		"https://*",
 		"http://*"
 	],
 	"SupportedLanguages": [
-		"en",
-		"fr",
-		"es",
 		"de",
-		"nl"
+		"en",
+		"es",
+		"fr",
+		"it",
+		"nl",
+		"pl"
 	],
 	"UserInstallable": false,
 	"VendorIdentifier": "com.spotify"

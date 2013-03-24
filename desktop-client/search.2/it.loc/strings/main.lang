@@ -1,0 +1,19 @@
+{
+  "artists": "Artisti",
+  "albums": "Album",
+  "playlists": "Playlist",
+  "tracks": "Brani",
+  "search-paragraph-results": "Visualizzazione risultati per {0}.",
+  "search-paragraph-albums": "Visualizzazione album per {0}.",
+  "search-paragraph-artists": "Visualizzazione artisti per {0}.",
+  "search-paragraph-tracks": "Visualizzazione brani per {0}.",
+  "search-paragraph-playlists": "Visualizzazione playlist per {0}.",
+  "did-you-mean-1": "Intendevi “{0}”?",
+  "did-you-mean-2": "Intendevi “{0}” o “{1}”?",
+  "back-to-original-query": "Cerca piuttosto “{0}”.",
+  "empty-search-result": "Nessun risultato di ricerca per {0}.",
+  "empty-search": "Parola chiave di ricerca troppo lunga. Prova con qualcosa di più corto.",
+  "snapshot-failed": "Si è verificato un errore. Prova a ripetere la ricerca.",
+  "no-tracks": "La ricerca non ha restituito alcun brano della nostra libreria. Controlla di aver digitato tutte le parole correttamente. In alternativa, prova ricerche diverse o più semplici.",
+  "see-all": "Visualizza tutto"
+}

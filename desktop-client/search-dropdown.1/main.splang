@@ -1,0 +1,158 @@
+{
+  "requiredLanguages" : [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "nl",
+    "pl"
+  ],
+  "strings" : {
+    "Search Dropdown" : {
+      "by" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "it" : "di",
+          "nl" : "van",
+          "pl" : "od"
+        }
+      },
+      "sDropdownAlbums" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Alben",
+          "en" : "Albums",
+          "es" : "Álbums",
+          "fr" : "Albums",
+          "it" : "Album",
+          "nl" : "Albums",
+          "pl" : "Albumy"
+        }
+      },
+      "sDropdownArtists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Künstler",
+          "en" : "Artists",
+          "es" : "Artistas",
+          "fr" : "Artistes",
+          "it" : "Artisti",
+          "nl" : "Artiesten",
+          "pl" : "Wykonawcy"
+        }
+      },
+      "sDropdownBy" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "von",
+          "en" : "by",
+          "es" : "por",
+          "fr" : "par",
+          "it" : "di",
+          "nl" : "door",
+          "pl" : "od"
+        }
+      },
+      "sDropdownClearRecentSearches" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Letzte Suchabfragen entfernen",
+          "en" : "Clear Recent Searches",
+          "es" : "Eliminar búsquedas recientes",
+          "fr" : "Effacer les recherches récentes",
+          "it" : "Cancella ricerche recenti",
+          "nl" : "Wis laatste zoekvragen",
+          "pl" : "Wyczyść ostatnie wyszukiwania"
+        }
+      },
+      "sDropdownPlaylists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlists",
+          "en" : "Playlists",
+          "es" : "Listas",
+          "fr" : "Playlists",
+          "it" : "Playlist",
+          "nl" : "Afspeellijsten",
+          "pl" : "Playlisty"
+        }
+      },
+      "sDropdownRecentSearches" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Letzte Suchabfragen",
+          "en" : "Recent Searches",
+          "es" : "Búsquedas Recientes",
+          "fr" : "Recherches récentes",
+          "it" : "Ricerche recenti",
+          "nl" : "Recente zoekvragen",
+          "pl" : "Ostatnie wyszukiwania"
+        }
+      },
+      "sDropdownShowAllResults" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Alle Ergebnisse anzeigen...",
+          "en" : "Show All Results…",
+          "es" : "Mostrar todos los resultados…",
+          "fr" : "Voir tous les résultats",
+          "it" : "Mostra tutti i risultati...",
+          "nl" : "Toon alle resultaten...",
+          "pl" : "Pokaż wszystkie wyniki..."
+        }
+      },
+      "sDropdownTopHit" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Bestes Ergebnis",
+          "en" : "Top Hit",
+          "es" : "Resultado principal",
+          "fr" : "Top suggestion",
+          "it" : "Prima scelta",
+          "nl" : "Top Hit",
+          "pl" : "Najlepszy wybór"
+        }
+      },
+      "sDropdownTracks" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Titel",
+          "en" : "Tracks",
+          "es" : "Canciones",
+          "fr" : "Titres",
+          "it" : "Brani",
+          "nl" : "Nummers",
+          "pl" : "Utwory"
+        }
+      },
+      "sDropdownUsers" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Benutzer",
+          "en" : "Users",
+          "es" : "Usuarios",
+          "fr" : "Utilisateurs",
+          "it" : "Utenti",
+          "nl" : "Gebruikers",
+          "pl" : "Użytkownicy"
+        }
+      }
+    }
+  }
+}

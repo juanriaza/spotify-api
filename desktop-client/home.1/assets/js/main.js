@@ -110,20 +110,22 @@ var surveyTest = {
   group: sp.core.getAbTestGroupForTest('NPS-Survey-1'),
   today: new Date(),
   getFirst: function() {
-    return new Date(this.today.getFullYear(), 0, 1);
+    return new Date(2012, 0, 1); //Survey was launched March 2012, so 'Jan 01, 2012' acts as our epoch.
   },
-  getDayOfYear: function() {
+  getDaysSinceFirst: function() {
     return Math.round(((this.today - this.getFirst()) / 1000 / 60 / 60 / 24));
   },
   display: false,
   version: '1'
 };
-surveyTest.dayOfYear = surveyTest.getDayOfYear();
+surveyTest.daysSinceFirst = surveyTest.getDaysSinceFirst();
 surveyTest.saltedGroup = sp.core.getAbTestGroupForTest('NPS-Survey-2');
 
-for (var i = 0; i < 7; i++) {
-  if (surveyTest.group === (surveyTest.dayOfYear - i)) {
-    if (surveyTest.saltedGroup <= 300) {
+// Show the survey module for a period of 7 days to a random testgroup of users,
+// but no more than 30% of all users.
+if (surveyTest.saltedGroup <= 300) {
+  for (var i = 0; i < 7; i++) {
+    if (surveyTest.group === (surveyTest.daysSinceFirst - i) % 1000) {
       surveyTest.display = true;
       dom.queryOne('body').classList.add('survey-body');
       break;
@@ -166,10 +168,21 @@ if (appArgs.length === 2 && (appArgs[0] == 'testVersion' ||
 
 var numberOfUserImpressions = storage.getWithDefault('user.impressions', 0);
 
+function logStepTime(stepName, opt_timestamp) {
+  var timestamp = (opt_timestamp || new Date()) - performance.timing.navigationStart;
+  logger.logClientEvent('TimingStep', stepName, '', testVersion, {
+    // Stringify the timestamp since the client seem to drop numbers on the floor
+    sinceAppStart: timestamp.toString()
+  });
+}
+
 /**
  * Initiate the page
  */
 function init() {
+  logStepTime('before require', _beforeRequireTimestamp);
+  logStepTime('main.init');
+
   numberOfUserImpressions = storage.set('user.impressions', numberOfUserImpressions + 1);
 
   loadingEl = dom.queryOne('.loading');
@@ -236,40 +249,6 @@ function init() {
   survey.Survey.setStepCallback(step);
   survey.Survey.setTranslations(surveyTranslations);
   survey.Survey.init();
-
-  if (sp.core.country == 'US') {
-    addCustomMobileRadioAd();
-  }
-}
-
-function addCustomMobileRadioAd() {
-  var el = document.getElementById('CustomBanner');
-  var bg = document.createElement('a');
-  bg.classList.add('mfr-bg');
-  document.querySelector('body').appendChild(bg);
-  el.className = '';
-
-  var gplay = new dom.Element('a');
-  gplay.classList.add('gplay');
-  var astore = new dom.Element('a');
-  astore.classList.add('astore');
-
-  bg.addEventListener('click', function(event) {
-    logger.logClientEvent('mobileradiosave', 'click', '1', testVersion, {});
-    window.open('http://www.spotify.com/mobile/overview/');
-  });
-  gplay.addEventListener('click', function(event) {
-    logger.logClientEvent('mobileradiosave', 'click on google play', '1', testVersion, {});
-    window.open('https://play.google.com/store/apps/details?id=com.spotify.mobile.android.ui');
-  });
-  astore.addEventListener('click', function(event) {
-    logger.logClientEvent('mobileradiosave', 'click on apple store', '1', testVersion, {});
-    window.open('http://itunes.apple.com/us/app/spotify/id324684580?mt=8');
-  });
-
-  el.appendChild(gplay);
-  el.appendChild(astore);
-
 }
 
 /**
@@ -358,9 +337,10 @@ function checkMPU(cb) {
  * @param {bool} sectionLoaded whether the section was loaded.
  */
 function step(sectionLoaded) {
-  //console.log(sectionLoaded, currentStep);
   switch (currentStep) {
     case -2:
+      logStepTime('hermes');
+
       currentStep++;
       survey.Survey.build();
       break;
@@ -369,6 +349,8 @@ function step(sectionLoaded) {
       newAlbums.NewAlbums.next();
       break;
     case 0: // NewAlbums
+      logStepTime('albums');
+
       if (!sectionLoaded) {
         dom.destroy(dom.id('NewAlbums'));
       }
@@ -376,6 +358,8 @@ function step(sectionLoaded) {
       playlistToplists.shift().next();
       break;
     case 1: // Top toplists, left
+      logStepTime('playlists');
+
       if (!sectionLoaded && !playlistToplists.length) {
         dom.destroy(playlistWrappers.shift());
       }
@@ -396,6 +380,8 @@ function step(sectionLoaded) {
       }
       break;
     case 2: // Top toplists, right
+      logStepTime('ads/tracks');
+
       if (!sectionLoaded && !trackToplists.length) {
         dom.destroy(trackWrappers.shift());
       }
@@ -454,8 +440,8 @@ function step(sectionLoaded) {
       }
       if (!sectionLoaded && trackToplists.length) {
         trackToplists.shift().next();
-        // } else {
-        //   console.log('Done loading! GREAT SUCCESS!');
+      } else {
+        logStepTime('finished');
       }
       break;
   }
@@ -489,23 +475,40 @@ var Discovery = {
       }
     };
 
+    var hermesReply = null;
     sp.core.getHermes('GET', 'hm://discovery/get-whats-new-data/',
         [
          ['WhatsNewRequest', postObj]
         ],
         {
           onSuccess: function(message) {
+            hermesReply = message;
+          },
+          onFailure: function(errorCode) {
+            triggerFailure('Discovery');
+          },
+          onComplete: function() {
             clearTimeout(useCache);
-            var data = sp.core.parseHermesReply('WhatsNewReply', message);
 
-            newAlbums.NewAlbums.setHeading(_('sRecommended Albums'));
-            newAlbums.NewAlbums.setStepCallback(step);
+            var data = {
+              new_albums: null,
+              friends_playlists: null,
+              friends_tracks: null,
+              region_playlists: null,
+              region_tracks: null,
+              new_friends: null
+            };
+
+            if (hermesReply)
+              data = sp.core.parseHermesReply('WhatsNewReply', hermesReply);
 
             var labels = {
               sRecommended: _('sRecommended'),
               sTopList: _('sTopList')
             };
 
+            newAlbums.NewAlbums.setHeading(_('sRecommended Albums'));
+            newAlbums.NewAlbums.setStepCallback(step);
             newAlbums.NewAlbums.labels = labels;
             newAlbums.NewAlbums.testVersion = testVersion;
             newAlbums.NewAlbums.loggingVersion = loggingVersion;
@@ -542,9 +545,6 @@ var Discovery = {
             self._loaded = true;
             self._loadEvent.dispatch(window);
             step(true);
-          },
-          onFailure: function(errorCode) {
-            triggerFailure('Discovery');
           }
         }
     );
@@ -560,7 +560,6 @@ var Discovery = {
 };
 
 function NewToplistPlaylistsDataSource(data, showFriends, context, preCacheSize) {
-  data = data;
   showFriends = showFriends || false;
   context = context || '';
 

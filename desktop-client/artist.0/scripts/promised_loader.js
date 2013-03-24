@@ -1,2 +1,42 @@
-require(["$api/models"],function(g){function a(){this.stack=[]}a.prototype.enqueue=function(a,c,d){var e=Array.prototype.slice.call(arguments,3),b=new g.Promise(a);if(0===this.stack.length){var f=c.apply(d,e);this.stack.push(f);f.done(function(){b.setDone()})}else this.stack[this.stack.length-1].done(function(){c.apply(d,e).done(function(){b.setDone()})});this.stack.push(b);return b};a.prototype.destroy=function(){0<this.stack.length&&(this.stack[this.stack.length-1].setFail(),this.stack=[])};exports.PromisedLoader=
-a});
+require([
+  '$api/models'
+], function(models) {
+
+  function PromisedLoader() {
+    this.stack = [];
+  }
+
+  PromisedLoader.prototype.enqueue = function(result, fn, ctx) {
+    var args = Array.prototype.slice.call(arguments, 3),
+        done = new models.Promise(result);
+    if (this.stack.length === 0) {
+      var promise = fn.apply(ctx, args);
+      this.stack.push(promise);
+      promise.done(function() {
+        done.setDone();
+      });
+    } else {
+      var last = this.stack[this.stack.length - 1];
+      last.done(function() {
+        var promise = fn.apply(ctx, args);
+        promise.done(function() {
+          done.setDone();
+        });
+      });
+    }
+    this.stack.push(done);
+    return done;
+  };
+
+  PromisedLoader.prototype.destroy = function() {
+    if (this.stack.length > 0) {
+      var last = this.stack[this.stack.length - 1];
+      last.setFail();
+      this.stack = [];
+    }
+  }
+
+
+  exports.PromisedLoader = PromisedLoader;
+
+});

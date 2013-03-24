@@ -62,12 +62,12 @@
   <p class="popcount-value">{playlist.popcount}</p>
 {endslab}
 
-{slab subscribers}
+{slab followers}
   <div id="followers-container" class="section-content">
   </div>
 {endslab}
 
-{slab subscriptions}
+{slab following}
   <div id="following-container" class="section-content">
   </div>
 {endslab}

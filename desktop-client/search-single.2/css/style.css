@@ -43,7 +43,8 @@ p {
     text-shadow: 0 1px 0 white;
 }
 
-.hidden {
+.hidden,
+.replace {
     display: none !important;
 }
 
@@ -80,11 +81,11 @@ a[href=''] {
 }
 
 .rows-1 .search-result {
-    height: 191px;
+    height: 191px !important;
 }
 
 .rows-2 .search-result {
-    height: 364px;
+    height: 364px !important;
 }
 
 .sp-throbber {
@@ -133,15 +134,18 @@ a[href=''] {
     padding-bottom: 50px;
 }
 
-.loner .grid li:nth-child(3n+1) .sp-image {
+.loner .grid li:nth-child(3n+1) .sp-image,
+.loner .grid li:nth-child(3n+1) .placeholder-link {
     float: left;
 }
 
-.loner .grid li:nth-child(3n+2) .sp-image {
+.loner .grid li:nth-child(3n+2) .sp-image,
+.loner .grid li:nth-child(3n+2) .placeholder-link  {
     margin: 0 auto;
 }
 
-.loner .grid li:nth-child(3n+3) .sp-image {
+.loner .grid li:nth-child(3n+3) .sp-image,
+.loner .grid li:nth-child(3n+3) .placeholder-link  {
     float: right;
 }
 
@@ -151,7 +155,8 @@ a[href=''] {
     margin: 0 0 20px 0;
 }
 
-.loner .grid li .sp-image {
+.loner .grid li .sp-image,
+.loner .grid .placeholder-link {
     width: 230px !important;
     height: 230px !important;
 }
@@ -194,7 +199,7 @@ a[href=''] {
     position: absolute;
     top: 0;
     left: 0;
-    height: 180px;
+    height: 177px;
 }
 
 .loner .pod {
@@ -243,10 +248,15 @@ a[href=''] {
 .ui {
     position: relative;
     box-sizing: border-box;
+    /* css transition
+    -webkit-transition: "margin-left" .2s linear;
+    transition: "margin-left" .2s linear;
+    */
 }
 
-.ui .sp-image-overlay {
-    z-index: 100;
+/* temp */
+.ui .sp-image-player {
+    z-index: 200 !important;
 }
 
 .ui .sp-image-overlay a {
@@ -258,7 +268,9 @@ a[href=''] {
     text-decoration: underline;
 }
 
-.ui > .sp-image-placeholder-visible {
+.ui > .placeholder-link {
+    display: block;
+    position: relative;
     border-radius: 6px;
     background-color: #B7B6B3;
     width: 100%;
@@ -272,20 +284,42 @@ a[href=''] {
     border-radius: 4px;
 }
 
-.artist-ui > .sp-image-placeholder-visible {
+.artists .ui > .placeholder-link,
+.albums .ui > .placeholder-link,
+.playlists .ui > .placeholder-link {
     background-size: 451.5625% 1171.875%;
+}
+
+.artists .ui > .placeholder-link {
     background-position: 100% 21.865889212827987%;
 }
 
-.album-ui > .sp-image-placeholder-visible {
-    background-size: 451.5625% 1171.875%;
+.albums .ui > .placeholder-link {
     background-position: 100% 0;
 }
 
-.playlist-ui > .sp-image-placeholder-visible {
-    background-size: 451.5625% 1171.875%;
+.playlists .ui > .placeholder-link {
     background-position: 100% 43.731778425655975%;
 }
+
+.loner .artists .ui > .placeholder-link,
+.loner .albums .ui > .placeholder-link,
+.loner .playlists .ui > .placeholder-link {
+    background-size: 192.66666666666669% 500%;
+}
+
+.loner .artists .ui > .placeholder-link {
+    background-position: 0% 25.000000000000007%;
+}
+
+.loner .albums .ui > .placeholder-link {
+    background-position: 0 0;
+}
+
+.loner .playlists .ui > .placeholder-link {
+    background-position: 0% 50.000000000000014%;
+}
+
 
 /* ==========================================================================
    Top bar
@@ -319,7 +353,8 @@ a[href=''] {
     display: none;
 }
 
-.search-query a {
+.search-query a,
+.search-query span {
     font-weight: bold;
 }
 
@@ -376,4 +411,12 @@ a[href=''] {
     position: absolute;
     top: 0;
     width: 155px;
+}
+
+body.tg-g .sp-image-overlay-line1:hover {
+    text-decoration: underline;
+}
+
+body.tg-h .sp-image:hover .sp-image-overlay-line1 {
+    text-decoration: underline;
 }

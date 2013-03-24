@@ -15,38 +15,42 @@
   },
   "BundleIdentifier": "playlist-header",
   "BundleType": "Application",
-  "BundleVersion": "1.0.2",
+  "BundleVersion": "1.0.6",
   "Dependencies": {
-    "api": "1.16.0",
-    "views": "1.19.0"
+    "api": "1.20.1",
+    "views": "1.24.2"
   },
+  "LoadingScreenBackgroundColor": "#373737",
   "RequiredPermissions": [
     "https://fbcdn-profile-*.akamaihd.net",
-    "http://*.fbcdn.net",
-
-    "https://*",
-    "http://*"
+    "http://*.fbcdn.net"
   ],
   "SupportedLanguages": [
-    "en",
-    "fr",
-    "es",
     "de",
-    "nl"
+    "en",
+    "es",
+    "fr",
+    "it",
+    "nl",
+    "pl"
   ],
   "AppName": {
-    "en": "Playlist header",
-    "fr": "Playlist header",
-    "es": "Playlist header",
     "de": "Playlist header",
-    "nl": "Playlist header"
+    "en": "Playlist header",
+    "es": "Playlist header",
+    "fr": "Playlist header",
+    "it": "Playlist header",
+    "nl": "Playlist header",
+    "pl": "Playlist header"
   },
   "AppDescription": {
-    "en": "Playlist header",
-    "fr": "Playlist header",
-    "es": "Playlist header",
     "de": "Playlist header",
-    "nl": "Playlist header"
+    "en": "Playlist header",
+    "es": "Playlist header",
+    "fr": "Playlist header",
+    "it": "Playlist header",
+    "nl": "Playlist header",
+    "pl": "Playlist header"
   },
   "UserInstallable": false
 }

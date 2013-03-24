@@ -2,6 +2,14 @@
 
 var SPOTIFY_APPSTORE_PROTO_SCHEMA = [
   {
+    name: 'SemanticVersion',
+    fields: [
+      {id: 1, type: 'int32', name: 'major'},
+      {id: 2, type: 'int32', name: 'minor'},
+      {id: 3, type: 'int32', name: 'patch'}
+    ]
+  },
+  {
     name: 'AppInfo',
     fields: [
       {id: 1, type: 'string', name: 'app_name'},
@@ -22,7 +30,9 @@ var SPOTIFY_APPSTORE_PROTO_SCHEMA = [
       {id: 3, type: 'int32', name: 'priority'},
       {id: 4, type: 'int32', name: 'client_api_version_low'},
       {id: 5, type: 'int32', name: 'client_api_version_high'},
-      {id: 6, type: 'AppInfoList', name: 'app_infos'}
+      {id: 6, type: 'AppInfoList', name: 'app_infos'},
+      {id: 7, type: 'string', name: 'bridge_identifier'},
+      {id: 8, type: 'SemanticVersion', name: 'bridge_version'}
     ]
   },
   {
@@ -50,6 +60,12 @@ var SPOTIFY_APPSTORE_PROTO_SCHEMA = [
     name: 'IdentifierList',
     fields: [
       {id: 1, type: '*string', name: 'identifiers'}
+    ]
+  },
+  {
+    name: 'BannerConfig',
+    fields: [
+      {id: 1, type: '*string', name: 'json'}
     ]
   }
 ];
@@ -89,4 +105,3 @@ var BADPLATFORM = 255;
 var REQUIRED_INSTALL = 1;
 var LAZYLOAD = 2;
 var OPTIONAL_INSTALL = 3;
-

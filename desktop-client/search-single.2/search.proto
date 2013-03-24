@@ -1,0 +1,28 @@
+message SearchRequest {
+  optional string query  = 1;
+  optional Type   type   = 2;
+  optional sint32 limit  = 3;
+  optional sint32 offset = 4;
+}
+
+enum Type {
+  USER = 4;
+}
+
+message Image {
+  optional string spotify_uri = 2;
+  optional string url         = 4;
+  optional string slask_id    = 5;
+}
+
+message User {
+  optional string username  = 1;
+  optional string full_name = 2;
+  optional Image  image     = 3;
+  optional sint32 followers = 4;
+}
+
+message SearchReply {
+  optional sint32 hits = 1;
+  repeated User user   = 7;
+}

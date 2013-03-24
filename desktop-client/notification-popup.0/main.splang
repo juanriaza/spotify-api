@@ -4,7 +4,9 @@
     "en",
     "es",
     "fr",
-    "nl"
+    "it",
+    "nl",
+    "pl"
   ],
   "strings" : {
     "buttons" : {
@@ -16,7 +18,9 @@
           "en" : "Follow",
           "es" : "Seguir",
           "fr" : "Suivre",
-          "nl" : "Volgen"
+          "it" : "Segui",
+          "nl" : "Volgen",
+          "pl" : "Obserwuj"
         }
       },
       "sFollowedPlaceHolderTitle" : {
@@ -27,7 +31,9 @@
           "en" : "Followed",
           "es" : "Siguiendo",
           "fr" : "Abonné",
-          "nl" : "Gevolgd"
+          "it" : "Seguito",
+          "nl" : "Gevolgd",
+          "pl" : "Obserwowani"
         }
       },
       "sViewButtonTitle" : {
@@ -38,7 +44,9 @@
           "en" : "View",
           "es" : "Ver",
           "fr" : "Voir",
-          "nl" : "Bekijken"
+          "it" : "Visualizza",
+          "nl" : "Bekijken",
+          "pl" : "Pokaż"
         }
       },
       "sPlayButtonTitle" : {
@@ -49,7 +57,9 @@
           "en" : "Play",
           "es" : "Reproducir",
           "fr" : "Lecture",
-          "nl" : "Afspelen"
+          "it" : "Play",
+          "nl" : "Afspelen",
+          "pl" : "Odtwarzaj"
         }
       }
     },
@@ -62,7 +72,9 @@
           "en" : "Clear All",
           "es" : "Limpiar todo",
           "fr" : "Tout effacer",
-          "nl" : "Alles wissen"
+          "it" : "Cancella tutto",
+          "nl" : "Alles wissen",
+          "pl" : "Wyczyść wszystko."
         }
       },
       "sLoadError" : {
@@ -73,7 +85,9 @@
           "en" : "Sorry. We cannot get your notifications right now.",
           "es" : "No se pueden recibir notificaciones ahora.",
           "fr" : "Impossible d'afficher d'autres notifications pour le moment.",
-          "nl" : "Je meldingen kunnen helaas niet worden weergegeven."
+          "it" : "Spiacenti, ma al momento non possiamo accedere alle tue notifiche.",
+          "nl" : "Je meldingen kunnen helaas niet worden weergegeven.",
+          "pl" : "Niestety nie możemy w tej chwili uzyskać Twoich powiadomień."
         }
       },
       "sNoMoreMessage" : {
@@ -84,7 +98,9 @@
           "en" : "No more notifications.",
           "es" : "No tienes más notificaciones.",
           "fr" : "Pas d'autres notifications.",
-          "nl" : "Geen mededelingen meer."
+          "it" : "Non sono più presenti notifiche.",
+          "nl" : "Geen mededelingen meer.",
+          "pl" : "Brak powiadomień."
         }
       },
       "sTitle" : {
@@ -95,7 +111,9 @@
           "en" : "Notifications",
           "es" : "Notificaciones",
           "fr" : "Notifications",
-          "nl" : "Mededelingen"
+          "it" : "Notifiche",
+          "nl" : "Mededelingen",
+          "pl" : "Powiadomienia"
         }
       }
     },
@@ -108,7 +126,9 @@
           "en" : "{0} subscribed to your playlist{1}.",
           "es" : "{0} ha agregado tu lista {1}",
           "fr" : "{0} s'est abonné à votre playlist {1}.",
-          "nl" : "{0} is nu geabonneerd op je afspeellijst {1}."
+          "it" : "{0} si è iscritto alla tua playlist {1}.",
+          "nl" : "{0} is nu geabonneerd op je afspeellijst {1}.",
+          "pl" : "Użytkownik {0} zasubskrybował Twoją playlistę {1}."
         }
       },
       "sNotificationBodyStarredSubscribe" : {
@@ -119,7 +139,9 @@
           "en" : "{0} subscribed to your starred tracks.",
           "es" : "{0} se ha suscrito a tus canciones destacadas",
           "fr" : "{0} s'est abonné à votre sélection.",
-          "nl" : "{0} heeft zich op je Favorieten geabonneerd."
+          "it" : "{0} si è iscritto ai tuoi brani preferiti.",
+          "nl" : "{0} heeft zich op je Favorieten geabonneerd.",
+          "pl" : "Użytkownik {0} zasubskrybował Twoje utwory oznaczone gwiazdką. "
         }
       },
       "sNotificationBodyToplistSubscribe" : {
@@ -130,7 +152,9 @@
           "en" : "{0} subscribed to your top tracks.",
           "es" : "{0} se ha suscrito a tus canciones favoritas.",
           "fr" : "'{0} s'est abonné à votre Top titres.",
-          "nl" : "{0} heeft zich geabonneerd op je topnummers."
+          "it" : "{0} si è iscritto ai tuoi brani top.",
+          "nl" : "{0} heeft zich geabonneerd op je topnummers.",
+          "pl" : "Użytkownik {0} zasubskrybował Twoje najlepsze utwory. "
         }
       }
     },
@@ -143,7 +167,9 @@
           "en" : "Your friend {0} just joined Spotify.",
           "es" : "{0} está usando Spotify ahora.",
           "fr" : "Votre ami {0} vient de rejoindre Spotify.",
-          "nl" : "{0} gebruikt nu ook Spotify."
+          "it" : "Il tuo amico {0} si è appena iscritto a Spotify.",
+          "nl" : "{0} gebruikt nu ook Spotify.",
+          "pl" : "Twój znajomy {0} właśnie dołączył do Spotify."
         }
       },
       "sNotificationBodyNewFollower" : {
@@ -154,7 +180,9 @@
           "en" : "{0} started following you.",
           "es" : "{0} te ha comenzado a seguir.",
           "fr" : "{0} vous suit.",
-          "nl" : "{0} volgt je vanaf nu."
+          "it" : "{0} ha iniziato a seguirti.",
+          "nl" : "{0} volgt je vanaf nu.",
+          "pl" : "Użytkownik {0} zaczął Cię obserwować."
         }
       },
       "sNotificationBodyPlaylistSubscribe" : {
@@ -165,7 +193,9 @@
           "en" : "{0} is now following your playlist: {1}.",
           "es" : "{0} ahora sigue tu playlist {1}.",
           "fr" : "{0} s’est abonné à votre playlist : {1}.",
-          "nl" : "{0} volgt nu je afspeellijst: {1}."
+          "it" : "{0} ora segue la tua playlist: {1}.",
+          "nl" : "{0} volgt nu je afspeellijst: {1}.",
+          "pl" : "{0} obserwuje teraz Twoją playlistę: {1}."
         }
       },
       "sNotificationBodyStarredSubscribe" : {
@@ -176,7 +206,9 @@
           "en" : "{0} is now following your starred tracks.",
           "es" : "{0} ahora sigue tus canciones destacadas.",
           "fr" : "{0} s’est abonné à votre Sélection.",
-          "nl" : "{0} volgt nu je favorieten."
+          "it" : "{0} ora sta seguendo i tuoi brani preferiti.",
+          "nl" : "{0} volgt nu je favorieten.",
+          "pl" : "{0} obserwuje teraz Twoje utwory oznaczone gwiazdką."
         }
       },
       "sNotificationBodyToplistSubscribe" : {
@@ -187,7 +219,9 @@
           "en" : "{0} is now following your top tracks.",
           "es" : "{0} ahora sigue tus canciones favoritas.",
           "fr" : "{0} s’est abonné à vos Top titres.",
-          "nl" : "{0} volgt nu je topnummers."
+          "it" : "{0} ora sta seguendo i tuoi brani top.",
+          "nl" : "{0} volgt nu je topnummers.",
+          "pl" : "{0} obserwuje teraz Twoje najlepsze utwory."
         }
       },
       "sNotificationBodyPlaylistUpdatedPlural" : {
@@ -198,7 +232,9 @@
           "en" : "{0} added {2} tracks to {1}.",
           "es" : "{0} añadió {2} canciones a {1}.",
           "fr" : "{0} a ajouté {2} titres dans {1}.",
-          "nl" : "{0} heeft {2} nummers aan {1} toegevoegd."
+          "it" : "{0} ha aggiunto {2} brani a {1}.",
+          "nl" : "{0} heeft {2} nummers aan {1} toegevoegd.",
+          "pl" : "Użytkownik {0} dodał {2} utwory|utworów do {1}."
         }
       },
       "sNotificationBodyPlaylistUpdatedSingular" : {
@@ -209,7 +245,9 @@
           "en" : "{0} added a track to {1}.",
           "es" : "{0} agregó una canción a {1}.",
           "fr" : "{0} a ajouté un titre dans {1}.",
-          "nl" : "{0} heeft een nummer aan {1} toegevoegd."
+          "it" : "{0} ha aggiunto un brano a {1}.",
+          "nl" : "{0} heeft een nummer aan {1} toegevoegd.",
+          "pl" : "Użytkownik {0} dodał utwór do {1}."
         }
       },
       "sNotificationBodyStarredTracksUpdatedName" : {
@@ -220,7 +258,9 @@
           "en" : "Starred",
           "es" : "Destacadas",
           "fr" : "Sélection",
-          "nl" : "Favorieten"
+          "it" : "Preferito",
+          "nl" : "Favorieten",
+          "pl" : "Oznaczone gwiazdką"
         }
       },
       "sNotificationBodyToplistUpdatedName" : {
@@ -231,7 +271,35 @@
           "en" : "Top Tracks",
           "es" : "Canciones favoritas",
           "fr" : "Top titres",
-          "nl" : "Topnummers"
+          "it" : "Brani top",
+          "nl" : "Topnummers",
+          "pl" : "Najlepsze utwory"
+        }
+      },
+      "sNotificationBodyMultipleAlbumsReleased" : {
+        "approved" : false,
+        "description" : "{album} is the album name, {artist} is the artist name, and {numOtherAlbums} is the number of other albums released by the same artist",
+        "translations" : {
+          "de" : "{album} und {numOtherAlbums} andere Alben von {artists} sind jetzt auf Spotify verfügbar.",
+          "en" : "{album} and {numOtherAlbums} other albums by {artist} are now available on Spotify.",
+          "es" : "Ya están disponibles en Spotify {album} y {numOtherAlbums} álbumes más de {artist}.",
+          "fr" : "{album} et {numOtherAlbums} autres albums de {artist} sont maintenant disponibles sur Spotify.",
+          "it" : "{album} e altri {numOtherAlbums} album di {artist} disponibili ora su Spotify.",
+          "nl" : "{album} en {numOtherAlbums} andere albums van {artist} zijn nu verkrijgbaar op Spotify.",
+          "pl" : "Album {album} oraz {numOtherAlbums} inne albumy|innych albumów wykonawcy {artist} są|jest teraz dostępne|dostępnych w Spotify."
+        }
+      },
+      "sNotificationBodyMultipleAlbumsReleasedSingular" : {
+        "approved" : false,
+        "description" : "{album} is the album name, {artist} is the artist name",
+        "translations" : {
+          "de" : "{album} und ein anderes Album von {artist} sind jetzt auf Spotify verfügbar.",
+          "en" : "{album} and 1 other album by {artist} are now available on Spotify.",
+          "es" : "Ya están disponibles en Spotify {album} y 1 álbum más de {artist}.",
+          "fr" : "{album} et 1 autre album de {artist} sont maintenant disponibles sur Spotify.",
+          "it" : "{album} e 1 altro album di {artist} disponibili ora su Spotify.",
+          "nl" : "{album} en 1 ander album van {artist} zijn nu verkrijgbaar op Spotify.",
+          "pl" : "Album {album} oraz 1 inny album wykonawcy {artist} są teraz dostępne w Spotify."
         }
       },
       "sNotificationBodyAlbumReleased" : {
@@ -242,7 +310,87 @@
           "en" : "{0} by {1} is now available on Spotify.",
           "es" : "{0} de {1} ya está disponible en Spotify.",
           "fr" : "{0} de {1} est maintenant disponible sur Spotify.",
-          "nl" : "{0} van {1} is nu verkrijgbaar op Spotify."
+          "it" : "{0} di {1} è ora disponibile su Spotify.",
+          "nl" : "{0} van {1} is nu verkrijgbaar op Spotify.",
+          "pl" : "{0} - {1} jest już dostępny w Spotify."
+        }
+      },
+      "sNotificationBodyMultipleExclusiveAlbumsReleased" : {
+        "approved" : false,
+        "description" : "{album} is the album name, {artist} is the artist name, and {numOtherAlbums} is the number of other albums released by the same artist",
+        "translations" : {
+          "de" : "{album} und {numOtherAlbums} andere Alben von {artists} sind jetzt auf Spotify verfügbar.",
+          "en" : "Exclusive release:<br>{album} and {numOtherAlbums} other albums by {artist} are now available exclusively on Spotify.",
+          "es" : "Estreno exclusivo:<br>Ya están disponibles en Spotify {album} y {numOtherAlbums} álbumes más de {artist}.",
+          "fr" : "{album} et {numOtherAlbums} autres albums de {artist} sont maintenant disponibles sur Spotify.",
+          "it" : "{album} e altri {numOtherAlbums} album di {artist} disponibili ora su Spotify.",
+          "nl" : "{album} en {numOtherAlbums} andere albums van {artist} zijn nu verkrijgbaar op Spotify.",
+          "pl" : "Album {album} oraz {numOtherAlbums} inne albumy|innych albumów wykonawcy {artist} są|jest teraz dostępne|dostępnych w Spotify."
+        }
+      },
+      "sNotificationBodyMultipleExclusiveAlbumsReleasedSingular" : {
+        "approved" : false,
+        "description" : "{album} is the album name, {artist} is the artist name",
+        "translations" : {
+          "de" : "{album} und ein anderes Album von {artist} sind jetzt auf Spotify verfügbar.",
+          "en" : "Exclusive release:<br>{album} and 1 other album by {artist} are now available exclusively on Spotify.",
+          "es" : "Estreno exclusivo:<br>Ya están disponibles en Spotify {album} y 1 álbum más de {artist}.",
+          "fr" : "{album} et 1 autre album de {artist} sont maintenant disponibles sur Spotify.",
+          "it" : "{album} e 1 altro album di {artist} disponibili ora su Spotify.",
+          "nl" : "{album} en 1 ander album van {artist} zijn nu verkrijgbaar op Spotify.",
+          "pl" : "Album {album} oraz 1 inny album wykonawcy {artist} są teraz dostępne w Spotify."
+        }
+      },
+      "sNotificationBodyExclusiveAlbumReleased" : {
+        "approved" : false,
+        "description" : "{0} is the album name, {1} the artist name",
+        "translations" : {
+          "de" : "{0} von {1} gibt's jetzt auf Spotify.",
+          "en" : "Exclusive release:<br>{0} by {1} is now available exclusively on Spotify.",
+          "es" : "Estreno exclusivo:<br>{0} de {1} ya está disponible en Spotify.",
+          "fr" : "{0} de {1} est maintenant disponible sur Spotify.",
+          "it" : "{0} di {1} è ora disponibile su Spotify.",
+          "nl" : "{0} van {1} is nu verkrijgbaar op Spotify.",
+          "pl" : "{0} - {1} jest już dostępny w Spotify."
+        }
+      },
+      "sNotificationBodyApplicationReleaseIOS" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Eine neue Version von Spotify für iOS ist jetzt erhätlich.",
+          "en" : "A new version of Spotify for iOS is now available.",
+          "es" : "Una nueva versión de Spotify para iOS está disponible.",
+          "fr" : "Une nouvelle version de Spotify est maintenant disponible sur iOS.",
+          "it" : "Ora disponibile una nuova versione di Spotify per iOS.",
+          "nl" : "Een nieuwe versie van Spotify voor iOS is nu verkrijgbaar.",
+          "pl" : "Dostępna jest już nowa wersja Spotify dla systemu iOS."
+        }
+      },
+      "sNotificationBodyApplicationReleaseAndroid" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Een nieuwe versie van Spotify voor Android is nu verkrijgbaar.",
+          "en" : "A new version of Spotify for Android is now available.",
+          "es" : "Una nueva versión de Spotify para Android está disponible.",
+          "fr" : "Une nouvelle version de Spotify est maintenant disponible sur Android.",
+          "it" : "Ora disponibile una nuova versione di Spotify per Android.",
+          "nl" : "Een nieuwe versie van Spotify voor iOS is nu verkrijgbaar.",
+          "pl" : "Dostępna jest już nowa wersja Spotify dla systemu Android."
+        }
+      },
+      "sNotificationBodyApplicationReleaseLink" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Du kannst jetzt Spotify in deinem Webbrowser benutzen.",
+          "en" : "You can now use Spotify in your web browser.",
+          "es" : "Puedes utilizar Spotify en tu explorador web.",
+          "fr" : "Vous pouvez maintenant utiliser Spotify dans votre navigateur Internet.",
+          "it" : "Ora puoi utilizzare Spotify nel tuo Web browser.",
+          "nl" : "Je kan Spotify nu in je webbrowser gebruiken.",
+          "pl" : "Możesz teraz używać Spotify w przeglądarce internetowej."
         }
       }
     },
@@ -255,7 +403,9 @@
           "en" : "{0} has just subscribed to one of your playlists.",
           "es" : "{0} se ha suscrito a una de tus playlists.",
           "fr" : "{0} s'est abonné à une de vos playlists.",
-          "nl" : "{0} is geabonneerd op een van je afspeellijsten."
+          "it" : "{0} si è appena iscritto a una delle tue playlist.",
+          "nl" : "{0} is geabonneerd op een van je afspeellijsten.",
+          "pl" : "Użytkownik {0} właśnie zasubskrybował jedną z Twoich playlist."
         }
       },
       "sTitlePlaylistSubscribe" : {
@@ -266,7 +416,9 @@
           "en" : "New Subscriber",
           "es" : "Nuevo suscriptor",
           "fr" : "Un nouvel abonné à une playlist",
-          "nl" : "Nieuwe abonnee"
+          "it" : "Nuovo abbonato",
+          "nl" : "Nieuwe abonnee",
+          "pl" : "Nowy subskrybent"
         }
       }
     },
@@ -279,7 +431,9 @@
           "en" : "{0} just joined Spotify.",
           "es" : "{0} está usando Spotify ahora.",
           "fr" : "{0} vient de rejoindre Spotify.",
-          "nl" : "{0} gebruikt nu ook Spotify."
+          "it" : "{0} si è appena iscritto a Spotify.",
+          "nl" : "{0} gebruikt nu ook Spotify.",
+          "pl" : "Użytkownik {0} właśnie dołączył do Spotify."
         }
       },
       "sBodyNewFollower" : {
@@ -290,7 +444,9 @@
           "en" : "{0} is now following you.",
           "es" : "{0} te está siguiendo.",
           "fr" : "{0} vous suit.",
-          "nl" : "{0} volgt je vanaf nu."
+          "it" : "{0} ha iniziato a seguirti.",
+          "nl" : "{0} volgt je vanaf nu.",
+          "pl" : "Użytkownik {0} obserwuje teraz Ciebie."
         }
       },
       "sBodyPlaylistSubscribe" : {
@@ -301,7 +457,9 @@
           "en" : "{0} is now following your playlists.",
           "es" : "{0} ahora sigue tus playlists.",
           "fr" : "{0} s’est abonné à vos playlists.",
-          "nl" : "{0} volgt nu je afspeellijsten."
+          "it" : "{0} ora segue le tue playlist.",
+          "nl" : "{0} volgt nu je afspeellijsten.",
+          "pl" : "Użytkownik {0} obserwuje teraz Twoje playlisty. "
         }
       },
       "sBodyPlaylistUpdated" : {
@@ -312,7 +470,9 @@
           "en" : "{0} added some tracks to a playlist you follow.",
           "es" : "{0} ha añadido algunas canciones a una playlist que sigues.",
           "fr" : "{0} a ajouté des titres dans une playlist à laquelle vous êtes abonné.",
-          "nl" : "{0} heeft nummers toegevoegd aan een afspeellijst waar je op geabonneerd bent."
+          "it" : "{0} ha aggiunto alcuni brani a una playlist che segui.",
+          "nl" : "{0} heeft nummers toegevoegd aan een afspeellijst waar je op geabonneerd bent.",
+          "pl" : "Użytkownik {0} dodał kilka utworów do playlisty, którą obserwujesz."
         }
       },
       "sTitleFriendJoined" : {
@@ -323,7 +483,9 @@
           "en" : "Friend Joined",
           "es" : "Nuevo amigo en Spotify",
           "fr" : "Un nouvel ami dans Spotify",
-          "nl" : "Nieuwe vriend bij Spotify"
+          "it" : "Amico iscritto",
+          "nl" : "Nieuwe vriend bij Spotify",
+          "pl" : "Dołączył Twój znajomy użytkownik"
         }
       },
       "sTitleNewFollower" : {
@@ -334,7 +496,9 @@
           "en" : "New Follower",
           "es" : "Nuevo seguidor",
           "fr" : "Un nouvel abonné",
-          "nl" : "Nieuwe volger"
+          "it" : "Nuovo follower",
+          "nl" : "Nieuwe volger",
+          "pl" : "Nowy obserwator"
         }
       },
       "sTitlePlaylistSubscribe" : {
@@ -345,7 +509,9 @@
           "en" : "New Playlist Follower",
           "es" : "Nuevo seguidor de playlist",
           "fr" : "Nouvel abonné à votre playlist",
-          "nl" : "Nieuwe afspeellijstvolger"
+          "it" : "Nuovo follower della playlist",
+          "nl" : "Nieuwe afspeellijstvolger",
+          "pl" : "Nowa osoba obserwująca playlistę"
         }
       },
       "sTitlePlaylistUpdated" : {
@@ -356,7 +522,9 @@
           "en" : "Playlist Updated",
           "es" : "Playlist actualizada",
           "fr" : "Mise à jour d'une playlist",
-          "nl" : "Afspeellijst bijgewerkt"
+          "it" : "Playlist aggiornata",
+          "nl" : "Afspeellijst bijgewerkt",
+          "pl" : "Playlista została zaktualizowana"
         }
       }
     },
@@ -369,7 +537,9 @@
           "en" : "About 1 hour ago",
           "es" : "Hace casi una hora",
           "fr" : "Il y a 1 heure",
-          "nl" : "Ongeveer 1 uur geleden"
+          "it" : "Circa 1 ora fa",
+          "nl" : "Ongeveer 1 uur geleden",
+          "pl" : "Około 1 godziny temu"
         }
       },
       "s1Minute" : {
@@ -380,7 +550,9 @@
           "en" : "About 1 minute ago",
           "es" : "hace un minuto",
           "fr" : "Il y a 1 minute",
-          "nl" : "Ongeveer 1 minuut geleden"
+          "it" : "Circa 1 minuto fa",
+          "nl" : "Ongeveer 1 minuut geleden",
+          "pl" : "Około 1 minuty temu"
         }
       },
       "sDaysAgo" : {
@@ -391,7 +563,9 @@
           "en" : "{0} days ago",
           "es" : "hace {0} días",
           "fr" : "Il y a {0} jours",
-          "nl" : "{0} dagen geleden"
+          "it" : "{0} giorni fa",
+          "nl" : "{0} dagen geleden",
+          "pl" : "{0} dni temu"
         }
       },
       "sHoursAgo" : {
@@ -402,7 +576,9 @@
           "en" : "{0} hours ago",
           "es" : "hace {0} horas",
           "fr" : "Il y a {0} heures",
-          "nl" : "{0} uur geleden"
+          "it" : "{0} ore fa",
+          "nl" : "{0} uur geleden",
+          "pl" : "{0} godziny|godzin temu"
         }
       },
       "sJustNow" : {
@@ -413,7 +589,9 @@
           "en" : "Just now",
           "es" : "hace un momento",
           "fr" : "A l'instant",
-          "nl" : "Zojuist"
+          "it" : "Proprio ora",
+          "nl" : "Zojuist",
+          "pl" : "Właśnie teraz"
         }
       },
       "sMinutesAgo" : {
@@ -424,7 +602,9 @@
           "en" : "{0} minutes ago",
           "es" : "hace {0} minutos",
           "fr" : "Il y a {0} minutes",
-          "nl" : "{0} minuten geleden"
+          "it" : "{0} minuti fa",
+          "nl" : "{0} minuten geleden",
+          "pl" : "{0} minuty|minut temu"
         }
       },
       "sOverAYear" : {
@@ -435,7 +615,9 @@
           "en" : "Over a year ago",
           "es" : "hace más de un año",
           "fr" : "Il y a plus d'un an",
-          "nl" : "Meer dan een jaar geleden"
+          "it" : "Più di un anno fa",
+          "nl" : "Meer dan een jaar geleden",
+          "pl" : "Ponad rok temu"
         }
       },
       "sSecondsAgo" : {
@@ -446,7 +628,9 @@
           "en" : "{0} seconds ago",
           "es" : "hace {0} segundos",
           "fr" : "Il y a {0} secondes",
-          "nl" : "{0} seconden geleden"
+          "it" : "{0} secondi fa",
+          "nl" : "{0} seconden geleden",
+          "pl" : "{0} sekundy|sekund temu"
         }
       },
       "sYesterday" : {
@@ -457,7 +641,9 @@
           "en" : "Yesterday",
           "es" : "ayer",
           "fr" : "Hier",
-          "nl" : "Gisteren"
+          "it" : "Ieri",
+          "nl" : "Gisteren",
+          "pl" : "Wczoraj"
         }
       }
     }

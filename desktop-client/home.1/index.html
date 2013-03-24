@@ -27,7 +27,9 @@
 	</section>
 </div>
 <script>
-	var sp = getSpotifyApi(1);
+	var _beforeRequireTimestamp = new Date();
+
+	var sp = getSpotifyApi();
 	var WhatsNew = sp.require('/assets/js/main');
 	WhatsNew.init();
 </script>

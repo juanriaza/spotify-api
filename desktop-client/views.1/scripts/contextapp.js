@@ -1,1 +1,1 @@
-require(["$api/models"],function(d){function c(){}exports.ContextApp=c;c.show=function(a,c,b,e){b=b.getBoundingClientRect();a=[a,b.left,b.top,b.width,b.height];a=a.concat(c);a.push(e);return d.application.openApp.apply(d.application,a)}});
+require(["$api/models"],function(d){function c(){}exports.ContextApp=c;c.show=function(a,c,b,e,f,g){b=b.getBoundingClientRect();a=[a,b.left,b.top,b.width,b.height];a=a.concat(c);a.push(e);a.push(f);a.push(g);return d.application.openApp.apply(d.application,a)}});

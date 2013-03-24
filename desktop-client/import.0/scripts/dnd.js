@@ -29,7 +29,8 @@ window.addEventListener("dragstart", function(e) {
     dragImage.textContent = (anchor.title ? anchor.title : anchor.textContent).decodeForText();
     document.body.appendChild(dragImage);
     e.dataTransfer.setDragImage(dragImage, 0, 20);
-    e.dataTransfer.setData("uri", anchor.href);
+    e.dataTransfer.setData('text/plain', anchor.href);
+    e.dataTransfer.setData('text/uri-list', anchor.href);
     setTimeout(function() {
         document.body.removeChild(dragImage);
     }, 0);

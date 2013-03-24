@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="tutorial.css">
-    <link rel="stylesheet" href="feed.css">
+    <link rel="stylesheet" href="css/feed.css">
   </head>
   <body>
-    <section id="tutorial" tabindex="0">
-      <div id="header">
-        <!-- Getting Started -->
-        <a href="#" id="close"></a>
-      </div>
+    <header class='section-header activity-section-header'></header>
+    <section id="recommended" class="hidden">
+      <header></header>
     </section>
-    <section id="friends" tabindex="0"></section>
-    <section id="feed" tabindex="0"></section>
+
+    <section id="feed" tabindex="0">
+    </section>
     <script>
-      sp = getSpotifyApi(1);
-      sp.requireAsync("main", function(r) { r.init(); });
+      var _beforeRequireTimestamp = new Date().getTime();
+
+      sp = getSpotifyApi();
+      sp.requireAsync("scripts/main", function(r) { r.init(); });
     </script>
   </body>
 </html>

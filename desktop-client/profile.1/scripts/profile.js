@@ -1,13 +1,478 @@
-require("scripts/profile-utils scripts/header.controller#Header scripts/playlist.controller#Playlists scripts/toplists.controller#Toplists scripts/activity.controller#Activity scripts/relations.controller#Relations scripts/share.controller#Share $api/models $views/image#Image $views/utils/css $shared/events#EventHandler $social-artist-shared/navigation#NavigationBar $social-artist-shared/navigation#NavigationTab strings/main.lang scripts/relations-helper#RelationTypes".split(" "),function(b,h,m,n,
-p,i,q,j,u,r,s,t,d,k,l){var e=SP.bind(k.get,k),g={OVERVIEW:0,FOLLOWERS:1,FOLLOWING:2},b=function(){this.events=new s(this)};b.prototype.load=function(a,b,f,d,e){var c=this;SP.analyticsContext("LOAD: Profile",function(){c.st=0;c.username=a;c.currentUser=b;c.initView=f;c.templates=d;c.session=e;c.currentUser.username===c.username?c.maybeLoadArtist(b):c.loadUserByUsername()})};b.prototype.currentView=null;b.prototype.loadUserByUsername=function(){var a=j.User.fromUsername(this.username),b=this;SP.analyticsContext("MAIN: loading the user",
-function(){a.load("name","username","uri","image").done(b,b.maybeLoadArtist).fail(b,b.handleError)})};b.prototype.maybeLoadArtist=function(a){var b=this;SP.analyticsContext("MAIN: loading artist property on user",function(){a.load("artist").done(b,b.initPage).fail(function(){b.initPage(a)})})};b.prototype.initPage=function(a){this.user=a;this.isSelf=this.user.currentUser;this.user.artist?this.getArtistData():this.initTemplates()};b.prototype.getArtistData=function(){var a=this;SP.analyticsContext("MAIN: loading properties on artist",
-function(){a.user.artist.load("name","image").done(a,a.artistDataLoaded).fail(a,a.initTemplates)})};b.prototype.artistDataLoaded=function(a){this.user.name=a.name;this.initTemplates()};b.prototype.initTemplates=function(){this.initNavigation();this.initHeader();this.switchView(this.initView);this.events.listen(window,"scroll",this.scrollHandler);this.events.listen(j.application,"activate",this.activateListener)};b.prototype.activateListener=function(){this.activity&&this.activity.loadActivities();
-if(this.playlists){var a=this.currentView===this.playlists;this.isSelf&&(this.playlists.destroy(),this.playlists.conceal(),this.playlists.initialize(this.isSelf,this.user,this.templates,a?this.playlists.show:null,this))}};b.prototype.initNavigation=function(){var a,b,f;this.navigation=new t;this.navigation.initialize(this.user,this);a=encodeURIComponent(this.username).replace(/\!/g,"%21");b=new d("nav-overview",e("overview"),"spotify:user:"+a);f=new d("nav-followers",e("followers"),"spotify:user:"+
-a+":followers");a=new d("nav-following",e("following"),"spotify:user:"+a+":following");this.navigation.renderNavigationItems([b,f,a])};b.prototype.initHeader=function(){var a={share:this.shareButtonClicked},b=this;SP.analyticsContext("INIT: Header",function(){b.header=new h;b.header.initialize(b.isSelf,b.user,b.templates,a,b)})};b.prototype.initToplists=function(){var a=this;SP.analyticsContext("INIT: Toplists",function(){if(!a.toplists){var b=a.playlists?a.playlists.getPlaylists():0;a.toplists=new n;
-a.toplists.initialize(a.isSelf,a.user,a.templates,b)}(a.currentView===a.playlists||void 0===a.currentView)&&a.toplists.show()})};b.prototype.initActivity=function(){var a=this;SP.analyticsContext("INIT: Activity",function(){a.activity?a.activity.loadActivities():(a.activity=new p,a.activity.initialize(a.isSelf,a.user,a.templates,a.currentUser));a.activity.show()})};b.prototype.initFollowers=function(){var a=this;SP.analyticsContext("INIT: Followers",function(){a.followers||(a.followers=new i,a.followers.initialize(a.user,
-a.isSelf,a.templates,l.FOLLOWERS));a.followers.show()})};b.prototype.initFollowing=function(){var a=this;SP.analyticsContext("INIT: Followings",function(){a.following||(a.following=new i,a.following.initialize(a.user,a.isSelf,a.templates,l.FOLLOWING));a.following.show()})};b.prototype.initPlaylists=function(){var a=this;SP.analyticsContext("INIT: Playlists",function(){a.playlists||(a.playlists=new m,a.playlists.initialize(a.isSelf,a.user,a.templates,a.initToplists,a));a.playlists.show()})};b.prototype.initShare=
-function(){this.share=new q;this.share.initialize(this.isSelf,this.user,this.templates)};b.prototype.hideSection=function(a){this[a]&&this[a].hide();(a=document.querySelector(".app-"+a))&&r.addClass(a,"hidden")};b.prototype.destroyController=function(a){this[a]&&this[a].destroy()};b.prototype.handleError=function(a,b){if(b&&("unknown"===b.error||"invalid-uri"===b.error))this.header=new h,this.header.initialize(!1,null,this.templates,null,this)};b.prototype.dispose=function(){this.destroyController("playlists");
-this.destroyController("navigation");this.destroyController("header");this.destroyController("activity");this.destroyController("toplists");this.destroyController("following");this.destroyController("followers");this.destroyController("share");this.events.removeAll()};b.prototype.switchView=function(a){switch(a){case g.FOLLOWERS:this.showFollowers();break;case g.FOLLOWING:this.showFollowing();break;default:this.showOverview()}};b.prototype.showOverview=function(){this.hideSection("following");this.hideSection("followers");
-this.initPlaylists();this.toplists&&this.toplists.show();this.initActivity();this.currentView=this.playlists;this.setScrollPos();this.navigation.setActive("overview")};b.prototype.showFollowers=function(){this.hideSection("playlists");this.hideSection("activity");this.hideSection("toplists");this.hideSection("following");this.initFollowers();this.currentView=this.followers;this.setScrollPos();this.navigation.setActive("followers")};b.prototype.showFollowing=function(){this.hideSection("playlists");
-this.hideSection("activity");this.hideSection("toplists");this.hideSection("followers");this.initFollowing();this.currentView=this.following;this.setScrollPos();this.navigation.setActive("following")};b.prototype.setScrollPos=function(){var a=this.st;168<=a&&(a=this.currentView.getScrollPos());window.scrollTo(0,a)};b.prototype.shareButtonClicked=function(a){this.share||this.initShare();this.share.show(a.node,{x:37,y:35})};b.prototype.scrollHandler=function(){this.st=window.scrollY;this.navigation.scrollHandler(this.st);
-this.currentView.scrollHandler(this.st)};exports.Profile=b;exports.Views=g});
+require([
+  'scripts/profile-utils',
+  'scripts/header.controller#Header',
+  'scripts/playlist.controller#Playlists',
+  'scripts/toplists.controller#Toplists',
+  'scripts/activity.controller#Activity',
+  'scripts/relations.controller#Relations',
+  'scripts/share.controller#Share',
+  'scripts/logger#Logger',
+  '$api/models',
+  '$views/image#Image',
+  '$views/utils/css',
+  '$views/tabbar#TabBar',
+  '$shared/events#EventHandler',
+  'strings/main.lang',
+  'scripts/relations-helper#RelationCollection'
+], function(utils, Header, Playlists, Toplists, Activity, Relations, Share, Logger,
+    modelsApi, Image, css, TabBar, EventHandler, mainStrings, RelationCollection) {
+
+  'use strict';
+
+  // Set up a shorthand for getting a translated string.
+  var _ = SP.bind(mainStrings.get, mainStrings);
+
+  /**
+   * Enum for easy cross-referencing views
+   * @enum {string}
+   */
+  var Views = {
+    OVERVIEW: 0,
+    FOLLOWERS: 1,
+    FOLLOWING: 2
+  };
+
+  /**
+   * Object constructor
+   * @param {?String} username A Spotify canonical username.
+   * @param {modelsApi.User} currentUser A Spotify user.
+   * @constructor
+   */
+  var Profile = function() {
+    this.events = new EventHandler(this);
+  };
+
+  /**
+   * Main load method for the module. Called by the constructor
+   * @param {?String} username A Spotify canonical username.
+   * @param {modelsApi.User} currentUser A Spotify user.
+   * @param {?Number} view Which view to load at start.
+   * @param {?SlabTemplate} view Which view to load at start.
+   */
+  Profile.prototype.load = function(username, currentUser, view, templates, session) {
+    var _this = this;
+
+    SP.analyticsContext('LOAD: Profile', function() {
+      _this.st = 0;
+      _this.username = username;
+      _this.currentUser = currentUser;
+      _this.initView = view;
+      _this.templates = templates;
+      _this.session = session;
+
+      if (_this.currentUser.username === _this.username) {
+        _this.maybeLoadArtist(currentUser);
+      } else {
+        _this.loadUserByUsername();
+      }
+    });
+  };
+
+  /**
+   * Object where the currently active tabs scrollhandler is saved.
+   * @type {Function}
+   */
+  Profile.prototype.currentView = null;
+
+  /**
+   * Loads a user by uri
+   * @param {string} uri A Spotify user uri.
+   */
+  Profile.prototype.loadUserByUsername = function() {
+    var usr = modelsApi.User.fromUsername(this.username), _this = this;
+
+    SP.analyticsContext('MAIN: loading the user', function() {
+      usr.load('name', 'username', 'uri', 'image').
+          done(_this, _this.maybeLoadArtist).
+          fail(_this, _this.handleError);
+    });
+  };
+
+  /**
+   * Load artist separately from the other properties and only for desktop
+   * @param {modelsApi.User} user A Spotify user object.
+   */
+  Profile.prototype.maybeLoadArtist = function(user) {
+    var _this = this;
+
+    SP.analyticsContext('MAIN: loading artist property on user', function() {
+      user.load('artist').
+          done(_this, _this.initPage).
+          fail(function() {
+            _this.initPage(user);
+          });
+    });
+  };
+
+  /**
+   * Initialise the views only if we have a user object
+   * @param {modelsApi.User} user A Spotify user object.
+   */
+  Profile.prototype.initPage = function(user) {
+    this.user = user;
+    this.isSelf = this.user.currentUser;
+
+    if (this.user.artist) {
+      this.getArtistData();
+    } else {
+      this.initTemplates();
+    }
+  };
+
+  /**
+   * Gets data for artist for merged profiles
+   */
+  Profile.prototype.getArtistData = function() {
+    var _this = this;
+
+    SP.analyticsContext('MAIN: loading properties on artist', function() {
+      _this.user.artist.load('name', 'image').done(_this, _this.artistDataLoaded).fail(_this, _this.initTemplates);
+    });
+  };
+
+  /**
+   * Sets name and image of the artist for profile
+   */
+  Profile.prototype.artistDataLoaded = function(artist) {
+    this.user.name = artist.name;
+    this.initTemplates();
+  };
+
+  /**
+   * Processes the loaded templates file, init modules and switches to the right one
+   */
+  Profile.prototype.initTemplates = function() {
+    this.initNavigation();
+    this.initHeader();
+    this.switchView(this.initView);
+
+    this.events.listen(window, 'scroll', this.scrollHandler);
+    this.events.listen(modelsApi.application, 'deactivate', this.deactivateListener);
+  };
+
+  Profile.prototype.deactivateListener = function() {
+
+    // Event 'activate' must only be bound AFTER deactivate to avoid sync/async
+    // data cache race conditions. If data is immediately available (such as on a back
+    // button), the 'arguments' event will run to completion in this tick, including
+    // attaching the 'activate' listener. THEN 'activate' is fired by the client,
+    // resulting in a race condition.
+
+    this.events.unlisten(modelsApi.application, 'deactivate', this.deactivateListener);
+    this.events.listen(modelsApi.application, 'activate', this.activateListener);
+  };
+
+  Profile.prototype.activateListener = function() {
+
+    // see `Profile#deactivateListener` for why this unlisten/listen happens
+    this.events.unlisten(modelsApi.application, 'activate', this.activateListener);
+    this.events.listen(modelsApi.application, 'deactivate', this.deactivateListener);
+
+    if (this.activity) {
+      this.activity.loadActivities();
+    }
+    if (this.playlists) {
+      var current = this.currentView === this.playlists;
+      // only set this up if its the current users profile
+      if (this.isSelf) {
+        this.playlists.destroy();
+        this.playlists.conceal();
+        this.playlists.initialize(this.isSelf, this.user, this.templates,
+            current ? this.playlists.show : null, this);
+      }
+    }
+  };
+
+  Profile.prototype.initNavigation = function() {
+    var _this = this;
+    var navigationPlaceholder = document.querySelector('.app-content');
+
+    if (!this.navigation) {
+      this.navigation = TabBar.withTabs([
+        {id: 'nav-overview', name: _('overview')},
+        {id: 'nav-followers', name: _('followers')},
+        {id: 'nav-following', name: _('following')}
+      ]);
+
+      this.navigation.addToDom(navigationPlaceholder, 'prepend');
+    }
+
+    this.events.listen(this.navigation, 'tabchange', function(e) {
+      var tab = e.id.split('-')[1];
+      var uri = 'spotify:user:' + _this.username + (tab === 'overview' ? '' : ':' + tab);
+
+      Logger.log({ type: 'Tab ' + tab + ' opened', uri: uri});
+      modelsApi.application.openURI(uri);
+    });
+  };
+
+  /**
+   * Initiates the header controller and shows it
+   */
+  Profile.prototype.initHeader = function() {
+    var handlers = {
+      share: this.shareButtonClicked
+    }, _this = this;
+
+    SP.analyticsContext('INIT: Header', function() {
+      _this.header = new Header();
+      _this.header.initialize(_this.isSelf, _this.user, _this.templates, handlers,
+          _this);
+    });
+  };
+
+  /**
+   * Initiates the toplists controller and shows it
+   */
+  Profile.prototype.initToplists = function() {
+    var _this = this;
+
+    SP.analyticsContext('INIT: Toplists', function() {
+      if (!_this.toplists) {
+        var playlists = _this.playlists ? _this.playlists.getPlaylists() : 0;
+        _this.toplists = new Toplists();
+        _this.toplists.initialize(_this.isSelf, _this.user, _this.templates, playlists);
+      }
+
+      if (_this.currentView === _this.playlists || _this.currentView === undefined) {
+        _this.toplists.show();
+      }
+    });
+  };
+
+  /**
+   * Initiates the recent activity controller and shows it
+   */
+  Profile.prototype.initActivity = function() {
+    var _this = this;
+
+    SP.analyticsContext('INIT: Activity', function() {
+      if (!_this.activity) {
+        _this.activity = new Activity();
+        _this.activity.initialize(_this.isSelf, _this.user, _this.templates,
+            _this.currentUser);
+      } else {
+        // To load new activities if they appear when coming back from other tab
+        _this.activity.loadActivities();
+      }
+      _this.activity.show();
+    });
+  };
+
+  /**
+   * Initiates the followers controller and shows it
+   */
+  Profile.prototype.initFollowers = function() {
+    var _this = this;
+
+    SP.analyticsContext('INIT: Followers', function() {
+      if (!_this.followers) {
+        _this.followers = new Relations();
+        _this.followers.initialize(_this.user, _this.isSelf, _this.templates,
+            RelationCollection.FOLLOWERS);
+      }
+      _this.followers.show();
+    });
+  };
+
+  /**
+   * Initiates the following controller and shows it
+   */
+  Profile.prototype.initFollowing = function() {
+    var _this = this;
+
+    SP.analyticsContext('INIT: Followings', function() {
+      if (!_this.following) {
+        _this.following = new Relations();
+        _this.following.initialize(_this.user, _this.isSelf, _this.templates,
+            RelationCollection.FOLLOWING);
+      }
+      _this.following.show();
+    });
+  };
+
+  /**
+   * Initiates the playlist controller and shows it
+   */
+  Profile.prototype.initPlaylists = function() {
+    var _this = this;
+
+    SP.analyticsContext('INIT: Playlists', function() {
+      if (!_this.playlists) {
+        _this.playlists = new Playlists();
+        _this.playlists.initialize(_this.isSelf, _this.user, _this.templates,
+            _this.initToplists, _this);
+      }
+      _this.playlists.show();
+    });
+  };
+
+  /**
+   * Initiates share window controller
+   */
+  Profile.prototype.initShare = function() {
+    this.share = new Share();
+    this.share.initialize(this.isSelf, this.user, this.templates);
+  };
+
+  /**
+   * Hides section
+   * @param {string} section Section's name (the same as controllers).
+   */
+  Profile.prototype.hideSection = function(section) {
+    if (this[section]) {
+      this[section].hide();
+    }
+
+    var node = document.querySelector('.app-' + section);
+    if (node) {
+      css.addClass(node, 'hidden');
+    }
+  };
+
+  /**
+   * Destroy controller
+   * @param {string} controller Controller's name.
+   */
+  Profile.prototype.destroyController = function(controller) {
+    if (this[controller]) {
+      this[controller].destroy();
+      delete this[controller];
+    }
+  };
+
+  /**
+   * Generic error-catching
+   * TODO: make less generic
+   * @param {Object} user The object that failed.
+   * @param {Object} err The error object.
+   */
+  Profile.prototype.handleError = function(user, err) {
+    //console.error('(Profile.handleError) failed to load:', user, err);
+    if (err && (err.error === 'unknown' || err.error === 'invalid-uri')) {
+      this.header = new Header();
+      this.header.initialize(false, null, this.templates, null, this);
+    }
+  };
+
+  /**
+   * Disposes the profile and all it's disposable controllers
+   */
+  Profile.prototype.dispose = function() {
+    this.destroyController('playlists');
+    this.destroyController('header');
+    this.destroyController('activity');
+    this.destroyController('toplists');
+    this.destroyController('following');
+    this.destroyController('followers');
+    this.destroyController('share');
+    this.events.removeAll();
+
+    delete this.initView;
+    delete this.user;
+    delete this.username;
+  };
+
+  /**
+   * Switches to right view
+   */
+  Profile.prototype.switchView = function(view) {
+    switch (view) {
+      case Views.FOLLOWERS:
+        this.showFollowers();
+        break;
+      case Views.FOLLOWING:
+        this.showFollowing();
+        break;
+      default:
+        this.showOverview();
+        break;
+    }
+  };
+
+  /**
+   * Handler for the overview navigation option
+   */
+  Profile.prototype.showOverview = function() {
+    this.hideSection('following');
+    this.hideSection('followers');
+    this.initPlaylists();
+    if (this.toplists) {
+      this.toplists.show();
+    }
+    this.initActivity();
+
+    this.currentView = this.playlists;
+    this.setScrollPos();
+    this.navigation.setActiveTab('nav-overview');
+  };
+
+  /**
+   * Handler for the followers navigation object
+   */
+  Profile.prototype.showFollowers = function() {
+    this.hideSection('playlists');
+    this.hideSection('activity');
+    this.hideSection('toplists');
+    this.hideSection('following');
+
+    this.initFollowers();
+
+    this.currentView = this.followers;
+    this.setScrollPos();
+    this.navigation.setActiveTab('nav-followers');
+  };
+
+  /**
+   * Handler for the following navigation object
+   */
+  Profile.prototype.showFollowing = function() {
+    this.hideSection('playlists');
+    this.hideSection('activity');
+    this.hideSection('toplists');
+    this.hideSection('followers');
+
+    this.initFollowing();
+
+    this.currentView = this.following;
+    this.setScrollPos();
+    this.navigation.setActiveTab('nav-following');
+  };
+
+  Profile.prototype.setScrollPos = function(button) {
+    var scrollTop = this.st;
+    if (scrollTop >= 168) {
+      scrollTop = this.currentView.getScrollPos();
+    }
+    window.scrollTo(0, scrollTop);
+  };
+  /**
+   * Shows the share popup
+   * @this {Profile} keeps constructor context.
+   * @param {Button} the button that was clicked.
+   */
+  Profile.prototype.shareButtonClicked = function(button) {
+    // console.log('(Profile.header) Share button clicked', this);
+
+    if (!this.share) {
+      this.initShare();
+    }
+
+    this.share.show(button.node, {
+      x: 37,
+      y: 35
+    });
+  };
+
+  /**
+   * Handler for scrolling document.body. Passes the scrollY position to the
+   *    currently active view.
+   */
+  Profile.prototype.scrollHandler = function() {
+    this.st = window.scrollY;
+    this.currentView.scrollHandler(this.st);
+  };
+
+  exports.Profile = Profile;
+  exports.Views = Views;
+});

@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: AddToCollectionButton</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: AddToCollectionButton</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="bb694f306d.html">views/buttons</a>~</span>
+    
+    AddToCollectionButton
+    </h2>
+    
+        <div class="class-description">Add to collection button.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="AddToCollectionButton"><span class="type-signature"></span>new AddToCollectionButton</h4>
+    
+    
+    <p class="summary">Use a factory method to instantiate.</p>
+    
+</dt>
+<dd>
+    
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+            
+            <td class="type">
+            
+                        Track
+                         | 
+                    
+                        Album
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An item.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.30.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 1427</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="ac91ff4491.html">module:views/buttons~Button</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="getTextWidth"><span class="type-signature"></span>getTextWidth</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Gets the width the provided text would have if the button label was set to
+it.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The text to get the width for.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_cssClass</code></td>
+            
+            
+            <td class="type">
+            
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The CSS class to test for. Defaults to the
+    CSS class(es) that the button currently has.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 102</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The width of the text, in pixels.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">number</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Short');
+var textWidth = button.getTextWidth('Longer button text');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setAccentuated"><span class="type-signature"></span>setAccentuated</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set the accentuation of the button. An accentuated button will appear in a
+way such as to draw the attention of the user. In the current version of
+Spotify the button will have a green tint. This might change in the
+future.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>accentuated</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Whether the button should be accentuated or
+    not.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_effect</code></td>
+            
+            
+            <td class="type">
+            
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The effect of the button.
+    Not considered if the first argument is false.
+    'positive': Use a positive color (green in this version). Default.
+    'negative': Use a negative color (red in this version).</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 245</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Create Room');
+button.setAccentuated(true);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setAutoAccentuated"><span class="type-signature"></span>setAutoAccentuated</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set whether the default Add to Collection button should auto-accentuate. Defaults to
+on, but if there are multiple add to collection buttons per page, it should be turned
+off, so there aren't too many primary buttons.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>autoAccentuated</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The new auto accentuate setting.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.30.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 1482</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setDisabled"><span class="type-signature"></span>setDisabled</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set the button to be disabled.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>disabled</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Whether the button should be disabled or not.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 206</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Settings');
+button.setDisabled(true);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setIcon"><span class="type-signature"></span>setIcon</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set the icon of the button. The icon must be 15x15 pixels, otherwise it
+will be scaled down to fit. Double resolution icon should be 30x30 pixels.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The URL of the icon. The URL must be a relative URL
+    pointing to a file in the application's bundle.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_cssClass</code></td>
+            
+            
+            <td class="type">
+            
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional CSS class to apply to the icon.
+    This should be used when using icons from sprite sheets to offset the
+    sheet properly. The CSS class should affect only the
+    background-position of the element.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 166</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Settings');
+button.setIcon('img/icon-settings.png');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setIconClass"><span class="type-signature"></span>setIconClass</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set the icon class of the button. The icon file will stay the same.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>cssClass</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The CSS class to apply to the icon.
+    This should be used when using icons from sprite sheets to offset the
+    sheet properly. The CSS class should affect only the
+    background-position of the element.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 191</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Settings');
+button.setIcon('img/icon-settings.png');
+button.setIconClass('user-settings-icon');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setLabel"><span class="type-signature"></span>setLabel</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set the label of the button. The label should be a regular string without
+any HTML tags. Any HTML tags will just show up as text in the button face.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The button label.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 144</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Show Review');
+button.setLabel('Hide Review');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setSize"><span class="type-signature"></span>setSize</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Sets the size of the button.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The size to set the button to. Valid sizes are:
+    <ul>
+      <li>'normal': The default size of the button.</li>
+      <li>'small': A smaller, more compact version of the button.</li>
+      <li>'large': A larger, more spacious version of the button.</li>
+    </ul></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 523</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var button = Button.withLabel('Remove');
+button.setSize('small');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forItem"><span class="type-signature">&lt;static> </span>forItem</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates an add-to-collection button for a given item.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+            
+            <td class="type">
+            
+                        Track
+                         | 
+                    
+                        Album
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Item you want to add to the collection.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.30.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 1469</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    New instance of the quick action buttons.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">QuickActionButtons</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var button = AddToCollection.forItem(album);
+document.body.appendChild(buttons.node);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="updateStates"><span class="type-signature">&lt;static> </span>updateStates</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Updates the in-collection state of all add-to-collection buttons available in the DOM.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>buttons.js, line 1593</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="b09bdc3b3d.html">views/image</a></li><li><a href="c1fec7a0c7.html">views/list</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="53bb083269.html">views/scroll-agent</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="3d2ab2c4df.html">AddToCollectionButton</a></li><li><a href="5d1cf3fdd7.html">BaseButton</a></li><li><a href="ac91ff4491.html">Button</a></li><li><a href="824c77c1ee.html">CustomButton</a></li><li><a href="e039471c99.html">Image</a></li><li><a href="b6d6983f46.html">List</a></li><li><a href="f5a366df08.html">Popup</a></li><li><a href="2d9c4cfac6.html">QuickActionButtons</a></li><li><a href="0f496624db.html">ScrollAgent</a></li><li><a href="cc06f20d53.html">ShareButton</a></li><li><a href="b55f4a2324.html">StartRadioButton</a></li><li><a href="7baffe74b6.html">SubscribeButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="b4bbfdb1f5.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Mar 11 2013 15:04:53 GMT+0100 (CET)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

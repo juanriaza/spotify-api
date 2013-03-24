@@ -1,0 +1,11 @@
+{
+  "followers" : "Follower",
+  "following" : "Seguito",
+  "followsYou" : "Ti segue.",
+  "listeningTo" : "Sto ascoltando:",
+  "offlineMessage" : "Profili utente non disponibili offline.",
+  "overview" : "Panoramica",
+  "sendMusic" : "Invia musica",
+  "unknownUser" : "Utente sconosciuto",
+  "viewDiscography" : "Visualizza discografia"
+}

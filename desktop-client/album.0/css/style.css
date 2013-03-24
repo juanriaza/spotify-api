@@ -25,8 +25,8 @@ a:hover, a:active {
 }
 
 .fluid {
-	max-width: 760px;
-	min-width: 350px;
+	max-width: 940px;
+	min-width: 530px;
 	margin: 0 auto;
 	padding: 0 20px;
 }
@@ -67,6 +67,8 @@ a:hover, a:active {
 	padding: 0px;
 	margin-right: 22px;
 	line-height: 0;
+	width: 128px;
+	height: 128px;
 }
 
 #album-details {
@@ -91,6 +93,8 @@ a:hover, a:active {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	padding-bottom: 4px;
+	margin-bottom: -4px;
 }
 
 #album-label {
@@ -118,9 +122,6 @@ a:hover, a:active {
 #album-main {
 	margin-bottom: 20px;
 	overflow: hidden;
-	min-width: 300px;
-	float: left;
-	width: 63%;
 }
 
 #album-additional {
@@ -149,10 +150,16 @@ a:hover, a:active {
 
 #artist-details,
 #artist-details-various {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	margin-left: 168px;
+	width: 100%;
+	padding-left: 168px;
+	padding-right: 20px;
 	height: 32px;
 }
 
@@ -160,6 +167,10 @@ a:hover, a:active {
 	color: #bbb;
 	font-size: 12px;
 	line-height: 30px;
+}
+
+#artist-details-various.hidden {
+	display: none;
 }
 
 #artist-image {
@@ -178,7 +189,6 @@ a:hover, a:active {
 }
 
 #album-details-row {
-	max-width: 90%;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -191,12 +201,6 @@ a:hover, a:active {
 
 }
 
-#albums-more {
-	width: 30%;
-	float: left;
-	margin-left: 4%;
-}
-
 .album-cover {
 	width: 30px;
 	height: 30px;
@@ -205,6 +209,7 @@ a:hover, a:active {
 }
 
 #albums-more h2 {
+	font-size: 18px;
 	margin: 0 0 10px 0;
 }
 
@@ -212,51 +217,76 @@ a:hover, a:active {
 	color: #444;
 }
 
-#albums-list .sp-image {
-	margin: 0 10px 0 0;
-}
-
-#albums-list .title {
-	line-height: 30px;
-	font-size: 13px;
+#albums-list {
+	margin: 0 0 30px -20px;
 	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	padding-left: 10px;
-	font-family: "Helvetica";
-	text-shadow: 0 1px 0 rgba(255,255,255, 1);
-}
-
-#albums-list .title a {
-	color: #757574;
+	height: 172px;
 }
 
 #albums-list .item {
-	width: 100%;
 	float: left;
-	margin-bottom: 10px;
+	padding: 0 0 0 20px;
 }
 
 #albums-list .sp-image {
 	overflow: hidden;
 }
 
+@media screen and (max-width: 980px) {
+	#albums-list {
+		height: 162px;
+	}
+
+	#albums-list .sp-image {
+		width: 162px !important;
+		height: 162px !important;
+	}
+}
+
+@media screen and (max-width: 930px) {
+	#albums-list {
+		height: 152px;
+	}
+
+	#albums-list .sp-image {
+		width: 152px !important;
+		height: 152px !important;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	#albums-list {
+		height: 142px;
+	}
+
+	#albums-list .sp-image {
+		width: 142px !important;
+		height: 142px !important;
+	}
+}
+
 #album-extras {
-	padding-bottom: 20px;
 	clear: both;
 	position: relative;
+	padding-bottom: 8px;
 }
 
 #album-rights {
-	width: 60%;
+	display: inline-block;
+}
+
+#album-rights.padded {
 	float: left;
+	padding-right: 140px;
 }
 
 #album-more-albums {
 	width: 110px;
 	float: right;
 	display: none;
-	position: relative;
+	position: absolute;
+	top: 0;
+	right: 0;
 	background-color: #e0dfdc;
 	color: #838281;
 	padding: 4px;
@@ -276,11 +306,10 @@ a:hover, a:active {
 	background-color: white;
 	padding: 12px;
 	padding-bottom: 0;
-	bottom: 15px;
+	bottom: 100%;
 	right: 0px;
 	position: absolute;
 	border-radius: 6px;
-	display: none;
 	border: 1px solid #a6a5a3;
 	border-right-color: #737372;
 	border-bottom-color: #737372;
@@ -373,11 +402,26 @@ a:hover, a:active {
 }
 
 .throbber {
-    height: 32px;
-    left: 50%;
-    margin: -16px 0 0 -16px;
-    top: 50%;
-    width: 32px;
-    position: absolute;
-    background: url(../img/throbber.gif) center center no-repeat;
+	height: 32px;
+	left: 50%;
+	margin: -16px 0 0 -16px;
+	top: 50%;
+	width: 32px;
+	position: absolute;
+	background: url(../img/throbber.gif) center center no-repeat;
+}
+
+#offline-notice {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	margin-top: -5%;
+	padding: 0 20px;
+	box-sizing: border-box;
+	color: #767574;
+	font-size: 22px;
+	font-weight: bold;
+	line-height: 1.5;
+	text-align: center;
+	text-shadow: #f9f9f8 0 1px 1px;
 }

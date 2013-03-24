@@ -1,0 +1,2878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: List</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: List</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="c1fec7a0c7.html">views/list</a>~</span>
+    
+    List
+    </h2>
+    
+        <div class="class-description">Create a new list of items from a collection. Not all items
+    from the collection will be added directly. It uses snapshots, and
+    will partially fill when you call list.init(). If you want more items,
+    you call list.more() which will get a new round with the right offset.
+    Call one of the factory methods to create an instance of List.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="List"><span class="type-signature"></span>new List</h4>
+    
+    
+    <p class="summary">Use a factory method to instantiate.</p>
+    
+</dt>
+<dd>
+    
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+            
+            <td class="type">
+            
+                        Collection
+                         | 
+                    
+                        Album
+                         | 
+                    
+                        Disc
+                         | 
+                    
+                        Playlist
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An object containing a
+    collection or a collection itself.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An options object, with options defined below.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 79</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="availableOptions"><span class="type-signature">&lt;static> </span>availableOptions<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        These are the available options for the list view.
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>numItems</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Number of items to get. If not set, the list
+    will load the items on the fly.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fetch</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The way to fetch items.
+    <ul>
+      <li><b>'once'</b>: Only fetch initial items to fill the view, nothing more.</li>
+      <li><b>'scroll'</b>: (Default) Fetch initial items, and then more when scrolling.</l>
+      <li><b>'greedy'</b>: Fetch all items at load time. Do NOT use 'greedy' for searches,
+          as it is really expensive. Suitable for albums, since they are usually short.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>numBuckets</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Number of buckets of items to get initiallly on load. One
+    bucket is the number of items that fit into the view at once. Default: 3</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>header</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If and how the header will be displayed.
+    <ul>
+      <li><b>'no'</b>: Don't show any header.</li>
+      <li><b>'yes'</b>: Show a header.</li>
+      <li><b>'fixed'</b>: (Default) Show a header and keep it fixed to the top of the
+          viewport when scrolling past the top of the list.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The type of list to get.
+    <ul>
+      <li><b>'tracks'</b>: (Default) The most common list, and the most supported one.</li>
+      <li><b>'albums'</b>: List of albums, not all fields are supported for this.</li>
+      <li><b>'artists'</b>: List of artists, not all fields are supported for this.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>layout</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The layout to use.
+    <ul>
+      <li><b>'default'</b>: The default table list layout.</li>
+      <li><b>'toplist'</b>: Toplist layout.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>getItem</code></td>
+            
+            
+            <td class="type">
+            
+                        function
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Function that will return a DOM node for each list item.
+    The function is passed two arguments: the item and the index for that item.
+    Defaults to a predefined function.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fields</code></td>
+            
+            
+            <td class="type">
+            
+                        Array
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The fields to use in the list. These are the available fields:
+    <ul>
+      <li><b>'track'</b>: The track name.</li>
+      <li><b>'artist'</b>: The artist name (can be multiple artists), rendered as links to the artist page.</li>
+      <li><b>'album'</b>: The album name, rendered as a link to the album page.</li>
+      <li><b>'trackartist'</b>: The track name together with the artist name. Can be used for a list of
+          tracks for an album. If the track artist differ from the album artist, the artist will also
+          be shown in this field. If the track artist is the same, the track name will take up all of
+          the space in this field for that row.</li>
+      <li><b>'time'</b>: The duration of the track.</li>
+      <li><b>'popularity'</b>: The popularity of the track (also works for albums and artists lists).</li>
+      <li><b>'image'</b>: The image of the track (also works for albums and artists lists).</li>
+      <li><b>'number'</b>: The track number within its album.</li>
+      <li><b>'ordinal'</b>: The number within the current list.</li>
+      <li><b>'nowplaying'</b>: An icon when the row is playing, empty otherwise.</li>
+      <li><b>'star'</b>: A star icon that will enable quick starring of a track. When the track is playing,
+          the star icon will be replaced by the now playing icon. Use of this field is being phased out, and
+          should soon be done from other places.</li>
+      <li><b>'share'</b>: A share icon that will show a share popup when clicked.</li>
+    </ul>
+    Default: Depends on the type of list:
+    <ul>
+      <li><b>'tracks'</b>: ['star', 'track', 'artist', 'time', 'album']</li>
+      <li><b>'albums'</b>: ['album']</li>
+      <li><b>'artists'</b>: ['artist']</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">How the height of the list will behave.
+    <ul>
+      <li><b>'fixed'</b>: The list will keep a specific height (that you set yourself using CSS), and
+          the list will scroll within itself, instead of using the app scroll.</li>
+      <li><b>'dynamic'</b>: (Default) The list will increase in height when more items are added, and
+          the list will scroll using the app scroll.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>scrollElement</code></td>
+            
+            
+            <td class="type">
+            
+                        HTMLElement
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If provided, and height option is set to 'dynamic',
+        this will be the element used for detecting scrolling instead of the app scroll.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                        Playlist
+                         | 
+                    
+                        Album
+                         | 
+                    
+                        Disc
+                         | 
+                    
+                        Collection
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional context to use for playing tracks,
+    instead of generating one.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>unplayable</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">How to show unplayable tracks.
+    <ul>
+      <li><b>'disabled'</b>: Show the row, but dim it to make it look disabled.</li>
+      <li><b>'hidden'</b>: Hide the whole row.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>style</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The style of the list.
+    <ul>
+      <li><b>'plain'</b>: (Default) No borders or other style around the list.</li>
+      <li><b>'rounded'</b>: Border and rounded corners.</li>
+    </ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>imageOptions</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An object that will be passed as options to the image
+        view for images inside the list. Default: undefined.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>visualOffset</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional offset for the ordinal field. If for example 5 is provided,
+        the first item in the list will have the number 6. Default: 0</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>throbber</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">What type of throbber to use.
+    <ul>
+      <li><b>'none'</b>: (Default) No throbber is visible.</li>
+      <li><b>'hide-content'</b>: Throbber is visible and content is hidden.</li>
+      <li><b>'show-content'</b>: Throbber is visible on top of the content.</li>
+    </ul></td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 290</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="_getArtistsURIString"><span class="type-signature"></span>_getArtistsURIString</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get a string of uris for all the artists-
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>artists</code></td>
+            
+            
+            <td class="type">
+            
+                        Array.&lt;Artist>
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An array of Artist instances.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 1327</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    String with all artist URIs.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">string</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="blur"><span class="type-signature"></span>blur</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Unfocus this list.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 814</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+list.blur();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="clear"><span class="type-signature"></span>clear</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Clear the list and reset everything.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 587</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+//...
+list.clear();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="deselect"><span class="type-signature"></span>deselect</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Deselect the current item, or all items in connected lists.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>deselectConnected</code></td>
+            
+            
+            <td class="type">
+            
+                        boolean
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">If true, deselect items in all connected lists.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 873</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+list.deselect();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="destroy"><span class="type-signature"></span>destroy</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Remove the list from the DOM and remove any event handlers.
+Should be used when you no longer need the list, to clear up the list from memory.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 613</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+//...
+list.destroy();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="focus"><span class="type-signature"></span>focus</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set focus for this list.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 793</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+list.focus();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="getSelection"><span class="type-signature"></span>getSelection</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get data for all selected items.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Options for what to get. Could contain:
+    <ul>
+      <li><b>onlyThisList</b> (boolean): If true, it gets selection data for only this list.
+          Default is false, which means it will get data for all connected lists.</li>
+    </ul></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 911</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Object containing indices, uris and items for selection.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Object</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+//...
+var selection = list.getSelection();
+selection.indices;
+selection.uris;
+selection.urls;
+selection.items;
+selection.fromSameList; // Whether all selected items are from the same list or not.</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="init"><span class="type-signature"></span>init</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Initialize the list and fill up the initial items.
+This MUST be called after the list node has been added to the DOM, because
+the list view needs to calculate some things.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 305</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+
+// Call the init method after it has been added to the DOM
+list.init();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="more"><span class="type-signature"></span>more</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Add more items to the list programmatically.
+This will make another snapshot for the next section.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>Items will be fetched in an efficient manner when scrolling.</li><ul></dd>
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 376</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+list.more();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="playTrack"><span class="type-signature"></span>playTrack</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Play a track at a particular index within the list.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Index within the list.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_discIndex</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Disc index. If specified, the index param
+    refers to within the disc.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 394</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+list.playTrack(5);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="refresh"><span class="type-signature"></span>refresh</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Clear and refresh the list with the set collection.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 553</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+//...
+list.refresh();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="selectItem"><span class="type-signature"></span>selectItem</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Select an item.
+This will deselect the current item.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The index within the list.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 835</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+list.selectItem(4);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setCollection"><span class="type-signature"></span>setCollection</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set a collection.
+Deprecated, use setItem instead.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>collection</code></td>
+            
+            
+            <td class="type">
+            
+                        Collection
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The new collection.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 512</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setContext"><span class="type-signature"></span>setContext</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set a new context.
+Setting a context will make the list use that context when playing tracks.
+For this to work, the context will need to correspond to the collection
+used to display the list, otherwise the wrong tracks will be played.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                        Object
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A valid context object.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 527</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setItem"><span class="type-signature"></span>setItem</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set a new item, which could be a collection.
+This will clear the current list and refresh it with the new content.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+            
+            <td class="type">
+            
+                        Collection
+                         | 
+                    
+                        Album
+                         | 
+                    
+                        Disc
+                         | 
+                    
+                        Playlist
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The new item.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_context</code></td>
+            
+            
+            <td class="type">
+            
+                        (Album
+                         | 
+                    
+                        Disc
+                         | 
+                    
+                        Playlist)=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional new context.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 458</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+list.init();
+
+var playlist = models.Playlist.fromURI('spotify:user:spotify:playlist:2lusnaAIIckVJJFKM2upOe');
+list.setItem(playlist);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forAlbum"><span class="type-signature">&lt;static> </span>forAlbum</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a List for the given album.
+If the album has multiple discs, multiple inner lists will be created,
+together with markers for the discs.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>album</code></td>
+            
+            
+            <td class="type">
+            
+                        Album
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The album object to use.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional options object, see below.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 145</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A List instance.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">List</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var album = models.Album.fromURI('spotify:album:2mCuMNdJkoyiXFhsQCLLqw');
+var list = List.forAlbum(album);
+document.body.appendChild(list.node);
+
+// Call the init method after it has been added to the DOM
+list.init();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forCollection"><span class="type-signature">&lt;static> </span>forCollection</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a List for the given collection.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>collection</code></td>
+            
+            
+            <td class="type">
+            
+                        Collection
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The collection object to use.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional options object, see below.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 119</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A List instance.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">List</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var playlist = models.Playlist.fromURI('spotify:user:spotify:playlist:2lusnaAIIckVJJFKM2upOe');
+playlist.load('tracks').done(function() {
+  var collection = playlist.tracks;
+  var list = List.forCollection(collection);
+  document.body.appendChild(list.node);
+
+  // Call the init method after it has been added to the DOM
+  list.init();
+});</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forDisc"><span class="type-signature">&lt;static> </span>forDisc</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a List for the given disc.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>disc</code></td>
+            
+            
+            <td class="type">
+            
+                        Disc
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The disc object to use.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional options object, see below.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 169</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A List instance.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">List</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var disc = models.Disc.fromURI('spotify:album:0keagHIKMZASlWavwaSpWf:2');
+var list = List.forDisc(disc);
+document.body.appendChild(list.node);
+
+// Call the init method after it has been added to the DOM
+list.init();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="forPlaylist"><span class="type-signature">&lt;static> </span>forPlaylist</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a List for the given playlist.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>playlist</code></td>
+            
+            
+            <td class="type">
+            
+                        Playlist
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The playlist object to use.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_options</code></td>
+            
+            
+            <td class="type">
+            
+                        Object=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional options object, see below.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	<dt class="tag-since">Since:</dt>
+	<dd class="tag-since"><ul class="dummy"><li>1.0.0</dd>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>list.js, line 193</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    A List instance.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">List</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var playlist = models.Playlist.fromURI('spotify:user:spotify:playlist:2lusnaAIIckVJJFKM2upOe');
+var list = List.forPlaylist(playlist);
+document.body.appendChild(list.node);
+
+// Call the init method after it has been added to the DOM
+list.init();</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="b09bdc3b3d.html">views/image</a></li><li><a href="c1fec7a0c7.html">views/list</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="53bb083269.html">views/scroll-agent</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="3d2ab2c4df.html">AddToCollectionButton</a></li><li><a href="5d1cf3fdd7.html">BaseButton</a></li><li><a href="ac91ff4491.html">Button</a></li><li><a href="824c77c1ee.html">CustomButton</a></li><li><a href="e039471c99.html">Image</a></li><li><a href="b6d6983f46.html">List</a></li><li><a href="f5a366df08.html">Popup</a></li><li><a href="2d9c4cfac6.html">QuickActionButtons</a></li><li><a href="0f496624db.html">ScrollAgent</a></li><li><a href="cc06f20d53.html">ShareButton</a></li><li><a href="b55f4a2324.html">StartRadioButton</a></li><li><a href="7baffe74b6.html">SubscribeButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="b4bbfdb1f5.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Mar 11 2013 15:04:54 GMT+0100 (CET)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>

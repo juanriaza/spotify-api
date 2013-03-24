@@ -46,6 +46,8 @@
     <h4 class="name" id="TabBar"><span class="type-signature"></span>new TabBar</h4>
     
     
+    <p class="summary">Use a factory method to instantiate.</p>
+    
 </dt>
 <dd>
     
@@ -145,7 +147,7 @@
             
             
             
-            <td class="description last">Currently active tab id.</td>
+            <td class="description last">Currently active tab ID.</td>
         </tr>
 	
 	
@@ -173,7 +175,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 46</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 40</li></ul></dd>
 	
     
     
@@ -269,7 +271,6 @@
             
             
             <td class="description last">A tab definition object, containing these properties:
-    is an object that has these properties:
     id {string} Unique identifier for this tab.
     name {string} Name of the tab (text to be displayed).
     active {boolean=} True if this tab should be set as the active tab. Optional.</td>
@@ -303,7 +304,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 131</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 161</li></ul></dd>
 	
     
     
@@ -320,6 +321,11 @@
     
     
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>tabBar.addTab({id: 'tab-identifier', name: 'Tab Name'});</code></pre>
+
     
 </dd>
 
@@ -411,7 +417,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 114</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 142</li></ul></dd>
 	
     
     
@@ -435,6 +441,14 @@
     
     
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>tabBar.addTabs([
+  {id: 'tab-identifier-1', name: 'Tab Name 1'},
+  {id: 'tab-identifier-2', name: 'Tab Name 2'}
+]);</code></pre>
+
     
 </dd>
 
@@ -516,7 +530,15 @@
             
             
             
-            <td class="description last">Where to add it, relative to the reference element.</td>
+            <td class="description last">Where to add it, relative to the reference element. Valid values:
+    <ul>
+      <li><b>'append':</b> Add tab bar after the last element inside the reference element.
+          If reference is empty, it will be the first child.</li>
+      <li><b>'prepend':</b> Add tab bar before the first element inside the reference element.
+          If reference is empty, it will be the first child.</li>
+      <li><b>'after':</b> Add tab bar after the reference element.</li>
+      <li><b>'before':</b> Add tab bar before the reference element.</li>
+    </ul></td>
         </tr>
 	
 	
@@ -547,7 +569,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 226</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 276</li></ul></dd>
 	
     
     
@@ -564,6 +586,11 @@
     
     
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>tabBar.addToDom(document.body, 'prepend');</code></pre>
+
     
 </dd>
 
@@ -655,7 +682,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 158</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 191</li></ul></dd>
 	
     
     
@@ -672,6 +699,11 @@
     
     
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>tabBar.removeTab('tab-identifier');</code></pre>
+
     
 </dd>
 
@@ -763,7 +795,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 176</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 212</li></ul></dd>
 	
     
     
@@ -780,6 +812,11 @@
     
     
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>tabBar.removeTabs(['tab-identifier-1', 'tab-identifier-2']);</code></pre>
+
     
 </dd>
 
@@ -871,7 +908,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 191</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 230</li></ul></dd>
 	
     
     
@@ -889,6 +926,11 @@
     
     
     
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>tabBar.setActiveTab('tab-identifier');</code></pre>
+
+    
 </dd>
 
         
@@ -896,6 +938,8 @@
 <dt>
     <h4 class="name" id="withTabs"><span class="type-signature">&lt;static> </span>withTabs</h4>
     
+    
+    <p class="summary">Factory method.</p>
     
 </dt>
 <dd>
@@ -970,9 +1014,11 @@
             
             
             <td class="description last">An object with options. These are available:
-    secondClickScrolls: Whether to scroll to the top when a tab is clicked
-      the second time. First click activates tab, second scrolls to top.
-    sticky: Whether to stick to the top when scrolled past. Default: true.</td>
+    <ul>
+      <li><b>secondClickScrolls:</b> Whether to scroll to the top when a tab is clicked
+          the second time. First click activates tab, second scrolls to top.</li>
+      <li><b>sticky:</b> Whether to stick to the top when scrolled past. Default: true.</li>
+    </ul></td>
         </tr>
 	
 	
@@ -1003,7 +1049,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 98</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>tabbar.js, line 120</li></ul></dd>
 	
     
     
@@ -1035,13 +1081,39 @@
 	</dt>
 	<dd>
 		
-		<span class="param-type">module:views/tabbar~TabBar</span> 
+		<span class="param-type">TabBar</span> 
 		
 	</dd>
 </dl>
 
         
     
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>require(['$views/tabbar#TabBar'], function(TabBar) {
+
+  var tabBar = TabBar.withTabs([
+    {id: 'overview', name: 'Overview', active: true},
+    {id: 'followers', name: 'Followers'},
+    {id: 'following', name: 'Following'}
+  ]);
+  tabBar.addToDom(document.body, 'prepend');
+
+  // Use this event to know when to change content based on the tab
+  tabBar.addEventListener('tabchange', function(e) {
+    e.id; // ID for the tab it changed to
+    e.previousId; // ID for the tab that was active before
+  });
+
+  // Use this event to be able to preload content before the user switched to the tab
+  tabBar.addEventListener('tabhover', function(e) {
+    e.id; // ID for the tab that the cursor hovers over
+    e.active; // Whether the tab is currently active
+  });
+
+});</code></pre>
+
     
 </dd>
 
@@ -1061,13 +1133,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="Button.html">Button</a></li><li><a href="CustomButton.html">CustomButton</a></li><li><a href="List.html">List</a></li><li><a href="ShareButton.html">ShareButton</a></li><li><a href="StartRadioButton.html">StartRadioButton</a></li><li><a href="SubscribeButton.html">SubscribeButton</a></li><li><a href="SubscribeProfileButton.html">SubscribeProfileButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="Throbber.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="b09bdc3b3d.html">views/image</a></li><li><a href="c1fec7a0c7.html">views/list</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="53bb083269.html">views/scroll-agent</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="3d2ab2c4df.html">AddToCollectionButton</a></li><li><a href="5d1cf3fdd7.html">BaseButton</a></li><li><a href="ac91ff4491.html">Button</a></li><li><a href="824c77c1ee.html">CustomButton</a></li><li><a href="e039471c99.html">Image</a></li><li><a href="b6d6983f46.html">List</a></li><li><a href="f5a366df08.html">Popup</a></li><li><a href="2d9c4cfac6.html">QuickActionButtons</a></li><li><a href="0f496624db.html">ScrollAgent</a></li><li><a href="cc06f20d53.html">ShareButton</a></li><li><a href="b55f4a2324.html">StartRadioButton</a></li><li><a href="7baffe74b6.html">SubscribeButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="b4bbfdb1f5.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Jan 07 2013 14:19:57 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Mar 11 2013 15:04:54 GMT+0100 (CET)
 </footer>
 
 <script> sh_highlightDocument(); </script>

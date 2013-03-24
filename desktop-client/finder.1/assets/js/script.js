@@ -217,23 +217,25 @@ var appFinder = {
         tf = setTimeout(function() {
           newAppsThrobber.style.display = 'block';
         }, 500);
-    storeCom.getNamedListApps('new_releases', function(identifierList) {
-      storeCom.getAppData(identifierList, function(appData, isCached) {
-        var i = 0,
-            appsDisplayed = 0;
-        while (appsDisplayed < 4 && appData.items[i]) {
-          if ((freeApps.indexOf(appData.items[i].app_name) > -1) &&
-              (sp.core.product === 'Spotify Premium' || sp.core.product === 'Spotify Unlimited')) {
-          } else {
-            appFinder.renderApp(appData.items[i], false, 'new-apps');
+    storeCom.getNewReleases(function(identifierList) {
+      storeCom.getAppList(function(appList) {
+        storeCom.getAppData(identifierList, function(appData, isCached) {
+          var i = 0,
+              appsDisplayed = 0;
+          while (appsDisplayed < 4 && appData.items[i]) {
+            if ((appList.indexOf(appData.items[i].app_name) < 0) || (freeApps.indexOf(appData.items[i].app_name) > -1) &&
+                (sp.core.product === 'Spotify Premium' || sp.core.product === 'Spotify Unlimited')) {
+            } else {
+              appFinder.renderApp(appData.items[i], false, 'new-apps');
+              appsDisplayed++;
+            }
+            i++;
           }
-          i++;
-          appsDisplayed++;
-        }
-        var appContainer = document.getElementById('app-list-new');
-        appContainer.classList.add('loaded');
-        appContainer.classList.add(isCached ? 'from-cache' : 'no-cache');
-        dom.destroy(newAppsThrobber);
+          var appContainer = document.getElementById('app-list-new');
+          appContainer.classList.add('loaded');
+          appContainer.classList.add(isCached ? 'from-cache' : 'no-cache');
+          dom.destroy(newAppsThrobber);
+        });
       });
     });
   },

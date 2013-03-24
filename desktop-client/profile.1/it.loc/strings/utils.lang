@@ -1,0 +1,10 @@
+{
+  "dayAgoSingle" : "{0} giorno fa",
+  "dayAgoPlural" : "{0} giorni fa",
+  "hourAgoSingle" : "{0} ora fa",
+  "hourAgoPlural" : "{0} ore fa",
+  "minuteAgoSingle" : "{0} minuto fa",
+  "minuteAgoPlural" : "{0} minuti fa",
+  "momentAgo" : "un momento fa",
+  "now" : "ora"
+}

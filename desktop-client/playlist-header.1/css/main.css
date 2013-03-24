@@ -270,7 +270,7 @@ body::-webkit-scrollbar {
   margin-top: 10px;
   padding: 2px 8px;
   position: absolute;
-  right: -10px;
+  right: -7px;
   text-shadow: 1px 1px 0 rgba(255,255,255,1);
   white-space: nowrap;
   width: auto;
@@ -283,7 +283,7 @@ body::-webkit-scrollbar {
   width: 0;
   height: 0;
   top: -12px;
-  right: 26px;
+  right: 21px;
   border: 5px solid transparent;
   border-bottom-color: rgba(0,0,0,.3);
 }
@@ -294,7 +294,7 @@ body::-webkit-scrollbar {
   width: 0;
   height: 0;
   top: -11px;
-  right: 25px;
+  right: 20px;
   border: 6px solid transparent;
   border-bottom-color: #eee;
 }

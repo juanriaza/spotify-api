@@ -113,6 +113,7 @@
 }
 
 .app-header .relations-info h2 {
+  font-family: "Lucida Grande", "Tahoma", sans-serif;
   font-size: 12px;
   font-weight: normal;
   margin-bottom: 0;
@@ -127,6 +128,7 @@
 }
 
 .app-header .relations-info .relations-counter {
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
   font-weight: bold;
   line-height: 1;

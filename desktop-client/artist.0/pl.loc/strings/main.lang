@@ -1,0 +1,25 @@
+{
+    "top-tracks" : "Najlepsze utwory",
+    "related-artists" : "Powiązani wykonawcy",
+    "albums" : "Albumy",
+    "singles" : "Single",
+    "appears-on" : "z albumu",
+    "list" : "Lista",
+    "covers" : "Okładki",
+    "overview" : "Przegląd",
+    "biography" : "Biografia",
+    "follow" : "Obserwuj",
+    "unfollow" : "Przestań obserwować",
+    "following" : "Obserwuje",
+    "followers" : "Obserwatorzy",
+    "start-radio" : "Włącz radio",
+    "share-artist" : "Udostępnij wykonawcę",
+    "see-more" : "Zobacz więcej",
+    "create-top-tracks-heading" : "Pomóż utworzyć listę najlepszych utworów tego wykonawcy!",
+    "create-top-tracks-content" : "Lista najlepszych utworów powstaje, gdy coraz więcej użytkowników słucha danego wykonawcy. Załóż ją, słuchając teraz muzyki!",
+    "artist-not-found-heading" : "Nie znaleziono wykonawcy",
+    "artist-not-found-content" : "Nie możemy znaleźć żadnej muzyki tego wykonawcy. Wyszukaj coś innego.",
+    "view-spotify-profile" : "Pokaż profil Spotify",
+    "verified-artist" : "Zweryfikowany wykonawca"
+}
+

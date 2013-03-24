@@ -3,8 +3,10 @@
     "de",
     "en",
     "es",
+    "it",
     "fr",
-    "nl"
+    "nl",
+    "pl"
   ],
   "strings" : {
     "main" : {
@@ -15,8 +17,10 @@
             "de" : "Ausblenden",
             "en" : "Hide",
             "es" : "Ocultar",
+            "it" : "Nascondi",
             "fr" : "Cacher",
-            "nl" : "Verbergen"
+            "nl" : "Verbergen",
+            "pl" : "Ukryj"
           }
       },
       "sAdBubbleText" : {
@@ -25,8 +29,10 @@
             "de" : "Musikankündigungen ausblenden. Dies kann in den Einstellungen geändert werden.",
             "en" : "Hide these music announcements. To show them again, just go to your Preferences.",
             "es" : "Ocultar estos mensajes. Puedes activarlos de nuevo en tus Preferencias.",
+            "it" : "Nascondi questi annunci musicali. Per visualizzarli nuovamente, basta che accedi alle Preferenze.",
             "fr" : "Cacher les publicités musicales. Pour les réactiver, allez dans les Préférences.",
-            "nl" : "Verberg deze muziek aankondigingen. Om ze weer te tonen, ga je gewoon naar Voorkeuren."
+            "nl" : "Verberg deze muziek aankondigingen. Om ze weer te tonen, ga je gewoon naar Voorkeuren.",
+            "pl" : "Ukryj te powiadomienia muzyczne Aby je znowu pokazać, przejdź do Preferencji."
           }
       },
       "sArtist" : {
@@ -36,8 +42,10 @@
           "de" : "Künstler",
           "en" : "Artist",
           "es" : "Artista",
+          "it" : "Artista",
           "fr" : "Artiste",
-          "nl" : "Artiest"
+          "nl" : "Artiest",
+          "pl" : "Wykonawca"
         }
       },
       "sBy" : {
@@ -47,8 +55,10 @@
           "de" : "von",
           "en" : "by",
           "es" : "por",
+          "it" : "per",
           "fr" : "par",
-          "nl" : "van"
+          "nl" : "van",
+          "pl" : "według"
         }
       },
       "sCountryPlaylists" : {
@@ -58,8 +68,10 @@
           "de" : "Beliebte Playlist in deinem Land",
           "en" : "Trending playlists in your country",
           "es" : "Listas populares en tu país",
+          "it" : "Playlist di tendenza nel tuo paese",
           "fr" : "Playlists populaires dans votre pays",
-          "nl" : "Populaire afspeellijsten in je land"
+          "nl" : "Populaire afspeellijsten in je land",
+          "pl" : "Najpopularniejsze obecnie playlisty w Twoim kraju"
         }
       },
       "sCountryTracks" : {
@@ -69,8 +81,10 @@
           "de" : "Beliebte Titel in deinem Land",
           "en" : "Trending tracks in your country",
           "es" : "Canciones populares en tu país",
+          "it" : "Brani di tendenza nel tuo paese",
           "fr" : "Titres populaires dans votre pays",
-          "nl" : "Populaire nummers in je land"
+          "nl" : "Populaire nummers in je land",
+          "pl" : "Najpopularniejsze utwory w Twoim kraju"
         }
       },
       "sFriendsPlaylistsA" : {
@@ -80,8 +94,10 @@
           "de" : "Beliebte Playlists",
           "en" : "Trending playlists",
           "es" : "Listas populares",
+          "it" : "Playlist di tendenza",
           "fr" : "Playlists populaires",
-          "nl" : "Populaire afspeellijsten"
+          "nl" : "Populaire afspeellijsten",
+          "pl" : "Najpopularniejsze playlisty"
         }
       },
       "sFriendsPlaylistsB" : {
@@ -91,8 +107,10 @@
           "de" : "in deinem Netzwerk",
           "en" : "in your network",
           "es" : "en tu red musical",
+          "it" : "nella tua rete",
           "fr" : "dans votre réseau",
-          "nl" : "in je netwerk"
+          "nl" : "in je netwerk",
+          "pl" : "w Twojej sieci kontaktów"
         }
       },
       "sFriendsTracksA" : {
@@ -102,8 +120,10 @@
           "de" : "Top-Titel",
           "en" : "Top tracks",
           "es" : "Canciones populares",
+          "it" : "Brani top",
           "fr" : "Top titres",
-          "nl" : "Top nummers"
+          "nl" : "Top nummers",
+          "pl" : "Najlepsze utwory"
         }
       },
       "sFriendsTracksB" : {
@@ -113,8 +133,10 @@
           "de" : "in deinem Netzwerk",
           "en" : "in your network",
           "es" : "en tu red musical",
+          "it" : "nella tua rete",
           "fr" : "dans votre réseau",
-          "nl" : "in je netwerk"
+          "nl" : "in je netwerk",
+          "pl" : "w Twojej sieci kontaktów"
         }
       },
       "sNewFriendsA" : {
@@ -124,8 +146,10 @@
           "de" : "Benutzer",
           "en" : "People",
           "es" : "Amigos",
+          "it" : "Persone",
           "fr" : "Contacts",
-          "nl" : "Vrienden"
+          "nl" : "Vrienden",
+          "pl" : "Osoby"
         }
       },
       "sNewFriendsB" : {
@@ -135,8 +159,10 @@
           "de" : "die dich vielleicht interessieren",
           "en" : "you may find interesting",
           "es" : "que utilizan Spotify",
+          "it" : "che ti potrebbero interessare",
           "fr" : "qui pourraient vous intéresser",
-          "nl" : "die je wellicht interesseren"
+          "nl" : "die je wellicht interesseren",
+          "pl" : "które mogą Cię zainteresować"
         }
       },
       "sNewReleases" : {
@@ -146,8 +172,10 @@
           "de" : "Neuerscheinungen",
           "en" : "New releases",
           "es" : "Nuevos lanzamientos",
+          "it" : "Nuove uscite",
           "fr" : "Nouveautés",
-          "nl" : "Nieuwe releases"
+          "nl" : "Nieuwe releases",
+          "pl" : "Nowe wydania"
         }
       },
       "sRecommended" : {
@@ -157,8 +185,10 @@
           "de" : "Empfohlen",
           "en" : "Recommended",
           "es" : "Recomendado",
+          "it" : "Consigliati",
           "fr" : "Recommandé",
-          "nl" : "Aanbevolen"
+          "nl" : "Aanbevolen",
+          "pl" : "Rekomendowane"
         }
       },
       "sRecommended Albums" : {
@@ -168,8 +198,10 @@
           "de" : "Empfohlene Alben",
           "en" : "Recommended Albums",
           "es" : "Álbumes recomendados",
+          "it" : "Album consigliati",
           "fr" : "Albums recommandés",
-          "nl" : "Aanbevolen Albums"
+          "nl" : "Aanbevolen Albums",
+          "pl" : "Rekomendowane albumy"
         }
       },
       "sRegionPlaylistsA" : {
@@ -179,8 +211,10 @@
           "de" : "Top-Playlists",
           "en" : "Top playlists",
           "es" : "Listas más escuchadas",
+          "it" : "Playlist top",
           "fr" : "Top playlists",
-          "nl" : "Top afspeellijsten"
+          "nl" : "Top afspeellijsten",
+          "pl" : "Najlepsze playlisty"
         }
       },
       "sRegionPlaylistsB" : {
@@ -190,8 +224,10 @@
           "de" : "in deiner Nähe",
           "en" : "near you",
           "es" : "cerca de ti",
+          "it" : "vicino a te",
           "fr" : "près de chez vous",
-          "nl" : "in je omgeving"
+          "nl" : "in je omgeving",
+          "pl" : "blisko Ciebie"
         }
       },
       "sRegionTracksA" : {
@@ -201,8 +237,10 @@
           "de" : "Top-Titel",
           "en" : "Top tracks",
           "es" : "Canciones populares",
+          "it" : "Brani top",
           "fr" : "Top titres",
-          "nl" : "Top nummers"
+          "nl" : "Top nummers",
+          "pl" : "Najlepsze utwory"
         }
       },
       "sRegionTracksB" : {
@@ -212,8 +250,10 @@
           "de" : "in deiner Nähe",
           "en" : "near you",
           "es" : "cerca de ti",
+          "it" : "vicino a te",
           "fr" : "près de chez vous",
-          "nl" : "in je omgeving"
+          "nl" : "in je omgeving",
+          "pl" : "blisko Ciebie"
         }
       },
       "sTitle" : {
@@ -223,8 +263,10 @@
           "de" : "Titel",
           "en" : "Title",
           "es" : "Título",
+          "it" : "Titolo",
           "fr" : "Titre",
-          "nl" : "Titel"
+          "nl" : "Titel",
+          "pl" : "Tytuł"
         }
       },
       "sTopList" : {
@@ -234,8 +276,10 @@
           "de" : "Top-Liste",
           "en" : "Top List",
           "es" : "Éxito",
+          "it" : "Top list",
           "fr" : "Dans les Tops",
-          "nl" : "Top Lijst"
+          "nl" : "Top Lijst",
+          "pl" : "Najlepsza lista"
         }
       },
       "sUnavailableOffline" : {
@@ -245,8 +289,10 @@
           "de" : "Neuheiten sind offline nicht verfügbar.",
           "en" : "What's New is not available offline.",
           "es" : "Novedades no está disponible sin conexión",
+          "it" : "La sezione Novità non è disponibile offline.",
           "fr" : "Les Nouveautés ne sont pas disponibles hors connexion.",
-          "nl" : "Wat Is Nieuw is niet offline beschikbaar."
+          "nl" : "Wat Is Nieuw is niet offline beschikbaar.",
+          "pl" : "Nowości nie są dostępne offline."
         }
       }
     },
@@ -258,8 +304,10 @@
           "de" : "Entdecke neue Musik",
           "en" : "Browse new music",
           "es" : "Busca nueva música",
+          "it" : "Scopri nuova musica",
           "fr" : "Découvrez de la musique",
-          "nl" : "Nieuwe muziek verkennen"
+          "nl" : "Nieuwe muziek verkennen",
+          "pl" : "Przeglądaj nową muzykę"
         }
       },
       "sExploreMoreApps" : {
@@ -269,8 +317,10 @@
           "de" : "Entdecke mehr Apps...",
           "en" : "Explore More Apps...",
           "es" : "Descubre más Apps…",
+          "it" : "Scopri altre app...",
           "fr" : "Voir plus d'applis...",
-          "nl" : "Vind meer Apps..."
+          "nl" : "Vind meer Apps...",
+          "pl" : "Poznaj więcej aplikacji..."
         }
       },
       "sFeaturedSpotifyApps" : {
@@ -280,8 +330,10 @@
           "de" : "Ausgewählte Apps",
           "en" : "Featured Spotify Apps",
           "es" : "Apps destacadas",
+          "it" : "App Spotify in primo piano",
           "fr" : "Quelques Applis",
-          "nl" : "Uitgelichte Apps"
+          "nl" : "Uitgelichte Apps",
+          "pl" : "Polecane aplikacje Spotify"
         }
       },
       "sListenAndSingAlong" : {
@@ -291,8 +343,10 @@
           "de" : "Hören und mitsingen",
           "en" : "Listen and sing along",
           "es" : "Escucha y canta a la vez",
+          "it" : "Ascolta e canta anche tu",
           "fr" : "Ecoutez et chantez en coeur",
-          "nl" : "Luisteren en meezingen"
+          "nl" : "Luisteren en meezingen",
+          "pl" : "Słuchaj i śpiewaj"
         }
       },
       "sPopularApps" : {
@@ -302,8 +356,10 @@
           "de" : "Beliebte Apps",
           "en" : "Popular Spotify Apps",
           "es" : "Apps más populares",
+          "it" : "App Spotify popolari",
           "fr" : "Applis populaires",
-          "nl" : "Populaire Apps"
+          "nl" : "Populaire Apps",
+          "pl" : "Popularne aplikacje Spotify"
         }
       },
       "sSpotifyApps" : {
@@ -313,8 +369,10 @@
           "de" : "Spotify Apps",
           "en" : "Spotify Apps",
           "es" : "Spotify Apps",
+          "it" : "App Spotify",
           "fr" : "Applis Spotify",
-          "nl" : "Apps"
+          "nl" : "Apps",
+          "pl" : "Aplikacje Spotify"
         }
       },
       "sView" : {
@@ -324,8 +382,10 @@
           "de" : "Ansehen",
           "en" : "View",
           "es" : "Ver",
+          "it" : "Visualizza",
           "fr" : "Voir",
-          "nl" : "Toon"
+          "nl" : "Toon",
+          "pl" : "Zobacz"
         }
       }
     },
@@ -337,8 +397,10 @@
           "de" : "Sag uns deine Meinung und hilf uns, unseren Musik-Service noch besser zu machen.",
           "en" : "Share your thoughts and help us build the world's greatest music service!",
           "es" : "Comparte tus ideas y ayúdanos a construir el mejor servicio de música del mundo",
+          "it" : "Condividi le tue opinioni e aiutaci a costruire il servizio dedicato alla musica più grande al mondo!",
           "fr" : "Partagez votre avis et aidez-nous à construire le meilleur service de musique au monde.",
-          "nl" : "Deel je mening en help ons de beste muziekservice van de wereld te bouwen."
+          "nl" : "Deel je mening en help ons de beste muziekservice van de wereld te bouwen.",
+          "pl" : "Przekaż nam swoje spostrzeżenia, pomagając w tworzeniu najlepszego serwisu muzycznego na świecie!"
         }
       },
 			"sQ1Question" : {
@@ -348,8 +410,10 @@
           "de" : "Wirst du Spotify deinen Freunden oder Kollegen weiterempfehlen?",
 	        "en" : "How likely is it that you’d recommend Spotify to a friend or colleague?",
 	        "es" : "¿Recomendarías Spotify a tus amigos?",
+          "it" : "Con quanta probabilità consiglieresti Spotify a un amico o un collega?",
 	        "fr" : "Recommanderiez-vous Spotify à un ami ou un collègue?",
-	        "nl" : "Zou je Spotify aanbevelen aan een vriend of collega?"
+	        "nl" : "Zou je Spotify aanbevelen aan een vriend of collega?",
+          "pl" : "Na ile jest prawdopodobne, że będziesz polecać Spotify znajomym?"
 				}
 		  },
 		  "sQ1Negative" : {
@@ -359,8 +423,10 @@
           "de" : "Wahrscheinlich nicht",
 	        "en" : "Not at all likely",
 	        "es" : "Nada probable",
+          "it" : "Non lo consiglierei",
 	        "fr" : "Pas du tout",
-	        "nl" : "Zeker niet"
+	        "nl" : "Zeker niet",
+          "pl" : "Nie ma mowy"
 			  }
 			},
 			"sQ1Positive" : {
@@ -370,8 +436,10 @@
           "de" : "Höchstwahrscheinlich",
 	        "en" : "Extremely likely",
 	        "es" : "Muy problable",
+          "it" : "Lo consiglierei sicuramente",
 	        "fr" : "Tout à fait",
-	        "nl" : "Zeer waarschijnlijk wel"
+	        "nl" : "Zeer waarschijnlijk wel",
+          "pl" : "Na pewno będę"
 			  }
 			},
 		  "sQ2Question" : {
@@ -381,8 +449,10 @@
           "de" : "Warum?",
 	        "en" : "Why do you feel that way?",
 	        "es" : "¿Por qué te sientes de ese modo?",
+          "it" : "Per quale motivo?",
 	        "fr" : "Pourquoi pensez-vous cela?",
-	        "nl" : "Waarom (niet)?"
+	        "nl" : "Waarom (niet)?",
+          "pl" : "Dlaczego takie jest Twoje zdanie?"
 				}
 		  },
 		  "sQ3Question" : {
@@ -392,8 +462,10 @@
           "de" : "Wie zufrieden bist du mit Spotify?",
 	        "en" : "Overall, how satisfied are you with Spotify?",
 	        "es" : "En general, ¿cómo estás de satisfecho con Spotify?",
+          "it" : "In generale, quanto puoi dirti soddisfatto/insoddisfatto di Spotify?",
 	        "fr" : "Globalement, êtes-vous satisfait de Spotify?",
-	        "nl" : "Al met al, hoe tevreden ben je over Spotify?"
+	        "nl" : "Al met al, hoe tevreden ben je over Spotify?",
+          "pl" : "Na ile podoba Ci się Spotify?"
 				}
 		  },
 		  "sQ3Negative" : {
@@ -403,8 +475,10 @@
           "de" : "Sehr unzufrieden",
 	        "en" : "Very dissatisfied",
 	        "es" : "Muy insatisfecho",
+          "it" : "Molto insoddisfatto",
 	        "fr" : "Extrêmement mécontent",
-	        "nl" : "Erg ontevreden"
+	        "nl" : "Erg ontevreden",
+          "pl" : "Zupełnie mi się nie podoba"
 			  }
 			},
 			"sQ3Positive" : {
@@ -414,8 +488,10 @@
           "de" : "Sehr zufrieden",
 	        "en" : "Very satisfied",
 	        "es" : "Muy satisfecho",
+          "it" : "Molto soddisfatto",
 	        "fr" : "Tout à fait satisfait",
-	        "nl" : "Erg tevreden"
+	        "nl" : "Erg tevreden",
+          "pl" : "Bardzo mi się podoba"
 			  }
 			},
 	    "sSubmit" : {
@@ -425,8 +501,10 @@
           "de" : "Umfrage abschließen",
           "en" : "Submit survey",
           "es" : "Enviar encuesta",
+          "it" : "Invia sondaggio",
           "fr" : "Soumettre mes réponses",
-          "nl" : "Enquête versturen"
+          "nl" : "Enquête versturen",
+          "pl" : "Prześlij ankietę"
         }
       },
       "sThanks" : {
@@ -436,8 +514,10 @@
           "de" : "Danke für deine Hilfe und dass du dir Zeit genommen hast.",
           "en" : "Thanks very much for your help. We appreciate your time.",
           "es" : "Muchas gracias por tu colaboración. Valoramos mucho el tiempo invertido.",
+          "it" : "Grazie mille per il tuo aiuto. Apprezziamo molto il tempo che ci hai dedicato.",
           "fr" : "Merci beaucoup pour votre aide, elle nous sera très utile.",
-          "nl" : "Hartstikke bedankt voor je hulp! We stellen je medewerking erg op prijs."
+          "nl" : "Hartstikke bedankt voor je hulp! We stellen je medewerking erg op prijs.",
+          "pl" : "Dzięki serdeczne za pomoc i Twój czas."
         }
       },
       "sTeam" : {
@@ -447,11 +527,12 @@
           "de" : "Das Spotify-Team",
           "en" : "The Spotify Team",
           "es" : "El equipo de Spotify",
+          "it" : "Il Team Spotify",
           "fr" : "L'équipe Spotify",
-          "nl" : "Het Spotify Team"
+          "nl" : "Het Spotify Team",
+          "pl" : "Zespół Spotify"
         }
       }
 		}
-
   }
 }

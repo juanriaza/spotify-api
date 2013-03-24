@@ -4,7 +4,9 @@
     "en",
     "es",
     "fr",
-    "nl"
+    "it",
+    "nl",
+    "pl"
   ],
   "strings" : {
     "feed" : {
@@ -16,7 +18,9 @@
           "en" : "Follow friends, celebrities and artists to discover their music.",
           "es" : "Sigue a amigos, famosos y artistas para descubrir su música.",
           "fr" : "Abonnez-vous à vos amis, à des célébrités et des artistes pour découvrir leur musique.",
-          "nl" : "Volg vrienden, artiesten en sterren om hun muziek te ontdekken."
+          "it" : "Segui amici, celebrità e artisti per scoprire la musica che ascoltano.",
+          "nl" : "Volg vrienden, artiesten en sterren om hun muziek te ontdekken.",
+          "pl" : "Obserwuj znajomych, celebrytów oraz artystów, aby poznać ich muzykę."
         }
       },
       "showPeople" : {
@@ -27,7 +31,9 @@
           "en" : "Find People",
           "es" : "Encontrar gente",
           "fr" : "Trouver des contacts",
-          "nl" : "Vind personen"
+          "it" : "Trova amici",
+          "nl" : "Vind personen",
+          "pl" : "Znajdź użytkowników"
         }
       },
       "unsupportedDropType" : {
@@ -41,7 +47,9 @@
           "en" : "I'm sorry {0}, but you can't drop that thing there.",
           "es" : "Lo sentimos {0}, pero no puedes soltar eso aquí.",
           "fr" : "Désolé {0}, vous ne pouvez pas glisser cela ici.",
-          "nl" : "Helaas, maar je kunt hier niets heen slepen."
+          "it" : "Spiacenti {0}, ma non puoi trascinare questo elemento qui.",
+          "nl" : "Helaas, maar je kunt hier niets heen slepen.",
+          "pl" : "Niestety {0}, ale nie możesz upuścić tego tutaj."
         }
       },
       "updating" : {
@@ -52,7 +60,9 @@
           "en" : "Updating",
           "es" : "Actualizando",
           "fr" : "Mise à jour en cours",
-          "nl" : "Updaten…"
+          "it" : "Aggiornamento",
+          "nl" : "Updaten…",
+          "pl" : "Aktualizowanie"
         }
       }
     },
@@ -65,7 +75,9 @@
           "en" : "Activity",
           "es" : "Actividad",
           "fr" : "Activité",
-          "nl" : "Activiteiten"
+          "it" : "Attività",
+          "nl" : "Activiteiten",
+          "pl" : "Działanie"
         }
       },
       "cancel" : {
@@ -76,7 +88,9 @@
           "en" : "Cancel",
           "es" : "Cancelar",
           "fr" : "Annuler",
-          "nl" : "Annuleer"
+          "it" : "Annulla",
+          "nl" : "Annuleer",
+          "pl" : "Anuluj"
         }
       },
       "feedUnavailableOffline" : {
@@ -87,7 +101,9 @@
           "en" : "Feed is not available offline.",
           "es" : "Las noticias no están disponibles sin conexión.",
           "fr" : "Le Fil d'actu est indisponible hors connexion.",
-          "nl" : "De feed is niet offline beschikbaar."
+          "it" : "Feed non disponibile offline.",
+          "nl" : "De feed is niet offline beschikbaar.",
+          "pl" : "Przekaz nie jest dostępny w trybie offline."
         }
       },
       "loading" : {
@@ -98,7 +114,9 @@
           "en" : "Loading…",
           "es" : "Cargando…",
           "fr" : "Chargement…",
-          "nl" : "Wordt geladen..."
+          "it" : "Caricamento in corso...",
+          "nl" : "Wordt geladen...",
+          "pl" : "Ładowanie…"
         }
       },
       "notLoadingProperly" : {
@@ -109,7 +127,9 @@
           "en" : "Your people list doesn't seem to be loading properly",
           "es" : "Tu lista de amigos no parece estar cargándose.",
           "fr" : "Votre liste de contacts ne se charge pas correctement.",
-          "nl" : "Je vrienden zijn niet correct geladen."
+          "it" : "Il tuo elenco amici non sembra caricarsi correttamente",
+          "nl" : "Je vrienden zijn niet correct geladen.",
+          "pl" : "Twoja lista użytkowników nie załadowała się prawidłowo"
         }
       },
       "reload" : {
@@ -120,7 +140,9 @@
           "en" : "Reload",
           "es" : "Volver a cargar",
           "fr" : "Recharger",
-          "nl" : "Opnieuw laden"
+          "it" : "Ricarica",
+          "nl" : "Opnieuw laden",
+          "pl" : "Załaduj ponownie"
         }
       },
       "send" : {
@@ -131,7 +153,9 @@
           "en" : "Send",
           "es" : "Enviar",
           "fr" : "Envoyer",
-          "nl" : "Zenden"
+          "it" : "Invia",
+          "nl" : "Zenden",
+          "pl" : "Wyślij"
         }
       },
       "view" : {
@@ -142,7 +166,9 @@
           "en" : "View",
           "es" : "Ver",
           "fr" : "Voir",
-          "nl" : "Zien"
+          "it" : "Visualizza",
+          "nl" : "Zien",
+          "pl" : "Pokaż"
         }
       }
     },
@@ -155,7 +181,9 @@
           "en" : "a playlist",
           "es" : "una lista de reproducción",
           "fr" : "une playlist",
-          "nl" : "een afspeellijst"
+          "it" : "una playlist",
+          "nl" : "een afspeellijst",
+          "pl" : "playlista"
         }
       },
       "follower" : {
@@ -166,18 +194,22 @@
           "en" : "follower",
           "es" : "seguidor",
           "fr" : "abonné",
-          "nl" : "volger"
+          "it" : "follower",
+          "nl" : "volger",
+          "pl" : "obserwator"
         }
       },
       "followers" : {
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "Follower",
+          "de" : "Followers",
           "en" : "followers",
           "es" : "seguidores",
           "fr" : "abonnés",
-          "nl" : "volgers"
+          "it" : "follower",
+          "nl" : "volgers",
+          "pl" : "obserwatorzy"
         }
       },
       "itemByArtists" : {
@@ -188,7 +220,9 @@
           "en" : "{0} by {1}",
           "es" : "{0} de {1}",
           "fr" : "{0} par {1}",
-          "nl" : "{0} van {1}"
+          "it" : "{0} di {1}",
+          "nl" : "{0} van {1}",
+          "pl" : "{0} - {1}"
         }
       },
       "listenedTo" : {
@@ -199,7 +233,9 @@
           "en" : "{0} listened to",
           "es" : "{0} escuchó",
           "fr" : "{0} a écouté",
-          "nl" : "{0} luisterde naar"
+          "it" : "{0} ascoltati",
+          "nl" : "{0} luisterde naar",
+          "pl" : "Użytkownik {0} słuchał"
         }
       },
       "myPlaylistSubscribed" : {
@@ -210,7 +246,9 @@
           "en" : "{0} now follows your playlist {1}",
           "es" : "{0} ahora sigue tu playlist {1}",
           "fr" : "{0} s'est abonné à votre playlist {1}",
-          "nl" : "{0} volgt nu je afspeellijst {1}"
+          "it" : "{0} ora segue la playlist {1}",
+          "nl" : "{0} volgt nu je afspeellijst {1}",
+          "pl" : "Użytkownik {0} obserwuje teraz Twoją playlistę {1}"
         }
       },
       "playlistPublished" : {
@@ -220,8 +258,10 @@
           "de" : "{0} hat eine Playlist erstellt: {1}",
           "en" : "{0} created the playlist {1}",
           "es" : "{0} ha creado la playlist {1}",
-          "fr" : "{0} a créé la playlist {1}.",
-          "nl" : "{0} heeft een afspeellijst gemaakt: {1}"
+          "fr" : "{0} a créé la playlist {1}",
+          "it" : "{0} ha creato la playlist {1}",
+          "nl" : "{0} heeft een afspeellijst gemaakt: {1}",
+          "pl" : "Użytkownik {0} utworzył playlistę {1}"
         }
       },
       "playlistSubscribed" : {
@@ -232,7 +272,9 @@
           "en" : "{0} now follows the playlist {1}",
           "es" : "{0} ahora sigue la playlist {1}",
           "fr" : "{0} s'est abonné à la playlist {1}",
-          "nl" : "{0} volgt nu de afspeellijst {1}"
+          "it" : "{0} ora segue la playlist {1}",
+          "nl" : "{0} volgt nu de afspeellijst {1}",
+          "pl" : "Użytkownik {0} obserwuje teraz playlistę {1}"
         }
       },
       "playlistTrackAdded" : {
@@ -243,7 +285,9 @@
           "en" : "{0} updated {1} {2}",
           "es" : "{0} ha actualizado {1} {2}",
           "fr" : "{0} a mis à jour {1} {2}",
-          "nl" : "{0} heeft {1} bijgewerkt {2}"
+          "it" : "{0} ha aggiornato {1} {2}",
+          "nl" : "{0} heeft {1} bijgewerkt {2}",
+          "pl" : "Użytkownik {0} zaktualizował {1} {2}"
         }
       },
       "playlistTrackStarred" : {
@@ -254,7 +298,9 @@
           "en" : "{0} starred {1}",
           "es" : "{0} ha destacado {1}",
           "fr" : "{0} a sélectionné {1}",
-          "nl" : "{0} heeft {1} toegevoegd aan favorieten"
+          "it" : "{0} ha aggiunto come preferito {1}",
+          "nl" : "{0} heeft {1} toegevoegd aan favorieten",
+          "pl" : "Użytkownik {0} oznaczył gwiazdką {1}"
         }
       },
       "track" : {
@@ -265,7 +311,9 @@
           "en" : "<a href=\"{uri}\">{name}</a> by {artists}",
           "es" : "<a href=\"{uri}\">{name}</a> por {artists}",
           "fr" : "<a href=\"{uri}\">{name}</a> par {artists}",
-          "nl" : "<a href=\"{uri}\">{name}</a> van {artists}"
+          "it" : "<a href=\"{uri}\">{name}</a> di {artists}",
+          "nl" : "<a href=\"{uri}\">{name}</a> van {artists}",
+          "pl" : "<a href=\"{uri}\">{name}</a> przez {artists}"
         }
       },
       "trackFinishedPlaying" : {
@@ -276,7 +324,9 @@
           "en" : "{0} listened to {1}",
           "es" : "{0} escuchó {1}",
           "fr" : "{0} a écouté {1}",
-          "nl" : "{0} luisterde naar {1}"
+          "it" : "{0} ascoltati su {1}",
+          "nl" : "{0} luisterde naar {1}",
+          "pl" : "Użytkownik {0} słuchał {1}"
         }
       },
       "userAddedApp" : {
@@ -287,7 +337,9 @@
           "en" : "{0} added the {1} app",
           "es" : "{0} agregó la app de {1}",
           "fr" : "{0} vient d'ajouter l'appli {1}",
-          "nl" : "{0} toegevoegd de {1} app"
+          "it" : "{0} ha aggiunto la app {1}",
+          "nl" : "{0} toegevoegd de {1} app",
+          "pl" : "Użytkownik {0} dodał aplikację {1}"
         }
       },
       "userAddedTrack" : {
@@ -298,7 +350,9 @@
           "en" : "{0} added track to {1}",
           "es" : "{0} agregó esta canción a {1}",
           "fr" : "{0} a ajouté un titre à {1}.",
-          "nl" : "{0} heeft een nummer aan {1} toegevoegd"
+          "it" : "{0} ha aggiunto un brano a {1}",
+          "nl" : "{0} heeft een nummer aan {1} toegevoegd",
+          "pl" : "Użytkownik {0} dodał utwór do {1}"
         }
       },
       "userPublishedPlaylist" : {
@@ -309,7 +363,9 @@
           "en" : "{0} published the playlist",
           "es" : "{0} publicó la lista",
           "fr" : "{0} a publié la playlist.",
-          "nl" : "{0} publiceerde een afspeellijst"
+          "it" : "{0} ha pubblicato la playlist",
+          "nl" : "{0} publiceerde een afspeellijst",
+          "pl" : "Użytkownik {0} opublikował playlistę"
         }
       },
       "userSharedAlbum" : {
@@ -320,7 +376,9 @@
           "en" : "{0} shared an album {1}",
           "es" : "{0} ha compartido un álbum, {1}",
           "fr" : "{0} a partagé l'album {1}",
-          "nl" : "{0} heeft het album {1} gedeeld"
+          "it" : "{0} ha condiviso un album {1}",
+          "nl" : "{0} heeft het album {1} gedeeld",
+          "pl" : "Użytkownik {0} udostępnił album {1}"
         }
       },
       "userSharedArtist" : {
@@ -331,7 +389,9 @@
           "en" : "{0} shared an artist {1}",
           "es" : "{0} ha compartido un artista, {1}",
           "fr" : "{0} a partagé l'artiste {1}",
-          "nl" : "{0} heeft de artiest {1} gedeeld"
+          "it" : "{0} ha condiviso un artista {1}",
+          "nl" : "{0} heeft de artiest {1} gedeeld",
+          "pl" : "Użytkownik {0} udostępnił wykonawcę {1}"
         }
       },
       "userSharedPlaylist" : {
@@ -342,7 +402,9 @@
           "en" : "{0} shared a playlist {1}",
           "es" : "{0} ha compartido una playlist, {1}",
           "fr" : "{0} a partagé la playlist {1}",
-          "nl" : "{0} heeft de afspeellijst {1} gedeeld"
+          "it" : "{0} ha condiviso una playlist {1}",
+          "nl" : "{0} heeft de afspeellijst {1} gedeeld",
+          "pl" : "Użytkownik {0} udostępnił playlistę użytkownikowi {1}"
         }
       },
       "userSharedTrack" : {
@@ -353,7 +415,9 @@
           "en" : "{0} shared a track {1}",
           "es" : "{0} ha compartido una canción, {1}",
           "fr" : "{0} a partagé le titre {1}",
-          "nl" : "{0} heeft het nummer {1} gedeeld"
+          "it" : "{0} ha condiviso un brano {1}",
+          "nl" : "{0} heeft het nummer {1} gedeeld",
+          "pl" : "Użytkownik {0} udostępnił utwór {1}"
         }
       },
       "userStarred" : {
@@ -364,7 +428,9 @@
           "en" : "{0} starred",
           "es" : "{0} destacada",
           "fr" : "{0} sélectionné",
-          "nl" : "{0} heeft Favoriet gemaakt:"
+          "it" : "{0} aggiunto come preferito",
+          "nl" : "{0} heeft Favoriet gemaakt:",
+          "pl" : "{0} oznaczonych gwiazdką"
         }
       },
       "userSubscribedToPlaylist" : {
@@ -375,7 +441,9 @@
           "en" : "{0} subscribed to the playlist",
           "es" : "{0} añadió la lista",
           "fr" : "{0} s'est abonné à la playlist",
-          "nl" : "{0} heeft zich geabonneerd op de afspeellijst"
+          "it" : "{0} registrato/a nella playlist",
+          "nl" : "{0} heeft zich geabonneerd op de afspeellijst",
+          "pl" : "Użytkownik {0} zasubskrybował playlistę "
         }
       },
       "usingApp" : {
@@ -386,7 +454,9 @@
           "en" : "Using {0}",
           "es" : "Por {0}",
           "fr" : "Avec {0}",
-          "nl" : "Gebruikte {0}"
+          "it" : "Uso di {0}",
+          "nl" : "Gebruikte {0}",
+          "pl" : "Używa {0}"
         }
       }
     },
@@ -399,7 +469,9 @@
           "en" : "Close",
           "es" : "Cerrar",
           "fr" : "Fermer",
-          "nl" : "Sluiten"
+          "it" : "Chiudi",
+          "nl" : "Sluiten",
+          "pl" : "Zamknij"
         }
       },
       "refresh" : {
@@ -410,18 +482,9 @@
           "en" : "Refresh",
           "es" : "Volver a cargar",
           "fr" : "Recharger",
-          "nl" : "Vernieuwen"
-        }
-      },
-      "facebookFriend" : {
-        "approved" : false,
-        "description" : "",
-        "translations" : {
-          "de" : "Facebook-Freund",
-          "en" : "Facebook friend",
-          "es" : "Amigo/a de Facebook",
-          "fr" : "Ami Facebook",
-          "nl" : "Facebook-vriend"
+          "it" : "Aggiorna",
+          "nl" : "Vernieuwen",
+          "pl" : "Odśwież"
         }
       },
       "follow" : {
@@ -432,18 +495,48 @@
           "en" : "Follow",
           "es" : "Seguir",
           "fr" : "S'abonner",
-          "nl" : "Volgen"
+          "it" : "Segui",
+          "nl" : "Volgen",
+          "pl" : "Obserwuj"
         }
       },
       "followedByPeople" : {
         "approved" : false,
         "description" : "",
         "translations" : {
-          "de" : "Gefolgt von {0} und {1} anderen.",
-          "en" : "Followed by {0} and {1} others.",
-          "es" : "Le siguen {0} y {1} personas más.",
-          "fr" : "0} et {1} autres sont abonnés.",
-          "nl" : "Gevolgd door  {0} en {1} anderen."
+          "de" : "Followers {0}",
+          "en" : "Followed by {0}",
+          "es" : "Siguiendo a {0}",
+          "fr" : "Suivi par {0}",
+          "it" : "Seguito da {0}",
+          "nl" : "Gevolgd door {0}",
+          "pl" : "Obserwowany przez {0}"
+        }
+      },
+      "and" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "und",
+          "en" : "and",
+          "es" : "y",
+          "fr" : "et",
+          "it" : "e",
+          "nl" : "en",
+          "pl" : "oraz"
+        }
+      },
+      "andOthers" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "und {0} anderen.",
+          "en" : "and {0} others.",
+          "es" : "y {0} otros.",
+          "fr" : "et {0} autres",
+          "it" : "e {0} altri.",
+          "nl" : "en {0} anderen.",
+          "pl" : "oraz {0} innych."
         }
       },
       "follower" : {
@@ -454,10 +547,12 @@
           "en" : "follower",
           "es" : "seguidor",
           "fr" : "abonné",
-          "nl" : "volger"
+          "it" : "follower",
+          "nl" : "volger",
+          "pl" : "obserwujący"
         }
       },
-      "followers" : {
+      "fewFollowers" : {
         "approved" : false,
         "description" : "",
         "translations" : {
@@ -465,7 +560,22 @@
           "en" : "followers",
           "es" : "seguidores",
           "fr" : "abonnés",
-          "nl" : "volgers"
+          "it" : "follower",
+          "nl" : "volgers",
+          "pl" : "obserwujących"
+        }
+      },
+      "manyFollowers" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Follower",
+          "en" : "followers",
+          "es" : "seguidores",
+          "fr" : "abonnés",
+          "it" : "follower",
+          "nl" : "volgers",
+          "pl" : "obserwujących"
         }
       },
       "listeningTo" : {
@@ -476,7 +586,9 @@
           "en" : "Listening to:",
           "es" : "Escuchando:",
           "fr" : "Artistes les plus écoutés:",
-          "nl" : "Luistert naar:"
+          "it" : "Ascolto in corso di:",
+          "nl" : "Luistert naar:",
+          "pl" : "Słucha:"
         }
       },
       "loadingTopMusic": {
@@ -487,10 +599,12 @@
           "en" : "Loading top music…",
           "es" : "Cargando música favorita…",
           "fr" : "Chargement des Top titres…",
-          "nl" : "Topmuziek aan het laden…"
+          "it" : "Caricamento musica top in corso…",
+          "nl" : "Topmuziek aan het laden…",
+          "pl" : "Ładowanie najlepszej muzyki…"
         }
       },
-      "playlists" : {
+      "fewPlaylists" : {
         "approved" : false,
         "description" : "",
         "translations" : {
@@ -498,7 +612,22 @@
           "en" : "Playlists:",
           "es" : "Playlists:",
           "fr" : "Playlists:",
-          "nl" : "Afspeellijsten:"
+          "it" : "Playlist:",
+          "nl" : "Afspeellijsten:",
+          "pl" : "Playlisty:"
+        }
+      },
+      "manyPlaylists" : {
+        "approved" : false,
+        "description" : "",
+        "translations" : {
+          "de" : "Playlists:",
+          "en" : "Playlists:",
+          "es" : "Playlists:",
+          "fr" : "Playlists:",
+          "it" : "Playlist:",
+          "nl" : "Afspeellijsten:",
+          "pl" : "Playlist:"
         }
       },
       "recommendedPeople" : {
@@ -509,7 +638,9 @@
           "en" : "Who to Follow",
           "es" : "A quién seguir",
           "fr" : "Suggestions",
-          "nl" : "Mensen om te volgen"
+          "it" : "Chi seguire",
+          "nl" : "Mensen om te volgen",
+          "pl" : "Sugerowani użytkownicy"
         }
       }
     }

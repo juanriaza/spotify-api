@@ -93,8 +93,8 @@ function main() {
   // Close the popup if the user hits "Cancel".
   var buttons = document.querySelectorAll('.cancel');
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() {
-      log('Cancel', {uris: args});
+    buttons[i].addEventListener('click', function(evt) {
+      log('Cancel', {uris: args, view: evt.target.getAttribute('data-section')});
       clearState();
       sp.social.hideSharePopup();
     });
@@ -344,46 +344,6 @@ var shareView = new view.View('share', {
   }
 });
 
-// Register the schema necessary for socialgraph hermes call to get mutual followers
-sp.core.registerSchema([
-  {
-    name: 'User',
-    fields: [
-      {id: 1, type: 'string', name: 'username'},
-      {id: 2, type: 'int32', name: 'subscriber_count'},
-      {id: 3, type: 'int32', name: 'subscription_count'}
-    ]
-  },
-  {
-    name: 'UserListReply',
-    fields: [
-      {id: 1, type: '*User', name: 'users'},
-      {id: 2, type: 'int32', name: 'length'}
-    ]
-  }
-]);
-
-var mutualFollow = [];
-// Rationale for looking for mutual followers to autocomplete names:
-// Product constraint for sending a direct message is that the recipient is a follower of the sender
-// However, the sender would only want to search for users he/she knows (i.e follows or facebook friends).
-function getMutualFollows(onsuccess, onfailure) {
-  var hermesUri = 'hm://socialgraph/subscribers/user/' + escape(sp.core.user.username) + '/relevant';
-  sp.core.getHermes('GET', hermesUri, [], {
-    onSuccess: function(reply) {
-      var userListReply = sp.core.parseHermesReply('UserListReply', reply);
-      if (userListReply.users) {
-        mutualFollow = userListReply.users.map(function(user) { return user.username; });
-        onsuccess(mutualFollow);
-      }
-    },
-    onFailure: function(code) {
-      console.warn('Mutual followers query resulted in error', code);
-      if (onfailure) onfailure(code);
-    }
-  });
-}
-
 // Define the "Share to a friend" view.
 var sendView = new view.View('send', {
   calculateSize: function() {
@@ -406,15 +366,16 @@ var sendView = new view.View('send', {
 
   prepare: function(node) {
     var AUTOCOMPLETE_RESULTS = 4;
-    var userIndex = sp.social.relations.all();
-    var userMap = {};
+    var DECORATION_BATCH_SIZE = 100;
+    var MAX_FOLLOW_USERS = 500;  // Max subscriptions or subscribers to fetch for autocomplete
 
-    // Make a map of user URIs to index in userIndex.
-    for (var i = 0; i < userIndex.length; i++) {
-      userMap[userIndex[i]] = true;
-    }
+    var SPOTIFY_USER_URI_PREFIX = 'spotify:user:';
+    var FACEBOOK_ONLY_USERNAME_PREFIX = 'facebook:';
 
-    var userData = [];
+    var userIndex = []; // list of usernames
+    var userStrings = {}; // Map of usernames to searchable strings.
+    var userMap = {}; // Map of usernames to FB Uid, name and image data
+
     var sendButton = node.querySelector('.send');
     var userList = document.getElementById('user-list');
     var input = userList.querySelector('input');
@@ -423,40 +384,95 @@ var sendView = new view.View('send', {
 
     this.input = input;
 
-    // Start decorating the index.
-    var concurrent = 0;
+    /**
+     * Updates searchable string value and related user data (uid, image) in map.
+     *
+     * @param {string} username The username to set data for.
+     * @param {number} index The index value in the userIndex list for this username.
+     *   This value is also the dataset.user attribute in the autocomplete element.
+     * @param {Object} userInfo The user's info object that optionally contains user data.
+     */
+    function updateUserData(username, index, userInfo) {
+      // Facebook UIDs don't really need to be autocompleted.
+      userStrings[username] = (
+          (username.indexOf(FACEBOOK_ONLY_USERNAME_PREFIX) === 0 ? '' : username + ' ') +
+          (userInfo.name || '')).toLowerCase();
 
-    function decorateBatch(startIndex) {
-      // Only care about users starting at passed index and verify spotify:user: prefix in URI
-      var users = userIndex.filter(function(uri, index) {
-        return (startIndex <= index) && (uri.indexOf('spotify:user:') === 0);
+      var fbFriend = false;
+      if (userMap.hasOwnProperty(username)) {
+        // Keep the previous state of the facebook friendship since decorations through
+        // social backend wouldn't specify the relationType and could override it incorrectly.
+        fbFriend = userMap[username][5];
+      }
+      fbFriend = fbFriend || userInfo.relationType === 'other' || userInfo.relationType === 'none';
+
+      // Update the user data associated with this user.
+      userMap[username] = [index, userInfo.canonicalUsername, userInfo.facebookUid,
+                           userInfo.name || userInfo.username, userInfo.icon, fbFriend];
+    }
+
+    /**
+     * Add a user to the index.
+     * @param {string} username Username of user to add to index.
+     * @param {Object} userInfo The user's info object that optionally contains user data.
+     */
+    function addUserToIndex(username, userInfo) {
+      // Always vet that the user isn't already in the index before adding
+      if (userMap.hasOwnProperty(username)) return;
+      userIndex.push(username);
+      updateUserData(username, userIndex.length - 1, userInfo);
+    }
+
+    // Find all relations for this user including Facebook friends.
+    var usersToDecorate = [];
+    var allRelationsLength = sp.social.relations.length;
+    for (var i = 0; i < allRelationsLength; ++i) {
+      var relationUserInfo = sp.social.relations.getUserInfo(i);
+      var username = relationUserInfo.uri.substr(SPOTIFY_USER_URI_PREFIX.length);
+      if (username.indexOf(FACEBOOK_ONLY_USERNAME_PREFIX) !== 0) {
+        usersToDecorate.push(username);
+      }
+      addUserToIndex(username, relationUserInfo);
+    }
+    decorateUsers(usersToDecorate);
+
+    function processFollowRelations(users) {
+      users.forEach(function(username) {
+        addUserToIndex(username, {});
       });
+      getDecoration(users);
+    }
 
-      // Fetch the usernames and make a batch call to Social backend to decorate the users
-      var usernames = users.map(function(uri) { return uri.substr('spotify:user:'.length); });
-      sp.social.getUsersBatch(usernames, {
+    sp.social.getSubscriptionUsernames(
+        sp.core.user.username, { onSuccess: processFollowRelations }, MAX_FOLLOW_USERS);
+
+    sp.social.getSubscriberUsernames(
+        sp.core.user.username, { onSuccess: processFollowRelations }, MAX_FOLLOW_USERS);
+
+    function decorateUsers(usernames) {
+      // We shouldn't decorate users in huge batches.
+      while (usernames.length) {
+        var batch = usernames.splice(0, DECORATION_BATCH_SIZE);
+        getDecoration(batch);
+      }
+    }
+
+    function getDecoration(batchUsernames) {
+      sp.social.getUsersBatch(batchUsernames, {
         onSuccess: function(users) {
           for (var i = 0; i < users.length; i++) {
             var u = users[i];
-            userData[startIndex + i] = [startIndex + i, u.canonicalUsername, u.facebookUid, u.name || u.username, u.icon];
-            userIndex[startIndex + i] = (u.username + ' ' + u.name).toLowerCase();
+            if (u) updateUserData(u.username, userMap[u.username][0], u);
+          }
+
+          // Since we just decorated a bunch of users, try to find an autocomplete match
+          // if the user has already started typing out a name
+          if (input.value.length) {
+            searchForMatch(input.value);
           }
         }
       });
     }
-    decorateBatch(0);
-
-    getMutualFollows(function(mutualFollow) {
-      var startIndex = userIndex.length;
-      for (var i = 0; i < mutualFollow.length; ++i) {
-        var mutualFollowerUri = 'spotify:user:' + mutualFollow[i];
-        if (!userMap.hasOwnProperty(mutualFollowerUri)) {
-          userMap[mutualFollowerUri] = true;
-          userIndex.push(mutualFollowerUri);
-        }
-      }
-      decorateBatch(startIndex);
-    });
 
     // Adds a user to the recipient list.
     function addUser(data) {
@@ -535,21 +551,28 @@ var sendView = new view.View('send', {
         return;
       }
 
+      searchForMatch(searchValue);
+    }
+
+    function searchForMatch(searchQuery) {
+      if (!searchQuery) return;
       // Split each word in the search query up into a seperate query.
-      var queries = searchValue.toLowerCase().split(' '), ql = queries.length;
+      var queries = searchQuery.toLowerCase().split(' '), ql = queries.length;
       // Use the first word as the main query.
       var query = queries[0];
       var a = 0, b = 0;
 
       // Start scanning the user index.
       results = [];
+      // TODO(sri): This is a pretty inefficient way to look up matches.
+      // Consider making a substring trie that'd enable constant lookup.
       for (var i = 0; i < userIndex.length; i++) {
-        var value = userIndex[i];
+        var username = userIndex[i];
+        var value = userStrings[username];
         var idx = value.indexOf(query);
 
         // Skip all entries that don't match the query at all.
         if (idx == -1) continue;
-
         // Check the remaining queries.
         // TODO(blixt): This should be doing some weighting to float better matches to the top.
         var c = false;
@@ -560,20 +583,20 @@ var sendView = new view.View('send', {
           }
         }
         // Skip if the queries didn't match, or if there is no data available for this user.
-        if (c || !userData[i]) continue;
+        if (c || !userMap[username]) continue;
 
         // Also skip this user if they've already been added to the user list.
         if (userList.querySelector('span[data-user="' + i + '"]')) continue;
 
         if (idx == 0 || value[idx - 1] == ' ') {
           // Value was found in the beginning of the name (A-grade result).
-          results.splice(a++, 0, userData[i]);
+          results.splice(a++, 0, userMap[username]);
           // Stop looking for matches once enough good matches have been found.
           if (a == AUTOCOMPLETE_RESULTS) break;
         } else if (a + b++ < AUTOCOMPLETE_RESULTS) {
           // B-grade result, filler material. Don't fill if we already have enough entries.
           // Continue searching for more A-grade results, though.
-          results.push(userData[i]);
+          results.push(userMap[username]);
         }
       }
 
@@ -587,7 +610,7 @@ var sendView = new view.View('send', {
         var showUsername = false;
         for (var i = 0; i < ql; i++) {
           // Check if the full name contains the query word.
-          if (result[3].toLowerCase().indexOf(queries[i]) == -1) {
+          if (!result[3] || result[3].toLowerCase().indexOf(queries[i]) == -1) {
             // If it doesn't, show the username to make it obvious it was part of the match.
             showUsername = true;
             break;
@@ -599,13 +622,15 @@ var sendView = new view.View('send', {
         if (idx == 0) node.className = 'selected';
         node.dataset.user = result[0];
 
-        // Add the profile image.
-        node.innerHTML = '<div class="image" style="background-image: url(' + result[4] + ');"></div>';
+        // If the user doesn't have a profile icon image, just use a silhouette instead
+        // If the user's FB or decoration image is present, display that.
+        var userImg = result[4] || '/assets/images/user-icon.png';
+        node.innerHTML = '<div class="image" style="background-image: url(' + userImg + ');"></div>';
 
         // Add the name.
         var nameNode = document.createElement('span');
         nameNode.className = 'name';
-        nameNode.textContent = result[3];
+        nameNode.textContent = result[3] ? result[3].decodeForText() : '';
         node.appendChild(nameNode);
 
         // Add a username element if username should be shown.
@@ -624,8 +649,7 @@ var sendView = new view.View('send', {
       if (!results.length) {
         var node = document.createElement('li');
         node.className = 'no-results';
-        // TODO(blixt): Translate this. (See accompanying TODO in CSS.)
-        node.textContent = 'No user could be found.';
+        node.textContent = '';
         resultsList.appendChild(node);
       }
 
@@ -648,13 +672,11 @@ var sendView = new view.View('send', {
     // Handle clicking of elements.
     resultsList.addEventListener('mousedown', function(evt) {
       var item = evt.target;
-      console.log(item);
       while (!item.dataset.user) {
         item = item.parentNode;
         if (!item || item == this) return;
       }
-
-      addUser(userData[item.dataset.user]);
+      addUser(userMap[userIndex[item.dataset.user]]);
       setTimeout(function() { input.focus(); }, 100);
     });
 
@@ -668,8 +690,8 @@ var sendView = new view.View('send', {
           case 13: // Return
           case 188: // Comma
             // Add the currently selected user to the list.
-            var userIndex = resultsItems[resultIndex].dataset.user;
-            addUser(userData[userIndex]);
+            var index = resultsItems[resultIndex].dataset.user;
+            addUser(userMap[userIndex[index]]);
             resetInput();
             break;
           case 38: // Up
@@ -717,14 +739,17 @@ var sendView = new view.View('send', {
       var message = node.querySelector('.message').value;
       var uri = link.toString();
       Array.prototype.forEach.call(userList.querySelectorAll('.user'), function(user) {
-        var data = userData[user.dataset.user];
+        var username = userIndex[user.dataset.user];
+        var data = userMap[username];
         if (data[1]) {
           spotifyUsers.push(data[1]);
           sp.social.sendToInbox(data[1], message, uri, {
             onSuccess: function() {}
           });
         }
-        if (data[2]) uids.push(data[2]);
+
+        // we only allow facebook messages to facebook friends.
+        if (data[2] && data[5]) uids.push(data[2]);
       });
 
       if (uids.length) {

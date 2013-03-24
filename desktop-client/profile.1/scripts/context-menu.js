@@ -1,5 +1,247 @@
-require(["scripts/profile-utils","$views/popup#Popup","$views/utils/css","$shared/events#EventHandler"],function(c,f,d,e){c=function(a){a&&this.init(a)};c.prototype.settings=null;c.prototype.element=null;c.prototype.init=function(a){this.events=new e(this);this.settings=a};c.prototype.render=function(){var a=document.createElement("a");d.addClass(a,"context-menu-item");this.settings.hasOwnProperty("cssClass")&&d.addClass(a,this.settings.cssClass);this.settings.hasOwnProperty("active")&&!0===this.settings.active&&
-d.addClass(a,"active");a.innerHTML=this.settings.text;this.element=a;this.setEvents()};c.prototype.setEvents=function(){this.settings.hasOwnProperty("handler")&&this.events.listen(this.element,"click",this.runHandler)};c.prototype.runHandler=function(){var a=this;d.addClass(this.element,"success");var b=setTimeout(function(){d.removeClass(a.element,"success");a.settings.handler.call(a);clearTimeout(b)},200)};c.prototype.getNode=function(){this.render();return this.element};c.prototype.dispose=function(){this.events.removeAll()};
-var b=function(a){this.events=a||new e(this);this.elems={relative:null,menu:null};this.options=[];this.visible=!1};b.prototype.setPlaylist=function(a){this.playlist=a};b.prototype.setElements=function(a){a&&(this.elems.relative=a)};b.prototype.setUser=function(a){this.user=a};b.prototype.showMenu=function(){this.popup.showFor(this.elems.relative);this.visible=!0;this.setFocus()};b.prototype.buildMenu=function(){var a=0,b=this.options.length;this.elems.menu=document.createElement("div");for(this.elems.menu.setAttribute("tabindex",
-0);a<b;a++)this.elems.menu.appendChild(this.options[a].getNode());this.popup=f.withContent(this.elems.menu,125,50,"context-menu");this.showMenu()};b.prototype.clearActive=function(){d.removeClass(this.popup.content.querySelector(".active"),"active")};b.prototype.hideMenu=function(){this.visible=!1;this.popup.hide()};b.prototype.setFocus=function(){this.popup.content.focus();this.events.listen(this.popup.content,"blur",this.close)};b.prototype.close=function(){this.hideMenu();this.events.unlisten(this.popup.content,
-"blur",this.close)};b.prototype.renderOptions=function(){this.buildMenu()};b.prototype.setOptions=function(a){this.options=a};b.prototype.show=function(){!this.popup||!this.elems.relative?this.renderOptions():this.showMenu()};b.prototype.toggle=function(){this.visible?this.hideMenu():this.show()};exports.ContextMenu=b;exports.ContextMenuItem=c});
+require([
+  'scripts/profile-utils',
+  '$views/popup#Popup',
+  '$views/utils/css',
+  '$shared/events#EventHandler'
+], function(utils, Popup, css, EventHandler) {
+
+  'use strict';
+  /**
+   * Object to represent an option in the dropdown list of the context menu
+   * @param {Object} options Options for this item.
+   * @constructor
+   */
+  var ContextMenuItem = function(options) {
+    if (!options) {
+      return;
+    }
+    this.init(options);
+  };
+  /**
+   * A settings object for the item
+   * @type {*}
+   */
+  ContextMenuItem.prototype.settings = null;
+  /**
+   * The element to generate the menu relative to
+   * @type {*}
+   */
+  ContextMenuItem.prototype.element = null;
+  /**
+   * Initiate the option item
+   * @param {Object} options A settings object.
+   */
+  ContextMenuItem.prototype.init = function(options) {
+    this.events = new EventHandler(this);
+    this.settings = options;
+  };
+  /**
+   * Render the object as html
+   */
+  ContextMenuItem.prototype.render = function() {
+    var link = document.createElement('a');
+
+    css.addClass(link, 'context-menu-item');
+    if (this.settings.hasOwnProperty('cssClass')) {
+      css.addClass(link, this.settings.cssClass);
+    }
+    if (this.settings.hasOwnProperty('active') && this.settings.active === true) {
+      css.addClass(link, 'active');
+    }
+    link.innerHTML = this.settings.text;
+    this.element = link;
+    this.setEvents();
+  };
+  /**
+   * Setup the events on the object
+   */
+  ContextMenuItem.prototype.setEvents = function() {
+    if (this.settings.hasOwnProperty('handler')) {
+      this.events.listen(this.element, 'click', this.runHandler);
+    }
+  };
+  /**
+   * Runs the handler and common effects
+   */
+  ContextMenuItem.prototype.runHandler = function() {
+    var _this = this;
+    css.addClass(this.element, 'success');
+
+    var to = setTimeout(function() {
+      css.removeClass(_this.element, 'success');
+      _this.settings.handler.call(_this);
+      clearTimeout(to);
+    }, 200);
+  };
+  /**
+   * Return the html node
+   * @return {*} A html node element.
+   */
+  ContextMenuItem.prototype.getNode = function() {
+    this.render();
+    return this.element;
+  };
+  /**
+   * Remove all elements from an object
+   */
+  ContextMenuItem.prototype.dispose = function() {
+    this.events.removeAll();
+  };
+
+  /**
+   * Represents a context menu that can be spawned on a button or similar element.
+   * @type {ContextMenu}
+   */
+  var ContextMenu = function(eventhandler) {
+    /**
+     * The event handler for the menu
+     * @type {EventHandler} An event handler.
+     */
+    this.events = eventhandler || new EventHandler(this);
+    /**
+     * Object to collect all html elements the menu deals with
+     * @type {Object} A set of html elements.
+     */
+    this.elems = {
+      relative: null,
+      menu: null
+    };
+    /**
+     * The internal list of objects that represents choices in the menu
+     * @type {Array} A list of ContextMenuOptions.
+     */
+    this.options = [];
+    /**
+     * Whether the menu is currently visible or not
+     * @type {boolean} Off or on.
+     */
+    this.visible = false;
+  };
+
+  /**
+   * Sets current playlist for current menu
+   */
+  ContextMenu.prototype.setPlaylist = function(playlist) {
+    this.playlist = playlist;
+  };
+
+  /**
+   * Sets elements
+   */
+  ContextMenu.prototype.setElements = function(rel) {
+    if (!rel) {
+      return;
+    }
+
+    this.elems.relative = rel;
+  };
+
+  /**
+   * Sets current user for current menu
+   */
+  ContextMenu.prototype.setUser = function(user) {
+    this.user = user;
+  };
+
+  /**
+   * Shows the menu and sets focus
+   */
+  ContextMenu.prototype.showMenu = function() {
+    this.popup.showFor(this.elems.relative);
+    this.visible = true;
+    this.setFocus();
+  };
+
+  /**
+   * Generates the menu html including all it's option items
+   */
+  ContextMenu.prototype.buildMenu = function() {
+    var i = 0, l = this.options.length;
+
+    this.elems.menu = document.createElement('div');
+    this.elems.menu.setAttribute('tabindex', 0);
+
+    for (; i < l; i++) {
+      this.elems.menu.appendChild(this.options[i].getNode());
+    }
+
+    this.popup = Popup.withContent(this.elems.menu, 125, 50, 'context-menu');
+    this.showMenu();
+  };
+
+  /**
+   * Clears the active option
+   */
+  ContextMenu.prototype.clearActive = function() {
+    css.removeClass(this.popup.content.querySelector('.active'), 'active');
+  };
+
+  /**
+   * Hides the menu
+   */
+  ContextMenu.prototype.hideMenu = function() {
+    this.visible = false;
+    this.popup.hide();
+  };
+
+  /**
+   * Sets the focus on the menu and an event for closing it on blur
+   */
+  ContextMenu.prototype.setFocus = function() {
+    this.popup.content.focus();
+    this.events.listen(this.popup.content, 'blur', this.close);
+  };
+
+  /**
+   * Hides the menu
+   */
+  ContextMenu.prototype.close = function() {
+    var _this = this;
+    _this.hideMenu();
+    _this.events.unlisten(_this.popup.content, 'blur', _this.close);
+  };
+
+  /**
+   * Renders options in the menu
+   */
+  ContextMenu.prototype.renderOptions = function() {
+    this.buildMenu();
+  };
+
+  /**
+   * Registers options for the menu
+   */
+  ContextMenu.prototype.setOptions = function(options) {
+    this.options = options;
+  };
+
+  /**
+   * Shows menu
+   * @param {Element} rel A html element.
+   */
+  ContextMenu.prototype.show = function() {
+    if (!this.popup || !this.elems.relative) {
+      this.renderOptions();
+    } else {
+      this.showMenu();
+    }
+  };
+
+  /**
+   * Toggles menu visibility
+   * @param {Element} rel A html element.
+   */
+  ContextMenu.prototype.toggle = function() {
+    if (this.visible) {
+      this.hideMenu();
+    } else {
+      this.show();
+    }
+  };
+
+  /**
+   * Exports
+   */
+  exports.ContextMenu = ContextMenu;
+  exports.ContextMenuItem = ContextMenuItem;
+});

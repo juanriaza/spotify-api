@@ -4,7 +4,9 @@
         "en": "Radio",
         "es": "Radio",
         "fr": "Radio",
-        "nl": "Radio"
+        "it": "Radio",
+        "nl": "Radio",
+        "pl": "Radio"
     },
     "AcceptedLinkTypes": [
         "album",
@@ -39,11 +41,13 @@
         "en": "Radio",
         "es": "Radio",
         "fr": "Radio",
-        "nl": "Radio"
+        "it": "Radio",
+        "nl": "Radio",
+        "pl": "Radio"
     },
     "BundleIdentifier": "radio",
     "BundleType": "Application",
-    "BundleVersion": "1.3.1",
+    "BundleVersion": "1.3.3",
     "Dependencies": {
         "api": "0.1.0",
         "resources": "0.1.0",
@@ -59,7 +63,9 @@
         "en",
         "es",
         "fr",
-        "nl"
+        "it",
+        "nl",
+        "pl"
     ],
     "UserInstallable": false,
     "VendorIdentifier": "com.spotify"

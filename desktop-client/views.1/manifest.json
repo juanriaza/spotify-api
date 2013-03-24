@@ -7,16 +7,24 @@
     },
     "BundleIdentifier": "views",
     "BundleType": "Framework",
-    "BundleVersion": "1.26.1",
+    "BundleVersion": "1.30.3",
     "Dependencies": {
-        "api": "1.21.0"
+        "api": "1.22.0"
     },
+    "SupportedDeviceClasses": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Web"
+    ],
     "SupportedLanguages": [
         "de",
         "en",
         "fr",
         "es",
-        "nl"
+        "nl",
+        "pl",
+        "it"
     ],
     "VendorIdentifier": "com.spotify"
 }

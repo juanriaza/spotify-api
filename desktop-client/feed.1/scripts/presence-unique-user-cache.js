@@ -1,0 +1,1 @@
+var _usernameCache={};exports.uncached=function(a,c){return c.filter(function(b){return _usernameCache[a]&&_usernameCache[a][b]?!1:!0})};exports.add=function(a,c){var b=_usernameCache[a];b||(_usernameCache[a]=b={});b[c]=!0};

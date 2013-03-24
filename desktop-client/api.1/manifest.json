@@ -5,19 +5,28 @@
     "AppName": {
         "en": "Spotify JS API"
     },
+    "BridgeDependencies": {
+        "bridge-desktop": "0.12.0",
+        "bridge-ios": "0.12.0"
+    },
     "BundleIdentifier": "api",
     "BundleType": "Framework",
-    "BundleVersion": "1.21.0",
-    "Dependencies": {
-        "bridge-desktop": "0.12.0"
-    },
+    "BundleVersion": "1.22.0",
     "LoadingScreenBackgroundColor": "#ECEBE8",
+    "SupportedDeviceClasses": [
+        "Desktop",
+        "Mobile",
+        "Tablet",
+        "Web"
+    ],
     "SupportedLanguages": [
         "de",
         "en",
         "es",
         "fr",
-        "nl"
+        "it",
+        "nl",
+        "pl"
     ],
     "VendorIdentifier": "com.spotify"
 }

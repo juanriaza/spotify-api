@@ -1,0 +1,19 @@
+{
+  "artists": "Wykonawcy",
+  "albums": "Albumy",
+  "playlists": "Playlisty",
+  "tracks": "Utwory",
+  "search-paragraph-results": "Oto wyniki dla {0}.",
+  "search-paragraph-albums": "Oto albumy dla {0}.",
+  "search-paragraph-artists": "Oto wykonawcy dla {0}.",
+  "search-paragraph-tracks": "Oto utwory dla {0}.",
+  "search-paragraph-playlists": "Oto playlisty dla {0}.",
+  "did-you-mean-1": "Czy chodzi Ci o “{0}”?",
+  "did-you-mean-2": "Masz na myśli “{0}” czy “{1}”?",
+  "back-to-original-query": "Szukaj zamiast tego “{0}”.",
+  "empty-search-result": "Brak wyników wyszukiwania dla {0}.",
+  "empty-search": "Wyszukiwane wyrażenie jest za długie. Użyj czegoś krótszego.",
+  "snapshot-failed": "Wystąpił błąd. Spróbuj wyszukać ponownie.",
+  "no-tracks": "Nie ma żadnych utworów w naszym katalogu spełniających kryteria Twojego wyszukiwania. Sprawdź, czy wszystkie wyrazy są wpisane prawidłowo. Możesz również przeprowadzić wyszukiwanie innych lub prostszych elementów. ",
+  "see-all": "Pokaż wszystkie"
+}

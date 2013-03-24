@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Popup</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Popup</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="71c3eae24a.html">views/popup</a>~</span>
+    
+    Popup
+    </h2>
+    
+        <div class="class-description">A popup that is shown inside the application with an arrow pointing towards
+    an element that the popup is originating from (attached to) - usually a
+    button.</div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="Popup"><span class="type-signature"></span>new Popup</h4>
+    
+    
+    <p class="summary">Use a factory method to instantiate.</p>
+    
+</dt>
+<dd>
+    
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The width of content area of the popup.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The height of content area of the popup.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_cssClass</code></td>
+            
+            
+            <td class="type">
+            
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional CSS class to add to the popup
+    element.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The current popup width. Use resize method to change.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The current popup height. Use resize method to change.</td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 52</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>require(['$views/popup'], function(popup) {
+
+  var h1 = document.createElement('h1');
+  h1.textContent = 'Hello World!';
+  var p = document.createElement('p');
+  p.textContent = 'This is a popup!';
+
+  // Using a fragment avoids creating an unnecessary wrapper element, but is
+  // not required.
+  var fragment = document.createDocumentFragment();
+  fragment.appendChild(h1);
+  fragment.appendChild(p);
+
+  var info = popup.Popup.withContent(fragment, 200, 90);
+  info.showFor(document.getElementById('some-element'));
+
+});</code></pre>
+
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="dispose"><span class="type-signature"></span>dispose</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Unreferences resources used by the popup so that it can be garbage
+collected.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 330</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withText('Some text');
+popup.dispose();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="getNode"><span class="type-signature"></span>getNode</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns an HTML element that represents the popup.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 240</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The element that represents the popup.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">HTMLElement</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withText('Some text');
+var popupNode = popup.getNode();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="hide"><span class="type-signature"></span>hide</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Hides the popup.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_delay</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional time (in milliseconds) to delay the
+    hiding of the popup by. If the popup is shown again before this time has
+    passed, the delay will be cancelled and the popup will not be hidden.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 279</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withText('Some text');
+var referenceElement = document.getElementById('button');
+popup.showFor(referenceElement);
+popup.hide();</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resize"><span class="type-signature"></span>resize</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Change the size of the popup.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">New width of the popup.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">New height of the popup.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 370</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withContent(contentElement, 200, 90);
+popup.resize(400, 400);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setContent"><span class="type-signature"></span>setContent</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Updates the content of the popup.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+            
+            <td class="type">
+            
+                        Node
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A DOM node that should be used to represent the
+    content of the popup.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_width</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Optional width to resize the popup to. Height
+    also needs to be specified for this to take effect.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_height</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Optional height to resize the popup to.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 389</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withContent(contentElement, 200, 90);
+popup.setContent(newContentElement);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setText"><span class="type-signature"></span>setText</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Sets the contents of the popup to be a simple string.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The text to display in the popup.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_maxWidth</code></td>
+            
+            
+            <td class="type">
+            
+                        number=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The width at which the text will start
+    wrapping.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 417</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withText('Some tooltip text');
+popup.setText('Some other text');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="showFor"><span class="type-signature"></span>showFor</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Attaches the popup to a DOM element and displays it.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>attachTo</code></td>
+            
+            
+            <td class="type">
+            
+                        Element
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Element to attach to.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 461</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withText('Some tooltip text');
+var referenceElement = document.getElementById('button');
+popup.showFor(referenceElement);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="withContent"><span class="type-signature">&lt;static> </span>withContent</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates a popup containing the specified DOM content.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+            
+            <td class="type">
+            
+                        Node
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">A DOM node to insert into the popup. Can also be a
+    document fragment.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The width of the popup content area.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+            
+            <td class="type">
+            
+                        number
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The height of the popup content area.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_cssClass</code></td>
+            
+            
+            <td class="type">
+            
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional CSS class to add to the popup
+    element.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 80</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The popup.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Popup</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var content = document.createElement('h1');
+content.innerHTML = 'Heading';
+var popup = Popup.withContent(content, 200, 90);
+
+var referenceElement = document.getElementById('button');
+popup.showFor(referenceElement);</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="withText"><span class="type-signature">&lt;static> </span>withText</h4>
+    
+    
+    <p class="summary">Factory method.</p>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates a popup containing the specified text.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+            
+            <td class="type">
+            
+                        string
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The text that the popup should display.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>opt_cssClass</code></td>
+            
+            
+            <td class="type">
+            
+                        string=
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">An optional CSS class to add to the popup
+    element.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>popup.js, line 102</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The popup.
+</div>
+
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Popup</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="sh_javascript"><code>var popup = Popup.withText('Some tooltip text');
+var referenceElement = document.getElementById('button');
+popup.showFor(referenceElement);</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="bb694f306d.html">views/buttons</a></li><li><a href="b09bdc3b3d.html">views/image</a></li><li><a href="c1fec7a0c7.html">views/list</a></li><li><a href="71c3eae24a.html">views/popup</a></li><li><a href="53bb083269.html">views/scroll-agent</a></li><li><a href="87b4abdbc7.html">views/tabbar</a></li><li><a href="48001c41d3.html">views/throbber</a></li><li><a href="f4014ec7de.html">views/ui</a></li></ul><h3>Classes</h3><ul><li><a href="3d2ab2c4df.html">AddToCollectionButton</a></li><li><a href="5d1cf3fdd7.html">BaseButton</a></li><li><a href="ac91ff4491.html">Button</a></li><li><a href="824c77c1ee.html">CustomButton</a></li><li><a href="e039471c99.html">Image</a></li><li><a href="b6d6983f46.html">List</a></li><li><a href="f5a366df08.html">Popup</a></li><li><a href="2d9c4cfac6.html">QuickActionButtons</a></li><li><a href="0f496624db.html">ScrollAgent</a></li><li><a href="cc06f20d53.html">ShareButton</a></li><li><a href="b55f4a2324.html">StartRadioButton</a></li><li><a href="7baffe74b6.html">SubscribeButton</a></li><li><a href="b381b7833a.html">TabBar</a></li><li><a href="b4bbfdb1f5.html">Throbber</a></li><li><a href="29cae105f1.html">UI</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Mon Mar 11 2013 15:04:54 GMT+0100 (CET)
+</footer>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>
